@@ -19,14 +19,14 @@ int main(int argc, char** argv) {
 	cbuild
 		.out("bin", "server")
 		.flags({
-			"-Wl,-rpath='$ORIGIN'"
+			"-Wl,-rpath='$ORIGIN'", "-std=c++17"
 		})
 		.inc_paths({
 			"vendor/httplib",
 			"vendor/openssl/include",
 		})
 		.lib_paths({
-			"vendor/openssl/bin"
+			"vendor/openssl/lib"
 		})
 		.libs({
 			"ssl",
@@ -39,11 +39,11 @@ int main(int argc, char** argv) {
 		.clean();
 
 #ifdef _WIN32
-	copy_file("bin/libcrypto-3-x64.dll", "vendor/openssl/bin/win/libcrypto-3-x64.dll");
-	copy_file("bin/libssl-3-x64.dll", "vendor/openssl/bin/win/libssl-3-x64.dll");
+	copy_file("bin/libcrypto-3-x64.dll", "vendor/openssl/lib/win/libcrypto-3-x64.dll");
+	copy_file("bin/libssl-3-x64.dll", "vendor/openssl/lib/win/libssl-3-x64.dll");
 #elif defined(__linux__)
-	copy_file("bin/libcrypto.so.3", "vendor/openssl/bin/linux/libcrypto.so.3");
-	copy_file("bin/libssl.so.3", "vendor/openssl/bin/linux/libssl.so.3");
+	copy_file("bin/libcrypto.so.3", "vendor/openssl/lib/linux/libcrypto.so.3");
+	copy_file("bin/libssl.so.3", "vendor/openssl/lib/linux/libssl.so.3");
 #endif
 
 	cbuild.run(argv);
