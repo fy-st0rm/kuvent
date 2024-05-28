@@ -50,7 +50,7 @@ public:
 	CBuild& build();
 	CBuild& build_static_lib();
 	CBuild& generate_compile_cmds();
-	CBuild& run(char** argv = NULL);
+	CBuild& run(int argc = 0, char** argv = NULL);
 	CBuild& clean();
 
 private:
@@ -241,11 +241,17 @@ CBuild& CBuild::build_static_lib() {
 	return *this;
 }
 
-CBuild& CBuild::run(char** argv) {
+CBuild& CBuild::run(int argc, char** argv) {
 	std::string out = m_out_dir + (m_out_dir.length() ? "/" : "") + m_out_file;
 	LOG("Running: %s", out.c_str());
-	int status = execvp(out.c_str(), argv);
-	std::cout << status << std::endl;
+
+	std::string cmd = out;
+	for (int i = 0; i < argc; i++) {
+		cmd += " ";
+		cmd += argv[i];
+	}
+
+	int status = std::system(cmd.c_str());
 	return *this;
 }
 

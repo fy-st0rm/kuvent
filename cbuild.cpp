@@ -12,9 +12,34 @@ void copy_file(const std::string& to, const std::string& from) {
 	LOG("Copying file from %s -> %s", from.c_str(), to.c_str());
 }
 
-int main(int argc, char** argv) {
-	cbuild_rebuild(argc, argv);
+bool file_exists(const std::string& path) {
+	std::ifstream f(path);
+	return f.good();
+}
 
+void copy_dlls() {
+#ifdef _WIN32
+	copy_file("bin/libcrypto-3-x64.dll", "vendor/openssl/lib/win/libcrypto-3-x64.dll");
+	copy_file("bin/libssl-3-x64.dll", "vendor/openssl/lib/win/libssl-3-x64.dll");
+#elif defined(__linux__)
+	copy_file("bin/libcrypto.so.3", "vendor/openssl/lib/linux/libcrypto.so.3");
+	copy_file("bin/libssl.so.3", "vendor/openssl/lib/linux/libssl.so.3");
+#endif
+}
+
+void compile_vendor() {
+	CBuild cbuild("gcc");
+	cbuild
+		.inc_paths({
+			"vendor/sqlite3"
+		})
+		.src({
+			"vendor/sqlite3/sqlite3.c",
+		})
+		.compile();
+}
+
+void build(char** argv) {
 	CBuild cbuild("g++");
 	cbuild
 		.out("bin", "server")
@@ -24,29 +49,75 @@ int main(int argc, char** argv) {
 		.inc_paths({
 			"vendor/httplib",
 			"vendor/openssl/include",
+			"vendor/sqlite3",
+			"src/"
 		})
 		.lib_paths({
 			"vendor/openssl/lib"
 		})
 		.libs({
 			"ssl",
-			"crypto"
+			"crypto",
 		})
 		.src({
+			"src/db.cpp",
 			"src/main.cpp"
 		})
-		.build()
-		.clean();
+		.objs({
+			"vendor/sqlite3/sqlite3.o"
+		})
+		.build();
 
-#ifdef _WIN32
-	copy_file("bin/libcrypto-3-x64.dll", "vendor/openssl/lib/win/libcrypto-3-x64.dll");
-	copy_file("bin/libssl-3-x64.dll", "vendor/openssl/lib/win/libssl-3-x64.dll");
-#elif defined(__linux__)
-	copy_file("bin/libcrypto.so.3", "vendor/openssl/lib/linux/libcrypto.so.3");
-	copy_file("bin/libssl.so.3", "vendor/openssl/lib/linux/libssl.so.3");
-#endif
+	copy_dlls();
+	cbuild.run();
+}
 
-	cbuild.run(argv);
+void init_db(char** argv) {
+	CBuild cbuild("g++");
+	cbuild
+		.out("bin", "db_init")
+		.flags({
+			"-Wl,-rpath='$ORIGIN'", "-std=c++17"
+		})
+		.inc_paths({
+			"vendor/httplib",
+			"vendor/openssl/include",
+			"vendor/sqlite3",
+			"src/"
+		})
+		.lib_paths({
+			"vendor/openssl/lib"
+		})
+		.libs({
+			"ssl",
+			"crypto",
+		})
+		.src({
+			"src/db.cpp",
+			"src/db_init.cpp",
+		})
+		.objs({
+			"vendor/sqlite3/sqlite3.o"
+		})
+		.build();
+
+	copy_dlls();
+	cbuild.run();
+}
+
+int main(int argc, char** argv) {
+	cbuild_rebuild(argc, argv);
+
+	compile_vendor();
+
+	if (!file_exists("db/database.db")) {
+		std::filesystem::create_directories("db");
+		LOG("Initializing database...");
+		init_db(argv);
+		LOG("Database initialization completed.");
+	}
+
+	build(argv);
 
 	return 0;
 }

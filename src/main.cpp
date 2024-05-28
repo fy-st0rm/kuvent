@@ -1,11 +1,30 @@
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
+#include "db.h"
+
 using namespace httplib;
 
 int main(void) {
-	Server svr;
+	Database db("db/database.db");
 
-	svr.Get("/hi", [](const Request & /*req*/, Response &res) {
+	QueryResult rs;
+	rs = db.query(
+		"SELECT * FROM User WHERE ID=1;"
+	);
+	if (rs.status != SQLITE_OK) {
+		std::cerr << rs.error << std::endl;
+		return 1;
+	}
+
+	for (auto r : rs.result) {
+		for (auto a : r) {
+			std::cout << a.first << ": " << a.second << "\t";
+		}
+		std::cout << std::endl;
+	}
+
+	Server svr;
+	svr.Get("/", [](const Request& req, Response& res) {
 		res.set_content("Hello World!", "text/plain");
 	});
 
