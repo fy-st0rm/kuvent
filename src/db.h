@@ -29,7 +29,7 @@ struct RowFormat {
 	}
 };
 
-struct Table{
+struct Table {
 	std::string name;
 	std::vector<RowFormat> format;
 };

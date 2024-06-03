@@ -46,6 +46,7 @@ public:
 	CBuild& inc_paths(std::vector<std::string> inc_paths);
 	CBuild& lib_paths(std::vector<std::string> lib_paths);
 	CBuild& libs(std::vector<std::string> libs);
+	CBuild& pop_objs(std::vector<std::string> objs);
 	CBuild& compile();
 	CBuild& build();
 	CBuild& build_static_lib();
@@ -154,6 +155,16 @@ CBuild& CBuild::lib_paths(std::vector<std::string> lib_paths) {
 
 CBuild& CBuild::libs(std::vector<std::string> libs) {
 	m_libs.insert(m_libs.end(), libs.begin(), libs.end());
+	return *this;
+}
+
+CBuild& CBuild::pop_objs(std::vector<std::string> objs) {
+	for(int i = 0; i < objs.size(); i++) {
+		auto iter = std::find(m_objs.begin(), m_objs.end(), objs[i]);
+		if(iter != m_objs.end()) {
+			m_objs.erase(iter);
+		}
+	}
 	return *this;
 }
 

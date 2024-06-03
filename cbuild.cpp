@@ -66,7 +66,11 @@ void build(char** argv) {
 		.objs({
 			"vendor/sqlite3/sqlite3.o"
 		})
-		.build();
+		.build()
+		.pop_objs({
+			"vendor/sqlite3/sqlite3.o"
+		})
+		.clean();
 
 	copy_dlls();
 	cbuild.run();
@@ -99,7 +103,11 @@ void init_db(char** argv) {
 		.objs({
 			"vendor/sqlite3/sqlite3.o"
 		})
-		.build();
+		.build()
+		.pop_objs({
+			"vendor/sqlite3/sqlite3.o"
+		})
+		.clean();
 
 	copy_dlls();
 	cbuild.run();
@@ -108,7 +116,9 @@ void init_db(char** argv) {
 int main(int argc, char** argv) {
 	cbuild_rebuild(argc, argv);
 
-	compile_vendor();
+	if (!file_exists("vendor/sqlite3/sqlite3.o")) {
+		compile_vendor();
+	}
 
 	if (!file_exists("db/database.db")) {
 		std::filesystem::create_directories("db");
