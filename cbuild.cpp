@@ -50,6 +50,7 @@ void build(char** argv) {
 			"vendor/httplib",
 			"vendor/openssl/include",
 			"vendor/sqlite3",
+			"vendor/json",
 			"src/"
 		})
 		.lib_paths({
@@ -60,7 +61,9 @@ void build(char** argv) {
 			"crypto",
 		})
 		.src({
-			"src/db.cpp",
+			"vendor/json/jsoncpp.cpp",
+			"src/db/db.cpp",
+			"src/routes/registration.cpp",
 			"src/main.cpp"
 		})
 		.objs({
@@ -97,8 +100,8 @@ void init_db(char** argv) {
 			"crypto",
 		})
 		.src({
-			"src/db.cpp",
-			"src/db_init.cpp",
+			"src/db/db.cpp",
+			"src/db/db_init.cpp",
 		})
 		.objs({
 			"vendor/sqlite3/sqlite3.o"
