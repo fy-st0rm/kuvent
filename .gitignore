@@ -1,4 +1,3 @@
 cbuild
 bin
 *.o
-db
