@@ -55,6 +55,7 @@ void build(char** argv) {
 
 int main(int argc, char** argv) {
 	cbuild_rebuild(argc, argv);
+	copy_dlls();
 	build(argv);
 	return 0;
 }
