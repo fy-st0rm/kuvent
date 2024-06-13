@@ -123,8 +123,8 @@ int main(int argc, char** argv) {
 		compile_vendor();
 	}
 
-	if (!file_exists("db/database.db")) {
-		std::filesystem::create_directories("db");
+	if (!file_exists("storage/database.db")) {
+		std::filesystem::create_directories("storage");
 		LOG("Initializing database...");
 		init_db(argv);
 		LOG("Database initialization completed.");

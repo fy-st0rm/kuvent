@@ -1,4 +1,4 @@
 cbuild
 bin
 *.o
-db
+storage

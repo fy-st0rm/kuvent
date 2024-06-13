@@ -4,6 +4,7 @@
 #include "registration.h"
 #include "json/json.h"
 #include "uuid.h"
+#include "defines.h"
 
 void signup(const Request& req, Response& res) {
 	Json::Value value;
@@ -16,7 +17,7 @@ void signup(const Request& req, Response& res) {
 	std::string password = value["password"].asString();
 	std::string type = value["type"].asString();
 
-	Database db("db/database.db");
+	Database db(DB_PATH);
 
 	std::stringstream sq;
 	sq << "SELECT * FROM USER WHERE EMAIL = \"" << email << "\";";
@@ -59,7 +60,7 @@ void login(const Request& req, Response& res) {
 	std::string email = value["email"].asString();
 	std::string password = value["password"].asString();
 
-	Database db("db/database.db");
+	Database db(DB_PATH);
 
 	std::stringstream sq;
 	sq << "SELECT * FROM USER WHERE EMAIL = \"" << email << "\";";
