@@ -19,8 +19,8 @@ bool file_exists(const std::string& path) {
 
 void copy_dlls() {
 #ifdef _WIN32
-	//copy_file("bin/libcrypto-3-x64.dll", "vendor/openssl/lib/win/libcrypto-3-x64.dll");
-	//copy_file("bin/libssl-3-x64.dll", "vendor/openssl/lib/win/libssl-3-x64.dll");
+	copy_file("bin/Qt5Core.dll", "vendor/qt/lib/Qt5Core.dll");
+	copy_file("bin/Qt5Widgets.dll", "vendor/qt/lib/Qt5Widgets.dll");
 #elif defined(__linux__)
 	copy_file("bin/libQt5Core.so.5", "vendor/qt/lib/libQt5Core.so.5");
 	copy_file("bin/libQt5Widgets.so.5", "vendor/qt/lib/libQt5Widgets.so.5");
