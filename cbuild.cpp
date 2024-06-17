@@ -26,6 +26,8 @@ void copy_dlls() {
 	copy_file("bin/libQt5Widgets.so.5", "vendor/qt/lib/libQt5Widgets.so.5");
 	copy_file("bin/libQt5Core.so.5.15.11", "vendor/qt/lib/libQt5Core.so.5.15.11");
 	copy_file("bin/libQt5Widgets.so.5.15.11", "vendor/qt/lib/libQt5Widgets.so.5.15.11");
+	copy_file("bin/libicui18n.so.73", "vendor/qt/lib/libicui18n.so.73");
+	copy_file("bin/libicui18n.so.73.2", "vendor/qt/lib/libicui18n.so.73.2");
 #endif
 }
 
@@ -46,18 +48,20 @@ void build(char** argv) {
 		.libs({
 			"Qt5Core",
 			"Qt5Widgets",
+			"icui18n"
 		})
 		.src({
 			"src/main.cpp"
 		})
 		.build()
-		.clean()
-		.run();
+		.clean();
+
+	copy_dlls();
+	cbuild.run();
 }
 
 int main(int argc, char** argv) {
 	cbuild_rebuild(argc, argv);
-	copy_dlls();
 	build(argv);
 	return 0;
 }
