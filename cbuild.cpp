@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
 	}
 
 	if (!file_exists("storage/database.db")) {
-		std::filesystem::create_directories("storage");
+		make_path("storage");
 		LOG("Initializing database...");
 		init_db(argv);
 		LOG("Database initialization completed.");
