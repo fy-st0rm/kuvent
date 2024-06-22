@@ -26,9 +26,10 @@ MainWindow::MainWindow(QWidget *parent)
     addpassword->setFixedSize(200,30);
     button1->setFixedSize(60,30);
 
+
     button1->setStyleSheet("background-color: #62B6CB; color: white;");
-    add->setStyleSheet("background-color: #D9D9D9");
-    addpassword->setStyleSheet("background-color: #D9D9D9");
+    addpassword->setStyleSheet("background-color: #D9D9D9; color: #000000;");
+    add->setStyleSheet("color: #000000; background-color: #D9D9D9");
 
     // central widget and set it
     centralWidget = new QWidget(this);
