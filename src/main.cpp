@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationName("KUvent");
+    a.setApplicationName("KUvents");
     MainWindow w;
     w.setWindowTitle(a.applicationName());
     w.show();
