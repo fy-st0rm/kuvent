@@ -2,6 +2,6 @@
 #define QT_QTQUICKTEST_MODULE_H
 #include <QtQuickTest/QtQuickTestDepends>
 #include "quicktestglobal.h"
-#include "quicktest.h"
 #include "qtquicktestversion.h"
+#include "quicktest.h"
 #endif

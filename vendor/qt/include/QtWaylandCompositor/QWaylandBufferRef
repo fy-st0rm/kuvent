@@ -1,1 +1,1 @@
-#include "qwaylandbufferref.h"
+#include "qwaylandbufferref.h" // IWYU pragma: export

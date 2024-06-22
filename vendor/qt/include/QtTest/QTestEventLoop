@@ -1,1 +1,1 @@
-#include "qtesteventloop.h"
+#include "qtesteventloop.h" // IWYU pragma: export

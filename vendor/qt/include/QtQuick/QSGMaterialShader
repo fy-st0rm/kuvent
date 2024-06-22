@@ -1,1 +1,1 @@
-#include "qsgmaterialshader.h"
+#include "qsgmaterialshader.h" // IWYU pragma: export

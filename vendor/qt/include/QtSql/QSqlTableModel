@@ -1,1 +1,1 @@
-#include "qsqltablemodel.h"
+#include "qsqltablemodel.h" // IWYU pragma: export

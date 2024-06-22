@@ -1,1 +1,1 @@
-#include "qsizegrip.h"
+#include "qsizegrip.h" // IWYU pragma: export

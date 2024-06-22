@@ -1,1 +1,1 @@
-#include "qmediarecorder.h"
+#include "qmediarecorder.h" // IWYU pragma: export

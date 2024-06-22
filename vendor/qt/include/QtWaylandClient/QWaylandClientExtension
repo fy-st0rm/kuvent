@@ -1,1 +1,1 @@
-#include "qwaylandclientextension.h"
+#include "qwaylandclientextension.h" // IWYU pragma: export

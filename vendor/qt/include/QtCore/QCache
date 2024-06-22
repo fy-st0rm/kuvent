@@ -1,1 +1,1 @@
-#include "qcache.h"
+#include "qcache.h" // IWYU pragma: export

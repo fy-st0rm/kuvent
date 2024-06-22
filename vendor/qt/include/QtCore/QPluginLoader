@@ -1,1 +1,1 @@
-#include "qpluginloader.h"
+#include "qpluginloader.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qtwaylandclientversion.h"
+#include "qtwaylandclientversion.h" // IWYU pragma: export

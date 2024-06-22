@@ -1,1 +1,1 @@
-#include "qsgrectanglenode.h"
+#include "qsgrectanglenode.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qkeysequenceedit.h"
+#include "qkeysequenceedit.h" // IWYU pragma: export

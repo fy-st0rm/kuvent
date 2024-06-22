@@ -1,1 +1,1 @@
-#include "qsizepolicy.h"
+#include "qsizepolicy.h" // IWYU pragma: export

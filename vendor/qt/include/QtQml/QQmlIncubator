@@ -1,1 +1,1 @@
-#include "qqmlincubator.h"
+#include "qqmlincubator.h" // IWYU pragma: export

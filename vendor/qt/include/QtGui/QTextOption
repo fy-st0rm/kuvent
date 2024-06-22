@@ -1,1 +1,1 @@
-#include "qtextoption.h"
+#include "qtextoption.h" // IWYU pragma: export

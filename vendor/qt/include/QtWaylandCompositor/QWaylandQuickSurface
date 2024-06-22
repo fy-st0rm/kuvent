@@ -1,1 +1,1 @@
-#include "qwaylandquicksurface.h"
+#include "qwaylandquicksurface.h" // IWYU pragma: export

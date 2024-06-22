@@ -1,1 +1,1 @@
-#include "qtextdocumentfragment.h"
+#include "qtextdocumentfragment.h" // IWYU pragma: export

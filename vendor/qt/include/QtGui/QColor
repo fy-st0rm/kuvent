@@ -1,1 +1,1 @@
-#include "qcolor.h"
+#include "qcolor.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qsystemtrayicon.h"
+#include "qsystemtrayicon.h" // IWYU pragma: export

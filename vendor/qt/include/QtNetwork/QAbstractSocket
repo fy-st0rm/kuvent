@@ -1,1 +1,1 @@
-#include "qabstractsocket.h"
+#include "qabstractsocket.h" // IWYU pragma: export

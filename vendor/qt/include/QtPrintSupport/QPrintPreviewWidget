@@ -1,1 +1,1 @@
-#include "qprintpreviewwidget.h"
+#include "qprintpreviewwidget.h" // IWYU pragma: export

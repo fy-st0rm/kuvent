@@ -1,1 +1,1 @@
-#include "qfuturesynchronizer.h"
+#include "qfuturesynchronizer.h" // IWYU pragma: export

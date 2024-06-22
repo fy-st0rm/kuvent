@@ -1,1 +1,1 @@
-#include "qtsqlglobal.h"
+#include "qtsqlglobal.h" // IWYU pragma: export

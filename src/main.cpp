@@ -1,14 +1,14 @@
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QPushButton>
+#include "mainwindow.h"
 
-int main(int argc, char **argv)
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+int main(int argc, char *argv[])
 {
-	QApplication app (argc, argv);
-	
-	QPushButton button;
-	button.setText("My text");
-	button.setToolTip("A tooltip");
-	button.show();
-	
-	return app.exec();
+    QApplication a(argc, argv);
+    a.setApplicationName("KUvent");
+    MainWindow w;
+    w.setWindowTitle(a.applicationName());
+    w.show();
+    return a.exec();
 }

@@ -1,1 +1,1 @@
-#include "qrubberband.h"
+#include "qrubberband.h" // IWYU pragma: export

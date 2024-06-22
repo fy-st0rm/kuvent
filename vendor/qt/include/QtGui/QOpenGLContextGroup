@@ -1,1 +1,1 @@
-#include "qopenglcontext.h"
+#include "qopenglcontext.h" // IWYU pragma: export

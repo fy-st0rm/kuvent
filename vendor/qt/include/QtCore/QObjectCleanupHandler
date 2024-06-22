@@ -1,1 +1,1 @@
-#include "qobjectcleanuphandler.h"
+#include "qobjectcleanuphandler.h" // IWYU pragma: export

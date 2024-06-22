@@ -1,1 +1,1 @@
-#include "qsslcertificate.h"
+#include "qsslcertificate.h" // IWYU pragma: export

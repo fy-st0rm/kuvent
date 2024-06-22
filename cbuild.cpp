@@ -19,15 +19,16 @@ bool file_exists(const std::string& path) {
 
 void copy_dlls() {
 #ifdef _WIN32
-	copy_file("bin/Qt5Core.dll", "vendor/qt/lib/Qt5Core.dll");
-	copy_file("bin/Qt5Widgets.dll", "vendor/qt/lib/Qt5Widgets.dll");
+	std::filesystem::create_directories("bin/platforms");
+
+	copy_file("bin/platforms/qwindows.dll", "vendor/qt/lib/windows/platforms/qwindows.dll");
+	copy_file("bin/Qt6Core.dll",            "vendor/qt/lib/windows/Qt6Core.dll");
+	copy_file("bin/Qt6Widgets.dll",         "vendor/qt/lib/windows/Qt6Widgets.dll");
+	copy_file("bin/Qt6Gui.dll",             "vendor/qt/lib/windows/Qt6Gui.dll");
 #elif defined(__linux__)
-	copy_file("bin/libQt5Core.so.5", "vendor/qt/lib/libQt5Core.so.5");
-	copy_file("bin/libQt5Widgets.so.5", "vendor/qt/lib/libQt5Widgets.so.5");
-	copy_file("bin/libQt5Core.so.5.15.11", "vendor/qt/lib/libQt5Core.so.5.15.11");
-	copy_file("bin/libQt5Widgets.so.5.15.11", "vendor/qt/lib/libQt5Widgets.so.5.15.11");
-	copy_file("bin/libicui18n.so.73", "vendor/qt/lib/libicui18n.so.73");
-	copy_file("bin/libicui18n.so.73.2", "vendor/qt/lib/libicui18n.so.73.2");
+	copy_file("bin/libQt6Core.so.6",    "vendor/qt/lib/linux/libQt6Core.so.6");
+	copy_file("bin/libQt6Widgets.so.6", "vendor/qt/lib/linux/libQt6Widgets.so.6");
+	copy_file("bin/libQt6Gui.so.6",     "vendor/qt/lib/linux/libQt6Gui.so.6");
 #endif
 }
 
@@ -42,15 +43,23 @@ void build(char** argv) {
 			"vendor/qt/include",
 			"src"
 		})
+
+#ifdef _WIN32
 		.lib_paths({
-			"vendor/qt/lib"
+			"vendor/qt/lib/windows"
 		})
+#elif defined(__linux__)
+		.lib_paths({
+			"vendor/qt/lib/linux"
+		})
+#endif
 		.libs({
-			"Qt5Core",
-			"Qt5Widgets",
-			"icui18n"
+			"Qt6Widgets",
+			"Qt6Core",
+			"Qt6Gui",
 		})
 		.src({
+			"src/mainwindow.cpp",
 			"src/main.cpp"
 		})
 		.build()

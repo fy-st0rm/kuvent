@@ -1,1 +1,1 @@
-#include "qradiobutton.h"
+#include "qradiobutton.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qsgnode.h"
+#include "qsgnode.h" // IWYU pragma: export

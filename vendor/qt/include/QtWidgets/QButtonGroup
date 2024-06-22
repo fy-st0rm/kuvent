@@ -1,1 +1,1 @@
-#include "qbuttongroup.h"
+#include "qbuttongroup.h" // IWYU pragma: export

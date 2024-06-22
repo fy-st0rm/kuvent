@@ -1,1 +1,1 @@
-#include "qlocalsocket.h"
+#include "qlocalsocket.h" // IWYU pragma: export

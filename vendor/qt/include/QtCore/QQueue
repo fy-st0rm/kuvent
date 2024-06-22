@@ -1,1 +1,1 @@
-#include "qqueue.h"
+#include "qqueue.h" // IWYU pragma: export

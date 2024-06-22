@@ -1,1 +1,1 @@
-#include "qresource.h"
+#include "qresource.h" // IWYU pragma: export

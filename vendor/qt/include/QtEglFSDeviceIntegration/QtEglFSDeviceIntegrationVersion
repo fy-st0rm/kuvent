@@ -1,1 +1,1 @@
-#include "qteglfsdeviceintegrationversion.h"
+#include "qteglfsdeviceintegrationversion.h" // IWYU pragma: export

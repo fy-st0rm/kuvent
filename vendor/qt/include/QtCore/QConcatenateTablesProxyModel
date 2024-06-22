@@ -1,1 +1,1 @@
-#include "qconcatenatetablesproxymodel.h"
+#include "qconcatenatetablesproxymodel.h" // IWYU pragma: export

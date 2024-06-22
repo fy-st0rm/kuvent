@@ -1,1 +1,1 @@
-#include "qgesturerecognizer.h"
+#include "qgesturerecognizer.h" // IWYU pragma: export

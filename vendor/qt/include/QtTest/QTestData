@@ -1,1 +1,1 @@
-#include "qtestdata.h"
+#include "qtestdata.h" // IWYU pragma: export

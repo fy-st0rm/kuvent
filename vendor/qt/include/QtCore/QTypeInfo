@@ -1,1 +1,1 @@
-#include "qtypeinfo.h"
+#include "qtypeinfo.h" // IWYU pragma: export

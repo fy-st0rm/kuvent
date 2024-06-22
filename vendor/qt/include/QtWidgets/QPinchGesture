@@ -1,1 +1,1 @@
-#include "qgesture.h"
+#include "qgesture.h" // IWYU pragma: export

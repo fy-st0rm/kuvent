@@ -1,1 +1,1 @@
-#include "qtmultimediaversion.h"
+#include "qtmultimediaversion.h" // IWYU pragma: export

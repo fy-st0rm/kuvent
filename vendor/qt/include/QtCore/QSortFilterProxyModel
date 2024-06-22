@@ -1,1 +1,1 @@
-#include "qsortfilterproxymodel.h"
+#include "qsortfilterproxymodel.h" // IWYU pragma: export

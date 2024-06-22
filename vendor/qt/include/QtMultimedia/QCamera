@@ -1,1 +1,1 @@
-#include "qcamera.h"
+#include "qcamera.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qwaylandkeymap.h"
+#include "qwaylandkeymap.h" // IWYU pragma: export

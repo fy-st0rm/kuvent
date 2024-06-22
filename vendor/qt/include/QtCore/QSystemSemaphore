@@ -1,1 +1,1 @@
-#include "qsystemsemaphore.h"
+#include "qsystemsemaphore.h" // IWYU pragma: export

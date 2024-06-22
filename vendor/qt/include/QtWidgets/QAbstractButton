@@ -1,1 +1,1 @@
-#include "qabstractbutton.h"
+#include "qabstractbutton.h" // IWYU pragma: export

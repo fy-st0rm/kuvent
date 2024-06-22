@@ -1,1 +1,1 @@
-#include "qtdevicediscoverysupportversion.h"
+#include "qtdevicediscoverysupportversion.h" // IWYU pragma: export

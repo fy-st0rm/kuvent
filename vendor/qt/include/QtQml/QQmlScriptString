@@ -1,1 +1,1 @@
-#include "qqmlscriptstring.h"
+#include "qqmlscriptstring.h" // IWYU pragma: export

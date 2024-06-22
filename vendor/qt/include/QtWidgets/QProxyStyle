@@ -1,1 +1,1 @@
-#include "qproxystyle.h"
+#include "qproxystyle.h" // IWYU pragma: export

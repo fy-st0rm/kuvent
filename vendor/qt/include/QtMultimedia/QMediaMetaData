@@ -1,1 +1,1 @@
-#include "qmediametadata.h"
+#include "qmediametadata.h" // IWYU pragma: export

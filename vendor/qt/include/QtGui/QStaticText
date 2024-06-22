@@ -1,1 +1,1 @@
-#include "qstatictext.h"
+#include "qstatictext.h" // IWYU pragma: export

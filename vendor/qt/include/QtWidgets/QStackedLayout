@@ -1,1 +1,1 @@
-#include "qstackedlayout.h"
+#include "qstackedlayout.h" // IWYU pragma: export

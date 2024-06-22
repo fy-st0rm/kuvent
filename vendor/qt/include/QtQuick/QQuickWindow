@@ -1,1 +1,1 @@
-#include "qquickwindow.h"
+#include "qquickwindow.h" // IWYU pragma: export

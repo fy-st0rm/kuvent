@@ -1,1 +1,1 @@
-#include "qtranslator.h"
+#include "qtranslator.h" // IWYU pragma: export

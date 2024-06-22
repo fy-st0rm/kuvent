@@ -1,1 +1,1 @@
-#include "qtqmlversion.h"
+#include "qtqmlversion.h" // IWYU pragma: export

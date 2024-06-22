@@ -1,1 +1,1 @@
-#include "qtextlayout.h"
+#include "qtextlayout.h" // IWYU pragma: export

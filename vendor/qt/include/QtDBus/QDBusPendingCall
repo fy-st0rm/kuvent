@@ -1,1 +1,1 @@
-#include "qdbuspendingcall.h"
+#include "qdbuspendingcall.h" // IWYU pragma: export

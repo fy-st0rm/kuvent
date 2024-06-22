@@ -1,1 +1,1 @@
-#include "qscrollarea.h"
+#include "qscrollarea.h" // IWYU pragma: export

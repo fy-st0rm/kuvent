@@ -1,1 +1,1 @@
-#include "qcolorspace.h"
+#include "qcolorspace.h" // IWYU pragma: export

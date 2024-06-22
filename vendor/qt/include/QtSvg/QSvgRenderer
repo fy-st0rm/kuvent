@@ -1,1 +1,1 @@
-#include "qsvgrenderer.h"
+#include "qsvgrenderer.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qtopenglversion.h"
+#include "qtopenglversion.h" // IWYU pragma: export

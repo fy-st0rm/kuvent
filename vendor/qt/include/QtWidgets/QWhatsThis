@@ -1,1 +1,1 @@
-#include "qwhatsthis.h"
+#include "qwhatsthis.h" // IWYU pragma: export

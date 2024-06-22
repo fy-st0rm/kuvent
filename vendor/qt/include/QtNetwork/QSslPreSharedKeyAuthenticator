@@ -1,1 +1,1 @@
-#include "qsslpresharedkeyauthenticator.h"
+#include "qsslpresharedkeyauthenticator.h" // IWYU pragma: export

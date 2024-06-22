@@ -1,1 +1,1 @@
-#include "qwaylandinputmethodcontrol.h"
+#include "qwaylandinputmethodcontrol.h" // IWYU pragma: export

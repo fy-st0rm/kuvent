@@ -1,1 +1,1 @@
-#include "qlockfile.h"
+#include "qlockfile.h" // IWYU pragma: export

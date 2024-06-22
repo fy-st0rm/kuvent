@@ -1,1 +1,1 @@
-#include "qiodevice.h"
+#include "qiodevice.h" // IWYU pragma: export

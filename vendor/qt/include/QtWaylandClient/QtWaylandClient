@@ -2,6 +2,6 @@
 #define QT_QTWAYLANDCLIENT_MODULE_H
 #include <QtWaylandClient/QtWaylandClientDepends>
 #include "qtwaylandclientglobal.h"
-#include "qwaylandclientextension.h"
 #include "qtwaylandclientversion.h"
+#include "qwaylandclientextension.h"
 #endif

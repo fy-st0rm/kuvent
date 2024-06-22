@@ -1,1 +1,1 @@
-#include "qqmlpropertymap.h"
+#include "qqmlpropertymap.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qtconcurrentversion.h"
+#include "qtconcurrentversion.h" // IWYU pragma: export

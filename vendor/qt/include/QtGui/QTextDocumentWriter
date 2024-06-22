@@ -1,1 +1,1 @@
-#include "qtextdocumentwriter.h"
+#include "qtextdocumentwriter.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qflags.h"
+#include "qflags.h" // IWYU pragma: export

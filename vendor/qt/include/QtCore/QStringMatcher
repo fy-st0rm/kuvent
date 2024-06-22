@@ -1,1 +1,1 @@
-#include "qstringmatcher.h"
+#include "qstringmatcher.h" // IWYU pragma: export

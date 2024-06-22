@@ -1,1 +1,1 @@
-#include "qrawfont.h"
+#include "qrawfont.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qquickimageprovider.h"
+#include "qquickimageprovider.h" // IWYU pragma: export

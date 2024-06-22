@@ -1,1 +1,1 @@
-#include "qsgimagenode.h"
+#include "qsgimagenode.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qtconcurrentfilter.h"
+#include "qtconcurrentfilter.h" // IWYU pragma: export

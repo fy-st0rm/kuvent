@@ -1,1 +1,1 @@
-#include "qdbusabstractadaptor.h"
+#include "qdbusabstractadaptor.h" // IWYU pragma: export

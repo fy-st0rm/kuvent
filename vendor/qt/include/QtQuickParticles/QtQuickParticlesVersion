@@ -1,1 +1,1 @@
-#include "qtquickparticlesversion.h"
+#include "qtquickparticlesversion.h" // IWYU pragma: export

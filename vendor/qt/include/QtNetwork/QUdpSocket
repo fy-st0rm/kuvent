@@ -1,1 +1,1 @@
-#include "qudpsocket.h"
+#include "qudpsocket.h" // IWYU pragma: export

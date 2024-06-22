@@ -1,1 +1,1 @@
-#include "qquaternion.h"
+#include "qquaternion.h" // IWYU pragma: export

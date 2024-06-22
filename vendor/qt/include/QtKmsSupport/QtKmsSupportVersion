@@ -1,1 +1,1 @@
-#include "qtkmssupportversion.h"
+#include "qtkmssupportversion.h" // IWYU pragma: export

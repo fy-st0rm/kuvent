@@ -1,1 +1,1 @@
-#include "qtnetworkversion.h"
+#include "qtnetworkversion.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qquickitem.h"
+#include "qquickitem.h" // IWYU pragma: export

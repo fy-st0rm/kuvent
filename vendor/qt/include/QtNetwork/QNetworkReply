@@ -1,1 +1,1 @@
-#include "qnetworkreply.h"
+#include "qnetworkreply.h" // IWYU pragma: export

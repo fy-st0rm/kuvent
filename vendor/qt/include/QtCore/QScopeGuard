@@ -1,1 +1,1 @@
-#include "qscopeguard.h"
+#include "qscopeguard.h" // IWYU pragma: export

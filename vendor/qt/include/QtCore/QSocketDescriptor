@@ -1,1 +1,1 @@
-#include "qsocketnotifier.h"
+#include "qsocketnotifier.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qwaitcondition.h"
+#include "qwaitcondition.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qsqlrelationaldelegate.h"
+#include "qsqlrelationaldelegate.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qstylehints.h"
+#include "qstylehints.h" // IWYU pragma: export

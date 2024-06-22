@@ -1,1 +1,1 @@
-#include "qtinputsupportversion.h"
+#include "qtinputsupportversion.h" // IWYU pragma: export

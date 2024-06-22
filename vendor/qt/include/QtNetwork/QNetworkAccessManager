@@ -1,1 +1,1 @@
-#include "qnetworkaccessmanager.h"
+#include "qnetworkaccessmanager.h" // IWYU pragma: export

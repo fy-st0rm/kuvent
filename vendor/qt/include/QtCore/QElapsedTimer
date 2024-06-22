@@ -1,1 +1,1 @@
-#include "qelapsedtimer.h"
+#include "qelapsedtimer.h" // IWYU pragma: export

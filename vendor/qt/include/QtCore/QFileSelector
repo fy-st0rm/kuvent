@@ -1,1 +1,1 @@
-#include "qfileselector.h"
+#include "qfileselector.h" // IWYU pragma: export

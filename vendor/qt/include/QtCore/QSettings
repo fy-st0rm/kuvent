@@ -1,1 +1,1 @@
-#include "qsettings.h"
+#include "qsettings.h" // IWYU pragma: export

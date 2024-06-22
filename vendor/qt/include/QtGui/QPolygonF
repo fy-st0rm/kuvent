@@ -1,1 +1,1 @@
-#include "qpolygon.h"
+#include "qpolygon.h" // IWYU pragma: export

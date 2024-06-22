@@ -1,1 +1,1 @@
-#include "qtsqlversion.h"
+#include "qtsqlversion.h" // IWYU pragma: export

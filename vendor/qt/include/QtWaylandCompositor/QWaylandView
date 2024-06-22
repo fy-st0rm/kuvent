@@ -1,1 +1,1 @@
-#include "qwaylandview.h"
+#include "qwaylandview.h" // IWYU pragma: export

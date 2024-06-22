@@ -1,1 +1,1 @@
-#include "qbitmap.h"
+#include "qbitmap.h" // IWYU pragma: export

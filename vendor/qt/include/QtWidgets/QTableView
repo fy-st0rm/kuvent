@@ -1,1 +1,1 @@
-#include "qtableview.h"
+#include "qtableview.h" // IWYU pragma: export

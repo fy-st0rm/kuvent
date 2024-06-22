@@ -1,1 +1,1 @@
-#include "qtest_gui.h"
+#include "qtest_gui.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qiconengine.h"
+#include "qiconengine.h" // IWYU pragma: export

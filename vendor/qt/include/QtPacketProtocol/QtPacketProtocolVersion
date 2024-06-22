@@ -1,1 +1,1 @@
-#include "qtpacketprotocolversion.h"
+#include "qtpacketprotocolversion.h" // IWYU pragma: export

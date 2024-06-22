@@ -1,1 +1,1 @@
-#include "qsggeometry.h"
+#include "qsggeometry.h" // IWYU pragma: export

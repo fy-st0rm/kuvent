@@ -1,1 +1,1 @@
-#include "qwaylandcompositorextension.h"
+#include "qwaylandcompositorextension.h" // IWYU pragma: export

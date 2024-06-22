@@ -1,1 +1,1 @@
-#include "qfilesystemwatcher.h"
+#include "qfilesystemwatcher.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qtoolbar.h"
+#include "qtoolbar.h" // IWYU pragma: export

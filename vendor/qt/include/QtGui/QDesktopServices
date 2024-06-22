@@ -1,1 +1,1 @@
-#include "qdesktopservices.h"
+#include "qdesktopservices.h" // IWYU pragma: export

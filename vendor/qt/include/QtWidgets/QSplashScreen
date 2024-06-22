@@ -1,1 +1,1 @@
-#include "qsplashscreen.h"
+#include "qsplashscreen.h" // IWYU pragma: export

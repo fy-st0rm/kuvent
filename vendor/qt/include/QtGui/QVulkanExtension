@@ -1,1 +1,1 @@
-#include "qvulkaninstance.h"
+#include "qvulkaninstance.h" // IWYU pragma: export

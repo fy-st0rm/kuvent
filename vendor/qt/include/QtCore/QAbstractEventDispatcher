@@ -1,1 +1,1 @@
-#include "qabstracteventdispatcher.h"
+#include "qabstracteventdispatcher.h" // IWYU pragma: export

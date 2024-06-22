@@ -1,1 +1,1 @@
-#include "qauthenticator.h"
+#include "qauthenticator.h" // IWYU pragma: export

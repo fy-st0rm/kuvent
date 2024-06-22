@@ -1,1 +1,1 @@
-#include "qoffscreensurface.h"
+#include "qoffscreensurface.h" // IWYU pragma: export

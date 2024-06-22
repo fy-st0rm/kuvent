@@ -1,1 +1,1 @@
-#include "qstylepainter.h"
+#include "qstylepainter.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qaudioformat.h"
+#include "qaudioformat.h" // IWYU pragma: export

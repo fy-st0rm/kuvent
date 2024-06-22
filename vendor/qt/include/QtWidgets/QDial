@@ -1,1 +1,1 @@
-#include "qdial.h"
+#include "qdial.h" // IWYU pragma: export

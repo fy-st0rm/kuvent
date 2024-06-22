@@ -1,1 +1,1 @@
-#include "qclipboard.h"
+#include "qclipboard.h" // IWYU pragma: export

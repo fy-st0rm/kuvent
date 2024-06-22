@@ -1,1 +1,1 @@
-#include "qinputdialog.h"
+#include "qinputdialog.h" // IWYU pragma: export

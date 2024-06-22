@@ -1,1 +1,1 @@
-#include "qguiapplication.h"
+#include "qguiapplication.h" // IWYU pragma: export

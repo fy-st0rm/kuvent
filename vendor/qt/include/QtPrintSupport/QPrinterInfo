@@ -1,1 +1,1 @@
-#include "qprinterinfo.h"
+#include "qprinterinfo.h" // IWYU pragma: export

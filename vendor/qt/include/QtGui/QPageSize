@@ -1,1 +1,1 @@
-#include "qpagesize.h"
+#include "qpagesize.h" // IWYU pragma: export

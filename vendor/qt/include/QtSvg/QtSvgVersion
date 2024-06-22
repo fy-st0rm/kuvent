@@ -1,1 +1,1 @@
-#include "qtsvgversion.h"
+#include "qtsvgversion.h" // IWYU pragma: export

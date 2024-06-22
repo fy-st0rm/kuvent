@@ -1,1 +1,1 @@
-#include "qdbusserver.h"
+#include "qdbusserver.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qsgtextureprovider.h"
+#include "qsgtextureprovider.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qsurface.h"
+#include "qsurface.h" // IWYU pragma: export

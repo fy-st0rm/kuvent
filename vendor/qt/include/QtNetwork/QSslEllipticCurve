@@ -1,1 +1,1 @@
-#include "qsslellipticcurve.h"
+#include "qsslellipticcurve.h" // IWYU pragma: export

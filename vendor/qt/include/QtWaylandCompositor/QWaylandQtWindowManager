@@ -1,1 +1,1 @@
-#include "qwaylandqtwindowmanager.h"
+#include "qwaylandqtwindowmanager.h" // IWYU pragma: export

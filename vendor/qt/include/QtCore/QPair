@@ -1,1 +1,1 @@
-#include "qpair.h"
+#include "qpair.h" // IWYU pragma: export

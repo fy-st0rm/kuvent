@@ -1,1 +1,1 @@
-#include "qmenu.h"
+#include "qmenu.h" // IWYU pragma: export

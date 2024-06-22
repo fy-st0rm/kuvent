@@ -1,1 +1,1 @@
-#include "qpointer.h"
+#include "qpointer.h" // IWYU pragma: export

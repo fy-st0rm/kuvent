@@ -1,1 +1,1 @@
-#include "qcolumnview.h"
+#include "qcolumnview.h" // IWYU pragma: export

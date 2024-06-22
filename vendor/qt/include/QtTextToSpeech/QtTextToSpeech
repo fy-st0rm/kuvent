@@ -4,6 +4,6 @@
 #include "qtexttospeech.h"
 #include "qtexttospeechengine.h"
 #include "qtexttospeechplugin.h"
-#include "qvoice.h"
 #include "qttexttospeechversion.h"
+#include "qvoice.h"
 #endif

@@ -1,1 +1,1 @@
-#include "qwaylandquickxdgoutputv1.h"
+#include "qwaylandquickxdgoutputv1.h" // IWYU pragma: export

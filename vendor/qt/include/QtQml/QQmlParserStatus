@@ -1,1 +1,1 @@
-#include "qqmlparserstatus.h"
+#include "qqmlparserstatus.h" // IWYU pragma: export

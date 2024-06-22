@@ -1,1 +1,1 @@
-#include "qqmlmoduleregistration.h"
+#include "qqmlmoduleregistration.h" // IWYU pragma: export

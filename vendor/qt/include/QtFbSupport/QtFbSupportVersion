@@ -1,1 +1,1 @@
-#include "qtfbsupportversion.h"
+#include "qtfbsupportversion.h" // IWYU pragma: export

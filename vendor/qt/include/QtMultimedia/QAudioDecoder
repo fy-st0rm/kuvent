@@ -1,1 +1,1 @@
-#include "qaudiodecoder.h"
+#include "qaudiodecoder.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qstack.h"
+#include "qstack.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qwaylandquickshellintegration.h"
+#include "qwaylandquickshellintegration.h" // IWYU pragma: export

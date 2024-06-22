@@ -1,1 +1,1 @@
-#include "qitemdelegate.h"
+#include "qitemdelegate.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qaccessible.h"
+#include "qaccessible.h" // IWYU pragma: export

@@ -1,1 +1,1 @@
-#include "qpixmapcache.h"
+#include "qpixmapcache.h" // IWYU pragma: export

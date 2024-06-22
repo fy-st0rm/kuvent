@@ -1,1 +1,1 @@
-#include "qnetworkdiskcache.h"
+#include "qnetworkdiskcache.h" // IWYU pragma: export

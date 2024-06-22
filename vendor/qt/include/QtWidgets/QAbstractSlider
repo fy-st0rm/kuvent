@@ -1,1 +1,1 @@
-#include "qabstractslider.h"
+#include "qabstractslider.h" // IWYU pragma: export

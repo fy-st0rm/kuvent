@@ -1,1 +1,1 @@
-#include "qwaylandxdgshell.h"
+#include "qwaylandxdgshell.h" // IWYU pragma: export

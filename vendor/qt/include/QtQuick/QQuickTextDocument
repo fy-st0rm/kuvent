@@ -1,1 +1,1 @@
-#include "qquicktextdocument.h"
+#include "qquicktextdocument.h" // IWYU pragma: export

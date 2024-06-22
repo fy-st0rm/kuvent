@@ -1,1 +1,1 @@
-#include "qsyntaxhighlighter.h"
+#include "qsyntaxhighlighter.h" // IWYU pragma: export

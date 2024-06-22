@@ -1,1 +1,1 @@
-#include "qlibraryinfo.h"
+#include "qlibraryinfo.h" // IWYU pragma: export

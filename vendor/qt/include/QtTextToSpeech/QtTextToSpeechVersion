@@ -1,1 +1,1 @@
-#include "qttexttospeechversion.h"
+#include "qttexttospeechversion.h" // IWYU pragma: export

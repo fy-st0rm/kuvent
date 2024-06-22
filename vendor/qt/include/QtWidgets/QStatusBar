@@ -1,1 +1,1 @@
-#include "qstatusbar.h"
+#include "qstatusbar.h" // IWYU pragma: export

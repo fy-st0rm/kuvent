@@ -1,1 +1,1 @@
-#include "qinputmethod.h"
+#include "qinputmethod.h" // IWYU pragma: export

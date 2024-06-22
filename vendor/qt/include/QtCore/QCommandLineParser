@@ -1,1 +1,1 @@
-#include "qcommandlineparser.h"
+#include "qcommandlineparser.h" // IWYU pragma: export

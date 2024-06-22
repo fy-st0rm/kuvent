@@ -1,1 +1,1 @@
-#include "qjsonarray.h"
+#include "qjsonarray.h" // IWYU pragma: export

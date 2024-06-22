@@ -1,1 +1,1 @@
-#include "qqmlexpression.h"
+#include "qqmlexpression.h" // IWYU pragma: export

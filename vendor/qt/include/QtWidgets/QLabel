@@ -1,1 +1,1 @@
-#include "qlabel.h"
+#include "qlabel.h" // IWYU pragma: export

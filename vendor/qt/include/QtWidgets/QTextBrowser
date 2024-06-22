@@ -1,1 +1,1 @@
-#include "qtextbrowser.h"
+#include "qtextbrowser.h" // IWYU pragma: export

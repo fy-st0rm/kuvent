@@ -1,1 +1,1 @@
-#include "qcalendar.h"
+#include "qcalendar.h" // IWYU pragma: export

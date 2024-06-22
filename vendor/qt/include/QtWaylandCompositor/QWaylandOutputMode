@@ -1,1 +1,1 @@
-#include "qwaylandoutputmode.h"
+#include "qwaylandoutputmode.h" // IWYU pragma: export

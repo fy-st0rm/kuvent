@@ -1,1 +1,1 @@
-#include "qqmlextensioninterface.h"
+#include "qqmlextensioninterface.h" // IWYU pragma: export

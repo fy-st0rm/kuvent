@@ -1,1 +1,1 @@
-#include "qiterator.h"
+#include "qiterator.h" // IWYU pragma: export

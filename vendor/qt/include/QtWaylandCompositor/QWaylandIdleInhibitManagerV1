@@ -1,1 +1,1 @@
-#include "qwaylandidleinhibitv1.h"
+#include "qwaylandidleinhibitv1.h" // IWYU pragma: export

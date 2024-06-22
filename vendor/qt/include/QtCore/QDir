@@ -1,1 +1,1 @@
-#include "qdir.h"
+#include "qdir.h" // IWYU pragma: export

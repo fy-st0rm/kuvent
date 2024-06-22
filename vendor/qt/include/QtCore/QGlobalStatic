@@ -1,1 +1,1 @@
-#include "qglobalstatic.h"
+#include "qglobalstatic.h" // IWYU pragma: export

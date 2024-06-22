@@ -1,1 +1,1 @@
-#include "qwineventnotifier.h"
+#include "qwineventnotifier.h" // IWYU pragma: export
