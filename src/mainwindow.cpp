@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     button1->setStyleSheet("background-color: #62B6CB; color: white;");
     addpassword->setStyleSheet("background-color: #D9D9D9; color: #000000;");
     add->setStyleSheet("color: #000000; background-color: #D9D9D9");
+    addpassword->setEchoMode(QLineEdit::Password);
 
     // central widget and set it
     centralWidget = new QWidget(this);
