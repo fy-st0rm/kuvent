@@ -67,7 +67,11 @@ private:
 #ifdef CBUILD_IMPLEMENTATION
 
 void cbuild_rebuild(int argc, char** argv) {
+#ifdef _WIN32
+	std::time_t bin_t = to_time_t(std::filesystem::last_write_time("cbuild.exe"));
+#elif defined(__linux__)
 	std::time_t bin_t = to_time_t(std::filesystem::last_write_time("cbuild"));
+#endif
 	std::time_t src_t = to_time_t(std::filesystem::last_write_time("cbuild.cpp"));
 
 	if (src_t > bin_t) {
