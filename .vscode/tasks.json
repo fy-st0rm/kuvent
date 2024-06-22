@@ -11,6 +11,12 @@
 			"label" : "run",
 			"type" : "shell",
 			"command" : ".\\bin\\app.exe",
+		},
+
+		{
+			"label" : "bootstrap",
+			"type" : "shell",
+			"command" : "g++ -o cbuild .\\cbuild.cpp",
 		}
 	]
 }
