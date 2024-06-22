@@ -8,6 +8,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtCore/QSize>
+#include <QtWidgets/QGraphicsDropShadowEffect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,12 +27,17 @@ private:
     QPushButton *button1;
     QLabel *username;
     QVBoxLayout *vLayout;
-    QHBoxLayout *hLayout;
     QHBoxLayout *hLayout1;
     QHBoxLayout *hLayout2;
+    QHBoxLayout *hLayout3;
+    QHBoxLayout *hLayout4;
     QWidget *centralWidget;
     QLineEdit *add;
     QLabel *password;
     QLineEdit *addpassword;
+    QLabel *logo;
+
+    void applyShadow(QLineEdit *lineEdit);
+    
 };
 #endif // MAINWINDOW_H
