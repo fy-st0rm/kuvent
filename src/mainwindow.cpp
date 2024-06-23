@@ -6,6 +6,7 @@
 #include <QtWidgets/QLabel>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QGraphicsDropShadowEffect>
+#include <QtWidgets/QCommandLinkButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,10 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     add_username = new QLineEdit(this);
     password = new QLabel(this);
     add_password = new QLineEdit(this);
-
+    notsigned = new QLabel("Don't have an account?", this);
     login_button = new QPushButton("Login", this);
-    signup_button = new QPushButton("Signup", this);
-
+    createaccount_button = new QLabel("<a href =\"#\"> Create account </a>", this);
+    
     // adding logo of KUvent
     QPixmap loginlogo("assets/images/KUventpng.png");
 
@@ -49,14 +50,13 @@ MainWindow::MainWindow(QWidget *parent)
     password->setFixedSize(20,18);
     add_password->setFixedSize(200,30);
     login_button->setFixedSize(60,30);
-    signup_button->setFixedSize(60,30);
-
+    notsigned->setFixedSize(125,30);
+    createaccount_button->setFixedSize(100,30);
 
     //editing the widgets
-    add_password->setStyleSheet("background-color: #D9D9D9; color: #000000; border-radius: 5px; padding:5px;");
-    add_username->setStyleSheet("color: #000000; background-color: #D9D9D9; border-radius:5px; padding: 5px;");
+    add_password->setStyleSheet("background-color: #D9D9D9; color: #000000; border-radius: 5px; padding:5px; ");
+    add_username->setStyleSheet("color: #000000; background-color: #D9D9D9; border-radius:5px; padding: 5px; ");
     login_button->setStyleSheet("background-color: #62B6CB; color: white;");
-    signup_button->setStyleSheet("background-color: #62B6CB; color: white;");
 
     add_password->setEchoMode(QLineEdit::Password);
     add_password->setPlaceholderText("   Password");
@@ -109,7 +109,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     // added login buttons
     hLayout4->addWidget(login_button);
-    // hLayout5->addWidget(signup_button);
+    vLayout->setSpacing(5);
+
+    // another horizontal layout for create account button
+    QHBoxLayout *hLayout5 = new QHBoxLayout();
+    vLayout->addLayout(hLayout5);
+
+    // added a clickable label
+    hLayout5->addSpacing(15);
+    hLayout5->addWidget(notsigned);
+    hLayout5->addSpacing(5);
+    hLayout5->addWidget(createaccount_button);
 
 
 
@@ -119,7 +129,7 @@ MainWindow::MainWindow(QWidget *parent)
     hLayout2->setAlignment(Qt::AlignHCenter);
     hLayout3->setAlignment(Qt::AlignHCenter);
     hLayout4->setAlignment(Qt::AlignHCenter);
-    // hLayout5->setAlignment(Qt::AlignHCenter);
+    hLayout5->setAlignment(Qt::AlignHCenter);
 
     
 
@@ -146,7 +156,7 @@ void MainWindow::applyShadow(QPushButton *pushButton)
     QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
     shadow->setBlurRadius(5);
     shadow->setColor("color: #000000");
-    shadow->setOffset(2,2);
+    shadow->setOffset(1,1);
     pushButton->setGraphicsEffect(shadow);
 
 }

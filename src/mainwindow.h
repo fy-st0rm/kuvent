@@ -9,6 +9,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtCore/QSize>
 #include <QtWidgets/QGraphicsDropShadowEffect>
+#include <QtWidgets/QCommandLinkButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,20 +26,21 @@ public:
 private:
     Ui::MainWindow *ui;
     QPushButton *login_button;
-    QPushButton *signup_button;
     QLabel *username;
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout1;
     QHBoxLayout *hLayout2;
     QHBoxLayout *hLayout3;
     QHBoxLayout *hLayout4;
-    // QHBoxLayout *hLayout5;
+    QHBoxLayout *hLayout5;
+    QLabel *notsigned;
 
     QWidget *centralWidget;
     QLineEdit *add_username;
     QLabel *password;
     QLineEdit *add_password;
     QLabel *logo;
+    QLabel *createaccount_button;
 
     void applyShadow(QLineEdit *lineEdit);
     void applyShadow(QPushButton *pushButton);
