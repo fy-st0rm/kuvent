@@ -24,17 +24,20 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QPushButton *button1;
+    QPushButton *login_button;
+    QPushButton *signup_button;
     QLabel *username;
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout1;
     QHBoxLayout *hLayout2;
     QHBoxLayout *hLayout3;
     QHBoxLayout *hLayout4;
+    // QHBoxLayout *hLayout5;
+
     QWidget *centralWidget;
-    QLineEdit *add;
+    QLineEdit *add_username;
     QLabel *password;
-    QLineEdit *addpassword;
+    QLineEdit *add_password;
     QLabel *logo;
 
     void applyShadow(QLineEdit *lineEdit);
