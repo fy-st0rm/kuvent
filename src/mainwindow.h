@@ -41,6 +41,7 @@ private:
     QLabel *logo;
 
     void applyShadow(QLineEdit *lineEdit);
+    void applyShadow(QPushButton *pushButton);
     
 };
 #endif // MAINWINDOW_H

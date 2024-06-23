@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
     // applying drop shadows to lineedit
     applyShadow(add_username);
     applyShadow(add_password);
+    applyShadow(login_button);
 
     // central widget and set it
     centralWidget = new QWidget(this);
@@ -139,3 +140,15 @@ void MainWindow::applyShadow(QLineEdit *lineEdit)
     lineEdit->setGraphicsEffect(shadow);
 
 }
+
+void MainWindow::applyShadow(QPushButton *pushButton)
+{
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
+    shadow->setBlurRadius(5);
+    shadow->setColor("color: #000000");
+    shadow->setOffset(2,2);
+    pushButton->setGraphicsEffect(shadow);
+
+}
+
+

@@ -257,7 +257,7 @@ CBuild& CBuild::build_static_lib() {
 }
 
 CBuild& CBuild::run(int argc, char** argv) {
-	std::string out = m_out_dir + (m_out_dir.length() ? "/" : "") + m_out_file;
+	std::string out = m_out_dir + (m_out_dir.length() ? "\\" : "") + m_out_file;
 	LOG("Running: %s", out.c_str());
 
 	std::string cmd = out;
