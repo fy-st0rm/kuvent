@@ -1,7 +1,7 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LOGINWINDOW_H
+#define LOGINWINDOW_H
 
-#include "ui_mainwindow.h"
+#include "ui_loginWindow.h"
 #include <QtCore/QSize>
 #include <QtCore/QDebug>
 #include <QtWidgets/QMainWindow>
@@ -22,38 +22,38 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
+class LoginWindow;
 }
 
 QT_END_NAMESPACE
-class MainWindow : public QMainWindow
+class LoginWindow : public QMainWindow
 {
 public:
-    MainWindow(QWidget *parent = nullptr);
+    LoginWindow(QWidget *parent = nullptr);
     void onLoginButtonPress();
     void onCreateAccountPress();
 
-    ~MainWindow();
+    ~LoginWindow();
 
 
 private:
-    Ui::MainWindow *ui;
-    QPushButton *login_button;
-    QLabel *username;
-    QVBoxLayout *vLayout;
-    QHBoxLayout *hLayout1;
-    QHBoxLayout *hLayout2;
-    QHBoxLayout *hLayout3;
-    QHBoxLayout *hLayout4;
-    QHBoxLayout *hLayout5;
-    QLabel *notsigned;
+    Ui::LoginWindow *m_ui;
+    QPushButton *m_login_button;
+    QLabel *m_username;
+    QVBoxLayout *m_vLayout;
+    QHBoxLayout *m_hLayout1;
+    QHBoxLayout *m_hLayout2;
+    QHBoxLayout *m_hLayout3;
+    QHBoxLayout *m_hLayout4;
+    QHBoxLayout *m_hLayout5;
+    QLabel *m_notsigned;
 
     QWidget *centralWidget;
-    QLineEdit *add_username;
-    QLabel *password;
-    QLineEdit *add_password;
-    QLabel *logo;
-    QPushButton *createaccount_button;
+    QLineEdit *m_add_username;
+    QLabel *m_password;
+    QLineEdit *m_add_password;
+    QLabel *m_Kuvent_logo;
+    QPushButton *m_createaccount_button;
 
     void applyShadow(QLineEdit *lineEdit);
     void applyShadow(QPushButton *pushButton);
@@ -61,4 +61,4 @@ private:
 
     
 };
-#endif // MAINWINDOW_H
+#endif // LOGINWINDOW_H

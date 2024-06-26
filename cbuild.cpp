@@ -59,7 +59,7 @@ void build(char** argv) {
 			"Qt6Gui",
 		})
 		.src({
-			"src/mainwindow.cpp",
+			"src/loginwindow.cpp",
 			"src/main.cpp"
 		})
 		.build()

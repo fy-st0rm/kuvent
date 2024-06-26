@@ -6,10 +6,9 @@
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_MAINWINDOW_H
-#define UI_MAINWINDOW_H
+#ifndef UI_LOGINWINDOW_H
+#define UI_LOGINWINDOW_H
 
-// #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -18,46 +17,46 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow
+class Ui_LoginWindow
 {
 public:
     QWidget *centralwidget;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
-    void setupUi(QMainWindow *MainWindow)
+    void setupUi(QMainWindow *LoginWindow)
     {
-        if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(500, 500);
-        MainWindow->setStyleSheet(QString::fromUtf8(""));
-        centralwidget = new QWidget(MainWindow);
+        if (LoginWindow->objectName().isEmpty())
+            LoginWindow->setObjectName("LoginWindow");
+        LoginWindow->resize(500, 500);
+        LoginWindow->setStyleSheet(QString::fromUtf8(""));
+        centralwidget = new QWidget(LoginWindow);
         centralwidget->setObjectName("centralwidget");
-        MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
+        LoginWindow->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(LoginWindow);
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 500, 21));
-        MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
+        LoginWindow->setMenuBar(menubar);
+        statusbar = new QStatusBar(LoginWindow);
         statusbar->setObjectName("statusbar");
-        MainWindow->setStatusBar(statusbar);
+        LoginWindow->setStatusBar(statusbar);
 
-        retranslateUi(MainWindow);
+        retranslateUi(LoginWindow);
 
-        QMetaObject::connectSlotsByName(MainWindow);
+        QMetaObject::connectSlotsByName(LoginWindow);
     } // setupUi
 
-    void retranslateUi(QMainWindow *MainWindow)
+    void retranslateUi(QMainWindow *LoginWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        LoginWindow->setWindowTitle(QCoreApplication::translate("LoginWindow", "LoginWindow", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+    class LoginWindow: public Ui_LoginWindow {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_MAINWINDOW_H
+#endif // UI_LOGINWINDOW_H

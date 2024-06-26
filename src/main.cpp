@@ -1,14 +1,14 @@
-#include "mainwindow.h"
+#include "loginWindow.h"
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("KUvent");
-    MainWindow w;
-    w.setWindowTitle(a.applicationName());
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    app.setApplicationName("KUvent");
+    LoginWindow lw;
+    lw.setWindowTitle(app.applicationName());
+    lw.show();
+    return app.exec();
 }
