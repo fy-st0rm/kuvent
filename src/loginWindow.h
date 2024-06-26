@@ -2,23 +2,18 @@
 #define LOGINWINDOW_H
 
 #include "ui_loginWindow.h"
-#include <QtCore/QSize>
-#include <QtCore/QDebug>
-#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QLabel>
-#include <QtGui/QPixmap>
 #include <QtWidgets/QGraphicsDropShadowEffect>
-#include <QtWidgets/QCommandLinkButton>
-#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtCore/QSize>
-#include <QtWidgets/QGraphicsDropShadowEffect>
-#include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QMessageBox>
+// #include <QtGui/QPixmap>
+// #include <QtWidgets/QCommandLinkButton>
+// #include <QtWidgets/QMainWindow>
+// #include <QtCore/QDebug>
+// #include <QtCore/QSize>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -55,8 +50,8 @@ private:
     QLabel *m_Kuvent_logo;
     QPushButton *m_createaccount_button;
 
-    void applyShadow(QLineEdit *lineEdit);
-    void applyShadow(QPushButton *pushButton);
+    void applyShadow(QWidget *widget);
+
 
 
     
