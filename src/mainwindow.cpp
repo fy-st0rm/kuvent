@@ -1,16 +1,10 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QtCore/QSize>
-#include <QtCore/QDebug>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QLabel>
-#include <QtGui/QPixmap>
-#include <QtWidgets/QGraphicsDropShadowEffect>
-#include <QtWidgets/QCommandLinkButton>
+#include <iostream>
+#include <string>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent):
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -25,7 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     add_password = new QLineEdit(this);
     notsigned = new QLabel("Don't have an account?", this);
     login_button = new QPushButton("Login", this);
-    createaccount_button = new QLabel("<a href =\"#\"> Create account </a>", this);
+    QObject::connect(login_button, &QPushButton::pressed, this, &MainWindow::onLoginButtonPress);
+    createaccount_button = new QPushButton("Create account", this);
+    QObject::connect(createaccount_button, &QPushButton::pressed, this, &MainWindow::onCreateAccountPress);
+
     
     // adding logo of KUvent
     QPixmap loginlogo("assets/images/KUventpng.png");
@@ -57,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent)
     add_password->setStyleSheet("background-color: #D9D9D9; color: #000000; border-radius: 5px; padding:5px; ");
     add_username->setStyleSheet("color: #000000; background-color: #D9D9D9; border-radius:5px; padding: 5px; ");
     login_button->setStyleSheet("background-color: #62B6CB; color: white;");
-
     add_password->setEchoMode(QLineEdit::Password);
     add_password->setPlaceholderText("   Password");
     add_username->setPlaceholderText("   Username");
@@ -162,3 +158,21 @@ void MainWindow::applyShadow(QPushButton *pushButton)
 }
 
 
+void MainWindow::onLoginButtonPress() {
+    QString name = add_username->text();
+    QString password = add_password->text();
+
+    // [ ] TODO : make a proper validation and authorization check
+    if (name.isEmpty() || password.isEmpty()) {
+        QMessageBox::information(this, "Login Error", "Please enter both username and password.");
+        return;
+    }
+
+    qDebug() << "name =" << name.toStdString().c_str() << "\tpassword =" << password.toStdString().c_str();
+    //^^^^^^  remove this in future
+}
+
+
+void MainWindow::onCreateAccountPress(){
+    // [ ] TODO : hop to create new account page   
+}

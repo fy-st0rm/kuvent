@@ -60,6 +60,14 @@
     "qlabel": "cpp",
     "qmainwindow": "cpp",
     "qpushbutton": "cpp",
-    "qgraphicsdropshadoweffect": "cpp"
+    "qgraphicsdropshadoweffect": "cpp",
+    "qsize": "cpp",
+    "qdebug": "cpp",
+    "qapplication": "cpp",
+    "qstatusbar": "cpp",
+    "qvariant": "cpp",
+    "qhboxlayout": "cpp",
+    "qvboxlayout": "cpp",
+    "qcommandlinkbutton": "cpp"
   }
 }

@@ -1,6 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
+#include <QtCore/QSize>
+#include <QtCore/QDebug>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QLabel>
+#include <QtGui/QPixmap>
+#include <QtWidgets/QGraphicsDropShadowEffect>
+#include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
@@ -10,6 +18,7 @@
 #include <QtCore/QSize>
 #include <QtWidgets/QGraphicsDropShadowEffect>
 #include <QtWidgets/QCommandLinkButton>
+#include <QtWidgets/QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,7 +30,11 @@ class MainWindow : public QMainWindow
 {
 public:
     MainWindow(QWidget *parent = nullptr);
+    void onLoginButtonPress();
+    void onCreateAccountPress();
+
     ~MainWindow();
+
 
 private:
     Ui::MainWindow *ui;
@@ -40,10 +53,12 @@ private:
     QLabel *password;
     QLineEdit *add_password;
     QLabel *logo;
-    QLabel *createaccount_button;
+    QPushButton *createaccount_button;
 
     void applyShadow(QLineEdit *lineEdit);
     void applyShadow(QPushButton *pushButton);
+
+
     
 };
 #endif // MAINWINDOW_H

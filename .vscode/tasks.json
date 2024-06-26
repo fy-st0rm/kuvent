@@ -11,6 +11,7 @@
 			"label" : "run",
 			"type" : "shell",
 			"command" : ".\\bin\\app.exe",
+			"dependsOn" :"cbuild"
 		},
 
 		{
