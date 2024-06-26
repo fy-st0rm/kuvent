@@ -2,6 +2,7 @@
 #include "cbuild.h"
 
 #include <fstream>
+#include "src/defines.h"
 
 void copy_file(const std::string& to, const std::string& from) {
 	std::ifstream  src(from, std::ios::binary);
@@ -64,6 +65,7 @@ void build(char** argv) {
 			"vendor/json/jsoncpp.cpp",
 			"src/db/db.cpp",
 			"src/routes/registration.cpp",
+			"src/routes/file_transfer.cpp",
 			"src/main.cpp"
 		})
 		.objs({
@@ -123,8 +125,8 @@ int main(int argc, char** argv) {
 		compile_vendor();
 	}
 
-	if (!file_exists("storage/database.db")) {
-		make_path("storage");
+	if (!file_exists(DB_PATH)) {
+		std::filesystem::create_directories(DB_DIR);
 		LOG("Initializing database...");
 		init_db(argv);
 		LOG("Database initialization completed.");

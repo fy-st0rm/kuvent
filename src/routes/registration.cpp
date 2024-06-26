@@ -6,6 +6,8 @@
 #include "uuid.h"
 #include "defines.h"
 
+namespace route {
+
 void signup(const Request& req, Response& res) {
 	Json::Value value;
 	Json::Reader reader;
@@ -100,4 +102,6 @@ void login(const Request& req, Response& res) {
 
 	res.status = StatusCode::OK_200;
 	res.set_content(response.str(), "application/json");
+}
+
 }
