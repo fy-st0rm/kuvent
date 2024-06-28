@@ -33,8 +33,10 @@ void upload(const Request& req, Response& res, const ContentReader &content_read
 	// Saving the files and generating unique ids
 	std::vector<std::string> ids;
 	for (MultipartFormData& file : files) {
+		std::string name = file.filename;
+		std::string ext = name.substr(name.find_last_of(".") + 1);
 		std::string id = uuid::generate_uuid_v4();
-		std::ofstream f(DB_DIR + id + ".png");
+		std::ofstream f(DB_DIR + id + "." + ext);
 		f << file.content;
 		f.close();
 

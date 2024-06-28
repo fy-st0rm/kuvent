@@ -6,7 +6,6 @@ Database::Database(const std::string& db) {
 		std::cerr << "[DB ERROR]: " << sqlite3_errmsg(m_db) << std::endl;
 		exit(1);
 	}
-	std::cout << "[DB LOG]: Created database: " << db << std::endl;
 }
 
 Database::~Database() {
