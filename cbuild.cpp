@@ -60,7 +60,9 @@ void build(char** argv) {
 			"Qt6Gui",
 		})
 		.src({
-			"src/application/application.cpp",
+			"src/Application/Application.cpp",
+			"src/Pages/LoginPage.cpp",
+			"src/Pages/SignupPage.cpp",
 			"src/main.cpp"
 		})
 		.build()

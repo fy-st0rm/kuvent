@@ -1,4 +1,4 @@
-#include "application.h"
+#include "Application.h"
 
 Application::~Application() {
 	for (auto p : m_pages) {
@@ -18,6 +18,8 @@ void Application::init_qt() {
 	m_stacked_widget = new QStackedWidget;
 
 	m_main_layout->addWidget(m_stacked_widget);
+	m_main_layout->setContentsMargins(0, 0, 0, 0);
+
 	m_main_widget->setLayout(m_main_layout);
 }
 

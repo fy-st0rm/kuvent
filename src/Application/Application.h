@@ -10,7 +10,7 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 
-#include "page.h"
+#include "Page.h"
 
 class Application {
 public:

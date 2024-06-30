@@ -1,64 +1,17 @@
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QVBoxLayout>
-
-#include "application/application.h"
-#include "application/page.h"
-
-class LoginPage : public Page {
-public:
-	void onAttach() {
-		QVBoxLayout* vLayout = new QVBoxLayout();
-		QLabel* label = new QLabel("Login");
-		QPushButton* button = new QPushButton("Go To Signup");
-
-		connect(
-			button,
-			&QPushButton::pressed,
-			this,
-			&LoginPage::onClick
-		);
-
-		vLayout->addWidget(label);
-		vLayout->addWidget(button);
-		setLayout(vLayout);
-	}
-
-	void onClick() {
-		app->switchPage("SignupPage");
-	}
-};
-
-class SignupPage : public Page {
-public:
-	void onAttach() {
-		QVBoxLayout* vLayout = new QVBoxLayout();
-		QLabel* label = new QLabel("Signup page");
-		QPushButton* button = new QPushButton("Go to login");
-
-		connect(
-			button,
-			&QPushButton::pressed,
-			this,
-			&SignupPage::onClick
-		);
-
-		vLayout->addWidget(label);
-		vLayout->addWidget(button);
-		setLayout(vLayout);
-	}
-
-	void onClick() {
-		app->switchPage("LoginPage");
-	}
-};
+#include "Application/Application.h"
+#include "Application/Page.h"
+#include "Pages/LoginPage.h"
+#include "Pages/SignupPage.h"
 
 class App : public Application {
 public:
 	void onAttach() {
+		// Here the parameter is the name of the class
+		// The same name will be used while switching the page
 		addPage<LoginPage>("LoginPage");
 		addPage<SignupPage>("SignupPage");
+
+		switchPage("LoginPage");
 	}
 };
 
