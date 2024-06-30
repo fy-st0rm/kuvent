@@ -20,13 +20,13 @@ void SignupPage::onAttach() {
     add_username2->setFixedSize(200, 30);
     add_username2->setStyleSheet("background-color: #D9D9D9; border-radius: 5px; padding: 5px;");
     add_username2->setPlaceholderText("Username");
-    QPixmap userpng("C:/tests/arroba.png");
+    QPixmap userpng("assets/images/arroba.png");
     username2->setPixmap(userpng);
     username2->setScaledContents(true);
 
     email = new QLabel(this);
     email->setFixedSize(20, 18);
-    QPixmap profilepng("C:/tests/user.png");
+    QPixmap profilepng("assets/images/user.png");
     email->setPixmap(profilepng);
     email->setScaledContents(true);
     add_email = new QLineEdit(this);
@@ -36,7 +36,7 @@ void SignupPage::onAttach() {
 
     password2 = new QLabel(this);
     password2->setFixedSize(20,18);
-    QPixmap passpng("C:/tests/padlock.png");
+    QPixmap passpng("assets/images/padlock.png");
     password2->setPixmap(passpng);
     password2->setScaledContents(true);
 
@@ -47,7 +47,7 @@ void SignupPage::onAttach() {
 
     confirm_password2 = new QLabel(this);
     confirm_password2->setFixedSize(20,18);
-    QPixmap confirm_passpng("C:/tests/reset-password.png");
+    QPixmap confirm_passpng("assets/images/reset-password.png");
     confirm_password2->setPixmap(confirm_passpng);
     confirm_password2->setScaledContents(true);
 
@@ -157,7 +157,7 @@ PasswordLineEdit::PasswordLineEdit(QWidget *parent) : QLineEdit(parent), passwor
     this->setEchoMode(QLineEdit::Password);
 
     eyeButton = new QToolButton(this);
-    eyeButton->setIcon(QIcon("C:/tests/eye.png"));
+    eyeButton->setIcon(QIcon("assets/images/eye.png"));
     eyeButton->setIconSize(QSize(25, 25));
     eyeButton->setCursor(Qt::PointingHandCursor);
     eyeButton->setToolTip("Show Password");
@@ -178,13 +178,13 @@ void PasswordLineEdit::togglePasswordVisibility()
     if (password2Visible)
     {
         this->setEchoMode(QLineEdit::Password);
-        eyeButton->setIcon(QIcon("C:/tests/eye.png"));
+        eyeButton->setIcon(QIcon("assets/images/eye.png"));
         eyeButton->setToolTip("Show Password");
     }
     else
     {
         this->setEchoMode(QLineEdit::Normal);
-        eyeButton->setIcon(QIcon("C:/tests/eye2.png"));
+        eyeButton->setIcon(QIcon("assets/images/eye2.png"));
         eyeButton->setToolTip("Hide Password");
     }
 
