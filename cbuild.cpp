@@ -37,7 +37,9 @@ void build(char** argv) {
 	cbuild
 		.out("bin", "app")
 		.flags({
-			"-Wl,-rpath='$ORIGIN'", "-std=c++17"
+			"-Wl,-rpath='$ORIGIN'",
+			"-std=c++17",
+			"-fPIC",
 		})
 		.inc_paths({
 			"vendor/qt/include",
@@ -59,7 +61,7 @@ void build(char** argv) {
 			"Qt6Gui",
 		})
 		.src({
-			"src/loginwindow.cpp",
+			"src/loginWindow.cpp",
 			"src/main.cpp"
 		})
 		.build()
