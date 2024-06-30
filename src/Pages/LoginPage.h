@@ -15,7 +15,7 @@ class LoginPage : public Page {
 public:
 	void onAttach();
 
-private:
+private slots:
 	void onLoginButtonPress();
 	void onCreateAccountPress();
 
