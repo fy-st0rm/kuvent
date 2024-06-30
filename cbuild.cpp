@@ -45,7 +45,6 @@ void build(char** argv) {
 			"vendor/qt/include",
 			"src"
 		})
-
 #ifdef _WIN32
 		.lib_paths({
 			"vendor/qt/lib/windows"
@@ -61,7 +60,7 @@ void build(char** argv) {
 			"Qt6Gui",
 		})
 		.src({
-			"src/loginWindow.cpp",
+			"src/application/application.cpp",
 			"src/main.cpp"
 		})
 		.build()
