@@ -97,7 +97,8 @@ void LoginPage::onAttach() {
 
 	m_notsigned = new QLabel("Don't have an account?", this);
 	m_notsigned->setFixedSize(125,30);
-	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #62B6CB; text-decoration: none;\" > Create account </a>");
+	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #62B6CB; text-decoration: none;"
+										"font-style: italic; font-weight: bold\"> Create account </a>");
 	m_createaccount_button->setFixedSize(100,30);
 	connect(
 		m_createaccount_button,

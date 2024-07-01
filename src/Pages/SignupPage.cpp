@@ -105,7 +105,8 @@ void SignupPage::onAttach() {
     go_tologin = new QLabel("Already have an account?", this);
     go_tologin->setFixedSize(135,30);
 
-    login_now = new QLabel("<a href= \"LoginPage\" style = \"color: #62B6CB; text-decoration: none;\"> Login now </a>");
+    login_now = new QLabel("<a href= \"LoginPage\" style = \"color: #62B6CB; text-decoration: none; font-style: italic;" 
+                            "font-weight: bold;\"> Login now </a>");
     login_now->setFixedSize(80,30);
     login_now->setStyleSheet(
         "padding: 5px;"
