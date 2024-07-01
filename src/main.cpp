@@ -2,6 +2,7 @@
 #include "Application/Page.h"
 #include "Pages/LoginPage.h"
 #include "Pages/SignupPage.h"
+#include "Pages/DashBoard.h"
 
 class App : public Application {
 public:
@@ -10,6 +11,7 @@ public:
 		// The same name will be used while switching the page
 		addPage<LoginPage>("LoginPage");
 		addPage<SignupPage>("SignupPage");
+		addPage<DashBoard>("DashBoard");
 
 		switchPage("LoginPage");
 	}

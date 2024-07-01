@@ -138,6 +138,8 @@ void LoginPage::onLoginButtonPress() {
 	if (name.isEmpty() || m_password.isEmpty()) {
 			QMessageBox::information(this, "Login Error", "Please enter both username and password.");
 			return;
+	}else{
+		app->switchPage("DashBoard");
 	}
 
 	qDebug() << "name =" << name.toStdString().c_str() << "\tpassword =" << m_password.toStdString().c_str();
