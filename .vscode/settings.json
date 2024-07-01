@@ -69,6 +69,7 @@
     "qhboxlayout": "cpp",
     "qvboxlayout": "cpp",
     "qcommandlinkbutton": "cpp",
-    "qmessagebox": "cpp"
+    "qmessagebox": "cpp",
+    "new": "cpp"
   }
 }

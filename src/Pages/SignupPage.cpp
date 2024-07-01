@@ -2,37 +2,50 @@
 #include "SignupPage.h"
 
 void SignupPage::onAttach() {
+
+    getBaseWidget()->setStyleSheet("background-color: #3C6E71;");
+
 	// Creating main layout of this page
 	m_vLayout2 = new QVBoxLayout;
 
 	// Applying that main layout to the page
 	setLayout(m_vLayout2);
 
-	getBaseWidget()->setStyleSheet("background-color: #3C6E71;");
-
     create_account_title = new QLabel("Create new Account", this);
     create_account_title->setFixedSize(220, 50);
     create_account_title->setStyleSheet("font-size: 16pt; color: #FFFFFF; font-weight: bold; letter-spacing: 1px;");
 
     username2 = new QLabel(this);
-    username2->setFixedSize(20, 18);
     add_username2 = new QLineEdit(this);
+    username2->setFixedSize(20, 18);
     add_username2->setFixedSize(200, 30);
-    add_username2->setStyleSheet("background-color: #D9D9D9; border-radius: 5px; padding: 5px;");
+    add_username2->setStyleSheet(
+        "color: #000000;"
+        "background-color: #D9D9D9;"
+        "border-radius: 5px;"
+        "padding: 5px;"
+        );
     add_username2->setPlaceholderText("Username");
     QPixmap userpng("assets/images/arroba.png");
     username2->setPixmap(userpng);
     username2->setScaledContents(true);
+    applyShadow(add_username2);
 
     email = new QLabel(this);
+    add_email = new QLineEdit(this);
     email->setFixedSize(20, 18);
     QPixmap profilepng("assets/images/user.png");
     email->setPixmap(profilepng);
     email->setScaledContents(true);
-    add_email = new QLineEdit(this);
     add_email->setFixedSize(200, 30);
-    add_email->setStyleSheet("background-color: #D9D9D9; border-radius: 5px; padding: 5px;");
+    add_email->setStyleSheet(
+        "color: #000000;"
+        "background-color: #D9D9D9;" 
+        "border-radius: 5px;"
+        "padding: 5px;"
+        );
     add_email->setPlaceholderText("Email");
+    applyShadow(add_email);
 
     password2 = new QLabel(this);
     password2->setFixedSize(20,18);
@@ -40,10 +53,16 @@ void SignupPage::onAttach() {
     password2->setPixmap(passpng);
     password2->setScaledContents(true);
 
-    add_password2 = new PasswordLineEdit(this);
+    add_password2 = new PasswordLineEditSign(this);
     add_password2->setFixedSize(200, 30);
-    add_password2->setStyleSheet("background-color: #D9D9D9; border-radius: 5px; padding: 5px;");
+    add_password2->setStyleSheet(
+        "color: #000000;"
+        "background-color: #D9D9D9;"
+        "border-radius: 5px;" 
+        "padding: 5px;"
+        );
     add_password2->setPlaceholderText("Password");
+    applyShadow(add_password2);
 
     confirm_password2 = new QLabel(this);
     confirm_password2->setFixedSize(20,18);
@@ -51,10 +70,16 @@ void SignupPage::onAttach() {
     confirm_password2->setPixmap(confirm_passpng);
     confirm_password2->setScaledContents(true);
 
-    add_confirmpassword2 = new PasswordLineEdit(this);
+    add_confirmpassword2 = new PasswordLineEditSign(this);
     add_confirmpassword2->setFixedSize(200, 30);
-    add_confirmpassword2->setStyleSheet("background-color: #D9D9D9; border-radius: 5px; padding: 5px;");
+    add_confirmpassword2->setStyleSheet(
+        "color: #000000;"
+        "background-color: #D9D9D9;" 
+        "border-radius: 5px;" 
+        "padding: 5px;"
+        );
     add_confirmpassword2->setPlaceholderText("Confirm Password");
+    applyShadow(add_confirmpassword2);
 
     account_type = new QLabel("Account Type : ", this);
     account_type->setFixedSize(80,30);
@@ -62,18 +87,20 @@ void SignupPage::onAttach() {
 
     select_account_type = new QComboBox(this);
     select_account_type->setFixedSize(100,30);
-    select_account_type->setStyleSheet("background-color: #D9D9D9; border-radius:5px; padding: 5px;");
+    select_account_type->setStyleSheet(
+        "color: #000000;"
+        "background-color: #D9D9D9;" 
+        "border-radius:5px;"
+        "padding: 5px;"
+        );
     select_account_type->addItem("Participant");
     select_account_type->addItem("Organizer");
+    applyShadow(select_account_type);
 
     signupButton = new QPushButton("Signup", this);
     signupButton->setFixedSize(60,30);
-    signupButton->setStyleSheet(
-        "background-color: #62B6CB;"
-        "border-radius: 5px;"
-        "padding: 5px;"
-        "color: white;"
-    );
+    signupButton->setStyleSheet("background-color: #62B6CB; color: white;");
+    applyShadow(signupButton);
 
     go_tologin = new QLabel("Already have an account?", this);
     go_tologin->setFixedSize(135,30);
@@ -152,7 +179,7 @@ void SignupPage::onAttach() {
 
 }
 
-PasswordLineEdit::PasswordLineEdit(QWidget *parent) : QLineEdit(parent), password2Visible(false)
+PasswordLineEditSign::PasswordLineEditSign(QWidget *parent) : QLineEdit(parent), passwordVisible(false)
 {
     this->setEchoMode(QLineEdit::Password);
 
@@ -170,12 +197,12 @@ PasswordLineEdit::PasswordLineEdit(QWidget *parent) : QLineEdit(parent), passwor
     layout->setContentsMargins(0, 0, 5, 0);
     setLayout(layout);
 
-    connect(eyeButton, &QToolButton::clicked, this, &PasswordLineEdit::togglePasswordVisibility);
+    connect(eyeButton, &QToolButton::clicked, this, &PasswordLineEditSign::togglePasswordVisibility);
 }
 
-void PasswordLineEdit::togglePasswordVisibility()
+void PasswordLineEditSign::togglePasswordVisibility()
 {
-    if (password2Visible)
+    if (passwordVisible)
     {
         this->setEchoMode(QLineEdit::Password);
         eyeButton->setIcon(QIcon("assets/images/eye.png"));
@@ -188,9 +215,25 @@ void PasswordLineEdit::togglePasswordVisibility()
         eyeButton->setToolTip("Hide Password");
     }
 
-    password2Visible = !password2Visible;
+    passwordVisible = !passwordVisible;
+
 }
 
+void SignupPage::applyShadow(QWidget *widget)
+{
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
+	shadow->setBlurRadius(5);
+	shadow->setColor(QColor("#000000"));
+	// shadow->setOffset(QPointF(1, 1));
+	if (qobject_cast<QLineEdit*>(widget)) 
+		shadow->setOffset(QPointF(2, 2)); 
+	else if (qobject_cast<QPushButton*>(widget)) 
+		shadow->setOffset(QPointF(1, 1));
+    else if (qobject_cast<QComboBox*>(widget)) 
+		shadow->setOffset(QPointF(1, 1));  
+	
+	widget->setGraphicsEffect(shadow);
+}
 
 void SignupPage::onLoginNowPress() {
 	/* Here switchPage function changes the page 

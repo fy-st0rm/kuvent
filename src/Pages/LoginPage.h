@@ -7,10 +7,24 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QToolButton>
 
 #include "Application/Application.h"
 #include "Application/Page.h"
 
+class PasswordLineEditLogin : public QLineEdit
+{
+
+public:
+    explicit PasswordLineEditLogin(QWidget *parent = nullptr);
+
+private slots:
+    void togglePasswordVisibility();
+
+public:
+    QToolButton *eyeButton;
+    bool passwordVisible;
+};
 class LoginPage : public Page {
 public:
 	void onAttach();

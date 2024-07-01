@@ -6,24 +6,24 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGraphicsDropShadowEffect>
 
 
 #include "Application/Application.h"
 #include "Application/Page.h"
 
-class PasswordLineEdit : public QLineEdit
+class PasswordLineEditSign : public QLineEdit
 {
 
 public:
-    explicit PasswordLineEdit(QWidget *parent = nullptr);
+    explicit PasswordLineEditSign(QWidget *parent = nullptr);
 
 private slots:
     void togglePasswordVisibility();
 
 public:
     QToolButton *eyeButton;
-    bool password2Visible;
-    bool confirm_password2Visible;
+    bool passwordVisible;
 };
 class SignupPage : public Page {
 public:
@@ -33,6 +33,7 @@ public:
 
 private slots:
 	void onLoginNowPress();
+    void onSignupPress();
 
 private:
 	QVBoxLayout* m_main_layout;
@@ -53,4 +54,7 @@ private:
     QComboBox *select_account_type;
     QLabel *account_type;
     QPushButton *signupButton;
+    QLabel *errorLabel;
+
+    void applyShadow(QWidget *widget);
 };
