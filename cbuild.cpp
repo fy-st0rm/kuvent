@@ -63,6 +63,7 @@ void build(char** argv) {
 			"src/Application/Application.cpp",
 			"src/Pages/LoginPage.cpp",
 			"src/Pages/SignupPage.cpp",
+			"src/Widgets/PasswordLineEdit.cpp",
 			"src/main.cpp"
 		})
 		.build()

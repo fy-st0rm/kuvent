@@ -11,25 +11,13 @@
 
 #include "Application/Application.h"
 #include "Application/Page.h"
+#include "Widgets/PasswordLineEdit.h"
 
-class PasswordLineEditLogin : public QLineEdit
-{
-
-public:
-    explicit PasswordLineEditLogin(QWidget *parent = nullptr);
-
-private slots:
-    void togglePasswordVisibility();
-
-public:
-    QToolButton *eyeButton;
-    bool passwordVisible;
-};
 class LoginPage : public Page {
 public:
 	void onAttach();
 
-private slots:
+private slots: 
 	void onLoginButtonPress();
 	void onCreateAccountPress();
 

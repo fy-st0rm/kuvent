@@ -53,7 +53,7 @@ void SignupPage::onAttach() {
     password2->setPixmap(passpng);
     password2->setScaledContents(true);
 
-    add_password2 = new PasswordLineEditSign(this);
+    add_password2 = new PasswordLineEdit(this);
     add_password2->setFixedSize(200, 30);
     add_password2->setStyleSheet(
         "color: #000000;"
@@ -70,7 +70,7 @@ void SignupPage::onAttach() {
     confirm_password2->setPixmap(confirm_passpng);
     confirm_password2->setScaledContents(true);
 
-    add_confirmpassword2 = new PasswordLineEditSign(this);
+    add_confirmpassword2 = new PasswordLineEdit(this);
     add_confirmpassword2->setFixedSize(200, 30);
     add_confirmpassword2->setStyleSheet(
         "color: #000000;"
@@ -176,46 +176,6 @@ void SignupPage::onAttach() {
     m_hLayout13->setAlignment(Qt::AlignHCenter);
     m_vLayout2->setSpacing(10);
 
-
-}
-
-PasswordLineEditSign::PasswordLineEditSign(QWidget *parent) : QLineEdit(parent), passwordVisible(false)
-{
-    this->setEchoMode(QLineEdit::Password);
-
-    eyeButton = new QToolButton(this);
-    eyeButton->setIcon(QIcon("assets/images/eye.png"));
-    eyeButton->setIconSize(QSize(25, 25));
-    eyeButton->setCursor(Qt::PointingHandCursor);
-    eyeButton->setToolTip("Show Password");
-    eyeButton->setStyleSheet("border: none; padding: 0px;");
-    eyeButton->setFixedSize(20, 20);
-
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->addWidget(eyeButton, 0, Qt::AlignRight);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 5, 0);
-    setLayout(layout);
-
-    connect(eyeButton, &QToolButton::clicked, this, &PasswordLineEditSign::togglePasswordVisibility);
-}
-
-void PasswordLineEditSign::togglePasswordVisibility()
-{
-    if (passwordVisible)
-    {
-        this->setEchoMode(QLineEdit::Password);
-        eyeButton->setIcon(QIcon("assets/images/eye.png"));
-        eyeButton->setToolTip("Show Password");
-    }
-    else
-    {
-        this->setEchoMode(QLineEdit::Normal);
-        eyeButton->setIcon(QIcon("assets/images/eye2.png"));
-        eyeButton->setToolTip("Hide Password");
-    }
-
-    passwordVisible = !passwordVisible;
 
 }
 

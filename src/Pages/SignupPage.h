@@ -8,23 +8,10 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsDropShadowEffect>
 
-
 #include "Application/Application.h"
 #include "Application/Page.h"
+#include "Widgets/PasswordLineEdit.h"
 
-class PasswordLineEditSign : public QLineEdit
-{
-
-public:
-    explicit PasswordLineEditSign(QWidget *parent = nullptr);
-
-private slots:
-    void togglePasswordVisibility();
-
-public:
-    QToolButton *eyeButton;
-    bool passwordVisible;
-};
 class SignupPage : public Page {
 public:
 	// This is a compulsory function to implement.
