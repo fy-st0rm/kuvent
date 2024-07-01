@@ -91,17 +91,17 @@ void LoginPage::onAttach() {
 	//login button
 	QHBoxLayout *m_hLayout4 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout4);
-	m_vLayout->setSpacing(5);
+	m_vLayout->setSpacing(10);
 	m_hLayout4->addWidget(m_login_button);
 	m_hLayout4->setAlignment(Qt::AlignHCenter);
 
 	m_notsigned = new QLabel("Don't have an account?", this);
 	m_notsigned->setFixedSize(125,30);
-	m_createaccount_button = new QPushButton("Create account", this);
+	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #62B6CB; text-decoration: none;\" > Create account </a>");
 	m_createaccount_button->setFixedSize(100,30);
 	connect(
 		m_createaccount_button,
-		&QPushButton::pressed,
+		&QLabel::linkActivated,
 		this,
 		&LoginPage::onCreateAccountPress
 	);
@@ -145,6 +145,6 @@ void LoginPage::onLoginButtonPress() {
 
 
 void LoginPage::onCreateAccountPress(){
-	// Switching to "SingupPage"
+	// Switching to "SignupPage"
 	app->switchPage("SignupPage");
 }

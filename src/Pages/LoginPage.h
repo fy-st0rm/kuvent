@@ -36,7 +36,7 @@ private:
 	QLabel *m_password;
 	QLineEdit *m_add_password;
 	QLabel *m_Kuvent_logo;
-	QPushButton *m_createaccount_button;
+	QLabel *m_createaccount_button;
 
 	void applyShadow(QWidget *widget);
 };

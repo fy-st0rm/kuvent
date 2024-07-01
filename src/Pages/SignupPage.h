@@ -33,7 +33,7 @@ private:
     QLabel *confirm_password2;
     QWidget *select_accounttype;
     QLabel *go_tologin;
-    QPushButton *login_now;
+    QLabel *login_now;
     QLineEdit *add_username2;
     QLineEdit *add_email;
     QLineEdit *add_password2;

@@ -105,12 +105,14 @@ void SignupPage::onAttach() {
     go_tologin = new QLabel("Already have an account?", this);
     go_tologin->setFixedSize(135,30);
 
-    login_now = new QPushButton("Login now", this);
+    login_now = new QLabel("<a href= \"LoginPage\" style = \"color: #62B6CB; text-decoration: none;\"> Login now </a>");
     login_now->setFixedSize(80,30);
-    login_now->setStyleSheet("color : #62B6CB;");
+    login_now->setStyleSheet(
+        "padding: 5px;"
+    );
 	connect(
 		login_now,
-		&QPushButton::pressed,
+		&QLabel::linkActivated,
 		this,
 		&SignupPage::onLoginNowPress
 	);
@@ -170,7 +172,7 @@ void SignupPage::onAttach() {
 
     QHBoxLayout *m_hLayout13 = new QHBoxLayout();
     m_hLayout13->addWidget(go_tologin);
-    m_hLayout13->addSpacing(10);
+    m_hLayout13->addSpacing(1);
     m_hLayout13->addWidget(login_now);
     m_vLayout2->addLayout(m_hLayout13);
     m_hLayout13->setAlignment(Qt::AlignHCenter);
