@@ -21,6 +21,9 @@ void Application::init_qt() {
 	m_main_layout->setContentsMargins(0, 0, 0, 0);
 
 	m_main_widget->setLayout(m_main_layout);
+
+	m_main_widget->setMinimumSize(800,600);
+
 }
 
 void Application::switchPage(const std::string& name) {
