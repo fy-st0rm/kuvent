@@ -1,4 +1,5 @@
 cbuild
+cbuild.exe
 bin
 *.o
 storage

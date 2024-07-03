@@ -49,17 +49,9 @@ void build(char** argv) {
 		})
 		.inc_paths({
 			"vendor/httplib",
-			"vendor/openssl/include",
 			"vendor/sqlite3",
 			"vendor/json",
 			"src/"
-		})
-		.lib_paths({
-			"vendor/openssl/lib"
-		})
-		.libs({
-			"ssl",
-			"crypto",
 		})
 		.src({
 			"vendor/json/jsoncpp.cpp",
@@ -76,8 +68,6 @@ void build(char** argv) {
 			"vendor/sqlite3/sqlite3.o"
 		})
 		.clean();
-
-	copy_dlls();
 	cbuild.run();
 }
 
@@ -90,16 +80,8 @@ void init_db(char** argv) {
 		})
 		.inc_paths({
 			"vendor/httplib",
-			"vendor/openssl/include",
 			"vendor/sqlite3",
 			"src/"
-		})
-		.lib_paths({
-			"vendor/openssl/lib"
-		})
-		.libs({
-			"ssl",
-			"crypto",
 		})
 		.src({
 			"src/db/db.cpp",
@@ -113,8 +95,6 @@ void init_db(char** argv) {
 			"vendor/sqlite3/sqlite3.o"
 		})
 		.clean();
-
-	copy_dlls();
 	cbuild.run();
 }
 
