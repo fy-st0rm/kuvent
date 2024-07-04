@@ -205,3 +205,13 @@ void SignupPage::onLoginNowPress() {
 	 */
 	app->switchPage("LoginPage");
 }
+
+void SignupPage::checkFields()
+{
+    QString name = add_username2->text();
+    QString email = add_email->text();
+    QString password = add_password2->text();
+    QString confirm_pass = add_confirmpassword2->text();
+
+
+}

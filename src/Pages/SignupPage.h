@@ -21,6 +21,8 @@ public:
 private slots:
 	void onLoginNowPress();
     void onSignupPress();
+    void checkFields();
+
 
 private:
 	QVBoxLayout* m_main_layout;
