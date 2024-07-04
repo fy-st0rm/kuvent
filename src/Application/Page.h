@@ -5,6 +5,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QMainWindow>
 
+
 class Application;
 
 class Page : public QMainWindow {

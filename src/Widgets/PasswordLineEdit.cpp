@@ -15,7 +15,7 @@ PasswordLineEdit::PasswordLineEdit(QWidget *parent) : QLineEdit(parent), passwor
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(eyeButton, 0, Qt::AlignRight);
     layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 5, 0);
+    layout->setContentsMargins(0, 0, 10, 0);
     setLayout(layout);
 
     connect(eyeButton, &QToolButton::clicked, this, &PasswordLineEdit::togglePasswordVisibility);
