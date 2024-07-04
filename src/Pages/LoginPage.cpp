@@ -132,22 +132,39 @@ void LoginPage::applyShadow(QWidget *widget) {
 
 void LoginPage::onLoginButtonPress() {
 	QString name = m_add_username->text();
-	QString m_password = m_add_password->text();
+	QString password = m_add_password->text();
 
-	// [ ] TODO : make a proper validation and authorization check
-	if (name.isEmpty() || m_password.isEmpty()) {
-			QMessageBox::information(this, "Login Error", "Please enter both username and password.");
-			return;
-	}else{
-		app->switchPage("DashBoard");
+	if (name.isEmpty() || password.isEmpty()) {
+		QMessageBox::information(this, "Login Error", "Please enter both username and password.");
+		return;
 	}
 
-	qDebug() << "name =" << name.toStdString().c_str() << "\tpassword =" << m_password.toStdString().c_str();
-	//^^^^^^ remove this in future
+	// Connecting to the server
+	httplib::Client cli("localhost", 8080);
+
+	std::stringstream payload;
+	payload << "{";
+	payload << "\"email\": \"" << m_add_username->text().toStdString() << "\",";
+	payload << "\"password\": \"" << m_add_password->text().toStdString() << "\"";
+	payload << "}";
+
+	httplib::Result res = cli.Post(
+		"/login",
+		payload.str(),
+		"application/json"
+	);
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::information(
+			this,
+			"Login Error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	app->switchPage("DashBoard");
 }
 
-
 void LoginPage::onCreateAccountPress(){
-	// Switching to "SignupPage"
 	app->switchPage("SignupPage");
 }

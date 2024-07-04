@@ -43,6 +43,8 @@ void build(char** argv) {
 		})
 		.inc_paths({
 			"vendor/qt/include",
+			"vendor/httplib",
+			"vendor/json",
 			"src"
 		})
 #ifdef _WIN32
@@ -60,6 +62,7 @@ void build(char** argv) {
 			"Qt6Gui",
 		})
 		.src({
+			"vendor/json/jsoncpp.cpp",
 			"src/Application/Application.cpp",
 			"src/Pages/DashBoard.cpp",
 			"src/Pages/LoginPage.cpp",

@@ -6,8 +6,13 @@
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QMessageBox>
 #include <QtWidgets/QGraphicsDropShadowEffect>
 
+#include <sstream>
+
+#include "httplib.h"
+#include "json/json.h"
 #include "Application/Application.h"
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
@@ -18,7 +23,7 @@ public:
 	// We create all the widgets inside this function
 	void onAttach();
 
-private slots:
+private:
 	void onLoginNowPress();
     void onSignupPress();
 

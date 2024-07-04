@@ -101,6 +101,12 @@ void SignupPage::onAttach() {
     signupButton->setFixedSize(60,30);
     signupButton->setStyleSheet("background-color: #62B6CB; color: white;");
     applyShadow(signupButton);
+		connect(
+			signupButton,
+			&QPushButton::pressed,
+			this,
+			&SignupPage::onSignupPress
+		);
 
     go_tologin = new QLabel("Already have an account?", this);
     go_tologin->setFixedSize(135,30);
@@ -111,12 +117,12 @@ void SignupPage::onAttach() {
     login_now->setStyleSheet(
         "padding: 5px;"
     );
-	connect(
-		login_now,
-		&QLabel::linkActivated,
-		this,
-		&SignupPage::onLoginNowPress
-	);
+		connect(
+			login_now,
+			&QLabel::linkActivated,
+			this,
+			&SignupPage::onLoginNowPress
+		);
 
 
     QHBoxLayout *m_hLayout6 = new QHBoxLayout();
@@ -196,6 +202,41 @@ void SignupPage::applyShadow(QWidget *widget)
 		shadow->setOffset(QPointF(1, 1));  
 	
 	widget->setGraphicsEffect(shadow);
+}
+
+void SignupPage::onSignupPress() {
+	// Connecting to the server
+	httplib::Client cli("localhost", 8080);
+
+	std::stringstream payload;
+	payload << "{";
+	payload << "\"username\": \"" << add_username2->text().toStdString() << "\",";
+	payload << "\"email\": \"" << add_email->text().toStdString() << "\",";
+	payload << "\"password\": \"" << add_password2->text().toStdString() << "\",";
+	payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
+	payload << "}";
+
+	httplib::Result res = cli.Post(
+		"/signup",
+		payload.str(),
+		"application/json"
+	);
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::information(
+			this,
+			"Signup Error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	QMessageBox::information(
+		this,
+		"Signup Sucess",
+		QString::fromStdString(res->body)
+	);
+
+	app->switchPage("LoginPage");
 }
 
 void SignupPage::onLoginNowPress() {

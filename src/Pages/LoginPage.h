@@ -9,6 +9,10 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QToolButton>
 
+#include <sstream>
+
+#include "httplib.h"
+#include "json/json.h"
 #include "Application/Application.h"
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
