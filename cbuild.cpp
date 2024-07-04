@@ -66,12 +66,7 @@ void build(char** argv) {
 		})
 		.src({
 			"vendor/json/jsoncpp.cpp",
-			"src/Application/Application.cpp",
-			"src/Pages/DashBoard.cpp",
-			"src/Pages/LoginPage.cpp",
-			"src/Pages/SignupPage.cpp",
-			"src/Widgets/PasswordLineEdit.cpp",
-			"src/main.cpp"
+			"src/main.cpp",
 		})
 		.build()
 		.clean();

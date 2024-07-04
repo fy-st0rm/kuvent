@@ -101,8 +101,9 @@ void SignupPage::onAttach() {
     signupButton->setFixedSize(60,30);
     signupButton->setStyleSheet(
         "QPushButton {"
-            "background-color: #62B6CB;"
+            "background-color: #7469B6;"
             "color: white;"
+            "border-radius: 5px;"
         "}"
         "QPushButton:hover {"
             "background-color: black;"
@@ -123,7 +124,7 @@ void SignupPage::onAttach() {
         "<a"
         " href= \"LoginPage\""
         " style = \""
-        "  color: #62B6CB;"
+        "  color: black;"
         "  text-decoration: none;"
         "  font-style: italic;" 
         "  font-weight: bold;"
@@ -132,6 +133,7 @@ void SignupPage::onAttach() {
     login_now->setFixedSize(75,37.5);
     login_now->setStyleSheet(
         "padding: 5px;"
+        
     );
 		connect(
 			login_now,

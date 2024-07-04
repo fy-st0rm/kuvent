@@ -4,6 +4,11 @@
 #include "Pages/SignupPage.h"
 #include "Pages/DashBoard.h"
 
+#include "Application/Application.cpp"
+#include "Pages/DashBoard.cpp"
+#include "Pages/LoginPage.cpp"
+#include "Pages/SignupPage.cpp"
+#include "Widgets/PasswordLineEdit.cpp"
 class App : public Application {
 public:
 	void onAttach() {
