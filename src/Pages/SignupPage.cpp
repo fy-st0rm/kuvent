@@ -2,8 +2,8 @@
 #include "SignupPage.h"
 
 void SignupPage::onAttach() {
-
-    getBaseWidget()->setStyleSheet("background-color: #3C6E71;");
+    // Changing the stylesheet of the base widget of page
+  getBaseWidget()->setStyleSheet("background-color: #AAD7D9;");
 
 	// Creating main layout of this page
 	m_vLayout2 = new QVBoxLayout;
@@ -15,13 +15,13 @@ void SignupPage::onAttach() {
     create_account_title->setFixedSize(220, 50);
     create_account_title->setStyleSheet("font-size: 16pt; color: #FFFFFF; font-weight: bold; letter-spacing: 1px;");
 
-    username2 = new QLabel(this);
+  	username2 = new QLabel(this);
     add_username2 = new QLineEdit(this);
     username2->setFixedSize(20, 18);
     add_username2->setFixedSize(200, 30);
     add_username2->setStyleSheet(
         "color: #000000;"
-        "background-color: #D9D9D9;"
+        "background-color: #FAF6E7;"
         "border-radius: 5px;"
         "padding: 5px;"
         );
@@ -40,7 +40,7 @@ void SignupPage::onAttach() {
     add_email->setFixedSize(200, 30);
     add_email->setStyleSheet(
         "color: #000000;"
-        "background-color: #D9D9D9;" 
+        "background-color: #FAF6E7;" 
         "border-radius: 5px;"
         "padding: 5px;"
         );
@@ -57,7 +57,7 @@ void SignupPage::onAttach() {
     add_password2->setFixedSize(200, 30);
     add_password2->setStyleSheet(
         "color: #000000;"
-        "background-color: #D9D9D9;"
+        "background-color: #FAF6E7;"
         "border-radius: 5px;" 
         "padding: 5px;"
         );
@@ -74,7 +74,7 @@ void SignupPage::onAttach() {
     add_confirmpassword2->setFixedSize(200, 30);
     add_confirmpassword2->setStyleSheet(
         "color: #000000;"
-        "background-color: #D9D9D9;" 
+        "background-color: #FAF6E7;" 
         "border-radius: 5px;" 
         "padding: 5px;"
         );
@@ -89,9 +89,9 @@ void SignupPage::onAttach() {
     select_account_type->setFixedSize(100,30);
     select_account_type->setStyleSheet(
         "color: #000000;"
-        "background-color: #D9D9D9;" 
+        "background-color: #FAF6E7;" 
         "border-radius:5px;"
-        "padding: 5px;"
+        "padding: 5px;"													
         );
     select_account_type->addItem("Participant");
     select_account_type->addItem("Organizer");
@@ -99,15 +99,31 @@ void SignupPage::onAttach() {
 
     signupButton = new QPushButton("Signup", this);
     signupButton->setFixedSize(60,30);
-    signupButton->setStyleSheet("background-color: #62B6CB; color: white;");
+    signupButton->setStyleSheet(
+        "QPushButton {"
+            "background-color: #62B6CB;"
+            "color: white;"
+        "}"
+        "QPushButton:hover {"
+            "background-color: black;"
+        "}"
+    );
     applyShadow(signupButton);
 
     go_tologin = new QLabel("Already have an account?", this);
     go_tologin->setFixedSize(135,30);
 
-    login_now = new QLabel("<a href= \"LoginPage\" style = \"color: #62B6CB; text-decoration: none; font-style: italic;" 
-                            "font-weight: bold;\"> Login now </a>");
-    login_now->setFixedSize(80,30);
+    login_now = new QLabel(
+        "<a"
+        " href= \"LoginPage\""
+        " style = \""
+        "  color: #62B6CB;"
+        "  text-decoration: none;"
+        "  font-style: italic;" 
+        "  font-weight: bold;"
+        "\"> Login now </a>"
+    );
+    login_now->setFixedSize(75,37.5);
     login_now->setStyleSheet(
         "padding: 5px;"
     );
@@ -184,9 +200,10 @@ void SignupPage::onAttach() {
 
 void SignupPage::applyShadow(QWidget *widget)
 {
+    //drop shadow styles
     QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
 	shadow->setBlurRadius(5);
-	shadow->setColor(QColor("#000000"));
+	shadow->setColor(QColor("#758694"));
 	// shadow->setOffset(QPointF(1, 1));
 	if (qobject_cast<QLineEdit*>(widget)) 
 		shadow->setOffset(QPointF(2, 2)); 

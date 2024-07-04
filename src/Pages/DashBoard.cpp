@@ -3,7 +3,7 @@
 
 void DashBoard::onAttach() {
 	// Changing the stylesheet of the base widget of page
-	getBaseWidget()->setStyleSheet("background-color: #3C6E71;");
+	getBaseWidget()->setStyleSheet("background-color: #AAD7D9;");
 
 	// V_dash_layout is the main layout of the page
 	V_dash_layout = new QVBoxLayout();

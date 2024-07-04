@@ -1,8 +1,9 @@
 #include "LoginPage.h"
+#include "theme.h"
 
 void LoginPage::onAttach() {
 	// Changing the stylesheet of the base widget of page
-	getBaseWidget()->setStyleSheet("background-color: #AAD7D9;"); 
+	getBaseWidget()->setStyleSheet("background-color:" + Theme::PrimaryBg); 
 
 	// m_vLayout is the main layout of the page
 	m_vLayout = new QVBoxLayout();
@@ -83,7 +84,8 @@ void LoginPage::onAttach() {
 	// login button styles
 	m_login_button = new QPushButton("Login", this);
 	m_login_button->setFixedSize(75,37.5);
-	m_login_button->setStyleSheet("background-color: #7469B6;"
+	m_login_button->setStyleSheet(
+								"background-color: #7469B6;"
 								 "color: white;"
 								 "border-radius: 6px;");
 	connect(
@@ -104,7 +106,7 @@ void LoginPage::onAttach() {
 	//create account label styles
 	m_notsigned = new QLabel("Don't have an account?", this);
 	m_notsigned->setFixedSize(125,30);
-	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #62B6CB; text-decoration: none;"
+	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: black; text-decoration: none;"
 										"font-style: italic; font-weight: bold\"> Create account </a>");
 	m_createaccount_button->setFixedSize(100,30);
 	connect(
