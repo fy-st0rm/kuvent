@@ -60,6 +60,11 @@ void build(char** argv) {
 			"src/routes/file_transfer.cpp",
 			"src/main.cpp"
 		})
+		.libs({
+#ifdef _WIN32
+			"ws2_32",
+#endif
+		})
 		.objs({
 			"vendor/sqlite3/sqlite3.o"
 		})
