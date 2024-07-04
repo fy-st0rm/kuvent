@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label" : "cbuild",
+			"type" : "shell",
+			"command" : ".\\cbuild.exe",
+		},
+
+		{
+			"label" : "run",
+			"type" : "shell",
+			"command" : ".\\bin\\app.exe",
+			"dependsOn" :"cbuild"
+		},
+
+		{
+			"label" : "bootstrap",
+			"type" : "shell",
+			"command" : "g++ -o cbuild .\\cbuild.cpp",
+		}
+	]
+}
