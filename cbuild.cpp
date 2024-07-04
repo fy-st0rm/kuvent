@@ -60,6 +60,9 @@ void build(char** argv) {
 			"Qt6Widgets",
 			"Qt6Core",
 			"Qt6Gui",
+#ifdef _WIN32
+			"ws2_32",
+#endif
 		})
 		.src({
 			"vendor/json/jsoncpp.cpp",
