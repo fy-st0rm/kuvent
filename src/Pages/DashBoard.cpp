@@ -1,9 +1,10 @@
 #include "DashBoard.h"
+#include "theme.h"
 
 
 void DashBoard::onAttach() {
-	// Changing the stylesheet of the base widget of page
-	getBaseWidget()->setStyleSheet("background-color: #AAD7D9;");
+	// Changing the stylesheet of the base widget of paget
+	getBaseWidget()->setStyleSheet("background-color:" + Theme::PrimaryBg);
 
 	// V_dash_layout is the main layout of the page
 	V_dash_layout = new QVBoxLayout();

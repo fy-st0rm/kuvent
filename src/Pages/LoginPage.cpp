@@ -29,56 +29,56 @@ void LoginPage::onAttach() {
 	m_hLayout1->setAlignment(Qt::AlignHCenter);
 	
 	//username textbox styles
-	m_username = new QLabel (this);
-	m_add_username = new QLineEdit(this);
+	username_label = new QLabel (this);
+	username_entry = new QLineEdit(this);
 	QPixmap userpng("assets/images/arroba.png");
-	m_username->setPixmap(userpng);
-	m_username->setScaledContents(true);
-	m_username->setFixedSize(20,18);
-	m_add_username->setFixedSize(225,33.75);
-	m_add_username->setStyleSheet(
+	username_label->setPixmap(userpng);
+	username_label->setScaledContents(true);
+	username_label->setFixedSize(20,18);
+	username_entry->setFixedSize(225,33.75);
+	username_entry->setStyleSheet(
 		"color: #000000;"
 		"background-color:" + Theme::textboxBg +";"
 		"border-radius:5px;"
 		"padding: 5px;"
 	);
-	m_add_username->setPlaceholderText("Username");
-	applyShadow(m_add_username);
+	username_entry->setPlaceholderText("Username");
+	applyShadow(username_entry);
 
 	// horizontal layout for username
 	QHBoxLayout *m_hLayout2 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout2);
 	m_vLayout->addSpacing(10);
-	m_hLayout2->addWidget(m_username);
+	m_hLayout2->addWidget(username_label);
 	m_hLayout2->addSpacing(10);
-	m_hLayout2->addWidget(m_add_username);
+	m_hLayout2->addWidget(username_entry);
 	m_hLayout2->setAlignment(Qt::AlignHCenter);
 
 	// password textbox styles
-	m_password = new QLabel(this);
-	m_add_password = new PasswordLineEdit(this);
+	password_label = new QLabel(this);
+	password_entry = new PasswordLineEdit(this);
 	QPixmap passpng("assets/images/padlock.png");
-	m_password->setPixmap(passpng);
-	m_password->setScaledContents(true);
-	m_password->setFixedSize(20,18);
-	m_add_password->setFixedSize(225,33.75);
-	m_add_password->setStyleSheet(
+	password_label->setPixmap(passpng);
+	password_label->setScaledContents(true);
+	password_label->setFixedSize(20,18);
+	password_entry->setFixedSize(225,33.75);
+	password_entry->setStyleSheet(
 		"background-color:" + Theme::textboxBg +";"
 		"color: #000000;"
 		"border-radius: 5px;"
 		"padding:5px;"
 	);
-	m_add_password->setEchoMode(QLineEdit::Password);
-	m_add_password->setPlaceholderText("Password");
-	applyShadow(m_add_password);
+	password_entry->setEchoMode(QLineEdit::Password);
+	password_entry->setPlaceholderText("Password");
+	applyShadow(password_entry);
 
-	// another horizontal layout for m_password
+	// another horizontal layout for password_label
 	QHBoxLayout *m_hLayout3 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout3);
 	m_vLayout->addSpacing(10);
-	m_hLayout3->addWidget(m_password);
+	m_hLayout3->addWidget(password_label);
 	m_hLayout3->addSpacing(10);
-	m_hLayout3->addWidget(m_add_password);
+	m_hLayout3->addWidget(password_entry);
 	m_hLayout3->setAlignment(Qt::AlignHCenter);
 
 	// login button styles
@@ -112,11 +112,11 @@ void LoginPage::onAttach() {
 	//create account label styles
 	m_notsigned = new QLabel("Don't have an account?", this);
 	m_notsigned->setFixedSize(125,30);
-	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #09596D;" "text-decoration: none;"
+	createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #09596D;" "text-decoration: none;"
 										"font-style: italic; font-weight: bold\"> Create account </a>");
-	m_createaccount_button->setFixedSize(100,30);
+	createaccount_button->setFixedSize(100,30);
 	connect(
-		m_createaccount_button,
+		createaccount_button,
 		&QLabel::linkActivated,
 		this,
 		&LoginPage::onCreateAccountPress
@@ -128,7 +128,7 @@ void LoginPage::onAttach() {
 	m_hLayout5->addSpacing(15);
 	m_hLayout5->addWidget(m_notsigned);
 	m_hLayout5->addSpacing(5);
-	m_hLayout5->addWidget(m_createaccount_button);
+	m_hLayout5->addWidget(createaccount_button);
 	m_hLayout5->setAlignment(Qt::AlignHCenter);
 }
 
@@ -148,8 +148,8 @@ void LoginPage::onAttach() {
 }
 
 void LoginPage::onLoginButtonPress() {
-	QString name = m_add_username->text();
-	QString password = m_add_password->text();
+	QString name = username_entry->text();
+	QString password = password_entry->text();
 
 	if (name.isEmpty() || password.isEmpty()) {
 		QMessageBox::information(this, "Login Error", "Please enter both username and password.");
@@ -161,8 +161,8 @@ void LoginPage::onLoginButtonPress() {
 
 	std::stringstream payload;
 	payload << "{";
-	payload << "\"email\": \"" << m_add_username->text().toStdString() << "\",";
-	payload << "\"password\": \"" << m_add_password->text().toStdString() << "\"";
+	payload << "\"email\": \"" << username_entry->text().toStdString() << "\",";
+	payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
 	payload << "}";
 
 	httplib::Result res = cli.Post(

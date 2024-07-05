@@ -4,7 +4,7 @@
 
 void SignupPage::onAttach() {
     // Changing the stylesheet of the base widget of page
-  getBaseWidget()->setStyleSheet("background-color: #AAD7D9;");
+  getBaseWidget()->setStyleSheet("background-color:"+ Theme::PrimaryBg);
 
 	// Creating main layout of this page
 	m_vLayout2 = new QVBoxLayout;
@@ -18,74 +18,74 @@ void SignupPage::onAttach() {
     create_account_title->setStyleSheet("font-size: 16pt; color: #FFFFFF; font-weight: bold; letter-spacing: 1px;");
 
     //Add username styles
-  	username2 = new QLabel(this);
-    add_username2 = new QLineEdit(this);
-    username2->setFixedSize(20, 18);
-    add_username2->setFixedSize(225,33.75);
-    add_username2->setStyleSheet(
+  	username_label = new QLabel(this);
+    username_entry = new QLineEdit(this);
+    username_label->setFixedSize(20, 18);
+    username_entry->setFixedSize(225,33.75);
+    username_entry->setStyleSheet(
         "color: #000000;"
         "background-color:" + Theme::textboxBg +";"
         "border-radius: 5px;"
         "padding: 5px;"
         );
-    add_username2->setPlaceholderText("Username");
+    username_entry->setPlaceholderText("Username");
     QPixmap userpng("assets/images/arroba.png");
-    username2->setPixmap(userpng);
-    username2->setScaledContents(true);
-    applyShadow(add_username2);
+    username_label->setPixmap(userpng);
+    username_label->setScaledContents(true);
+    applyShadow(username_entry);
 
-    //Add email styles
-    email = new QLabel(this);
-    add_email = new QLineEdit(this);
-    email->setFixedSize(20, 18);
+    //Add email_label styles
+    email_label = new QLabel(this);
+    email_entry = new QLineEdit(this);
+    email_label->setFixedSize(20, 18);
     QPixmap profilepng("assets/images/user.png");
-    email->setPixmap(profilepng);
-    email->setScaledContents(true);
-    add_email->setFixedSize(225,33.75);
-    add_email->setStyleSheet(
+    email_label->setPixmap(profilepng);
+    email_label->setScaledContents(true);
+    email_entry->setFixedSize(225,33.75);
+    email_entry->setStyleSheet(
         "color: #000000;"
         "background-color:" + Theme::textboxBg +";" 
         "border-radius: 5px;"
         "padding: 5px;"
         );
-    add_email->setPlaceholderText("Email");
-    applyShadow(add_email);
+    email_entry->setPlaceholderText("Email");
+    applyShadow(email_entry);
 
-    password2 = new QLabel(this);
-    password2->setFixedSize(20,18);
+    password_label = new QLabel(this);
+    password_label->setFixedSize(20,18);
     QPixmap passpng("assets/images/padlock.png");
-    password2->setPixmap(passpng);
-    password2->setScaledContents(true);
+    password_label->setPixmap(passpng);
+    password_label->setScaledContents(true);
 
     //Add password styles
-    add_password2 = new PasswordLineEdit(this);
-    add_password2->setFixedSize(225,33.75);
-    add_password2->setStyleSheet(
+    password_entry = new PasswordLineEdit(this);
+    password_entry->setFixedSize(225,33.75);
+    password_entry->setStyleSheet(
         "color: #000000;"
         "background-color:" + Theme::textboxBg +";"
         "border-radius: 5px;" 
         "padding: 5px;"
         );
-    add_password2->setPlaceholderText("Password");
-    applyShadow(add_password2);
+    password_entry->setPlaceholderText("Password");
+    applyShadow(password_entry);
 
-    confirm_password2 = new QLabel(this);
-    confirm_password2->setFixedSize(20,18);
+    confirmPassword_label = new QLabel(this);
+    confirmPassword_label->setFixedSize(20,18);
     QPixmap confirm_passpng("assets/images/reset-password.png");
-    confirm_password2->setPixmap(confirm_passpng);
-    confirm_password2->setScaledContents(true);
+    confirmPassword_label->setPixmap(confirm_passpng);
+    confirmPassword_label->setScaledContents(true);
 
     //Add confirm password styles
-    add_confirmpassword2 = new PasswordLineEdit(this);
-    add_confirmpassword2->setFixedSize(225,33.75);
-    add_confirmpassword2->setStyleSheet(
+    confirmPassword_entry = new PasswordLineEdit(this);
+    confirmPassword_entry->setFixedSize(225,33.75);
+    confirmPassword_entry->setStyleSheet(
         "color: #000000;"
         "background-color:" + Theme::textboxBg +";"
         "border-radius: 5px;" 
         "padding: 5px;"
         );
-    add_confirmpassword2->setPlaceholderText("Confirm Password");
-    applyShadow(add_confirmpassword2);
+    confirmPassword_entry->setPlaceholderText("Confirm Password");
+    applyShadow(confirmPassword_entry);
 
     account_type = new QLabel("Account Type : ", this);
     account_type->setFixedSize(80,30);
@@ -105,9 +105,9 @@ void SignupPage::onAttach() {
     applyShadow(select_account_type);
 
     //Signup button styles
-    signupButton = new QPushButton("Signup", this);
-    signupButton->setFixedSize(75,37.5);
-    signupButton->setStyleSheet(
+    signup_Button = new QPushButton("Signup", this);
+    signup_Button->setFixedSize(75,37.5);
+    signup_Button->setStyleSheet(
         "QPushButton {"
             "background-color:" + Theme::buttonBg +";"
             "color: white;"
@@ -117,18 +117,18 @@ void SignupPage::onAttach() {
             "background-color:" + Theme::buttonHover +";"
         "}"
     );
-    applyShadow(signupButton);
+    applyShadow(signup_Button);
 		connect(
-			signupButton,
+			signup_Button,
 			&QPushButton::pressed,
 			this,
 			&SignupPage::onSignupPress
 		);
 
-    go_tologin = new QLabel("Already have an account?", this);
-    go_tologin->setFixedSize(135,30);
+    goLogin_button = new QLabel("Already have an account?", this);
+    goLogin_button->setFixedSize(135,30);
 
-    login_now = new QLabel(
+    loginnow_button = new QLabel(
         "<a"
         " href= \"LoginPage\""
         " style = \""
@@ -138,13 +138,13 @@ void SignupPage::onAttach() {
         "  font-weight: bold;"
         "\"> Login now </a>"
     );
-    login_now->setFixedSize(75,37.5);
-    login_now->setStyleSheet(
+    loginnow_button->setFixedSize(75,37.5);
+    loginnow_button->setStyleSheet(
         "padding: 5px;"
         
     );
 		connect(
-			login_now,
+			loginnow_button,
 			&QLabel::linkActivated,
 			this,
 			&SignupPage::onLoginNowPress
@@ -158,33 +158,33 @@ void SignupPage::onAttach() {
     m_hLayout6->setAlignment(Qt::AlignHCenter);
 
     QHBoxLayout *m_hLayout7 = new QHBoxLayout();
-    m_hLayout7->addWidget(username2);
+    m_hLayout7->addWidget(username_label);
     m_hLayout7->addSpacing(10);
-    m_hLayout7->addWidget(add_username2);
+    m_hLayout7->addWidget(username_entry);
     m_vLayout2->addLayout(m_hLayout7);
     m_hLayout7->setAlignment(Qt::AlignHCenter);
     m_vLayout2->addSpacing(10);
 
     QHBoxLayout *m_hLayout8 = new QHBoxLayout();
-    m_hLayout8->addWidget(email);
+    m_hLayout8->addWidget(email_label);
     m_hLayout8->addSpacing(10);
-    m_hLayout8->addWidget(add_email);
+    m_hLayout8->addWidget(email_entry);
     m_vLayout2->addLayout(m_hLayout8);
     m_hLayout8->setAlignment(Qt::AlignHCenter);
     m_vLayout2->addSpacing(10);
 
     QHBoxLayout *m_hLayout9 = new QHBoxLayout();
-    m_hLayout9->addWidget(password2);
+    m_hLayout9->addWidget(password_label);
     m_hLayout9->addSpacing(10);
-    m_hLayout9->addWidget(add_password2);
+    m_hLayout9->addWidget(password_entry);
     m_vLayout2->addLayout(m_hLayout9);
     m_hLayout9->setAlignment(Qt::AlignHCenter);
     m_vLayout2->addSpacing(10);
 
     QHBoxLayout *m_hLayout10 = new QHBoxLayout();
-    m_hLayout10->addWidget(confirm_password2);
+    m_hLayout10->addWidget(confirmPassword_label);
     m_hLayout10->addSpacing(10);
-    m_hLayout10->addWidget(add_confirmpassword2);
+    m_hLayout10->addWidget(confirmPassword_entry);
     m_vLayout2->addLayout(m_hLayout10);
     m_hLayout10->setAlignment(Qt::AlignHCenter);
     m_vLayout2->addSpacing(10);
@@ -198,15 +198,15 @@ void SignupPage::onAttach() {
     m_vLayout2->addSpacing(10);
 
     QHBoxLayout *m_hLayout12 = new QHBoxLayout();
-    m_hLayout12->addWidget(signupButton);
+    m_hLayout12->addWidget(signup_Button);
     m_vLayout2->addLayout(m_hLayout12);
     m_hLayout12->setAlignment(Qt::AlignHCenter);
     m_vLayout2->addSpacing(10);
 
     QHBoxLayout *m_hLayout13 = new QHBoxLayout();
-    m_hLayout13->addWidget(go_tologin);
+    m_hLayout13->addWidget(goLogin_button);
     m_hLayout13->addSpacing(1);
-    m_hLayout13->addWidget(login_now);
+    m_hLayout13->addWidget(loginnow_button);
     m_vLayout2->addLayout(m_hLayout13);
     m_hLayout13->setAlignment(Qt::AlignHCenter);
     m_vLayout2->setSpacing(10);
@@ -237,9 +237,9 @@ void SignupPage::onSignupPress() {
 
 	std::stringstream payload;
 	payload << "{";
-	payload << "\"username\": \"" << add_username2->text().toStdString() << "\",";
-	payload << "\"email\": \"" << add_email->text().toStdString() << "\",";
-	payload << "\"password\": \"" << add_password2->text().toStdString() << "\",";
+	payload << "\"username\": \"" << username_entry->text().toStdString() << "\",";
+	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
+	payload << "\"password\": \"" << password_entry->text().toStdString() << "\",";
 	payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
 	payload << "}";
 
@@ -276,10 +276,10 @@ void SignupPage::onLoginNowPress() {
 
 void SignupPage::checkFields()
 {
-    QString name = add_username2->text();
-    QString email = add_email->text();
-    QString password = add_password2->text();
-    QString confirm_pass = add_confirmpassword2->text();
+    QString name = username_entry->text();
+    QString email = email_entry->text();
+    QString password = password_entry->text();
+    QString confirm_pass = confirmPassword_entry->text();
 
 
 }

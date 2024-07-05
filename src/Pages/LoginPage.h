@@ -27,7 +27,7 @@ private slots:
 
 private:
 	QPushButton *m_login_button;
-	QLabel *m_username;
+	QLabel *username_label;
 	QVBoxLayout *m_vLayout;
 	QHBoxLayout *m_hLayout1;
 	QHBoxLayout *m_hLayout2;
@@ -36,11 +36,11 @@ private:
 	QHBoxLayout *m_hLayout5;
 	QLabel *m_notsigned;
 
-	QLineEdit *m_add_username;
-	QLabel *m_password;
-	QLineEdit *m_add_password;
+	QLineEdit *username_entry;
+	QLabel *password_label;
+	QLineEdit *password_entry;
 	QLabel *m_Kuvent_logo;
-	QLabel *m_createaccount_button;
+	QLabel *createaccount_button;
 
 	void applyShadow(QWidget *widget);
 };
