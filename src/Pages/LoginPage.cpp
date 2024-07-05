@@ -38,7 +38,7 @@ void LoginPage::onAttach() {
 	m_add_username->setFixedSize(225,33.75);
 	m_add_username->setStyleSheet(
 		"color: #000000;"
-		"background-color: #FAF6E7;"
+		"background-color:" + Theme::textboxBg +";"
 		"border-radius:5px;"
 		"padding: 5px;"
 	);
@@ -63,7 +63,7 @@ void LoginPage::onAttach() {
 	m_password->setFixedSize(20,18);
 	m_add_password->setFixedSize(225,33.75);
 	m_add_password->setStyleSheet(
-		"background-color: #FAF6E7;"
+		"background-color:" + Theme::textboxBg +";"
 		"color: #000000;"
 		"border-radius: 5px;"
 		"padding:5px;"
@@ -85,9 +85,15 @@ void LoginPage::onAttach() {
 	m_login_button = new QPushButton("Login", this);
 	m_login_button->setFixedSize(75,37.5);
 	m_login_button->setStyleSheet(
-								"background-color: #7469B6;"
-								 "color: white;"
-								 "border-radius: 6px;");
+        "QPushButton {"
+            "background-color:" + Theme::buttonBg +";"
+            "color: white;"
+            "border-radius: 5px;"
+			"}"
+        "QPushButton:hover {"
+            "background-color:" + Theme::buttonHover +";"
+        "}"
+    );
 	connect(
 		m_login_button,
 		&QPushButton::pressed,
@@ -106,7 +112,7 @@ void LoginPage::onAttach() {
 	//create account label styles
 	m_notsigned = new QLabel("Don't have an account?", this);
 	m_notsigned->setFixedSize(125,30);
-	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: black; text-decoration: none;"
+	m_createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #09596D;" "text-decoration: none;"
 										"font-style: italic; font-weight: bold\"> Create account </a>");
 	m_createaccount_button->setFixedSize(100,30);
 	connect(
@@ -127,10 +133,10 @@ void LoginPage::onAttach() {
 }
 
 	//Drop shadow effect
-void LoginPage::applyShadow(QWidget *widget) {
+	void LoginPage::applyShadow(QWidget *widget) {
 	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
 	shadow->setBlurRadius(4);
-	shadow->setColor(QColor("#758694"));
+	shadow->setColor(QColor(Theme::dropshadow));
 	
 	// shadow->setOffset(QPointF(1, 1));
 	if (qobject_cast<QLineEdit*>(widget)) 
