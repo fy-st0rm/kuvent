@@ -13,9 +13,15 @@ void SignupPage::onAttach() {
 	setLayout(m_vLayout2);
 
     //Title text styles
-    create_account_title = new QLabel("Create new Account", this);
-    create_account_title->setFixedSize(220, 50);
-    create_account_title->setStyleSheet("font-size: 16pt; color: #FFFFFF; font-weight: bold; letter-spacing: 1px;");
+    create_account_title = new QLabel("CREATE NEW ACCOUNT", this);
+    create_account_title->setFixedSize(290, 50);
+    create_account_title->setStyleSheet(
+        "font-size: 16pt;"
+        "font-family: Georgia, serif;"
+        "color: #FFFFFF;"
+        "font-weight: bold;"
+        "letter-spacing: 1px;"
+    );
 
     //Add username styles
   	username_label = new QLabel(this);
@@ -87,9 +93,16 @@ void SignupPage::onAttach() {
     confirmPassword_entry->setPlaceholderText("Confirm Password");
     applyShadow(confirmPassword_entry);
 
+    //Account type text styles
     account_type = new QLabel("Account Type : ", this);
-    account_type->setFixedSize(80,30);
-    account_type->setStyleSheet("color : #FFFFFF;");
+    account_type->setFixedSize(100,30);
+    account_type->setStyleSheet(
+		"color:" + Theme::textwhite +";"
+		"font-family: Sans Serif;"
+		"font-weight: bold;"
+		"font-size: 11px;"
+		"letter-spacing: 1px;"
+	);
 
     //Select account type dropdown styles
     select_account_type = new QComboBox(this);
@@ -125,8 +138,16 @@ void SignupPage::onAttach() {
 			&SignupPage::onSignupPress
 		);
 
+    //Already have an account text styles
     goLogin_button = new QLabel("Already have an account?", this);
-    goLogin_button->setFixedSize(135,30);
+    goLogin_button->setStyleSheet(
+		"color:" + Theme::textwhite +";"
+		"font-family: Sans Serif;"
+		"font-weight: bold;"
+		"font-size: 11px;"
+		"letter-spacing: 1px;"
+	);
+    goLogin_button->setFixedSize(170,30);
 
     loginnow_button = new QLabel(
         "<a"

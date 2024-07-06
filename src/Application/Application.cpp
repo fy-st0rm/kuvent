@@ -40,7 +40,7 @@ void Application::switchPage(const std::string& name) {
 int Application::run(const std::string& title, int argc, char** argv) {
 	m_app = new QApplication(argc, argv);
 	m_app->setApplicationName(QString::fromStdString(title));
-
+	m_app->setWindowIcon(QIcon("assets/images/KUventfav.png"));
 	// Setting up main widgets
 	init_qt();
 

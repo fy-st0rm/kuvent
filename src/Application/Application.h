@@ -9,6 +9,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
+#include <QtGui/QIcon>
 
 #include "Page.h"
 

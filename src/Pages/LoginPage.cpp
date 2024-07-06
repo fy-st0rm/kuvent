@@ -89,6 +89,8 @@ void LoginPage::onAttach() {
             "background-color:" + Theme::buttonBg +";"
             "color: white;"
             "border-radius: 5px;"
+			"font-family: Sans Serif;"
+			"font-weight: bold;"
 			"}"
         "QPushButton:hover {"
             "background-color:" + Theme::buttonHover +";"
@@ -109,9 +111,18 @@ void LoginPage::onAttach() {
 	m_hLayout4->addWidget(m_login_button);
 	m_hLayout4->setAlignment(Qt::AlignHCenter);
 
-	//create account label styles
+	//dont have an account text styles
 	m_notsigned = new QLabel("Don't have an account?", this);
-	m_notsigned->setFixedSize(125,30);
+	m_notsigned->setFixedSize(160,30);
+	m_notsigned->setStyleSheet(
+		"color:" + Theme::textwhite +";"
+		"font-family: Sans Serif;"
+		"font-weight: bold;"
+		"font-size: 11px;"
+		"letter-spacing: 1px;"
+	);
+
+	// create account button styles
 	createaccount_button = new QLabel("<a href= \"SignupPage\" style = \"color: #09596D;" "text-decoration: none;"
 										"font-style: italic; font-weight: bold\"> Create account </a>");
 	createaccount_button->setFixedSize(100,30);
@@ -121,6 +132,7 @@ void LoginPage::onAttach() {
 		this,
 		&LoginPage::onCreateAccountPress
 	);
+
 
 	// create new account button
 	QHBoxLayout *m_hLayout5 = new QHBoxLayout();

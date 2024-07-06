@@ -8,6 +8,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QToolButton>
+#include <QtGui/QFont>
 
 #include <sstream>
 
