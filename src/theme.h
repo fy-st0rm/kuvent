@@ -8,4 +8,7 @@ namespace Theme {
     static const QString dropshadow = "#758694";
     static const QString buttonHover = "#58508A";
     static const QString textwhite = "#FFFFFF";
+    static const QString dashboardbuttonBg = "#CCCCCC";
+    static const QString dashboardBg = "#F1EEDC";
+    static const QString dashboardhoverBg = "#B3C8CF";
 };
