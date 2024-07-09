@@ -29,29 +29,29 @@ void LoginPage::onAttach() {
 	m_hLayout1->setAlignment(Qt::AlignHCenter);
 	
 	//username textbox styles
-	username_label = new QLabel (this);
-	username_entry = new QLineEdit(this);
+	email_label = new QLabel (this);
+	email_entry = new QLineEdit(this);
 	QPixmap userpng("assets/images/arroba.png");
-	username_label->setPixmap(userpng);
-	username_label->setScaledContents(true);
-	username_label->setFixedSize(20,18);
-	username_entry->setFixedSize(225,33.75);
-	username_entry->setStyleSheet(
+	email_label->setPixmap(userpng);
+	email_label->setScaledContents(true);
+	email_label->setFixedSize(20,18);
+	email_entry->setFixedSize(225,33.75);
+	email_entry->setStyleSheet(
 		"color: #000000;"
 		"background-color:" + Theme::textboxBg +";"
 		"border-radius:5px;"
 		"padding: 5px;"
 	);
-	username_entry->setPlaceholderText("Username");
-	applyShadow(username_entry);
+	email_entry->setPlaceholderText("Email");
+	applyShadow(email_entry);
 
 	// horizontal layout for username
 	QHBoxLayout *m_hLayout2 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout2);
 	m_vLayout->addSpacing(10);
-	m_hLayout2->addWidget(username_label);
+	m_hLayout2->addWidget(email_label);
 	m_hLayout2->addSpacing(10);
-	m_hLayout2->addWidget(username_entry);
+	m_hLayout2->addWidget(email_entry);
 	m_hLayout2->setAlignment(Qt::AlignHCenter);
 
 	// password textbox styles
@@ -160,7 +160,7 @@ void LoginPage::onAttach() {
 }
 
 void LoginPage::onLoginButtonPress() {
-	QString name = username_entry->text();
+	QString name = email_entry->text();
 	QString password = password_entry->text();
 
 	if (name.isEmpty() || password.isEmpty()) {
@@ -173,7 +173,7 @@ void LoginPage::onLoginButtonPress() {
 
 	std::stringstream payload;
 	payload << "{";
-	payload << "\"email\": \"" << username_entry->text().toStdString() << "\",";
+	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
 	payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
 	payload << "}";
 

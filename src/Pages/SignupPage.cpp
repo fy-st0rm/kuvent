@@ -35,7 +35,7 @@ void SignupPage::onAttach() {
         "padding: 5px;"
         );
     username_entry->setPlaceholderText("Username");
-    QPixmap userpng("assets/images/arroba.png");
+    QPixmap userpng("assets/images/user.png");
     username_label->setPixmap(userpng);
     username_label->setScaledContents(true);
     applyShadow(username_entry);
@@ -44,7 +44,7 @@ void SignupPage::onAttach() {
     email_label = new QLabel(this);
     email_entry = new QLineEdit(this);
     email_label->setFixedSize(20, 18);
-    QPixmap profilepng("assets/images/user.png");
+    QPixmap profilepng("assets/images/arroba.png");
     email_label->setPixmap(profilepng);
     email_label->setScaledContents(true);
     email_entry->setFixedSize(225,33.75);

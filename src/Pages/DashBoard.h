@@ -7,6 +7,8 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsDropShadowEffect>
+#include <QtWidgets/QScrollArea>
+#include <QtGui/QPixmap>
 
 #include "Application/Application.h"
 #include "Application/Page.h"
