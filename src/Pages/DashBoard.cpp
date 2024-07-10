@@ -18,13 +18,15 @@ void DashBoard::onAttach() {
     int windowWidth = window_size.width();
     int windowHeight = window_size.height();
 
-    QFrame *left_frame = new QFrame;
+    QFrame *left_frame = new QFrame();
     QVBoxLayout *buttons_layout = new QVBoxLayout(left_frame);
 	left_frame->setStyleSheet(
         "background-color:" + Theme::dashboardbuttonBg + ";"
         "max-width:" + QString::number(windowWidth * 0.1) + "px;" // 1/8th of window width
         "max-height:" + QString::number(windowHeight * 1.3) + "px;"
     );
+	buttons_layout->setAlignment(Qt::AlignLeft);
+	left_frame->setFrameStyle(QFrame::NoFrame);
 
 	profile_button = new QPushButton();
 	profile_button->setIcon(QIcon("assets/images/user.png"));
@@ -100,7 +102,7 @@ void DashBoard::onAttach() {
 	buttons_layout->addWidget(post_button, 0, Qt::AlignHCenter | Qt::AlignTop);
 	buttons_layout->addStretch();
 
-    QFrame *right_frame = new QFrame;
+    QFrame *right_frame = new QFrame();
     QVBoxLayout *info_layout = new QVBoxLayout(right_frame);
 	right_frame->setStyleSheet(
         "background-color:" + Theme::dashboardBg + ";"
@@ -108,12 +110,44 @@ void DashBoard::onAttach() {
         "max-height:" + QString::number(windowHeight * 1.3) + "px;"
 		"border-radius: 15px;"
     );
+	info_layout->setAlignment(Qt::AlignRight);
+	right_frame->setFrameStyle(QFrame::StyledPanel);
+
+	QFrame *inner_frame = new QFrame();
+	inner_frame->setStyleSheet(
+		"background-color:" + Theme::dashboardbuttonBg + ";"
+		"border-radius: 10px;"
+	);
+
+	int innerFrameWidth = windowWidth - 20;
+	int innerFrameHeight = windowHeight - 20;
+	inner_frame->setFixedSize(innerFrameWidth,innerFrameHeight);
+
+	QVBoxLayout *inner_layout = new QVBoxLayout();
+	inner_layout->addWidget(inner_frame);
+	inner_layout->setContentsMargins(20,20,20,20);
+
+	info_layout->addLayout(inner_layout);
+
+	QVBoxLayout *content_layout = new QVBoxLayout(inner_frame);
+	QHBoxLayout *host_layout = new QHBoxLayout();
+	content_layout->addLayout(host_layout);
+
+	organizer_name = new QLabel();
+	organizer_name->setText("helo");
+	organizer_name->setStyleSheet(
+		"font-size: 16pt;"
+	);
+	host_layout->addWidget(organizer_name);
+	host_layout->setAlignment(Qt::AlignTop);
+	host_layout->setContentsMargins(30,20,0,0);
 
     // Create a horizontal layout to contain the left and right frames
     QHBoxLayout *horizontal_layout = new QHBoxLayout;
     horizontal_layout->addWidget(left_frame);
 	horizontal_layout->addSpacing(10);
     horizontal_layout->addWidget(right_frame);
+
 
     // Add the horizontal layout to the main vertical layout
     V_dash_layout->addLayout(horizontal_layout);

@@ -31,4 +31,5 @@ private:
 	QPushButton *ongoing_button;
 	QPushButton *upcoming_button;
 	QPushButton *post_button;
+	QLabel *organizer_name;
 };
