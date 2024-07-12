@@ -13,11 +13,11 @@ void EmailLineEdit::validateEmail(const QString &text)
     if (!isEmailValid(text))
     {
         setStyleSheet(
-            "border: 1px solid red;"
+            "border: 2px solid red;"
             "color: #000000;"
             "background-color: #FAF6E7;"
             "border-radius: 5px;"
-            "padding:5px;"
+            "padding: 5px;"
         );
     }
 
@@ -27,7 +27,7 @@ void EmailLineEdit::validateEmail(const QString &text)
             "background-color: #FAF6E7;"
             "border: 0px solid red;"
             "border-radius: 5px;"
-            "padding:5px;"
+            "padding: 5px;"
         
         );
     }

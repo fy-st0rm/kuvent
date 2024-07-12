@@ -168,36 +168,38 @@ void LoginPage::onLoginButtonPress() {
 		return;
 	}
 
-	if(!email.endsWith("@gmail.com"))
+	else if(!email.endsWith("@gmail.com"))
 	{
 		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
 	}
+	
+	else {
+		// Connecting to the server
+		httplib::Client cli("localhost", 8080);
 
-	// Connecting to the server
-	httplib::Client cli("localhost", 8080);
+		std::stringstream payload;
+		payload << "{";
+		payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
+		payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
+		payload << "}";
 
-	std::stringstream payload;
-	payload << "{";
-	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
-	payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
-	payload << "}";
-
-	httplib::Result res = cli.Post(
-		"/login",
-		payload.str(),
-		"application/json"
-	);
-	if (res->status != httplib::StatusCode::OK_200) {
-		QMessageBox::information(
-			this,
-			"Login Error",
-			QString::fromStdString(res->body)
+		httplib::Result res = cli.Post(
+			"/login",
+			payload.str(),
+			"application/json"
 		);
-		return;
+		if (res->status != httplib::StatusCode::OK_200) {
+			QMessageBox::information(
+				this,
+				"Login Error",
+				QString::fromStdString(res->body)
+			);
+			return;
+		}
+
+		app->switchPage("DashBoard");
+
 	}
-
-	app->switchPage("DashBoard");
-
 }
 
 void LoginPage::onCreateAccountPress(){

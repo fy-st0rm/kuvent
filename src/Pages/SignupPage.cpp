@@ -265,51 +265,53 @@ void SignupPage::onSignupPress() {
         return;
     }
 
-    if (password != confirm_password)
+    else if (password != confirm_password)
     {
         QMessageBox::warning(this, "Signup Error", "Passwords do not match.");
     }
-    
-    if(!email.endsWith("@gmail.com"))
+
+    else if(!email.endsWith("@gmail.com"))
 	{
 		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
 	}
     
-    //Connecting to the server
-	httplib::Client cli("localhost", 8080);
+    else {
+        //Connecting to the server
+        httplib::Client cli("localhost", 8080);
 
-	std::stringstream payload;
-	payload << "{";
-	payload << "\"username\": \"" << username_entry->text().toStdString() << "\",";
-	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
-	payload << "\"password\": \"" << password_entry->text().toStdString() << "\",";
-	payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
-	payload << "}";
+        std::stringstream payload;
+        payload << "{";
+        payload << "\"username\": \"" << username_entry->text().toStdString() << "\",";
+        payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
+        payload << "\"password\": \"" << password_entry->text().toStdString() << "\",";
+        payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
+        payload << "}";
 
 
 
-	httplib::Result res = cli.Post(
-		"/signup",
-		payload.str(),
-		"application/json"
-	);
+        httplib::Result res = cli.Post(
+            "/signup",
+            payload.str(),
+            "application/json"
+        );
 
-	if (res->status != httplib::StatusCode::OK_200) {
-		QMessageBox::information(
-			this,
-			"Signup Error",
-			QString::fromStdString(res->body)
-		);
-		return;
-	}
+        if (res->status != httplib::StatusCode::OK_200) {
+            QMessageBox::information(
+                this,
+                "Signup Error",
+                QString::fromStdString(res->body)
+            );
+            return;
+        }
 
-	QMessageBox::information(
-		this,
-		"Signup Sucess",
-		QString::fromStdString(res->body)
-	);
+        QMessageBox::information(
+            this,
+            "Signup Sucess",
+            QString::fromStdString(res->body)
+        );
 
-	app->switchPage("LoginPage");
+        app->switchPage("LoginPage");
+    }
 }
 
 void SignupPage::onLoginNowPress() {
