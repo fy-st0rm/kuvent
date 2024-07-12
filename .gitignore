@@ -2,4 +2,4 @@ cbuild.exe
 cbuild
 bin
 *.o
-/.vscode
+.vscode/

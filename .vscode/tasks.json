@@ -1,26 +1,23 @@
 {
-"version": "2.0.0",
-"tasks": [
-	{
-		"label": "cbuild",
-		"type": "shell",
-		"command": ".\\cbuild.exe",
-		"problemMatcher": [],
-		"group": {
-			"kind": "build",
-			"isDefault": true
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label" : "cbuild",
+			"type" : "shell",
+			"command" : "./cbuild",
+		},
+
+		{
+			"label" : "run",
+			"type" : "shell",
+			"command" : "./bin/app",
+			"dependsOn" :"cbuild"
+		},
+
+		{
+			"label" : "bootstrap",
+			"type" : "shell",
+			"command" : "g++ -o cbuild cbuild.cpp",
 		}
-	},
-	{
-		"label": "run",
-		"type": "shell",
-		"command": ".\\bin\\app.exe",
-		"dependsOn": "cbuild"
-	},
-	{
-		"label": "bootstrap",
-		"type": "shell",
-		"command": "g++ -o cbuild .\\cbuild.cpp"
-	}
-]
+	]
 }
