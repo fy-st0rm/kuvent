@@ -8,9 +8,12 @@
 #include "Pages/DashBoard.cpp"
 #include "Pages/LoginPage.cpp"
 #include "Pages/SignupPage.cpp"
+
 #include "Widgets/PasswordLineEdit.cpp"
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
+#include "Widgets/dashBoardFeed.cpp"
+
 class App : public Application {
 public:
 	void onAttach() {
@@ -20,7 +23,7 @@ public:
 		addPage<SignupPage>("SignupPage");
 		addPage<DashBoard>("DashBoard");
 
-		switchPage("LoginPage");
+		switchPage("DashBoard");
 		// switchPage("SignupPage");
 		// switchPage("LoginPage");
 

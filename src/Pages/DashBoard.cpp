@@ -1,5 +1,6 @@
 #include "DashBoard.h"
 #include "Widgets/dashBoardNavBar.h"
+#include "Widgets/dashBoardFeed.h"
 #include "theme.h"
 
 
@@ -30,8 +31,10 @@ void DashBoard::onAttach() {
 
         /// -----------------------------------------
 		// Add content to the right panel
-		QLabel *label = new QLabel("Main Content Area", rightPanel);
-		rightLayout->addWidget(label);
+		// QLabel *label = new QLabel("Main Content Area", rightPanel);
+		// rightLayout->addWidget(label);
+        DashBoardFeed *feed1 = new DashBoardFeed(rightPanel);
+        rightLayout->addLayout(feed1);
         //------------------------------------------
         //add more shit here
 
