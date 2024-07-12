@@ -16,9 +16,6 @@
 #include "Application/Application.h"
 #include "Application/Page.h"
 
-#include <QtWidgets/QSplitter>
-
-
 
 class DashBoard : public Page
 {
@@ -30,6 +27,7 @@ public:
 private:
 	
 	QVBoxLayout *V_dash_layout;
+	QHBoxLayout *H_dash_layout;
 	QPushButton *profile_button;
 	QPushButton *ongoing_button;
 	QPushButton *upcoming_button;

@@ -9,6 +9,7 @@
 #include "Pages/LoginPage.cpp"
 #include "Pages/SignupPage.cpp"
 #include "Widgets/PasswordLineEdit.cpp"
+#include "Widgets/dashBoardNavBar.cpp"
 class App : public Application {
 public:
 	void onAttach() {
