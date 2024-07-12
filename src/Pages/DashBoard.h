@@ -26,11 +26,6 @@ public:
 
 private:
 	
-	QVBoxLayout *V_dash_layout;
 	QHBoxLayout *H_dash_layout;
-	QPushButton *profile_button;
-	QPushButton *ongoing_button;
-	QPushButton *upcoming_button;
-	QPushButton *post_button;
-	QLabel *organizer_name;
+	
 };

@@ -17,6 +17,7 @@
 #include "Application/Application.h"
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
+#include "Widgets/emailValidation.h"
 
 class LoginPage : public Page {
 public:
@@ -28,7 +29,7 @@ private slots:
 
 private:
 	QPushButton *m_login_button;
-	QLabel *username_label;
+	QLabel *email_label;
 	QVBoxLayout *m_vLayout;
 	QHBoxLayout *m_hLayout1;
 	QHBoxLayout *m_hLayout2;
@@ -37,7 +38,7 @@ private:
 	QHBoxLayout *m_hLayout5;
 	QLabel *m_notsigned;
 
-	QLineEdit *username_entry;
+	QLineEdit *email_entry;
 	QLabel *password_label;
 	QLineEdit *password_entry;
 	QLabel *m_Kuvent_logo;

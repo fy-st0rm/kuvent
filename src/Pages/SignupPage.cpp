@@ -35,16 +35,16 @@ void SignupPage::onAttach() {
         "padding: 5px;"
         );
     username_entry->setPlaceholderText("Username");
-    QPixmap userpng("assets/images/arroba.png");
+    QPixmap userpng("assets/images/user.png");
     username_label->setPixmap(userpng);
     username_label->setScaledContents(true);
     applyShadow(username_entry);
 
     //Add email_label styles
     email_label = new QLabel(this);
-    email_entry = new QLineEdit(this);
+    email_entry = new EmailLineEdit(this);
     email_label->setFixedSize(20, 18);
-    QPixmap profilepng("assets/images/user.png");
+    QPixmap profilepng("assets/images/arroba.png");
     email_label->setPixmap(profilepng);
     email_label->setScaledContents(true);
     email_entry->setFixedSize(225,33.75);
@@ -253,7 +253,29 @@ void SignupPage::applyShadow(QWidget *widget)
 }
 
 void SignupPage::onSignupPress() {
-    //connecting to the server
+
+    QString name = username_entry->text();
+    QString email = email_entry->text();
+    QString password = password_entry->text();
+    QString confirm_password = confirmPassword_entry->text();
+
+    if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm_password.isEmpty())
+    {
+        QMessageBox::warning(this, "Signup Error", "Please enter all the details.");
+        return;
+    }
+
+    if (password != confirm_password)
+    {
+        QMessageBox::warning(this, "Signup Error", "Passwords do not match.");
+    }
+    
+    if(!email.endsWith("@gmail.com"))
+	{
+		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
+	}
+    
+    //Connecting to the server
 	httplib::Client cli("localhost", 8080);
 
 	std::stringstream payload;
@@ -296,14 +318,4 @@ void SignupPage::onLoginNowPress() {
 	 * (named assigned while doing addPage)
 	 */
 	app->switchPage("LoginPage");
-}
-
-void SignupPage::checkFields()
-{
-    QString name = username_entry->text();
-    QString email = email_entry->text();
-    QString password = password_entry->text();
-    QString confirm_pass = confirmPassword_entry->text();
-
-
 }

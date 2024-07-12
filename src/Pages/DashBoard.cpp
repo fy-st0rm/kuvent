@@ -36,5 +36,5 @@ void DashBoard::onAttach() {
         //add more shit here
 
     H_dash_layout->addWidget(leftPanel, 1);
-    H_dash_layout->addWidget(rightPanel, 100);
+    H_dash_layout->addWidget(rightPanel, 17);
 }
