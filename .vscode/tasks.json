@@ -1,23 +1,39 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label" : "cbuild",
-			"type" : "shell",
-			"command" : "./cbuild",
-		},
-
-		{
-			"label" : "run",
-			"type" : "shell",
-			"command" : "./bin/app",
-			"dependsOn" :"cbuild"
-		},
-
-		{
-			"label" : "bootstrap",
-			"type" : "shell",
-			"command" : "g++ -o cbuild cbuild.cpp",
-		}
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cbuild",
+            "type": "shell",
+            "command": "${workspaceFolder}/${command:if_windows_use:cbuild.exe;cbuild}",
+            "windows": {
+                "command": "${workspaceFolder}\\cbuild.exe"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/cbuild"
+            }
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "${workspaceFolder}/${command:if_windows_use:bin\\app.exe;bin/app}",
+            "windows": {
+                "command": "${workspaceFolder}\\bin\\app.exe"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/bin/app"
+            },
+            "dependsOn": "cbuild"
+        },
+        {
+            "label": "bootstrap",
+            "type": "shell",
+            "command": "g++ -o ${command:if_windows_use:cbuild.exe;cbuild} cbuild.cpp",
+            "windows": {
+                "command": "g++ -o cbuild.exe cbuild.cpp"
+            },
+            "linux": {
+                "command": "g++ -o cbuild cbuild.cpp"
+            }
+        }
+    ]
 }
