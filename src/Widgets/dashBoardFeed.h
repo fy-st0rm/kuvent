@@ -2,7 +2,7 @@
 #define DASHBOARDFEED_H
 
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLabel>
 
 
