@@ -258,6 +258,7 @@ void SignupPage::onSignupPress() {
     QString email = email_entry->text();
     QString password = password_entry->text();
     QString confirm_password = confirmPassword_entry->text();
+    QString requiredSuffix = "@gmail.com";
 
     if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm_password.isEmpty())
     {
@@ -265,15 +266,16 @@ void SignupPage::onSignupPress() {
         return;
     }
 
+    else if(!email.endsWith("@gmail.com") || email.length() <= requiredSuffix.length())
+	{
+		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
+	}
+
     else if (password != confirm_password)
     {
         QMessageBox::warning(this, "Signup Error", "Passwords do not match.");
     }
 
-    else if(!email.endsWith("@gmail.com"))
-	{
-		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
-	}
     
     else {
         //Connecting to the server

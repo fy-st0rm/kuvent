@@ -36,5 +36,5 @@ void EmailLineEdit::validateEmail(const QString &text)
 bool EmailLineEdit::isEmailValid(const QString &email)
 { 
     QString requiredSuffix = "@gmail.com";
-    return email.endsWith(requiredSuffix, Qt::CaseSensitive);
+    return email.endsWith(requiredSuffix, Qt::CaseSensitive) && email.length() > requiredSuffix.length();
 }

@@ -22,7 +22,6 @@
             "linux": {
                 "command": "${workspaceFolder}/bin/app"
             },
-            "dependsOn": "cbuild"
         },
         {
             "label": "bootstrap",
