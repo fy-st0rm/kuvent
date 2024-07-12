@@ -16,6 +16,9 @@
 #include "Application/Application.h"
 #include "Application/Page.h"
 
+#include <QtWidgets/QSplitter>
+
+
 
 class DashBoard : public Page
 {

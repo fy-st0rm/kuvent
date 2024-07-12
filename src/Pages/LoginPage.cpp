@@ -196,4 +196,4 @@ void LoginPage::onLoginButtonPress() {
 
 void LoginPage::onCreateAccountPress(){
 	app->switchPage("SignupPage");
-}
+}			

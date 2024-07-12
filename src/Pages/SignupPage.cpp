@@ -253,7 +253,7 @@ void SignupPage::applyShadow(QWidget *widget)
 }
 
 void SignupPage::onSignupPress() {
-	// Connecting to the server
+    //connecting to the server
 	httplib::Client cli("localhost", 8080);
 
 	std::stringstream payload;
@@ -264,11 +264,14 @@ void SignupPage::onSignupPress() {
 	payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
 	payload << "}";
 
+
+
 	httplib::Result res = cli.Post(
 		"/signup",
 		payload.str(),
 		"application/json"
 	);
+
 	if (res->status != httplib::StatusCode::OK_200) {
 		QMessageBox::information(
 			this,
