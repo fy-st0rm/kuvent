@@ -27,8 +27,6 @@ public:
 private:
 	void onLoginNowPress();
     void onSignupPress();
-    void checkFields();
-
 
 private:
 	QVBoxLayout* m_main_layout;

@@ -12,6 +12,9 @@
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
 #include "Widgets/ProfilePage.cpp"
+#include "Widgets/PostPage.cpp"
+#include "Widgets/OngoingEvents.cpp"
+#include "Widgets/UpcomingEvents.cpp"
 class App : public Application {
 public:
 	void onAttach() {

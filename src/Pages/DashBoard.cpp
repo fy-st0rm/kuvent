@@ -45,21 +45,9 @@ void DashBoard::onAttach() {
 void DashBoard::createPages()
 {
     ProfilePage *profilePage = new ProfilePage;
-
-    QWidget *ongoingEventsPage = new QWidget();
-    QVBoxLayout *ongoingEventsLayout = new QVBoxLayout(ongoingEventsPage);
-    QLabel *ongoingEventsLabel = new QLabel("Ongoing Events Page", ongoingEventsPage);
-    ongoingEventsLayout->addWidget(ongoingEventsLabel);
-
-    QWidget *upcomingEventsPage = new QWidget();
-    QVBoxLayout *upcomingEventsLayout = new QVBoxLayout(upcomingEventsPage);
-    QLabel *upcomingEventsLabel = new QLabel("Upcoming Events Page", upcomingEventsPage);
-    upcomingEventsLayout->addWidget(upcomingEventsLabel);
-
-    QWidget *postPage = new QWidget();
-    QVBoxLayout *postLayout = new QVBoxLayout(postPage);
-    QLabel *postLabel = new QLabel("Post Events Page", postPage);
-    postLayout->addWidget(postLabel);
+    OngoingEventsPage *ongoingEventsPage = new OngoingEventsPage;
+    UpcomingEventsPage *upcomingEventsPage = new UpcomingEventsPage;
+    PostPage *postPage = new PostPage;
 
     stackedWidget->addWidget(ongoingEventsPage);
     stackedWidget->addWidget(profilePage);

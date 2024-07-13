@@ -16,6 +16,9 @@
 #include "Application/Application.h"
 #include "Application/Page.h"
 #include "Widgets/ProfilePage.h"
+#include "Widgets/OngoingEvents.h"
+#include "Widgets/PostPage.h"
+#include "Widgets/UpcomingEvents.h"
 
 
 class DashBoard : public Page
