@@ -6,6 +6,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
 
 class ProfilePage : public QWidget {
     public:
