@@ -35,3 +35,23 @@ void DashBoardNavBar::createButton(QPushButton *&button, const QString &iconPath
     );
     this->addWidget(button, 0, Qt::AlignHCenter | Qt::AlignTop);
 }
+
+QPushButton *DashBoardNavBar::getProfileButton()
+{
+    return profile_button;
+}
+
+QPushButton *DashBoardNavBar::getOngoingButton()
+{
+    return ongoing_button;
+}
+
+QPushButton *DashBoardNavBar::getUpcomingButton()
+{
+    return upcoming_button;
+}
+
+QPushButton *DashBoardNavBar::getPostButton()
+{
+    return post_button;
+}

@@ -19,13 +19,16 @@
 
 class DashBoard : public Page
 {
+
 public:
 	// This is a compulsory function to implement.
 	// We create all the widgets inside this function
 	void onAttach();
 
 private:
-	
 	QHBoxLayout *H_dash_layout;
+	QStackedWidget *stackedWidget;
 	
+	void createPages();
+	void showPages(int index);
 };

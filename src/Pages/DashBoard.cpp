@@ -28,13 +28,50 @@ void DashBoard::onAttach() {
     QVBoxLayout *rightLayout = new QVBoxLayout(rightPanel);
     rightLayout->setAlignment(Qt::AlignTop);
 
-        /// -----------------------------------------
-		// Add content to the right panel
-		QLabel *label = new QLabel("Main Content Area", rightPanel);
-		rightLayout->addWidget(label);
-        //------------------------------------------
-        //add more shit here
-
     H_dash_layout->addWidget(leftPanel, 1);
     H_dash_layout->addWidget(rightPanel, 17);
+
+    stackedWidget = new QStackedWidget(rightPanel);
+    rightLayout->addWidget(stackedWidget);
+
+    createPages();
+
+    connect(nav_bar->getOngoingButton(), &QPushButton::clicked, this, [this] () {showPages(0);});
+    connect(nav_bar->getProfileButton(), &QPushButton::clicked, this, [this] () {showPages(1);});
+    connect(nav_bar->getUpcomingButton(), &QPushButton::clicked, this, [this] () {showPages(2);});
+    connect(nav_bar->getPostButton(), &QPushButton::clicked, this, [this] () {showPages(3);});
+}
+
+void DashBoard::createPages()
+{
+    QWidget *profilePage = new QWidget();
+    QVBoxLayout *profileLayout = new QVBoxLayout(profilePage);
+    QLabel *profileLabel = new QLabel("Profile Page", profilePage);
+    profileLayout->addWidget(profileLabel);
+
+    QWidget *ongoingEventsPage = new QWidget();
+    QVBoxLayout *ongoingEventsLayout = new QVBoxLayout(ongoingEventsPage);
+    QLabel *ongoingEventsLabel = new QLabel("Ongoing Events Page", ongoingEventsPage);
+    ongoingEventsLayout->addWidget(ongoingEventsLabel);
+
+    QWidget *upcomingEventsPage = new QWidget();
+    QVBoxLayout *upcomingEventsLayout = new QVBoxLayout(upcomingEventsPage);
+    QLabel *upcomingEventsLabel = new QLabel("Upcoming Events Page", upcomingEventsPage);
+    upcomingEventsLayout->addWidget(upcomingEventsLabel);
+
+    QWidget *postPage = new QWidget();
+    QVBoxLayout *postLayout = new QVBoxLayout(postPage);
+    QLabel *postLabel = new QLabel("Post Events Page", postPage);
+    postLayout->addWidget(postLabel);
+
+    stackedWidget->addWidget(ongoingEventsPage);
+    stackedWidget->addWidget(profilePage);
+    stackedWidget->addWidget(upcomingEventsPage);
+    stackedWidget->addWidget(postPage);
+
+}
+
+void DashBoard::showPages(int index)
+{
+    stackedWidget->setCurrentIndex(index);
 }
