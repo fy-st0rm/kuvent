@@ -3,8 +3,10 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QTextEdit>
 
 class PostPage: public QWidget {
     public:
-    explicit PostPage(QWidget *parent = nullptr);
+    explicit PostPage(QString user_name,QWidget *parent = nullptr);
 };

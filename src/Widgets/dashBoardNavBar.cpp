@@ -2,7 +2,7 @@
 #include "theme.h"
 #include <QtGui/QIcon>
 
-DashBoardNavBar::DashBoardNavBar(QWidget *parent)
+DashBoardNavBar::DashBoardNavBar(bool isOrganizer,QString user_name,QWidget *parent)
     : QVBoxLayout(parent)
 {
     this->setSpacing(20);
@@ -11,17 +11,19 @@ DashBoardNavBar::DashBoardNavBar(QWidget *parent)
     createButton(profile_button, "assets/images/user.png");
     createButton(ongoing_button, "assets/images/ongoing.png");
     createButton(upcoming_button, "assets/images/upcoming.png");
-    createButton(post_button, "assets/images/plus.png");
+    if (isOrganizer)
+        createButton(post_button, "assets/images/plus.png");
 
     profile_button->setToolTip("Profile");
     ongoing_button->setToolTip("Ongoing Events");
     upcoming_button->setToolTip("Upcoming Events");
-    post_button->setToolTip("Post");
+    if(isOrganizer)
+        post_button->setToolTip("Post");
     
     this->addStretch();
 }
 
-void DashBoardNavBar::createButton(QPushButton *&button, const QString &iconPath)
+void DashBoardNavBar::createButton(QPushButton *&button,const QString &iconPath)
 {
     button = new QPushButton(parentWidget());
     button->setIcon(QIcon(iconPath));

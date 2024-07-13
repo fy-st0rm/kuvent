@@ -9,7 +9,7 @@
                 "command": "${workspaceFolder}\\cbuild.exe"
             },
             "linux": {
-                "command": "${workspaceFolder}/cbuild"
+                "command": "clear && ${workspaceFolder}/cbuild"
             }
         },
         {
