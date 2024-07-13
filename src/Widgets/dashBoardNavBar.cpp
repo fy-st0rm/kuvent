@@ -13,6 +13,11 @@ DashBoardNavBar::DashBoardNavBar(QWidget *parent)
     createButton(upcoming_button, "assets/images/upcoming.png");
     createButton(post_button, "assets/images/plus.png");
 
+    profile_button->setToolTip("Profile");
+    ongoing_button->setToolTip("Ongoing Events");
+    upcoming_button->setToolTip("Upcoming Events");
+    post_button->setToolTip("Post");
+    
     this->addStretch();
 }
 

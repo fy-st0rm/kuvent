@@ -1,6 +1,5 @@
 #include "DashBoard.h"
 #include "Widgets/dashBoardNavBar.h"
-#include "Widgets/upCommingEvents.h"
 #include "theme.h"
 
 
