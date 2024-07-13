@@ -8,6 +8,7 @@
 #include "Pages/DashBoard.cpp"
 #include "Pages/LoginPage.cpp"
 #include "Pages/SignupPage.cpp"
+
 #include "Widgets/PasswordLineEdit.cpp"
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
