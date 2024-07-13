@@ -44,10 +44,7 @@ void DashBoard::onAttach() {
 
 void DashBoard::createPages()
 {
-    QWidget *profilePage = new QWidget();
-    QVBoxLayout *profileLayout = new QVBoxLayout(profilePage);
-    QLabel *profileLabel = new QLabel("Profile Page", profilePage);
-    profileLayout->addWidget(profileLabel);
+    ProfilePage *profilePage = new ProfilePage;
 
     QWidget *ongoingEventsPage = new QWidget();
     QVBoxLayout *ongoingEventsLayout = new QVBoxLayout(ongoingEventsPage);

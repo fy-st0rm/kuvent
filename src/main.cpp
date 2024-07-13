@@ -11,6 +11,7 @@
 #include "Widgets/PasswordLineEdit.cpp"
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
+#include "Widgets/ProfilePage.cpp"
 class App : public Application {
 public:
 	void onAttach() {

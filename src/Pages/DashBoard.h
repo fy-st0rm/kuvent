@@ -15,6 +15,7 @@
 
 #include "Application/Application.h"
 #include "Application/Page.h"
+#include "Widgets/ProfilePage.h"
 
 
 class DashBoard : public Page
