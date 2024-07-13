@@ -2,6 +2,9 @@
 #include "Widgets/dashBoardNavBar.h"
 #include "theme.h"
 
+//[ ] TODO :get this stuff dynamically from backend
+bool isOrganizer = true;
+QString user_name = "KUCC";
 
 void DashBoard::onAttach() {
 	// Changing the stylesheet of the base widget of page
@@ -21,26 +24,27 @@ void DashBoard::onAttach() {
 			"background-color:" + Theme::dashboardPanel + ";"
 			);
 
-		DashBoardNavBar *nav_bar = new DashBoardNavBar(leftPanel);
+		DashBoardNavBar *nav_bar = new DashBoardNavBar(isOrganizer,user_name,leftPanel);
 		left_layout->addLayout(nav_bar);
 		
+	H_dash_layout->addWidget(leftPanel, 1);
+
 	QWidget *rightPanel = new QWidget(this);
 	QVBoxLayout *rightLayout = new QVBoxLayout(rightPanel);
 	rightLayout->setAlignment(Qt::AlignTop);
+		stackedWidget = new QStackedWidget(rightPanel);
+		rightLayout->addWidget(stackedWidget);
 
+		createPages();
 
-	H_dash_layout->addWidget(leftPanel, 1);
+		connect(nav_bar->getOngoingButton(), &QPushButton::clicked, this, [this] () {showPages(0);});
+		connect(nav_bar->getProfileButton(), &QPushButton::clicked, this, [this] () {showPages(1);});
+		connect(nav_bar->getUpcomingButton(), &QPushButton::clicked, this, [this] () {showPages(2);});
+		if(isOrganizer)
+			connect(nav_bar->getPostButton(), &QPushButton::clicked, this, [this] () {showPages(3);});
+	
 	H_dash_layout->addWidget(rightPanel, 17);
 
-    stackedWidget = new QStackedWidget(rightPanel);
-    rightLayout->addWidget(stackedWidget);
-
-    createPages();
-
-    connect(nav_bar->getOngoingButton(), &QPushButton::clicked, this, [this] () {showPages(0);});
-    connect(nav_bar->getProfileButton(), &QPushButton::clicked, this, [this] () {showPages(1);});
-    connect(nav_bar->getUpcomingButton(), &QPushButton::clicked, this, [this] () {showPages(2);});
-    connect(nav_bar->getPostButton(), &QPushButton::clicked, this, [this] () {showPages(3);});
 }
 
 void DashBoard::createPages()
@@ -48,12 +52,13 @@ void DashBoard::createPages()
     ProfilePage *profilePage = new ProfilePage;
     OngoingEventsPage *ongoingEventsPage = new OngoingEventsPage;
     UpcomingEventsPage *upcomingEventsPage = new UpcomingEventsPage;
-    PostPage *postPage = new PostPage;
+    PostPage *postPage = new PostPage(user_name);
 
     stackedWidget->addWidget(ongoingEventsPage);
     stackedWidget->addWidget(profilePage);
     stackedWidget->addWidget(upcomingEventsPage);
-    stackedWidget->addWidget(postPage);
+    if(isOrganizer)
+		stackedWidget->addWidget(postPage);
 
 }
 
