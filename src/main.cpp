@@ -12,7 +12,8 @@
 #include "Widgets/PasswordLineEdit.cpp"
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
-#include "Widgets/dashBoardFeed.cpp"
+#include "Widgets/ProfilePage.cpp"
+#include "Widgets/upCommingEvents.cpp"
 
 class App : public Application {
 public:

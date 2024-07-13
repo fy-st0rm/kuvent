@@ -1,6 +1,6 @@
 #include "DashBoard.h"
 #include "Widgets/dashBoardNavBar.h"
-#include "Widgets/dashBoardFeed.h"
+#include "Widgets/upCommingEvents.h"
 #include "theme.h"
 
 
@@ -30,9 +30,48 @@ void DashBoard::onAttach() {
 	rightLayout->setAlignment(Qt::AlignTop);
 
 
-		DashBoardFeed *feeds = new DashBoardFeed(rightPanel);
-		rightLayout->addLayout(feeds);
-
 	H_dash_layout->addWidget(leftPanel, 1);
 	H_dash_layout->addWidget(rightPanel, 17);
+
+    stackedWidget = new QStackedWidget(rightPanel);
+    rightLayout->addWidget(stackedWidget);
+
+    createPages();
+
+    connect(nav_bar->getOngoingButton(), &QPushButton::clicked, this, [this] () {showPages(0);});
+    connect(nav_bar->getProfileButton(), &QPushButton::clicked, this, [this] () {showPages(1);});
+    connect(nav_bar->getUpcomingButton(), &QPushButton::clicked, this, [this] () {showPages(2);});
+    connect(nav_bar->getPostButton(), &QPushButton::clicked, this, [this] () {showPages(3);});
+}
+
+void DashBoard::createPages()
+{
+    ProfilePage *profilePage = new ProfilePage;
+
+    QWidget *ongoingEventsPage = new QWidget();
+    QVBoxLayout *ongoingEventsLayout = new QVBoxLayout(ongoingEventsPage);
+    QLabel *ongoingEventsLabel = new QLabel("Ongoing Events Page", ongoingEventsPage);
+    ongoingEventsLayout->addWidget(ongoingEventsLabel);
+
+    QWidget *upcomingEventsPage = new QWidget();
+    QVBoxLayout *upcomingEventsLayout = new QVBoxLayout(upcomingEventsPage);
+    UpCommingEvents *feeds = new UpCommingEvents(upcomingEventsPage);
+    upcomingEventsLayout->addLayout(feeds);
+
+
+    QWidget *postPage = new QWidget();
+    QVBoxLayout *postLayout = new QVBoxLayout(postPage);
+    QLabel *postLabel = new QLabel("Post Events Page", postPage);
+    postLayout->addWidget(postLabel);
+
+    stackedWidget->addWidget(ongoingEventsPage);
+    stackedWidget->addWidget(profilePage);
+    stackedWidget->addWidget(upcomingEventsPage);
+    stackedWidget->addWidget(postPage);
+
+}
+
+void DashBoard::showPages(int index)
+{
+    stackedWidget->setCurrentIndex(index);
 }

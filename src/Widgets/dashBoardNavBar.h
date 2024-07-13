@@ -7,16 +7,20 @@
 
 class DashBoardNavBar : public QVBoxLayout
 {
+
 public:
     explicit DashBoardNavBar(QWidget *parent = nullptr);
+    QPushButton *getProfileButton();
+    QPushButton *getOngoingButton();
+    QPushButton *getUpcomingButton();
+    QPushButton *getPostButton();
 
 private:
+    void createButton(QPushButton *&button, const QString &iconPath);
     QPushButton *profile_button;
     QPushButton *ongoing_button;
     QPushButton *upcoming_button;
     QPushButton *post_button;
-
-    void createButton(QPushButton *&button, const QString &iconPath);
 };
 
 #endif // DASHBOARDNAVBAR_H

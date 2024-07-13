@@ -1,6 +1,6 @@
-#include "dashBoardFeed.h"
+#include "upCommingEvents.h"
 
-DashBoardFeed::DashBoardFeed(QWidget *parent)
+UpCommingEvents::UpCommingEvents(QWidget *parent)
     :QVBoxLayout(parent)
 {
     QGridLayout *grid_layout = new QGridLayout(parent);
