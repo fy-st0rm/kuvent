@@ -20,7 +20,7 @@ DashBoardNavBar::DashBoardNavBar(bool isOrganizer,QString user_name,QWidget *par
     if(isOrganizer)
         post_button->setToolTip("Post");
 
-    connect(profile_button, &QPushButton::clicked, [] () {
+    connect(profile_button, &QPushButton::clicked, [=] () {
         resetButtonStyles();
         profile_button->setStyleSheet(
            "background-color:" + Theme::dashboardhoverBg + ";"
