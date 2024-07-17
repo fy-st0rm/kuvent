@@ -25,9 +25,9 @@ public:
 		addPage<SignupPage>("SignupPage");
 		addPage<DashBoard>("DashBoard");
 
-		switchPage("DashBoard");
+		//switchPage("DashBoard");
 		// switchPage("SignupPage");
-		// switchPage("LoginPage");
+		switchPage("LoginPage");
 
 
 	}
