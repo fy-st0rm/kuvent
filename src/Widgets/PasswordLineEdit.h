@@ -3,6 +3,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QHBoxLayout>
+#include "theme.h"
 
 
 class PasswordLineEdit : public QLineEdit
@@ -14,7 +15,7 @@ public:
 private slots:
     void togglePasswordVisibility();
 
-public:
+private:
     QToolButton *eyeButton;
     bool passwordVisible;
 };

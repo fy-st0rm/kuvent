@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"version": "2.0.0",
 	"tasks": [
 		{
@@ -22,4 +23,42 @@
 			"command": "g++ -o cbuild .\\cbuild.cpp"
 		}
 	]
+=======
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cbuild",
+            "type": "shell",
+            "command": "${workspaceFolder}/${command:if_windows_use:cbuild.exe;cbuild}",
+            "windows": {
+                "command": "${workspaceFolder}\\cbuild.exe"
+            },
+            "linux": {
+                "command": "clear && ${workspaceFolder}/cbuild"
+            }
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "${workspaceFolder}/${command:if_windows_use:bin\\app.exe;bin/app}",
+            "windows": {
+                "command": "${workspaceFolder}\\bin\\app.exe"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/bin/app"
+            },
+        },
+        {
+            "label": "bootstrap",
+            "type": "shell",
+            "command": "g++ -o ${command:if_windows_use:cbuild.exe;cbuild} cbuild.cpp",
+            "windows": {
+                "command": "g++ -o cbuild.exe cbuild.cpp"
+            },
+            "linux": {
+                "command": "g++ -o cbuild cbuild.cpp"
+            }
+        }
+    ]
+>>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 }

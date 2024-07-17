@@ -16,6 +16,7 @@
 #include "Application/Application.h"
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
+#include "Widgets/emailValidation.h"
 
 class SignupPage : public Page {
 public:
@@ -26,8 +27,6 @@ public:
 private:
 	void onLoginNowPress();
     void onSignupPress();
-    void checkFields();
-
 
 private:
 	QVBoxLayout* m_main_layout;

@@ -42,7 +42,7 @@ void SignupPage::onAttach() {
 
     //Add email_label styles
     email_label = new QLabel(this);
-    email_entry = new QLineEdit(this);
+    email_entry = new EmailLineEdit(this);
     email_label->setFixedSize(20, 18);
     QPixmap profilepng("assets/images/arroba.png");
     email_label->setPixmap(profilepng);
@@ -253,38 +253,67 @@ void SignupPage::applyShadow(QWidget *widget)
 }
 
 void SignupPage::onSignupPress() {
-	// Connecting to the server
-	httplib::Client cli("localhost", 8080);
 
-	std::stringstream payload;
-	payload << "{";
-	payload << "\"username\": \"" << username_entry->text().toStdString() << "\",";
-	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
-	payload << "\"password\": \"" << password_entry->text().toStdString() << "\",";
-	payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
-	payload << "}";
+    QString name = username_entry->text();
+    QString email = email_entry->text();
+    QString password = password_entry->text();
+    QString confirm_password = confirmPassword_entry->text();
+    QString requiredSuffix = "@gmail.com";
 
-	httplib::Result res = cli.Post(
-		"/signup",
-		payload.str(),
-		"application/json"
-	);
-	if (res->status != httplib::StatusCode::OK_200) {
-		QMessageBox::information(
-			this,
-			"Signup Error",
-			QString::fromStdString(res->body)
-		);
-		return;
+    if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm_password.isEmpty())
+    {
+        QMessageBox::warning(this, "Signup Error", "Please enter all the details.");
+        return;
+    }
+
+    else if(!email.endsWith("@gmail.com") || email.length() <= requiredSuffix.length())
+	{
+		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
 	}
 
-	QMessageBox::information(
-		this,
-		"Signup Sucess",
-		QString::fromStdString(res->body)
-	);
+    else if (password != confirm_password)
+    {
+        QMessageBox::warning(this, "Signup Error", "Passwords do not match.");
+    }
 
-	app->switchPage("LoginPage");
+    
+    else {
+        //Connecting to the server
+        httplib::Client cli("localhost", 8080);
+
+        std::stringstream payload;
+        payload << "{";
+        payload << "\"username\": \"" << username_entry->text().toStdString() << "\",";
+        payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
+        payload << "\"password\": \"" << password_entry->text().toStdString() << "\",";
+        payload << "\"type\": \"" << select_account_type->currentText().toStdString() << "\"";
+        payload << "}";
+
+
+
+        httplib::Result res = cli.Post(
+            "/signup",
+            payload.str(),
+            "application/json"
+        );
+
+        if (res->status != httplib::StatusCode::OK_200) {
+            QMessageBox::information(
+                this,
+                "Signup Error",
+                QString::fromStdString(res->body)
+            );
+            return;
+        }
+
+        QMessageBox::information(
+            this,
+            "Signup Sucess",
+            QString::fromStdString(res->body)
+        );
+
+        app->switchPage("LoginPage");
+    }
 }
 
 void SignupPage::onLoginNowPress() {
@@ -293,14 +322,4 @@ void SignupPage::onLoginNowPress() {
 	 * (named assigned while doing addPage)
 	 */
 	app->switchPage("LoginPage");
-}
-
-void SignupPage::checkFields()
-{
-    QString name = username_entry->text();
-    QString email = email_entry->text();
-    QString password = password_entry->text();
-    QString confirm_pass = confirmPassword_entry->text();
-
-
 }

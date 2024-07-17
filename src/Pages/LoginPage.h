@@ -17,6 +17,7 @@
 #include "Application/Application.h"
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
+#include "Widgets/emailValidation.h"
 
 class LoginPage : public Page {
 public:

@@ -30,7 +30,11 @@ void LoginPage::onAttach() {
 	
 	//username textbox styles
 	email_label = new QLabel (this);
+<<<<<<< HEAD
 	email_entry = new QLineEdit(this);
+=======
+	email_entry = new EmailLineEdit(this);
+>>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 	QPixmap userpng("assets/images/arroba.png");
 	email_label->setPixmap(userpng);
 	email_label->setScaledContents(true);
@@ -160,40 +164,61 @@ void LoginPage::onAttach() {
 }
 
 void LoginPage::onLoginButtonPress() {
+<<<<<<< HEAD
 	QString name = email_entry->text();
+=======
+	QString email = email_entry->text();
+>>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 	QString password = password_entry->text();
+	QString requiredSuffixEmail = "@gmail.com";
 
-	if (name.isEmpty() || password.isEmpty()) {
-		QMessageBox::information(this, "Login Error", "Please enter both username and password.");
+	if (email.isEmpty() || password.isEmpty()) {
+		QMessageBox::warning(this, "Login Error", "Please enter both username and password.");
 		return;
 	}
 
-	// Connecting to the server
-	httplib::Client cli("localhost", 8080);
+	else if(!email.endsWith("@gmail.com") || email.length() <= requiredSuffixEmail.length())
+	{
+		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
+	}
+	
+	else {
+		// Connecting to the server
+		httplib::Client cli("localhost", 8080);
 
+<<<<<<< HEAD
 	std::stringstream payload;
 	payload << "{";
 	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
 	payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
 	payload << "}";
+=======
+		std::stringstream payload;
+		payload << "{";
+		payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
+		payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
+		payload << "}";
+>>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 
-	httplib::Result res = cli.Post(
-		"/login",
-		payload.str(),
-		"application/json"
-	);
-	if (res->status != httplib::StatusCode::OK_200) {
-		QMessageBox::information(
-			this,
-			"Login Error",
-			QString::fromStdString(res->body)
+		httplib::Result res = cli.Post(
+			"/login",
+			payload.str(),
+			"application/json"
 		);
-		return;
-	}
+		if (res->status != httplib::StatusCode::OK_200) {
+			QMessageBox::information(
+				this,
+				"Login Error",
+				QString::fromStdString(res->body)
+			);
+			return;
+		}
 
-	app->switchPage("DashBoard");
+		app->switchPage("DashBoard");
+
+	}
 }
 
 void LoginPage::onCreateAccountPress(){
 	app->switchPage("SignupPage");
-}
+}			
