@@ -31,22 +31,22 @@ private:
 private:
 	QVBoxLayout* m_main_layout;
 	QLabel *create_account_title;
-    QVBoxLayout *m_vLayout2;
+	QVBoxLayout *m_vLayout2;
 
-    QLabel *username_label;
-    QLabel *password_label;
-    QLabel *email_label;
-    QLabel *confirmPassword_label;
-    QWidget *select_accounttype;
-    QLabel *goLogin_button;
-    QLabel *loginnow_button;
-    QLineEdit *username_entry;
-    QLineEdit *email_entry;
-    QLineEdit *password_entry;
-    QLineEdit *confirmPassword_entry;
-    QComboBox *select_account_type;
-    QLabel *account_type;
-    QPushButton *signup_Button;
+	QLabel *username_label;
+	QLabel *password_label;
+	QLabel *email_label;
+	QLabel *confirmPassword_label;
+	QWidget *select_accounttype;
+	QLabel *goLogin_button;
+	QLabel *loginnow_button;
+	QLineEdit *username_entry;
+	QLineEdit *email_entry;
+	QLineEdit *password_entry;
+	QLineEdit *confirmPassword_entry;
+	QComboBox *select_account_type;
+	QLabel *account_type;
+	QPushButton *signup_Button;
 
-    void applyShadow(QWidget *widget);
+	void applyShadow(QWidget *widget);
 };
