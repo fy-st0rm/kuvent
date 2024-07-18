@@ -15,6 +15,9 @@ public:
     QPushButton *getUpcomingButton();
     QPushButton *getPostButton();
 
+private slots:
+    void resetButtonStyles();
+
 private:
     void createButton(QPushButton *&button,const QString &iconPath);
     QPushButton *profile_button;

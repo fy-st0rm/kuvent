@@ -19,6 +19,38 @@ DashBoardNavBar::DashBoardNavBar(bool isOrganizer,QString user_name,QWidget *par
     upcoming_button->setToolTip("Upcoming Events");
     if(isOrganizer)
         post_button->setToolTip("Post");
+
+    connect(profile_button, &QPushButton::clicked, [=] () {
+        resetButtonStyles();
+        profile_button->setStyleSheet(
+           "background-color:" + Theme::dashboardhoverBg + ";"
+            "border-radius: 15px;" 
+        );
+    });
+
+    connect(ongoing_button, &QPushButton::clicked, [=] () {
+        resetButtonStyles();
+        ongoing_button->setStyleSheet(
+           "background-color:" + Theme::dashboardhoverBg + ";"
+            "border-radius: 15px;" 
+        );
+    });
+
+    connect(upcoming_button, &QPushButton::clicked, [=] () {
+        resetButtonStyles();
+        upcoming_button->setStyleSheet(
+           "background-color:" + Theme::dashboardhoverBg + ";"
+            "border-radius: 15px;" 
+        );
+    });
+
+    connect(post_button, &QPushButton::clicked, [=] () {
+        resetButtonStyles();
+        post_button->setStyleSheet(
+           "background-color:" + Theme::dashboardhoverBg + ";"
+            "border-radius: 15px;" 
+        );
+    });
     
     this->addStretch();
 }
@@ -40,6 +72,7 @@ void DashBoardNavBar::createButton(QPushButton *&button,const QString &iconPath)
         "border-radius: 15px;"
         "}"
     );
+
     this->addWidget(button, 0, Qt::AlignHCenter | Qt::AlignTop);
 }
 
@@ -61,4 +94,28 @@ QPushButton *DashBoardNavBar::getUpcomingButton()
 QPushButton *DashBoardNavBar::getPostButton()
 {
     return post_button;
+}
+
+void DashBoardNavBar::resetButtonStyles()
+{
+    profile_button->setStyleSheet(
+        "border-radius: 25px;"
+        "border: 2px;"
+        "background-color:" + Theme::dashboardBg + ";"
+    );
+    ongoing_button->setStyleSheet(
+        "border-radius: 25px;"
+        "border: 2px;"
+        "background-color:" + Theme::dashboardBg + ";"
+    );
+    upcoming_button->setStyleSheet(
+        "border-radius: 25px;"
+        "border: 2px;"
+        "background-color:" + Theme::dashboardBg + ";"
+    );
+    post_button->setStyleSheet(
+        "border-radius: 25px;"
+        "border: 2px;"
+        "background-color:" + Theme::dashboardBg + ";"
+    );
 }
