@@ -10,7 +10,7 @@ namespace model {
 			{ "USERNAME", "TEXT" },
 			{ "EMAIL",    "TEXT" },
 			{ "PASSWORD", "TEXT" },
-			{ "TYPE",     "TEXT" }
+			{ "TYPE",     "INT"  }
 		}
 	};
 }

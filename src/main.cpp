@@ -12,6 +12,10 @@ int main(void) {
 		std::cout << "[" << req.method << "]: " << req.path << ": Response status: " << res.status << std::endl;
 	});
 
+	svr.Get("/", [](const Request& req, Response& res) {
+		res.set_content("Hello from kuvent backend ;3", "text/plain");
+	});
+
 	svr.Post("/signup", route::signup);
 	svr.Post("/login", route::login);
 	svr.Post("/upload", route::upload);

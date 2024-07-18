@@ -5,19 +5,20 @@
 #include "json/json.h"
 #include "uuid.h"
 #include "defines.h"
+#include "account_type.h"
 
 namespace route {
 
 void signup(const Request& req, Response& res) {
 	Json::Value value;
 	Json::Reader reader;
-	reader.parse(req.body, value);
+	std::cout << req.body << std::endl;
 
 	std::string id = uuid::generate_uuid_v4();
 	std::string username = value["username"].asString();
 	std::string email = value["email"].asString();
 	std::string password = value["password"].asString();
-	std::string type = value["type"].asString();
+	AccountType type = (AccountType) value["type"].asInt();
 
 	Database db(DB_PATH);
 
@@ -91,17 +92,21 @@ void login(const Request& req, Response& res) {
 		return;
 	}
 
+	// Creating response
 	std::string id = row["ID"];
 	std::string username = row["USERNAME"];
+	int acc_type = std::stoi(row["TYPE"]);
 
-	std::stringstream response;
-	response << "{"
-		<< "\"id\": \"" << id << "\","
-		<< "\"username\": \"" << username << "\""
-	<< "}";
+	Json::Value response;
+	response["id"] = id;
+	response["username"] = username;
+	response["account_type"] = acc_type;
+
+	Json::StyledWriter writer;
+	std::string response_str = writer.write(response);
 
 	res.status = StatusCode::OK_200;
-	res.set_content(response.str(), "application/json");
+	res.set_content(response_str, "application/json");
 }
 
 }
