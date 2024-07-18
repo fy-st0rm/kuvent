@@ -20,15 +20,14 @@
 
 #include "Application/Application.h"
 #include "Application/Page.h"
-#include "Widgets/ProfilePage.h"
-#include "Widgets/OngoingEvents.h"
-#include "Widgets/PostPage.h"
-#include "Widgets/UpcomingEvents.h"
+#include "Pages/ProfilePage.h"
+#include "Pages/OngoingEvents.h"
+#include "Pages/PostPage.h"
+#include "Pages/UpcomingEvents.h"
+#include "Widgets/PageSwitcher.h"
 
 
-class DashBoard : public Page
-{
-
+class DashBoard : public Page {
 public:
 	// This is a compulsory function to implement.
 	// We create all the widgets inside this function
@@ -36,8 +35,9 @@ public:
 
 private:
 	QHBoxLayout *H_dash_layout;
-	QStackedWidget *stackedWidget;
+	// QStackedWidget *stackedWidget;
+	PageSwitcher* m_pg_switcher;
 	
 	void createPages();
-	void showPages(int index);
+	void switchPage(const std::string& name);
 };
