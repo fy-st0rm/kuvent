@@ -287,7 +287,9 @@ void SignupPage::onSignupPress() {
 	payload["username"] = username_entry->text().toStdString();
 	payload["email"] = email_entry->text().toStdString();
 	payload["password"] = password_entry->text().toStdString();
-	payload["type"] = select_account_type->currentText().toStdString();
+	payload["type"] = stringToAccount(
+		select_account_type->currentText().toStdString()
+	);
 
 	Json::StyledWriter writer;
 	std::string payload_str = writer.write(payload);
