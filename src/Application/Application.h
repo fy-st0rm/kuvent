@@ -13,8 +13,12 @@
 
 #include "Page.h"
 #include "Widgets/PageSwitcher.h"
+#include "httplib.h"
 
 class Application {
+public:
+	httplib::Client* client;
+
 public:
 	~Application();
 

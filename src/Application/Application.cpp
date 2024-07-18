@@ -25,8 +25,12 @@ int Application::run(const std::string& title, int argc, char** argv) {
 	m_app = new QApplication(argc, argv);
 	m_app->setApplicationName(QString::fromStdString(title));
 	m_app->setWindowIcon(QIcon("assets/images/KUventfav.png"));
+
 	// Setting up main widgets
 	init_qt();
+
+	// Establishing client
+	client = new httplib::Client("localhost", 8080);
 
 	// Running the startup function of app
 	onAttach();
