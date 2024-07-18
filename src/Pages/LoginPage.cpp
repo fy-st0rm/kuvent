@@ -30,11 +30,7 @@ void LoginPage::onAttach() {
 	
 	//username textbox styles
 	email_label = new QLabel (this);
-<<<<<<< HEAD
-	email_entry = new QLineEdit(this);
-=======
 	email_entry = new EmailLineEdit(this);
->>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 	QPixmap userpng("assets/images/arroba.png");
 	email_label->setPixmap(userpng);
 	email_label->setScaledContents(true);
@@ -164,11 +160,7 @@ void LoginPage::onAttach() {
 }
 
 void LoginPage::onLoginButtonPress() {
-<<<<<<< HEAD
-	QString name = email_entry->text();
-=======
 	QString email = email_entry->text();
->>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 	QString password = password_entry->text();
 	QString requiredSuffixEmail = "@gmail.com";
 
@@ -186,19 +178,11 @@ void LoginPage::onLoginButtonPress() {
 		// Connecting to the server
 		httplib::Client cli("localhost", 8080);
 
-<<<<<<< HEAD
-	std::stringstream payload;
-	payload << "{";
-	payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
-	payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
-	payload << "}";
-=======
 		std::stringstream payload;
 		payload << "{";
 		payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
 		payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
 		payload << "}";
->>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 
 		httplib::Result res = cli.Post(
 			"/login",

@@ -8,15 +8,10 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsDropShadowEffect>
-<<<<<<< HEAD
-#include <QtWidgets/QScrollArea>
-#include <QtGui/QPixmap>
-=======
 #include <QtWidgets/QFrame>
 #include <QtCore/QString>
 #include <QtGui/QIcon>
 #include <QtWidgets/QScrollArea>
->>>>>>> 7a86ce977432e01d56a697136cfcaf2aff990fd4
 
 #include "Application/Application.h"
 #include "Application/Page.h"
