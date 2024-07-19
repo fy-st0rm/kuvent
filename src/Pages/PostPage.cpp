@@ -37,6 +37,7 @@ void PostPage::onAttach() {
 
 void PostPage::addEventNameSection() {
     QLabel* event_name_label = new QLabel("What's the name of your event?", this);
+	event_name_label->setAlignment(Qt::AlignCenter);
     event_name_label->setStyleSheet("font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(event_name_label);
 
@@ -48,6 +49,7 @@ void PostPage::addEventNameSection() {
 
 void PostPage::addDateSection() {
     QLabel* event_date_label = new QLabel("When does the event start and end?", this);
+	event_date_label->setAlignment(Qt::AlignCenter);
     event_date_label->setStyleSheet("font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(event_date_label);
 
@@ -68,6 +70,7 @@ void PostPage::addDateSection() {
 
 void PostPage::addLocationSection() {
     QLabel* location_label = new QLabel("Where is it located?", this);
+	location_label->setAlignment(Qt::AlignCenter);
     location_label->setStyleSheet("font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(location_label);
 
@@ -83,19 +86,23 @@ void PostPage::addLocationSection() {
 }
 
 void PostPage::addFlyerSection() {
-    QLabel* flyer_label = new QLabel("Upload flyer for your event*", this);
+    QHBoxLayout* flyer_layout = new QHBoxLayout();
+
+    flyer_label = new QLabel("event flyer*", this);
     flyer_label->setStyleSheet("font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
-    v_layout->addWidget(flyer_label);
+    flyer_layout->addWidget(flyer_label,0,Qt::AlignRight);
 
     QPushButton* flyer_button = new QPushButton("Upload", this);
     flyer_button->setStyleSheet("background: #65558F; color: #FFFFFF; border-radius: 15px; height: 33px; width: 95px;");
-    v_layout->addWidget(flyer_button, 0, Qt::AlignLeft);
+    flyer_layout->addWidget(flyer_button, 0, Qt::AlignLeft);
 
+	v_layout->addLayout(flyer_layout);
     connect(flyer_button, &QPushButton::clicked, this, &PostPage::addImage);
 }
 
 void PostPage::addDescriptionSection() {
     QLabel* description_label = new QLabel("Description of the event*", this);
+	description_label->setAlignment(Qt::AlignCenter);
     description_label->setStyleSheet("font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(description_label);
 
