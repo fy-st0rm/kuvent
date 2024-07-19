@@ -5,6 +5,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QFrame>
 
 #include "Application/Page.h"
 
@@ -14,5 +15,6 @@ public:
 
 private:
 	QVBoxLayout *profileLayout;
+	QLabel *profile_pic;
 };
 
