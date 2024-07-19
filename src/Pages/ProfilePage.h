@@ -6,6 +6,7 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QFrame>
+#include <QtGui/QPixmap>
 
 #include "Application/Page.h"
 
@@ -14,7 +15,7 @@ public:
 	void onAttach();
 
 private:
-	QVBoxLayout *profileLayout;
-	QLabel *profile_pic;
+	QVBoxLayout *v_profileLayout;
+	QBoxLayout *h_profileLayout;
 };
 
