@@ -1,5 +1,4 @@
 #include "DashBoard.h"
-#include "Widgets/dashBoardNavBar.h"
 #include "theme.h"
 
 //[ ] TODO :get this stuff dynamically from backend
@@ -26,7 +25,7 @@ void DashBoard::onAttach() {
 		"background-color:" + Theme::dashboardPanel + ";"
 	);
 
-	DashBoardNavBar *nav_bar = new DashBoardNavBar(isOrganizer,user_name,leftPanel);
+	nav_bar = new DashBoardNavBar(isOrganizer,user_name,leftPanel);
 	left_layout->addLayout(nav_bar);
 		
 	H_dash_layout->addWidget(leftPanel, 1);
@@ -35,7 +34,10 @@ void DashBoard::onAttach() {
 	QVBoxLayout *rightLayout = new QVBoxLayout(rightPanel);
 	rightLayout->setAlignment(Qt::AlignTop);
 	rightLayout->addWidget(m_pg_switcher->getBaseWidget());
+	H_dash_layout->addWidget(rightPanel, 17);
+}
 
+void DashBoard::onEntry() {
 	createPages();
 
 	connect(
@@ -63,8 +65,6 @@ void DashBoard::onAttach() {
 			[this]() {
 				switchPage("PostPage");
 		});
-	
-	H_dash_layout->addWidget(rightPanel, 17);
 }
 
 void DashBoard::createPages() {
@@ -72,6 +72,7 @@ void DashBoard::createPages() {
 	m_pg_switcher->addPage<OngoingEventsPage>("OngoingPage");
 	m_pg_switcher->addPage<UpcomingEventsPage>("UpcomingPage");
 	m_pg_switcher->addPage<PostPage>("PostPage");
+	m_pg_switcher->switchPage("ProfilePage");
 }
 
 void DashBoard::switchPage(const std::string& name) {

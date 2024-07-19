@@ -9,6 +9,7 @@
 class OngoingEventsPage : public Page {
 public:
 	void onAttach();
+	void onEntry() {}
 
 private:
 	QVBoxLayout *ongoingEventsLayout;

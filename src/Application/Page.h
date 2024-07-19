@@ -21,6 +21,8 @@ public:
 
 public:
 	virtual void onAttach() = 0;
+	virtual void onEntry() = 0;
+	virtual void onExit() {}
 
 	inline QWidget* getBaseWidget() {
 		return m_main_widget;

@@ -22,6 +22,7 @@
 class LoginPage : public Page {
 public:
 	void onAttach();
+	void onEntry() {}
 
 private slots: 
 	void onLoginButtonPress();

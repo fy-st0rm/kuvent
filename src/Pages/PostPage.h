@@ -20,6 +20,7 @@ public:
     PostPage();
     ~PostPage();
 	void onAttach();
+	void onEntry() {}
 
 
 private:

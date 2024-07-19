@@ -30,7 +30,10 @@ static AccountType stringToAccount(const std::string& str) {
 struct AppData {
 	std::string id;
 	std::string username;
+	std::string email;
+	int number;
 	AccountType account_type;
+	std::string batch;
 };
 
 class Application {
@@ -48,7 +51,11 @@ public:
 	}
 
 	inline void setAppData(const AppData& app_data) {
-		m_app_data = app_data;
+		m_app_data.id = app_data.id;
+		m_app_data.username = app_data.username;
+		m_app_data.email = app_data.email;
+		m_app_data.number = app_data.number;
+		m_app_data.account_type = app_data.account_type;
 	}
 
 	inline AppData getAppData() {

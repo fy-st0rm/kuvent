@@ -9,6 +9,7 @@
 class UpcomingEventsPage: public Page {
 public:
 	void onAttach();
+	void onEntry() {}
 
 private:
 	QVBoxLayout *upcomingEventsLayout;

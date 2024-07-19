@@ -16,6 +16,8 @@ void PageSwitcher::switchPage(const std::string& name) {
 	}
 
 	// Getting the index of the page and switching in stacked widget
+	m_pages[m_curr_idx]->onExit();
 	m_curr_idx = m_page_idxs[name];
+	m_pages[m_curr_idx]->onEntry();
 	m_stacked_widget->setCurrentIndex(m_curr_idx);
 }

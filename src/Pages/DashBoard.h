@@ -20,6 +20,7 @@
 #include "Pages/PostPage.h"
 #include "Pages/UpcomingEvents.h"
 #include "Widgets/PageSwitcher.h"
+#include "Widgets/dashBoardNavBar.h"
 
 
 class DashBoard : public Page {
@@ -27,12 +28,13 @@ public:
 	// This is a compulsory function to implement.
 	// We create all the widgets inside this function
 	void onAttach();
+	void onEntry();
 
 private:
 	QHBoxLayout *H_dash_layout;
-	// QStackedWidget *stackedWidget;
+	DashBoardNavBar *nav_bar;
 	PageSwitcher* m_pg_switcher;
+
 	void switchPage(const std::string& name);
-	
 	void createPages();
 };

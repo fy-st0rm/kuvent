@@ -13,7 +13,7 @@ void ProfilePage::onAttach() {
 	v_profileLayout->addLayout(hLayout1);
 	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	QLabel *profileLabel = new QLabel("My Account");
+	profileLabel = new QLabel("My Account");
 	profileLabel->setStyleSheet(
 			"font-size: 18pt;"
 			"font-weight: bold;"
@@ -64,7 +64,7 @@ void ProfilePage::onAttach() {
 	v_profileLayout->addLayout(hLayout3);
 	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	QLabel *emailEntryLabel = new QLabel("kuvent@gmail.com");
+	emailEntryLabel = new QLabel("kuvent@gmail.com");
 	emailEntryLabel->setStyleSheet(
 			"font-size: 11pt;"
 			"font-weight: bold;"
@@ -105,7 +105,7 @@ void ProfilePage::onAttach() {
 	v_profileLayout->addLayout(hLayout6);
 	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	QLabel *contactNoEntryLabel = new QLabel("9800000000");
+	contactNoEntryLabel = new QLabel("9800000000");
 	contactNoEntryLabel->setStyleSheet(
 			"font-size: 11pt;"
 			"font-weight: bold;"
@@ -160,7 +160,7 @@ void ProfilePage::onAttach() {
 	v_profileLayout->addLayout(hLayout9);
 	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	QLabel *programBatchEntryLabel = new QLabel("CE-2023");
+	programBatchEntryLabel = new QLabel("CE-2023");
 	programBatchEntryLabel->setStyleSheet(
 			"font-size: 11pt;"
 			"font-weight: bold;"
@@ -271,5 +271,25 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout14 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout14);
 	hLayout14->addWidget(logout_button, 0, Qt::AlignLeft);
+}
+
+void ProfilePage::onEntry() {
+	AppData app_data = app->getAppData();
+
+	emailEntryLabel->setText(
+		QString::fromStdString(app_data.email)
+	);
+
+	if (app_data.number == 0) {
+		contactNoEntryLabel->setText("");
+	}
+	else {
+		contactNoEntryLabel->setText(
+			QString::number(app_data.number)
+		);
+	}
+	programBatchEntryLabel->setText(
+		QString::fromStdString(app_data.batch)
+	);
 }
 

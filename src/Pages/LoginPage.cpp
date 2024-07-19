@@ -21,7 +21,7 @@ void LoginPage::onAttach() {
 	m_Kuvent_logo->setScaledContents(true);
  
 	//horizontal layout for m_Kuvent_logo
-	QHBoxLayout *m_hLayout1 = new QHBoxLayout();
+	m_hLayout1 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout1);
 	m_vLayout->addSpacing(1);
 	m_vLayout->setAlignment(Qt::AlignVCenter);
@@ -46,7 +46,7 @@ void LoginPage::onAttach() {
 	applyShadow(email_entry);
 
 	// horizontal layout for username
-	QHBoxLayout *m_hLayout2 = new QHBoxLayout();
+	m_hLayout2 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout2);
 	m_vLayout->addSpacing(10);
 	m_hLayout2->addWidget(email_label);
@@ -73,7 +73,7 @@ void LoginPage::onAttach() {
 	applyShadow(password_entry);
 
 	// another horizontal layout for password_label
-	QHBoxLayout *m_hLayout3 = new QHBoxLayout();
+	m_hLayout3 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout3);
 	m_vLayout->addSpacing(10);
 	m_hLayout3->addWidget(password_label);
@@ -105,7 +105,7 @@ void LoginPage::onAttach() {
 	applyShadow(m_login_button);
 
 	//login button
-	QHBoxLayout *m_hLayout4 = new QHBoxLayout();
+	m_hLayout4 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout4);
 	m_vLayout->setSpacing(10);
 	m_hLayout4->addWidget(m_login_button);
@@ -135,7 +135,7 @@ void LoginPage::onAttach() {
 
 
 	// create new account button
-	QHBoxLayout *m_hLayout5 = new QHBoxLayout();
+	m_hLayout5 = new QHBoxLayout();
 	m_vLayout->addLayout(m_hLayout5);
 	m_hLayout5->addSpacing(15);
 	m_hLayout5->addWidget(m_notsigned);
@@ -203,6 +203,7 @@ void LoginPage::onLoginButtonPress() {
 	}
 
 	// Abstracting response
+	std::cout << res->body << std::endl;
 	Json::Value res_data;
 	Json::Reader reader;
 	reader.parse(res->body, res_data);
@@ -210,7 +211,10 @@ void LoginPage::onLoginButtonPress() {
 	AppData app_data = {
 		.id = res_data["id"].asString(),
 		.username = res_data["username"].asString(),
-		.account_type = (AccountType) res_data["account_type"].asInt()
+		.email = res_data["email"].asString(),
+		.number = res_data["number"].asInt(),
+		.account_type = (AccountType) res_data["account_type"].asInt(),
+		.batch = res_data["batch"].asString()
 	};
 	app->setAppData(app_data);
 
@@ -219,4 +223,4 @@ void LoginPage::onLoginButtonPress() {
 
 void LoginPage::onCreateAccountPress(){
 	app->switchPage("SignupPage");
-}			
+}

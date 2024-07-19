@@ -23,6 +23,7 @@ public:
 	// This is a compulsory function to implement.
 	// We create all the widgets inside this function
 	void onAttach();
+	void onEntry() {}
 
 private:
 	void onLoginNowPress();
