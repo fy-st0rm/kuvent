@@ -7,6 +7,7 @@
 
 
 class Application;
+class PageSwitcher;
 
 class Page : public QMainWindow {
 public:
@@ -32,9 +33,13 @@ public:
 	void setApp(Application* app) {
 		this->app = app;
 	}
+	void setPageSwitcher(PageSwitcher* pg_switcher) {
+		this->pg_switcher = pg_switcher;
+	}
 
 protected:
 	Application* app;
+	PageSwitcher* pg_switcher;
 
 private:
 	QWidget* m_main_widget;

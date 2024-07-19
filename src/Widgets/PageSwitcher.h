@@ -23,6 +23,7 @@ public:
 		// Setting up the page
 		Page* pg = new T();
 		pg->setApp(m_app);
+		pg->setPageSwitcher(this);
 		pg->onAttach();
 
 		// Pushing the page to stacked widget and storing seperatly
