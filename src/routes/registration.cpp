@@ -42,7 +42,7 @@ void signup(const Request& req, Response& res) {
 
 	// Inserting new user data
 	std::stringstream iq;
-	iq << "INSERT INTO USER (ID, USERNAME, EMAIL, PASSWORD, TYPE, BATCH) VALUES (\"" << id << "\",\"" << username << "\",\"" << email << "\",\"" << password << "\",\"" << type << "\");";
+	iq << "INSERT INTO USER (ID, USERNAME, EMAIL, PASSWORD, TYPE) VALUES (\"" << id << "\",\"" << username << "\",\"" << email << "\",\"" << password << "\",\"" << type << "\");";
 
 	r = db.query(iq.str());
 	if (r.status != SQLITE_OK) {
