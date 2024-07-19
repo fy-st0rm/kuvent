@@ -73,15 +73,12 @@ void PostPage::onAttach() {
 	QWidget *flyer_widget= new QWidget(this);
 	QHBoxLayout *flyer_layout  = new QHBoxLayout(flyer_widget);
 
-		QLabel *flyer_label = new QLabel("Upload flyer for your event",flyer_widget);
+
+		flyer_label = new QLabel("Upload flyer for your event", flyer_widget);
 		flyer_layout->addWidget(flyer_label);
 
 		QPushButton *flyer_button = new QPushButton("Add Flyer", flyer_widget);
-		flyer_layout->addWidget(flyer_button, 2,Qt::AlignCenter);
-		image_label = new QLabel(flyer_widget);
-		image_label->setAlignment(Qt::AlignCenter);
-		image_label->setText("No image selected");
-		flyer_layout->addWidget(image_label, 2);
+		flyer_layout->addWidget(flyer_button, 0, Qt::AlignRight);
 
 	v_layout->addWidget(flyer_widget);
 
@@ -113,7 +110,7 @@ void PostPage::addImage() {
     {
         QFileInfo fileInfo(filePath);
         QString fileName = fileInfo.fileName();
-        image_label->setText(fileName);
+        flyer_label->setText(fileName);
     }
 }
 

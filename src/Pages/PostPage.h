@@ -20,6 +20,7 @@ private:
 	void previewPost();
 	void submitPost();
 
+	QLabel *flyer_label;
 	QVBoxLayout *v_layout;
 	QLineEdit *event_name_entry;
 	QTextEdit *description_entry;
