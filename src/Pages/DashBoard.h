@@ -32,7 +32,7 @@ private:
 	QHBoxLayout *H_dash_layout;
 	// QStackedWidget *stackedWidget;
 	PageSwitcher* m_pg_switcher;
+	void switchPage(const std::string& name);
 	
 	void createPages();
-	void switchPage(const std::string& name);
 };
