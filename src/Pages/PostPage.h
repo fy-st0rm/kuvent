@@ -7,6 +7,7 @@
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QFileDialog>
+#include <QtCore/QLine>
 
 #include "Application/Page.h"
 
@@ -16,12 +17,10 @@ public:
 
 private:
 	void addImage();
-	void updateImageSize();
 	void previewPost();
 	void submitPost();
-	void resizeEvent(QResizeEvent *event) override;
 
-	QGridLayout *grid_layout;
+	QVBoxLayout *v_layout;
 	QLineEdit *event_name_entry;
 	QTextEdit *description_entry;
 	QLabel *image_label;
