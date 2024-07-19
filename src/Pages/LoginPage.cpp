@@ -168,39 +168,53 @@ void LoginPage::onLoginButtonPress() {
 		QMessageBox::warning(this, "Login Error", "Please enter both username and password.");
 		return;
 	}
-
-	else if(!email.endsWith("@gmail.com") || email.length() <= requiredSuffixEmail.length())
-	{
+	else if (!email.endsWith("@gmail.com") || email.length() <= requiredSuffixEmail.length()) {
 		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
+		return;
 	}
 	
-	else {
-		// Connecting to the server
-		httplib::Client cli("localhost", 8080);
+	// Creating payload
+	Json::Value payload;
+	payload["email"] = email_entry->text().toStdString();
+	payload["password"] = password_entry->text().toStdString();
 
-		std::stringstream payload;
-		payload << "{";
-		payload << "\"email\": \"" << email_entry->text().toStdString() << "\",";
-		payload << "\"password\": \"" << password_entry->text().toStdString() << "\"";
-		payload << "}";
+	Json::StyledWriter writer;
+	std::string payload_str = writer.write(payload);
 
-		httplib::Result res = cli.Post(
-			"/login",
-			payload.str(),
-			"application/json"
-		);
-		if (res->status != httplib::StatusCode::OK_200) {
-			QMessageBox::information(
-				this,
-				"Login Error",
-				QString::fromStdString(res->body)
-			);
-			return;
-		}
+	httplib::Result res = app->client->Post(
+		"/login",
+		payload_str,
+		"application/json"
+	);
 
-		app->switchPage("DashBoard");
-
+	// Checking the response
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return;
 	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Login Error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	// Abstracting response
+	Json::Value res_data;
+	Json::Reader reader;
+	reader.parse(res->body, res_data);
+
+	AppData app_data = {
+		.id = res_data["id"].asString(),
+		.username = res_data["username"].asString(),
+		.account_type = (AccountType) res_data["account_type"].asInt()
+	};
+	app->setAppData(app_data);
+
+	app->switchPage("DashBoard");
 }
 
 void LoginPage::onCreateAccountPress(){
