@@ -29,6 +29,7 @@ public:
 	// We create all the widgets inside this function
 	void onAttach();
 	void onEntry();
+	void onExit();
 
 private:
 	QHBoxLayout *H_dash_layout;

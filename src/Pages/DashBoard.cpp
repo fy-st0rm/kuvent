@@ -25,7 +25,7 @@ void DashBoard::onAttach() {
 		"background-color:" + Theme::dashboardPanel + ";"
 	);
 
-	nav_bar = new DashBoardNavBar(isOrganizer,user_name,leftPanel);
+	nav_bar = new DashBoardNavBar(leftPanel);
 	left_layout->addLayout(nav_bar);
 		
 	H_dash_layout->addWidget(leftPanel, 1);
@@ -38,6 +38,9 @@ void DashBoard::onAttach() {
 }
 
 void DashBoard::onEntry() {
+	AppData app_data = app->getAppData();
+	nav_bar->onEntry(app_data.account_type);
+
 	createPages();
 
 	connect(
@@ -65,6 +68,11 @@ void DashBoard::onEntry() {
 			[this]() {
 				switchPage("PostPage");
 		});
+}
+
+void DashBoard::onExit() {
+	AppData app_data = app->getAppData();
+	nav_bar->onExit(app_data.account_type);
 }
 
 void DashBoard::createPages() {
