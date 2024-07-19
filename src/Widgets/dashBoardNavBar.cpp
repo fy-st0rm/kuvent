@@ -1,6 +1,6 @@
 #include "dashBoardNavBar.h"
 #include "theme.h"
-#include <QtGui/QIcon>
+#include <QtGui/QIcon>'
 
 DashBoardNavBar::DashBoardNavBar(bool isOrganizer,QString user_name,QWidget *parent)
     : QVBoxLayout(parent)

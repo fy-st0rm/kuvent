@@ -11,7 +11,7 @@ void DashBoard::onAttach() {
 
 	// Changing the stylesheet of the base widget of page
 	getBaseWidget()->setStyleSheet("background-color:" + Theme::dashboardbuttonBg);
-
+	
 	// H_dash_layout is the main layout of the page
 	H_dash_layout = new QHBoxLayout(this);
 	H_dash_layout->setSpacing(0);
