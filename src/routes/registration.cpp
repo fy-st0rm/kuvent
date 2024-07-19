@@ -12,7 +12,7 @@ namespace route {
 void signup(const Request& req, Response& res) {
 	Json::Value value;
 	Json::Reader reader;
-	std::cout << req.body << std::endl;
+	reader.parse(req.body, value);
 
 	std::string id = uuid::generate_uuid_v4();
 	std::string username = value["username"].asString();
@@ -42,7 +42,7 @@ void signup(const Request& req, Response& res) {
 
 	// Inserting new user data
 	std::stringstream iq;
-	iq << "INSERT INTO USER VALUES (\"" << id << "\",\"" << username << "\",\"" << email << "\",\"" << password << "\",\"" << type << "\");";
+	iq << "INSERT INTO USER (ID, USERNAME, EMAIL, PASSWORD, TYPE, BATCH) VALUES (\"" << id << "\",\"" << username << "\",\"" << email << "\",\"" << password << "\",\"" << type << "\");";
 
 	r = db.query(iq.str());
 	if (r.status != SQLITE_OK) {
@@ -95,12 +95,21 @@ void login(const Request& req, Response& res) {
 	// Creating response
 	std::string id = row["ID"];
 	std::string username = row["USERNAME"];
+	std::string r_email = row["EMAIL"];
+	int number = NULL;
+	if (row["NUMBER"] != "NULL") {
+		number = std::stoi(row["NUMBER"]);
+	}
 	int acc_type = std::stoi(row["TYPE"]);
+	std::string batch = row["BATCH"];
 
 	Json::Value response;
 	response["id"] = id;
 	response["username"] = username;
+	response["email"] = r_email;
+	response["number"] = number;
 	response["account_type"] = acc_type;
+	response["batch"] = batch;
 
 	Json::StyledWriter writer;
 	std::string response_str = writer.write(response);
