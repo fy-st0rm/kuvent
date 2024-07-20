@@ -45,7 +45,8 @@ void build(char** argv) {
 	cbuild
 		.out("bin", "server")
 		.flags({
-			"-Wl,-rpath='$ORIGIN'", "-std=c++17"
+			"-Wl,-rpath='$ORIGIN'", "-std=c++17", 
+			"-w"
 		})
 		.inc_paths({
 			"vendor/httplib",

@@ -5,6 +5,7 @@
 #include "defines.h"
 #include "file_transfer.h"
 #include "uuid.h"
+#include <vector>
 
 namespace fs = std::filesystem;
 
@@ -68,7 +69,7 @@ void download(const Request& req, Response& res) {
 	// Collecting all the flyers
 	std::vector<std::string> flyers;
 	for (const auto & entry : fs::directory_iterator(FLYER_DIR)) {
-		flyers.push_back(entry.path());
+		flyers.push_back(entry.path().generic_string());
 	}
 
 	// Searching for flyer
