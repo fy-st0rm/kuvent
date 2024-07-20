@@ -209,7 +209,6 @@ void LoginPage::onLoginButtonPress() {
 	}
 
 	// Abstracting response
-	std::cout << res->body << std::endl;
 	Json::Value res_data;
 	Json::Reader reader;
 	reader.parse(res->body, res_data);
