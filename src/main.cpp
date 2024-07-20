@@ -22,5 +22,5 @@ int main(void) {
 	svr.Get("/download/:id", route::download);
 
 	std::cout << "Server listening on: http://localhost:8080" << std::endl;
-	svr.listen("0.0.0.0", 8080);
+	svr.listen("127.0.0.1", 8080);
 }
