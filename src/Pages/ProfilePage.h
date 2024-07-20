@@ -9,6 +9,7 @@
 #include <QtGui/QPixmap>
 
 #include "Application/Page.h"
+#include "Application/Application.h"
 
 class ProfilePage : public Page {
 public:
