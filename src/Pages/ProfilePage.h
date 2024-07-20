@@ -7,6 +7,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QFrame>
 #include <QtGui/QPixmap>
+#include "Widgets/EditableLabel.h"
 
 #include "Application/Page.h"
 #include "Application/Application.h"
@@ -22,7 +23,8 @@ private:
 
 	QLabel *profileLabel;
 	QLabel *emailEntryLabel;
-	QLabel *contactNoEntryLabel;
 	QLabel *programBatchEntryLabel;
+	EditableLabel *contactNoEntryLabel;
+	EditableLabel *facultyEntryLabel;
 };
 

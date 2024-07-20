@@ -4,8 +4,6 @@
 void ProfilePage::onAttach() {
 	v_profileLayout = new QVBoxLayout(this);
 	setLayout(v_profileLayout);
-	h_profileLayout = new QHBoxLayout(this);
-	setLayout(h_profileLayout);
 	
 	
 	//My Account label
@@ -27,7 +25,6 @@ void ProfilePage::onAttach() {
 	//Profile Picture
 	QBoxLayout *hLayout15 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout15);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
 	QLabel *profilePic = new QLabel(this);
 	QPixmap profile("assets/images/KUventpp.png");
@@ -49,7 +46,6 @@ void ProfilePage::onAttach() {
 	//Email label
 	QBoxLayout *hLayout2 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout2);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 	
 	QLabel *emailLabel = new QLabel("EMAIL");
 	emailLabel->setStyleSheet(
@@ -62,9 +58,8 @@ void ProfilePage::onAttach() {
 	//email entry 
 	QHBoxLayout *hLayout3 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout3);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	emailEntryLabel = new QLabel("kuvent@gmail.com");
+	emailEntryLabel = new QLabel("");
 	emailEntryLabel->setStyleSheet(
 			"font-size: 11pt;"
 			"font-weight: bold;"
@@ -75,7 +70,6 @@ void ProfilePage::onAttach() {
 	//line1
 	QBoxLayout *hLayout4 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout4);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
 	QFrame *line1 = new QFrame;
     line1->setFrameShape(QFrame::HLine); 
@@ -90,7 +84,6 @@ void ProfilePage::onAttach() {
 	//Contact Number Label
 	QBoxLayout *hLayout5 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout5);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 	
 	QLabel *contactNoLabel = new QLabel("CONTACT NUMBER");
 	contactNoLabel->setStyleSheet(
@@ -100,37 +93,16 @@ void ProfilePage::onAttach() {
 	hLayout5->addWidget(contactNoLabel);
 	hLayout5->setAlignment(Qt::AlignLeft);
 
-	//Contact Number Entry
-	QHBoxLayout *hLayout6 = new QHBoxLayout;
+	QHBoxLayout *hLayout6 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout6);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	contactNoEntryLabel = new QLabel("9800000000");
-	contactNoEntryLabel->setStyleSheet(
-			"font-size: 11pt;"
-			"font-weight: bold;"
-	);
+	contactNoEntryLabel = new EditableLabel();
+	contactNoEntryLabel->setText("");
 	hLayout6->addWidget(contactNoEntryLabel);
-	hLayout6->setAlignment(Qt::AlignLeft);
-
-	//to add space between contact number and edit button
-	QSpacerItem *spacer = new QSpacerItem(225, 10);
-	hLayout6->addItem(spacer);
-
-	//edit button for contact number
-	QPushButton *edit_contact_button = new QPushButton("Edit");
-	edit_contact_button->setStyleSheet(
-			"color: red;"
-			"background-color: white;"
-	);
-	edit_contact_button->setMinimumSize(50,30);
-	h_profileLayout->addLayout(hLayout6);
-	hLayout6->addWidget(edit_contact_button, 0, Qt::AlignRight);
-
+	
 	//line2
 	QBoxLayout *hLayout7 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout7);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
 	QFrame *line2 = new QFrame;
     line2->setFrameShape(QFrame::HLine); 
@@ -145,7 +117,6 @@ void ProfilePage::onAttach() {
 	//Program-Batch Label
 	QBoxLayout *hLayout8 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout8);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 	
 	QLabel *programBatchLabel = new QLabel("PROGRAM-BATCH");
 	programBatchLabel->setStyleSheet(
@@ -158,89 +129,13 @@ void ProfilePage::onAttach() {
 	//Program-Batch Entry
 	QHBoxLayout *hLayout9 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout9);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
-	programBatchEntryLabel = new QLabel("CE-2023");
-	programBatchEntryLabel->setStyleSheet(
-			"font-size: 11pt;"
-			"font-weight: bold;"
-	);
-	hLayout9->addWidget(programBatchEntryLabel);
-	hLayout9->setAlignment(Qt::AlignLeft);
-
-	//to add space between program-batch and edit button
-	QSpacerItem *spacer2 = new QSpacerItem(252, 10);
-	hLayout9->addItem(spacer2);
-
-	//edit button for program-batch
-	QPushButton *edit_programBatch_button = new QPushButton("Edit");
-	edit_programBatch_button->setStyleSheet(
-			"color: red;"
-			"background-color: white;"
-	);
-	edit_programBatch_button->setMinimumSize(50,30);
-	v_profileLayout->addLayout(hLayout9);
-	hLayout9->addWidget(edit_programBatch_button, 0, Qt::AlignRight);
-
-	//line3
-	QBoxLayout *hLayout10 = new QHBoxLayout;
-	v_profileLayout->addLayout(hLayout10);
-	v_profileLayout->setAlignment(Qt::AlignTop);
-
-	QFrame *line3 = new QFrame;
-    line3->setFrameShape(QFrame::HLine); 
-    line3->setFixedHeight(2);
-	line3->setFixedWidth(this->width()/1.5);
-
-	hLayout10->addWidget(line3); //Adding line to layout
-	hLayout10->setAlignment(Qt::AlignLeft);
-
-	v_profileLayout->addSpacing(35);
-
-	//Password label
-	QBoxLayout *hLayout11 = new QHBoxLayout;
-	v_profileLayout->addLayout(hLayout11);
-	v_profileLayout->setAlignment(Qt::AlignTop);
-	
-	QLabel *passwordLabel = new QLabel("Password");
-	passwordLabel->setStyleSheet(
-			"font-size: 13pt;"
-			"font-weight: bold;"
-	);
-	hLayout11->addWidget(passwordLabel);
-	hLayout11->setAlignment(Qt::AlignLeft);
-
-	//Password entry
-	QHBoxLayout *hLayout12 = new QHBoxLayout;
-	v_profileLayout->addLayout(hLayout12);
-	v_profileLayout->setAlignment(Qt::AlignTop);
-
-	QLabel *passwordEntryLabel = new QLabel("********");
-	passwordEntryLabel->setStyleSheet(
-			"font-size: 11pt;"
-			"font-weight: bold;"
-	);
-	hLayout12->addWidget(passwordEntryLabel);
-	hLayout12->setAlignment(Qt::AlignLeft);
-
-	//to add space between program-batch and edit button
-	QSpacerItem *spacer3 = new QSpacerItem(230, 10);
-	hLayout12->addItem(spacer3);
-
-	//edit button for contact number
-	QPushButton *change_password_button = new QPushButton("Change Password");
-	change_password_button->setStyleSheet(
-			"color: red;"
-			"background-color: white;"
-	);
-	change_password_button->setMinimumSize(100,30);
-	v_profileLayout->addLayout(hLayout12);
-	hLayout12->addWidget(change_password_button, 0, Qt::AlignRight);
+	facultyEntryLabel = new EditableLabel();
+	hLayout9->addWidget(facultyEntryLabel);
 
 	//line4
 	QBoxLayout *hLayout13 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout13);
-	v_profileLayout->setAlignment(Qt::AlignTop);
 
 	QFrame *line4 = new QFrame;
     line4->setFrameShape(QFrame::HLine); 
@@ -288,7 +183,8 @@ void ProfilePage::onEntry() {
 			QString::number(app_data.number)
 		);
 	}
-	programBatchEntryLabel->setText(
+
+	facultyEntryLabel->setText(
 		QString::fromStdString(app_data.batch)
 	);
 }

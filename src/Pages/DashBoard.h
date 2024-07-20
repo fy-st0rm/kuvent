@@ -21,6 +21,7 @@
 #include "Pages/UpcomingEvents.h"
 #include "Widgets/PageSwitcher.h"
 #include "Widgets/dashBoardNavBar.h"
+#include "Widgets/EditableLabel.h"
 
 
 class DashBoard : public Page {

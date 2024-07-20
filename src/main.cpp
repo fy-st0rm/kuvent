@@ -17,6 +17,7 @@
 #include "Widgets/PasswordLineEdit.cpp"
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
+#include "Widgets/EditableLabel.cpp"
 
 
 class App : public Application {
