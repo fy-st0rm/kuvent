@@ -59,6 +59,7 @@ void build(char** argv) {
 			"src/db/db.cpp",
 			"src/routes/registration.cpp",
 			"src/routes/file_transfer.cpp",
+			"src/routes/post.cpp",
 			"src/main.cpp"
 		})
 		.libs({

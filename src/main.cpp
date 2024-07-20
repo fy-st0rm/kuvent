@@ -2,8 +2,7 @@
 using namespace httplib;
 
 #include "db/db.h"
-#include "routes/registration.h"
-#include "routes/file_transfer.h"
+#include "routes/routes.h"
 
 int main(void) {
 	Server svr;
@@ -20,6 +19,7 @@ int main(void) {
 	svr.Post("/login", route::login);
 	svr.Post("/upload", route::upload);
 	svr.Get("/download/:id", route::download);
+	svr.Post("/post_event", route::post_event);
 
 	std::cout << "Server listening on: http://localhost:8080" << std::endl;
 	svr.listen("127.0.0.1", 8080);
