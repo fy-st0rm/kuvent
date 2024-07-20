@@ -13,38 +13,40 @@
 #include <QtWidgets/QFrame>
 #include <QtGui/QScreen>
 
+#include <optional>
 #include "Application/Page.h"
 
 class PostPage : public Page {
 public:
-    PostPage();
-    ~PostPage();
+	PostPage();
+	~PostPage();
 	void onAttach();
 	void onEntry() {}
 
 
 private:
-    void addEventNameSection();
-    void addDateSection();
-    void addLocationSection();
-    void addFlyerSection();
-    void addDescriptionSection();
-    void addButtonSection();
-    void addImage();
-    void exit();
-    void submitPost();
-    void createPreviewDialog();
-    bool postToServer();
+	void addEventNameSection();
+	void addDateSection();
+	void addLocationSection();
+	void addFlyerSection();
+	void addDescriptionSection();
+	void addButtonSection();
+	void addImage();
+	void exit();
+	void submitPost();
+	void createPreviewDialog();
 
-    QLabel* flyer_label;
-    QVBoxLayout* v_layout;
-    QLineEdit* event_name_entry;
-    QLineEdit* start_date_entry;
-    QLineEdit* end_date_entry;
-    QLineEdit* location_entry;
-    QLineEdit* location_description_entry;
-    QTextEdit* description_entry;
-    QString flyer_path;
-    QDialog* preview_dialog;
+	bool postToServer();
+	std::optional<Json::Value> uploadFlyers();
 
+	QLabel* flyer_label;
+	QVBoxLayout* v_layout;
+	QLineEdit* event_name_entry;
+	QLineEdit* start_date_entry;
+	QLineEdit* end_date_entry;
+	QLineEdit* location_entry;
+	QLineEdit* location_description_entry;
+	QTextEdit* description_entry;
+	QString flyer_path;
+	QDialog* preview_dialog;
 };
