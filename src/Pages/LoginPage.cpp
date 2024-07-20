@@ -102,6 +102,7 @@ void LoginPage::onAttach() {
 		this,
 		&LoginPage::onLoginButtonPress
 	);
+
 	applyShadow(m_login_button);
 
 	//login button
@@ -163,12 +164,17 @@ void LoginPage::onLoginButtonPress() {
 	QString email = email_entry->text();
 	QString password = password_entry->text();
 	QString requiredSuffixEmail = "@gmail.com";
+	QString emailWithoutSuffix = email.left(email.length() - requiredSuffixEmail.length());
 
 	if (email.isEmpty() || password.isEmpty()) {
 		QMessageBox::warning(this, "Login Error", "Please enter both username and password.");
 		return;
 	}
-	else if (!email.endsWith("@gmail.com") || email.length() <= requiredSuffixEmail.length()) {
+	else if (!email.endsWith("@gmail.com") || 
+			 email.length() <= requiredSuffixEmail.length() || 
+			 emailWithoutSuffix.contains(requiredSuffixEmail, Qt::CaseSensitive) || 
+			 emailWithoutSuffix.startsWith(" ") || 
+			 emailWithoutSuffix.contains(" ")) {
 		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
 		return;
 	}

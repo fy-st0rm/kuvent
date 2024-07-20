@@ -12,16 +12,16 @@ EditableLabel::EditableLabel(QWidget *parent) : QWidget(parent), isEditing(false
     lineEdit->setVisible(false);
     lineEdit->setFixedSize(270,30);
 
-    editButton = new QPushButton("Edit", this);
+    editButton = new QPushButton("Edit");
     editButton->setStyleSheet("color: red; background-color: white;");
     editButton->setFixedSize(80, 30);
 
-    applyButton = new QPushButton("Apply", this);
+    applyButton = new QPushButton("Apply");
     applyButton->setStyleSheet("color: green; background-color: white;");
     applyButton->setFixedSize(80, 30);
     applyButton->setVisible(false);
 
-    layout = new QHBoxLayout(this);
+    layout = new QHBoxLayout();
     layout->addWidget(label);
     layout->addWidget(lineEdit);
     layout->addWidget(editButton);
