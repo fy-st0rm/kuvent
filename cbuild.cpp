@@ -40,6 +40,7 @@ void build(char** argv) {
 			"-Wl,-rpath='$ORIGIN'",
 			"-std=c++17",
 			"-fPIC",
+			"-w"
 		})
 		.inc_paths({
 			"vendor/qt/include",

@@ -139,7 +139,6 @@ void PostPage::addImage() {
 
 void PostPage::exit() {
     // Implement exit functionality
-	pg_switcher->switchPage("OngoingPage");
 }
 
 void PostPage::submitPost() {
