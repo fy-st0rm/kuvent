@@ -17,7 +17,7 @@
 #include "Widgets/PasswordLineEdit.cpp"
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
-#include "Widgets/EditableLabel.cpp"
+#include "Widgets/ContactNoEntry.cpp"
 
 
 class App : public Application {
@@ -28,7 +28,7 @@ public:
 		addPage<LoginPage>("LoginPage");
 		addPage<SignupPage>("SignupPage");
 		addPage<DashBoard>("DashBoard");
-		switchPage("LoginPage");
+		switchPage("DashBoard");
 	}
 };
 

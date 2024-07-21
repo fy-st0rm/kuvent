@@ -5,7 +5,6 @@ void ProfilePage::onAttach() {
 	v_profileLayout = new QVBoxLayout(this);
 	setLayout(v_profileLayout);
 	
-	
 	//My Account label
 	QHBoxLayout *hLayout1 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout1);

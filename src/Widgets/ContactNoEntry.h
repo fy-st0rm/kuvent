@@ -1,5 +1,4 @@
-#ifndef EDITABLELABEL_H
-#define EDITABLELABEL_H
+#pragma once
 
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLineEdit>
@@ -9,10 +8,10 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtGui/QMouseEvent>
 
-class EditableLabel : public QWidget 
+class ContactNoEntry : public QWidget 
 {
     public:
-    explicit EditableLabel(QWidget *parent = nullptr); 
+    explicit ContactNoEntry(QWidget *parent = nullptr); 
     
     void setText(const QString &text);
 
@@ -26,14 +25,13 @@ class EditableLabel : public QWidget
     QPushButton *editButton;
     QPushButton *applyButton;
 
-    void onEditPressed();
     void startEditing();
     void finishEditing();   
     bool isEditing;
 
     protected:
     void mousePressEvent(QMouseEvent *event);
+    bool containsOnlyIntegers(QString &number);
+    void updateLineEdit();
     
 };
-
-#endif

@@ -1,6 +1,6 @@
-#include "EditableLabel.h"
+#include "ContactNoEntry.h"
 
-EditableLabel::EditableLabel(QWidget *parent) : QWidget(parent), isEditing(false) {
+ContactNoEntry::ContactNoEntry(QWidget *parent) : QWidget(parent), isEditing(false) {
     label = new QLabel(this);
     label->setStyleSheet(
         "font-weight: bold;"
@@ -38,28 +38,30 @@ EditableLabel::EditableLabel(QWidget *parent) : QWidget(parent), isEditing(false
         finishEditing();
     });
 
-    connect(lineEdit, &QLineEdit::returnPressed, [this]() {
+    connect(lineEdit, &QLineEdit::returnPressed, [this](){
         finishEditing();
     });
+
+    connect(lineEdit, &QLineEdit::textChanged, this, &ContactNoEntry::updateLineEdit);
 }
 
-void EditableLabel::setText(const QString &text) {
+void ContactNoEntry::setText(const QString &text) {
     label->setText(text);
     lineEdit->setText(text);
 }
 
-QString EditableLabel::text() const {
+QString ContactNoEntry::text() const {
     return label->text();
 }
 
-void EditableLabel::mousePressEvent(QMouseEvent *event) {
+void ContactNoEntry::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton && !isEditing) {
         startEditing();
     }
     QWidget::mousePressEvent(event);
 }
 
-void EditableLabel::startEditing() {
+void ContactNoEntry::startEditing() {
     label->setVisible(false);
     lineEdit->setVisible(true);
     editButton->setVisible(false);
@@ -68,7 +70,7 @@ void EditableLabel::startEditing() {
     isEditing = true;
 }
 
-void EditableLabel::finishEditing() {
+void ContactNoEntry::finishEditing() {
     if (isEditing) {
         label->setText(lineEdit->text());
         lineEdit->setVisible(false);
@@ -76,5 +78,31 @@ void EditableLabel::finishEditing() {
         editButton->setVisible(true);
         applyButton->setVisible(false);
         isEditing = false;
+    }
+}
+
+bool ContactNoEntry::containsOnlyIntegers(QString &number)
+{
+    bool ok;
+    number.toInt(&ok);
+    return ok;
+}
+
+
+void ContactNoEntry::updateLineEdit()
+{
+    QString number = lineEdit->text();
+
+    if(containsOnlyIntegers(number))
+    {
+        lineEdit->setStyleSheet(
+            "border: 2px solid green;"
+        );
+    }
+
+    else{
+        lineEdit->setStyleSheet(
+            "border: 2px solid red;"
+        );
     }
 }

@@ -9,6 +9,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QToolButton>
 #include <QtGui/QFont>
+#include <QtGui/QKeyEvent>
 
 #include <sstream>
 
