@@ -182,7 +182,6 @@ void ProfilePage::onAttach() {
 	});
 	hLayout9->addWidget(facultyEntryLabel);
 
-	//line4
 	QBoxLayout *hLayout13 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout13);
 
