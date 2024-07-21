@@ -10,9 +10,10 @@ namespace model {
 			{ "USERNAME", "TEXT" },
 			{ "EMAIL",    "TEXT" },
 			{ "PASSWORD", "TEXT" },
-			{ "NUMBER",   "TEXT",  .nullable = true },
+			{ "NUMBER",   "TEXT", .nullable = true },
 			{ "TYPE",     "INT"  },
-			{ "BATCH",    "TEXT", .nullable = true }
+			{ "BATCH",    "TEXT", .nullable = true },
+			{ "PFP",      "TEXT", .nullable = true }
 		}
 	};
 

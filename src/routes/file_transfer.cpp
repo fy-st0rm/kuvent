@@ -41,7 +41,7 @@ void upload(const Request& req, Response& res, const ContentReader &content_read
 		std::string name = file.filename;
 		std::string ext = name.substr(name.find_last_of(".") + 1);
 		std::string id = uuid::generate_uuid_v4();
-		std::ofstream f(FLYER_DIR + id + "." + ext);
+		std::ofstream f(FLYER_DIR + id + "." + ext, std::ostream::binary);
 		f << file.content;
 		f.close();
 

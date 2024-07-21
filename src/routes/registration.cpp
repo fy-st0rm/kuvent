@@ -99,6 +99,7 @@ void login(const Request& req, Response& res) {
 	std::string number = row["NUMBER"];
 	int acc_type = std::stoi(row["TYPE"]);
 	std::string batch = row["BATCH"];
+	std::string pfp = row["PFP"];
 
 	Json::Value response;
 	response["id"] = id;
@@ -107,6 +108,7 @@ void login(const Request& req, Response& res) {
 	response["number"] = number;
 	response["account_type"] = acc_type;
 	response["batch"] = batch;
+	response["pfp"] = pfp;
 
 	Json::StyledWriter writer;
 	std::string response_str = writer.write(response);
