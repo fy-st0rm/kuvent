@@ -18,11 +18,21 @@ void ProfilePage::onAttach() {
 	hLayout1->addWidget(profileLabel);
 	hLayout1->setAlignment(Qt::AlignLeft);
 
-	//Spacing left for profile pic
-	v_profileLayout->addSpacing(15);	
+	QHBoxLayout *hLayout0 = new QHBoxLayout();
+	v_profileLayout->addLayout(hLayout0);
+
+	QFrame *line0 = new QFrame;
+    line0->setFrameShape(QFrame::HLine); 
+    line0->setFixedHeight(2);
+	line0->setFixedWidth(this->width()/1.5);
+
+	hLayout0->addWidget(line0); //Adding line to layout
+	hLayout0->setAlignment(Qt::AlignBottom);
+
+	v_profileLayout->addSpacing(30);	
 
 	//Profile Picture
-	QBoxLayout *hLayout15 = new QHBoxLayout;
+	QHBoxLayout *hLayout15 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout15);
 
 	QLabel *profilePic = new QLabel(this);
@@ -30,17 +40,50 @@ void ProfilePage::onAttach() {
 	profilePic->setPixmap(profile);
 	profilePic->setFixedSize(100,100);
 	profilePic->setScaledContents(true);
-	hLayout15->addWidget(profilePic);
-	hLayout15->setAlignment(Qt::AlignLeft);
 
-	//line5
-	QFrame *line5 = new QFrame;
-    line5->setFrameShape(QFrame::HLine); 
-    line5->setFixedHeight(2);
-	line5->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	hLayout15->addWidget(line5); //Adding line to layout
+	QVBoxLayout *vlayout = new QVBoxLayout();
+	hLayout15->addLayout(vlayout);
 
-	v_profileLayout->addSpacing(40);
+	QHBoxLayout *hLayout16 = new QHBoxLayout();
+	vlayout->addLayout(hLayout16);
+	
+	QLabel *usernameLabel = new QLabel("USERNAME");
+	usernameLabel->setStyleSheet(
+			"font-size: 13pt;"
+			"font-weight: bold;"
+	);
+
+	QHBoxLayout *hLayout17 = new QHBoxLayout();
+	vlayout->addLayout(hLayout17);
+	hLayout17->addSpacing(5);
+
+	usernameEntryLabel = new QLabel("");
+	usernameEntryLabel->setStyleSheet(
+			"font-size: 11pt;"
+			"font-weight: bold;"
+	);
+
+
+	hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
+	vlayout->addSpacing(20);
+	hLayout16->addWidget(usernameLabel, 0, Qt::AlignTop | Qt::AlignLeft);
+	vlayout->addSpacing(10);
+	hLayout17->addWidget(usernameEntryLabel, 0, Qt::AlignTop | Qt::AlignLeft);
+
+	v_profileLayout->addSpacing(10);
+
+	QHBoxLayout *hLayout18 = new QHBoxLayout();
+	v_profileLayout->addLayout(hLayout18);
+
+	QFrame *line = new QFrame;
+    line->setFrameShape(QFrame::HLine); 
+    line->setFixedHeight(2);
+	line->setFixedWidth(this->width()/1.5);
+
+	hLayout18->addWidget(line); //Adding line to layout
+	hLayout18->setAlignment(Qt::AlignBottom);
+
+	v_profileLayout->addSpacing(10);
 
 	//Email label
 	QBoxLayout *hLayout2 = new QHBoxLayout;
@@ -176,6 +219,10 @@ void ProfilePage::onAttach() {
 
 void ProfilePage::onEntry() {
 	AppData app_data = app->getAppData();
+
+	usernameEntryLabel->setText(
+		QString::fromStdString(app_data.username)
+	);
 
 	emailEntryLabel->setText(
 		QString::fromStdString(app_data.email)

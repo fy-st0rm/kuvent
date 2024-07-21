@@ -32,5 +32,6 @@ private:
 	QLabel *programBatchEntryLabel;
 	ContactNoEntry *contactNoEntryLabel;
 	FacultyEntry *facultyEntryLabel;
+	QLabel *usernameEntryLabel;
 };
 
