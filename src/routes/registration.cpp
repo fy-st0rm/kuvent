@@ -96,10 +96,7 @@ void login(const Request& req, Response& res) {
 	std::string id = row["ID"];
 	std::string username = row["USERNAME"];
 	std::string r_email = row["EMAIL"];
-	int number = NULL;
-	if (row["NUMBER"] != "NULL") {
-		number = std::stoi(row["NUMBER"]);
-	}
+	std::string number = row["NUMBER"];
 	int acc_type = std::stoi(row["TYPE"]);
 	std::string batch = row["BATCH"];
 
@@ -116,6 +113,54 @@ void login(const Request& req, Response& res) {
 
 	res.status = StatusCode::OK_200;
 	res.set_content(response_str, "application/json");
+}
+
+void update_profile(const Request& req, Response& res) {
+	Json::Value value;
+	Json::Reader reader;
+	reader.parse(req.body, value);
+
+	std::string id = value["id"].asString();
+	std::string attrib = value["attrib"].asString();
+	std::string data = value[attrib].asString();
+
+	Database db(DB_PATH);
+
+	std::stringstream sq;
+	sq << "SELECT * FROM USER WHERE ID = \"" << id << "\";";
+
+	QueryResult r = db.query(sq.str());
+
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	// Checking if id exists
+	if (r.result.size() == 0) {
+		res.status = StatusCode::BadRequest_400;
+		res.set_content("Wrong user id provided.", "text/plain");
+		return;
+	}
+
+	// Updating the attribute
+	std::stringstream uq;
+	uq
+		<< "UPDATE USER "
+		<< "SET " << attrib << " = \"" << data << "\" "
+		<< "WHERE ID = \"" << id << "\";";
+
+	r = db.query(uq.str());
+
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	res.status = StatusCode::OK_200;
+	res.set_content("Sucessfully changed number.", "text/plain");
 }
 
 }

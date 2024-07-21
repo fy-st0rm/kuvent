@@ -17,6 +17,7 @@ int main(void) {
 
 	svr.Post("/signup", route::signup);
 	svr.Post("/login", route::login);
+	svr.Post("/update_profile", route::update_profile);
 	svr.Post("/upload", route::upload);
 	svr.Get("/download/:id", route::download);
 	svr.Post("/post_event", route::post_event);
