@@ -37,7 +37,7 @@ LineEditWithCalendar::LineEditWithCalendar(QWidget *parent)
     });
 
     connect(calendarWidget, &QCalendarWidget::clicked, [this](const QDate &date) {
-       setText(date.toString("dd-MM-yyyy")) ;
+       setText(date.toString("dd-MMMM-yyyy")) ;
        setVisible(true);
        this->calendarWidget->setVisible(false);
     });
