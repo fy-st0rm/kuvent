@@ -53,16 +53,13 @@ void PostPage::addDateSection() {
 		event_date_label->setStyleSheet("font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
 		v_layout->addWidget(event_date_label);
 
-		QHBoxLayout* date_layout = new QHBoxLayout();
-
-		start_date_entry = new QLineEdit();
-		start_date_entry->setPlaceholderText("mm/dd/yyyy");
-		start_date_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; border-radius: 8px; height: 36px;color:#000000;");
+		QHBoxLayout *date_layout = new QHBoxLayout();
+		start_date_entry = new LineEditWithCalendar();
 		date_layout->addWidget(start_date_entry);
 
-		end_date_entry = new QLineEdit();
-		end_date_entry->setPlaceholderText("mm/dd/yyyy");
-		end_date_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; border-radius: 8px; height: 36px;color:#000000;");
+		date_layout->addSpacing(20);
+
+		end_date_entry = new LineEditWithCalendar();
 		date_layout->addWidget(end_date_entry);
 
 		v_layout->addLayout(date_layout);

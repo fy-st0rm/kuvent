@@ -143,6 +143,7 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "qscrollarea": "cpp",
-    "qregexp": "cpp"
+    "qregexp": "cpp",
+    "qcalendarwidget": "cpp"
   }
 }

@@ -19,6 +19,7 @@
 #include "Widgets/emailValidation.cpp"
 #include "Widgets/ContactNoEntry.cpp"
 #include "Widgets/FacultyEntry.cpp"
+#include "Widgets/LineEditWithCalendar.cpp"
 
 
 class App : public Application {

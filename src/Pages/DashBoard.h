@@ -23,6 +23,7 @@
 #include "Widgets/dashBoardNavBar.h"
 #include "Widgets/ContactNoEntry.h"
 #include "Widgets/FacultyEntry.h"
+#include "Widgets/LineEditWithCalendar.h"
 
 
 class DashBoard : public Page {

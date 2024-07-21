@@ -15,6 +15,7 @@
 
 #include <optional>
 #include "Application/Page.h"
+#include "Widgets/LineEditWithCalendar.h"
 
 class PostPage : public Page {
 public:
@@ -42,11 +43,12 @@ private:
 	QLabel* flyer_label;
 	QVBoxLayout* v_layout;
 	QLineEdit* event_name_entry;
-	QLineEdit* start_date_entry;
-	QLineEdit* end_date_entry;
+	LineEditWithCalendar* start_date_entry;
+	LineEditWithCalendar* end_date_entry;
 	QLineEdit* location_entry;
 	QLineEdit* location_description_entry;
 	QTextEdit* description_entry;
 	QString flyer_path;
-	QDialog* preview_dialog;
+	QDialog* preview_dialog;	
+
 };
