@@ -1,6 +1,7 @@
 #include "EditableLabel.h"
 
-EditableLabel::EditableLabel(QWidget *parent) : QWidget(parent), isEditing(false) {
+EditableLabel::EditableLabel(std::function<void(void)> callback, QWidget *parent)
+: apply_callback(callback), QWidget(parent), isEditing(false) {
     label = new QLabel(this);
     label->setStyleSheet(
         "font-weight: bold;"
@@ -76,5 +77,7 @@ void EditableLabel::finishEditing() {
         editButton->setVisible(true);
         applyButton->setVisible(false);
         isEditing = false;
+
+        apply_callback();
     }
 }

@@ -18,6 +18,9 @@ public:
 	void onEntry();
 
 private:
+	void changeProfileData(const std::string& attrib, const std::string& value);
+
+private:
 	QVBoxLayout *v_profileLayout;
 	QBoxLayout *h_profileLayout;
 

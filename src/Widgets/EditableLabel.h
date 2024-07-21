@@ -8,32 +8,33 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtGui/QMouseEvent>
+#include <functional>
 
 class EditableLabel : public QWidget 
 {
-    public:
-    explicit EditableLabel(QWidget *parent = nullptr); 
-    
-    void setText(const QString &text);
+	public:
+	explicit EditableLabel(std::function<void(void)> callback, QWidget *parent = nullptr); 
+	
+	void setText(const QString &text);
+	QString text() const;
 
-    QString text() const;
+	private: 
+	QLabel *label;
+	QLineEdit *lineEdit;
+	QHBoxLayout *layout;
+	QPushButton *editButton;
+	QPushButton *applyButton;
 
+	void onEditPressed();
+	void startEditing();
+	void finishEditing();
+	bool isEditing;
 
-    private: 
-    QLabel *label;
-    QLineEdit *lineEdit;
-    QHBoxLayout *layout;
-    QPushButton *editButton;
-    QPushButton *applyButton;
+	std::function<void(void)> apply_callback;
 
-    void onEditPressed();
-    void startEditing();
-    void finishEditing();   
-    bool isEditing;
-
-    protected:
-    void mousePressEvent(QMouseEvent *event);
-    
+	protected:
+	void mousePressEvent(QMouseEvent *event);
+	
 };
 
 #endif
