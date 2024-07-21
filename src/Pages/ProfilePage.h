@@ -8,9 +8,12 @@
 #include <QtWidgets/QFrame>
 #include <QtGui/QPixmap>
 #include "Widgets/ContactNoEntry.h"
+#include <QtWidgets/QMessageBox>
+#include "Widgets/FacultyEntry.h"
 
 #include "Application/Page.h"
 #include "Application/Application.h"
+#include "json/json.h"
 
 class ProfilePage : public Page {
 public:
@@ -28,6 +31,6 @@ private:
 	QLabel *emailEntryLabel;
 	QLabel *programBatchEntryLabel;
 	ContactNoEntry *contactNoEntryLabel;
-	ContactNoEntry *facultyEntryLabel;
+	FacultyEntry *facultyEntryLabel;
 };
 

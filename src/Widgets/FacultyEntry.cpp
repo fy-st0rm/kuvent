@@ -1,6 +1,6 @@
-#include "ContactNoEntry.h"
+#include "FacultyEntry.h"
 
-ContactNoEntry::ContactNoEntry(std::function<void(void)> callback, QWidget *parent) 
+FacultyEntry::FacultyEntry(std::function<void(void)> callback, QWidget *parent) 
 : QWidget(parent), isEditing(false) , apply_callback(callback)
 {
     label = new QLabel(this);
@@ -36,39 +36,33 @@ ContactNoEntry::ContactNoEntry(std::function<void(void)> callback, QWidget *pare
         startEditing();
     });
 
-    connect(applyButton, &QPushButton::clicked, [this]()
-    {
-        onApplyClick();
+    connect(applyButton, &QPushButton::clicked, [this]() {
+        finishEditing();
     });
 
     connect(lineEdit, &QLineEdit::returnPressed, [this](){
         finishEditing();
     });
 
-    connect(lineEdit, &QLineEdit::textChanged, [this]()
-    {
-        updateLineEdit();
-    });
-
 }
 
-void ContactNoEntry::setText(const QString &text) {
+void FacultyEntry::setText(const QString &text) {
     label->setText(text);
     lineEdit->setText(text);
 }
 
-QString ContactNoEntry::text() const {
+QString FacultyEntry::text() const {
     return label->text();
 }
 
-void ContactNoEntry::mousePressEvent(QMouseEvent *event) {
+void FacultyEntry::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton && !isEditing) {
         startEditing();
     }
     QWidget::mousePressEvent(event);
 }
 
-void ContactNoEntry::startEditing() {
+void FacultyEntry::startEditing() {
     label->setVisible(false);
     lineEdit->setVisible(true);
     editButton->setVisible(false);
@@ -77,7 +71,7 @@ void ContactNoEntry::startEditing() {
     isEditing = true;
 }
 
-void ContactNoEntry::finishEditing() {
+void FacultyEntry::finishEditing() {
     if (isEditing) {
         label->setText(lineEdit->text());
         lineEdit->setVisible(false);
@@ -87,42 +81,5 @@ void ContactNoEntry::finishEditing() {
         isEditing = false;
 
         apply_callback();
-    }
-}
-
-bool ContactNoEntry::containsOnlyIntegers(const QString &number)
-{
-    QRegularExpression regex("^\\d{10}$");
-    return regex.match(number).hasMatch();
-}   
-
-void ContactNoEntry::updateLineEdit()
-{
-    QString number = lineEdit->text();
-
-    if (containsOnlyIntegers(number)){
-        lineEdit->setStyleSheet(
-            "border: 2px solid green;"
-        );
-    }
-
-    else
-    {
-        lineEdit->setStyleSheet(
-            "border: 2px solid red;"
-        );
-    }
-}
-
-void ContactNoEntry::onApplyClick()
-{
-    QString number = lineEdit->text();
-    if(containsOnlyIntegers(number))
-    {
-        finishEditing();
-    }
-
-    else{
-        QMessageBox::warning(this, "Error", "Please enter a valid contact number");
     }
 }

@@ -74,6 +74,11 @@ void DashBoardNavBar::onEntry(AccountType account_type) {
 	this->insertWidget(this->count() - 1, profile_button, 0, Qt::AlignHCenter | Qt::AlignTop);
 	this->insertWidget(this->count() - 1, ongoing_button, 0, Qt::AlignHCenter | Qt::AlignTop);
 	this->insertWidget(this->count() - 1, upcoming_button, 0, Qt::AlignHCenter | Qt::AlignTop);
+	resetButtonStyles();
+	profile_button->setStyleSheet(
+		"background-color:" + Theme::dashboardhoverBg + ";"
+		"border-radius: 15px;" 
+	);
 
 	if (account_type == ORGANIZER) {
 		this->insertWidget(this->count() - 1, post_button, 0, Qt::AlignHCenter | Qt::AlignTop);

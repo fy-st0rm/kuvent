@@ -57,12 +57,13 @@ void ProfilePage::onAttach() {
 	//email entry 
 	QHBoxLayout *hLayout3 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout3);
-
+	hLayout3->addSpacing(10);
 	emailEntryLabel = new QLabel("");
 	emailEntryLabel->setStyleSheet(
 			"font-size: 11pt;"
 			"font-weight: bold;"
 	);
+	emailEntryLabel->setFixedSize(270,30);
 	hLayout3->addWidget(emailEntryLabel);
 	hLayout3->setAlignment(Qt::AlignLeft);
 
@@ -132,7 +133,7 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout9 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout9);
 
-	facultyEntryLabel = new ContactNoEntry([=]() {
+	facultyEntryLabel = new FacultyEntry([=]() {
 		std::string batch = facultyEntryLabel->text().toStdString();
 		changeProfileData("BATCH", batch);
 	});

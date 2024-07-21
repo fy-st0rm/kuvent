@@ -22,6 +22,7 @@
 #include "Widgets/PageSwitcher.h"
 #include "Widgets/dashBoardNavBar.h"
 #include "Widgets/ContactNoEntry.h"
+#include "Widgets/FacultyEntry.h"
 
 
 class DashBoard : public Page {

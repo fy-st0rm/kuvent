@@ -18,6 +18,7 @@
 #include "Widgets/dashBoardNavBar.cpp"
 #include "Widgets/emailValidation.cpp"
 #include "Widgets/ContactNoEntry.cpp"
+#include "Widgets/FacultyEntry.cpp"
 
 
 class App : public Application {

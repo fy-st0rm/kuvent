@@ -8,13 +8,11 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtGui/QMouseEvent>
 #include <functional>
-#include <QtWidgets/QMessageBox>
-#include <QtCore/QRegularExpression>
 
-class ContactNoEntry : public QWidget 
+class FacultyEntry : public QWidget 
 {
     public:
-    explicit ContactNoEntry(std::function<void(void)> callback, QWidget *parent = nullptr); 
+    explicit FacultyEntry(std::function<void(void)> callback, QWidget *parent = nullptr); 
     
     void setText(const QString &text);
     QString text() const;
@@ -34,8 +32,4 @@ class ContactNoEntry : public QWidget
 
     protected:
     void mousePressEvent(QMouseEvent *event);
-    bool containsOnlyIntegers(const QString &number);
-    void updateLineEdit();
-    void onApplyClick();
-    
 };
