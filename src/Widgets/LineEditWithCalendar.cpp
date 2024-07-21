@@ -1,27 +1,35 @@
 #include "LineEditWithCalendar.h"
 
 LineEditWithCalendar::LineEditWithCalendar(QWidget *parent)
-    : QWidget(parent) 
+    : QLineEdit(parent), calendarWidget(new QCalendarWidget()), calendarButton(new QToolButton)
 {
-    lineEdit = new QLineEdit;
-    lineEdit->setPlaceholderText("dd-MM-yyyy");
-    lineEdit->setReadOnly(true);
+    setPlaceholderText("dd-MM-yyyy");
+    setReadOnly(true);
+    setStyleSheet(
+        "background: #FFFFFF;"
+        "border: 1px solid #453C3C;" 
+        "border-radius: 8px;"
+        "height: 30px;"
+        "color:#000000;"
+        "padding: 5px;"
+    );
 
-    calendarButton = new QToolButton();
     calendarButton->setIcon(QIcon("assets/images/calendar.png"));
-    calendarButton->setCursor(Qt::ArrowCursor);
+    calendarButton->setCursor(Qt::PointingHandCursor);
     calendarButton->setStyleSheet(
         "border: none;"
         "padding: 0px;"
     );
+    calendarButton->setToolTip("Calendar");
+    calendarButton->setIconSize(QSize(25,25));
+    calendarButton->setFixedSize(20,20);
 
     calendarWidget = new QCalendarWidget();
     calendarWidget->setVisible(false);
 
     QHBoxLayout *layout = new QHBoxLayout();
-    layout->addWidget(lineEdit);
-    layout->addWidget(calendarButton);
-    layout->setContentsMargins(0,0,0,0);
+    layout->addWidget(calendarButton, 0, Qt::AlignRight);
+    layout->setContentsMargins(0,0,10,0);
     layout->addSpacing(0);
 
     connect(calendarButton, &QToolButton::clicked, [this]() {
@@ -29,8 +37,8 @@ LineEditWithCalendar::LineEditWithCalendar(QWidget *parent)
     });
 
     connect(calendarWidget, &QCalendarWidget::clicked, [this](const QDate &date) {
-       this->lineEdit->setText(date.toString("dd-MM-yyyy")) ;
-       this->lineEdit->setVisible(true);
+       setText(date.toString("dd-MM-yyyy")) ;
+       setVisible(true);
        this->calendarWidget->setVisible(false);
     });
 
@@ -40,12 +48,12 @@ LineEditWithCalendar::LineEditWithCalendar(QWidget *parent)
 
 QString LineEditWithCalendar::text() const
 {
-    return lineEdit->text();
+    return QLineEdit::text();
 }
 
 void LineEditWithCalendar::setText(const QString &text)
 {
-    lineEdit->setText(text);
+    QLineEdit::setText(text);
 }
 
 

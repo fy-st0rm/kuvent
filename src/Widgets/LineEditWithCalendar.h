@@ -20,7 +20,6 @@ class LineEditWithCalendar : public QLineEdit
     void updateTextfromDate(const QDate &date);
 
     private:
-    QLineEdit *lineEdit;
     QToolButton *calendarButton;
     QCalendarWidget *calendarWidget;
 };
