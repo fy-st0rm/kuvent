@@ -258,6 +258,7 @@ void SignupPage::onSignupPress() {
 	QString password = password_entry->text();
 	QString confirm_password = confirmPassword_entry->text();
 	QString requiredSuffix = "@gmail.com";
+	QString emailWithoutSuffix = email.left(email.length() - requiredSuffix.length());
 
 	if (
 		name.isEmpty()     ||
@@ -271,7 +272,10 @@ void SignupPage::onSignupPress() {
 
 	if (
 		!email.endsWith("@gmail.com") ||
-		email.length() <= requiredSuffix.length()
+		email.length() <= requiredSuffix.length() ||
+		emailWithoutSuffix.contains(" ") ||
+		emailWithoutSuffix.startsWith(" ") || 
+		emailWithoutSuffix.contains(requiredSuffix, Qt::CaseSensitive)
 	) {
 		QMessageBox::warning(this, "Login Error", "Please enter valid email.");
 		return;
