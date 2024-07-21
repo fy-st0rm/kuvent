@@ -95,7 +95,10 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout6 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout6);
 
-	contactNoEntryLabel = new EditableLabel();
+	contactNoEntryLabel = new ContactNoEntry([=]() {
+		std::string number = contactNoEntryLabel->text().toStdString();
+		changeProfileData("NUMBER", number);
+	});
 	contactNoEntryLabel->setText("");
 	hLayout6->addWidget(contactNoEntryLabel);
 	
@@ -129,7 +132,10 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout9 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout9);
 
-	facultyEntryLabel = new EditableLabel();
+	facultyEntryLabel = new ContactNoEntry([=]() {
+		std::string batch = facultyEntryLabel->text().toStdString();
+		changeProfileData("BATCH", batch);
+	});
 	hLayout9->addWidget(facultyEntryLabel);
 
 	//line4
@@ -174,17 +180,63 @@ void ProfilePage::onEntry() {
 		QString::fromStdString(app_data.email)
 	);
 
-	if (app_data.number == 0) {
+	if (app_data.number == "NULL") {
 		contactNoEntryLabel->setText("");
 	}
 	else {
 		contactNoEntryLabel->setText(
-			QString::number(app_data.number)
+			QString::fromStdString(app_data.number)
 		);
 	}
 
-	facultyEntryLabel->setText(
-		QString::fromStdString(app_data.batch)
+	if (app_data.batch == "NULL") {
+		facultyEntryLabel->setText("");
+	}
+	else {
+		facultyEntryLabel->setText(
+			QString::fromStdString(app_data.batch)
+		);
+	}
+}
+
+void ProfilePage::changeProfileData(
+	const std::string& attrib,
+	const std::string& value
+) {
+	if (value.size() == 0)
+		return;
+
+	AppData app_data = app->getAppData();
+
+	// Preparing payload
+	Json::Value payload;
+	payload["id"] = app_data.id;
+	payload["attrib"] = attrib;
+	payload[attrib] = value;
+
+	Json::StyledWriter writer;
+	std::string payload_str = writer.write(payload);
+
+	// Sending the request to server
+	httplib::Result res = app->client->Post(
+		"/update_profile",
+		payload_str,
+		"application/json"
 	);
+
+	// Checking the response
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Update error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
 }
 

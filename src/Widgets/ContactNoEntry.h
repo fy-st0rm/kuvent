@@ -7,23 +7,24 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtGui/QMouseEvent>
+#include <functional>
 
 class ContactNoEntry : public QWidget 
 {
     public:
-    explicit ContactNoEntry(QWidget *parent = nullptr); 
+    explicit ContactNoEntry(std::function<void(void)> callback, QWidget *parent = nullptr); 
     
     void setText(const QString &text);
-
     QString text() const;
 
+	private: 
+	QLabel *label;
+	QLineEdit *lineEdit;
+	QHBoxLayout *layout;
+	QPushButton *editButton;
+	QPushButton *applyButton;
 
-    private: 
-    QLabel *label;
-    QLineEdit *lineEdit;
-    QHBoxLayout *layout;
-    QPushButton *editButton;
-    QPushButton *applyButton;
+	std::function<void(void)> apply_callback;
 
     void startEditing();
     void finishEditing();   

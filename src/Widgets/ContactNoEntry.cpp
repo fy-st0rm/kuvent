@@ -1,6 +1,8 @@
 #include "ContactNoEntry.h"
 
-ContactNoEntry::ContactNoEntry(QWidget *parent) : QWidget(parent), isEditing(false) {
+ContactNoEntry::ContactNoEntry(std::function<void(void)> callback, QWidget *parent) 
+: QWidget(parent), isEditing(false) , apply_callback(callback)
+{
     label = new QLabel(this);
     label->setStyleSheet(
         "font-weight: bold;"
@@ -78,6 +80,8 @@ void ContactNoEntry::finishEditing() {
         editButton->setVisible(true);
         applyButton->setVisible(false);
         isEditing = false;
+
+        apply_callback();
     }
 }
 

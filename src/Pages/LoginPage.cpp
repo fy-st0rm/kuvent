@@ -217,7 +217,7 @@ void LoginPage::onLoginButtonPress() {
 		.id = res_data["id"].asString(),
 		.username = res_data["username"].asString(),
 		.email = res_data["email"].asString(),
-		.number = res_data["number"].asInt(),
+		.number = res_data["number"].asString(),
 		.account_type = (AccountType) res_data["account_type"].asInt(),
 		.batch = res_data["batch"].asString()
 	};
