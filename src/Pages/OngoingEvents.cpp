@@ -42,6 +42,8 @@ void OngoingEventsPage::onAttach()
     QString event_name = "KUGameJam";
     QString organizer = "KUCC";
     QString flyer_path = "assets/images/gameJam.png";
+	for (int i = 0 ; i < 3; i++)
+	{
 
     PackEvent* event = new PackEvent(containerWidget, flyer_path, organizer, event_name);
     ongoingEventsLayout->addWidget(event, row, column, Qt::AlignTop);

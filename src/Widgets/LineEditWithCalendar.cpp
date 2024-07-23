@@ -26,6 +26,9 @@ LineEditWithCalendar::LineEditWithCalendar(QWidget *parent)
 
     calendarWidget = new QCalendarWidget();
     calendarWidget->setVisible(false);
+    QDate curr_date = QDate::currentDate();
+    calendarWidget->setMinimumDate(curr_date);
+
 
     QHBoxLayout *layout = new QHBoxLayout();
     layout->addWidget(calendarButton, 0, Qt::AlignRight);
@@ -53,7 +56,7 @@ QString LineEditWithCalendar::text() const
 
 void LineEditWithCalendar::setText(const QString &text)
 {
-    QLineEdit::setText(text);
+    QLineEdit::setText(text);   
 }
 
 
