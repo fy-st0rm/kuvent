@@ -179,7 +179,9 @@ void PostPage::clear()
 void PostPage::submitPost()
 {
 	start_date =start_date_entry->text();
+	QDate s_date  = QDate::fromString(start_date, "dd-MMMM-yyyy");
 	end_date =end_date_entry->text();
+	QDate e_date  = QDate::fromString(end_date, "dd-MMMM-yyyy");
 	event_name = event_name_entry->text();
 	location = location_entry->text();
 	description = description_entry->toPlainText();
@@ -196,6 +198,8 @@ void PostPage::submitPost()
 		QMessageBox::warning(this, "Fields incomplete", "Please add a flyer");
 	else if (description.isEmpty())
 		QMessageBox::warning(this, "Fields incomplete", "Please add description");
+	else if (e_date < s_date)
+		QMessageBox::warning(this, "Wrong Date", "End date can't be less than starting date");
 	else
 	{
 		createPreviewDialog();

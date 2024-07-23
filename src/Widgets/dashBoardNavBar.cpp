@@ -80,10 +80,10 @@ void DashBoardNavBar::onEntry(AccountType account_type) {
 		"border-radius: 15px;" 
 	);
 
-	// if (account_type == ORGANIZER) {
+	if (account_type == ORGANIZER) {
 		this->insertWidget(this->count() - 1, post_button, 0, Qt::AlignHCenter | Qt::AlignTop);
 		post_button->show();
-	// }
+	}
 }
 
 void DashBoardNavBar::onExit(AccountType account_type) {
@@ -91,11 +91,11 @@ void DashBoardNavBar::onExit(AccountType account_type) {
 	this->removeWidget(ongoing_button);
 	this->removeWidget(upcoming_button);
 
-	// if (account_type == ORGANIZER) {
+	if (account_type == ORGANIZER) {
 		std::cout << "REMOVING\n";
 		this->removeWidget(post_button);
 		post_button->hide();
-	// }
+	}
 }
 
 QPushButton *DashBoardNavBar::getProfileButton()
