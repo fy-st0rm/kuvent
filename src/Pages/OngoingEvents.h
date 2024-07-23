@@ -1,8 +1,11 @@
 #pragma once
 
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
+
+#include "Widgets/PackEvent.h"
 
 #include "Application/Page.h"
 
@@ -12,5 +15,6 @@ public:
 	void onEntry() {}
 
 private:
-	QVBoxLayout *ongoingEventsLayout;
+	QGridLayout *ongoingEventsLayout;
+	PackEvent *event;
 };
