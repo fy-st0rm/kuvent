@@ -20,6 +20,7 @@
 #include "Widgets/ContactNoEntry.cpp"
 #include "Widgets/FacultyEntry.cpp"
 #include "Widgets/LineEditWithCalendar.cpp"
+#include "Widgets/PackEvent.cpp"
 
 
 class App : public Application {

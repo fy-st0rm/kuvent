@@ -144,6 +144,7 @@
     "variant": "cpp",
     "qscrollarea": "cpp",
     "qregexp": "cpp",
-    "qcalendarwidget": "cpp"
+    "qcalendarwidget": "cpp",
+    "qwidget": "cpp"
   }
 }
