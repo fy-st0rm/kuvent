@@ -12,6 +12,7 @@
 #include "Pages/PostPage.cpp"
 #include "Pages/OngoingEvents.cpp"
 #include "Pages/UpcomingEvents.cpp"
+#include "Pages/DetailsPage.cpp"
 
 #include "Widgets/PageSwitcher.cpp"
 #include "Widgets/PasswordLineEdit.cpp"
@@ -21,7 +22,6 @@
 #include "Widgets/FacultyEntry.cpp"
 #include "Widgets/LineEditWithCalendar.cpp"
 #include "Widgets/PackEvent.cpp"
-
 
 class App : public Application {
 public:

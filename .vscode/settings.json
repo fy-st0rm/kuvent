@@ -145,6 +145,7 @@
     "qscrollarea": "cpp",
     "qregexp": "cpp",
     "qcalendarwidget": "cpp",
-    "qwidget": "cpp"
+    "qwidget": "cpp",
+    "qpixmap": "cpp"
   }
 }
