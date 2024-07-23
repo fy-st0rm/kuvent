@@ -7,6 +7,9 @@
 
 #include "Application/Page.h"
 #include "Widgets/PackEvent.h"
+#include "Pages/DashBoard.h"
+#include "Widgets/dashBoardNavBar.h"
+#include "Pages/PostPage.h"
 
 class DetailsPage: public Page{
     public:
@@ -20,5 +23,7 @@ class DetailsPage: public Page{
     QLabel *startDate;
     QLabel *endDate;
     QLabel *venueDescription;
-
+    QVBoxLayout *main_layout;
+    QLabel *organizerLabel;
+    QLabel *eventFlyer;
 };

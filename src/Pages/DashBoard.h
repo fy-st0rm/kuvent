@@ -24,6 +24,7 @@
 #include "Widgets/ContactNoEntry.h"
 #include "Widgets/FacultyEntry.h"
 #include "Widgets/LineEditWithCalendar.h"
+#include "Pages/DetailsPage.h"
 
 
 class DashBoard : public Page {

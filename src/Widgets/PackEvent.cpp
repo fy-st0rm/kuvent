@@ -48,7 +48,7 @@ PackEvent::PackEvent(QWidget *parent,QString flyer_path,QString organizer ,QStri
         event_layout->addWidget(flyer_preview);
     }
 
-    QPushButton *see_details_btn = new QPushButton("See Details");
+    see_details_btn = new QPushButton("See Details", this);
     see_details_btn->setStyleSheet(
         "QPushButton {"
         "   background-color: #B3C8CF;"
@@ -66,4 +66,12 @@ PackEvent::PackEvent(QWidget *parent,QString flyer_path,QString organizer ,QStri
     event_layout->addWidget(see_details_btn,0,Qt::AlignCenter);
 
     setLayout(event_layout);
+
 }
+
+QPushButton *PackEvent::getDetailsButton()
+{
+    return see_details_btn;
+}
+
+
