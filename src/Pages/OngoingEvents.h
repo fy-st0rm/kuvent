@@ -4,6 +4,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 
 #include "Widgets/PackEvent.h"
 
@@ -17,4 +18,6 @@ public:
 private:
 	QGridLayout *ongoingEventsLayout;
 	PackEvent *event;
+	int row;
+	int column;
 };
