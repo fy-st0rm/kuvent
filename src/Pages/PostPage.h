@@ -33,7 +33,7 @@ private:
 	void addDescriptionSection();
 	void addButtonSection();
 	void addImage();
-	void exit();
+	void clear();
 	void submitPost();
 	void createPreviewDialog();
 

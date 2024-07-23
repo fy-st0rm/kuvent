@@ -7,9 +7,9 @@ PackEvent::PackEvent(QWidget *parent,QString flyer_path,QString organizer ,QStri
     QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
     event_widget->setStyleSheet(
         "   background-color: #D9D9D9;"
-        "   border-radius: 10px;"
-        "   min-width: 400px;"
-        "   min-height: 400px;"
+        "   border-radius: 20px;"
+        "   min-width: 350px;"
+        "   min-height: 30px;"
     );
 
     QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+event_name);

@@ -10,5 +10,4 @@ class PackEvent: public QWidget
 
 public :
     explicit PackEvent(QWidget *parent,QString flyer_path,QString organizer ,QString event_name);
-
 };
