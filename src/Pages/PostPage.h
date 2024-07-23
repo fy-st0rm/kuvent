@@ -51,4 +51,11 @@ private:
 	QString flyer_path;
 	QDialog* preview_dialog;	
 
+
+	QString start_date ;
+	QString end_date ;
+	QString event_name ;
+	QString location ;
+	QString description ;
+
 };

@@ -41,6 +41,7 @@ void PostPage::onAttach()
     addFlyerSection();
     addDescriptionSection();
     addButtonSection();
+
 }
 
 void PostPage::addEventNameSection()
@@ -177,15 +178,37 @@ void PostPage::clear()
 
 void PostPage::submitPost()
 {
-    createPreviewDialog();
-    if (preview_dialog->exec() == QDialog::Accepted) {
-        if (postToServer()) {
-            QMessageBox::information(this, "Success", "Your post has been successfully submitted!");
-        } else {
-            QMessageBox::warning(
-                this, "Error", "Failed to submit the post. Please try again later.");
-        }
-    }
+	start_date =start_date_entry->text();
+	end_date =end_date_entry->text();
+	event_name = event_name_entry->text();
+	location = location_entry->text();
+	description = description_entry->toPlainText();
+
+	if ( event_name.isEmpty() )
+		QMessageBox::warning(this, "Fields incomplete", "Please add the event name");
+	else if (start_date.isEmpty())
+		QMessageBox::warning(this, "Fields incomplete", "Please add starting date");
+	else if (end_date.isEmpty())
+		QMessageBox::warning(this, "Fields incomplete", "Please add end date");
+	else if (location.isEmpty())
+		QMessageBox::warning(this, "Fields incomplete", "Please add location");
+	else if (flyer_path.isEmpty())
+		QMessageBox::warning(this, "Fields incomplete", "Please add a flyer");
+	else if (description.isEmpty())
+		QMessageBox::warning(this, "Fields incomplete", "Please add description");
+	else
+	{
+		createPreviewDialog();
+		if (preview_dialog->exec() == QDialog::Accepted) {
+			if (postToServer()) {
+				QMessageBox::information(this, "Success", "Your post has been successfully submitted!");
+			} else {
+				QMessageBox::warning(
+					this, "Error", "Failed to submit the post. Please try again later.");
+			}
+		}
+
+	}
 }
 
 void PostPage::createPreviewDialog()
@@ -197,11 +220,11 @@ void PostPage::createPreviewDialog()
     preview_dialog->setWindowTitle("Post Preview");
     QVBoxLayout* dialog_layout = new QVBoxLayout(preview_dialog);
 
-    QLabel* name_preview = new QLabel("Event Name: " + event_name_entry->text());
+    QLabel* name_preview = new QLabel("Event Name: " + event_name);
     QLabel* date_preview
-        = new QLabel("Date: " + start_date_entry->text() + " to " + end_date_entry->text());
-    QLabel* location_preview = new QLabel("Location: " + location_entry->text());
-    QLabel* description_preview = new QLabel("Description: " + description_entry->toPlainText());
+        = new QLabel("Date: " + start_date + " to " + end_date);
+    QLabel* location_preview = new QLabel("Location: " + location);
+    QLabel* description_preview = new QLabel("Description: " + description);
 
     dialog_layout->addWidget(name_preview);
     dialog_layout->addWidget(date_preview);
