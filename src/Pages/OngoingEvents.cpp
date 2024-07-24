@@ -35,22 +35,22 @@ void OngoingEventsPage::onAttach()
     QWidget *containerWidget = new QWidget();
 
     ongoingEventsLayout = new QGridLayout(containerWidget);
+    ongoingEventsLayout->setSpacing(40);
     for (int i = 0 ; i < 5; i++)
     {  
         for (int j = 0 ; j < 3; j++)
         {
             QString event_name = "KUGameJam";
             QString organizer = "KUCC";
-            QString flyer_path = "assets/images/gameJam.png";
+            QString flyer_path = "assets/images/edit_icon.png";
             PackEvent* event = new PackEvent(containerWidget, flyer_path, organizer, event_name);
-            ongoingEventsLayout->addWidget(event, i, j, Qt::AlignTop);
+            ongoingEventsLayout->addWidget(event, i, j,Qt::AlignCenter);
             
-            // Connect the details button of each event
-            connect(event->getDetailsButton(), &QPushButton::clicked, this, [this, event]() {
-                // Handle the details button click here
-                // For example, you might want to open a details page:
-                // openDetailsPage(event);
-            });
+            
+            // // Connect the details button of each event
+            // connect(event->getDetailsButton(), &QPushButton::clicked, this, [this, event]() {
+            //     // Handle the details button click here
+            // });
         }
     }
 
