@@ -18,7 +18,7 @@ void OngoingEventsPage::onAttach()
         "border-radius: 5px;"
         "background: #FFFFFF;"
         "}"
-        "QScrollBar::add-line:vertical {"  // Fixed typo: 'verical' to 'vertical'
+        "QScrollBar::add-line:vertical {"
         "background: none;"
         "height: 0px;"
         "}"
@@ -31,30 +31,29 @@ void OngoingEventsPage::onAttach()
         "}"
     );
     scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     QWidget *containerWidget = new QWidget();
 
-    ongoingEventsLayout = new QGridLayout(containerWidget);
+    QGridLayout *ongoingEventsLayout = new QGridLayout(containerWidget);
     ongoingEventsLayout->setSpacing(40);
+    
     for (int i = 0 ; i < 5; i++)
     {  
-        for (int j = 0 ; j < 3; j++)
+        for (int j = 0 ; j < 4; j++)
         {
             QString event_name = "KUGameJam";
             QString organizer = "KUCC";
             QString flyer_path = "assets/images/gameJam.png";
             PackEvent* event = new PackEvent(containerWidget, flyer_path, organizer, event_name);
-            ongoingEventsLayout->addWidget(event, i, j,Qt::AlignCenter);
+            ongoingEventsLayout->addWidget(event, i, j, Qt::AlignCenter);
             
             // Connect the details button of each event
             connect(event->getDetailsButton(), &QPushButton::clicked, this, [this, event]() {
                 // Handle the details button click here
-                qDebug("btn pressed");
             });
         }
     }
-
-    containerWidget->setLayout(ongoingEventsLayout);
 
     scrollArea->setWidget(containerWidget);
 

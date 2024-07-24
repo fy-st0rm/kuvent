@@ -16,14 +16,14 @@
 #include <optional>
 #include "Application/Page.h"
 #include "Widgets/LineEditWithCalendar.h"
-
+#include "Widgets/dashBoardNavBar.h"
+#include "theme.h"
 class PostPage : public Page {
 public:
 	PostPage();
 	~PostPage();
 	void onAttach();
 	void onEntry() {}
-
 
 private:
 	void addEventNameSection();

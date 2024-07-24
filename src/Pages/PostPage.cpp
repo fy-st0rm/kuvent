@@ -55,7 +55,8 @@ void PostPage::addEventNameSection()
     event_name_entry = new QLineEdit();
     event_name_entry->setPlaceholderText("Event Name*");
     event_name_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
-                                    "border-radius: 8px; height: 34px;color:#000000;");
+                                    "border-radius: 8px; height: 22px;color:#000000;"
+									"padding: 10px;");
     v_layout->addWidget(event_name_entry);
 }
 
@@ -90,13 +91,15 @@ void PostPage::addLocationSection()
     location_entry = new QLineEdit();
     location_entry->setPlaceholderText("Venue*");
     location_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; border-radius: "
-                                  "8px; height: 36px;color:#000000;");
+                                  "8px; height: 22px;color:#000000;"
+								  "padding: 10px;");
     v_layout->addWidget(location_entry);
 
     location_description_entry = new QLineEdit();
     location_description_entry->setPlaceholderText("Location description");
     location_description_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
-                                              "border-radius: 8px; height: 36px;color:#000000;");
+                                              "border-radius: 8px; height: 22px;color:#000000;"
+											  "padding: 10px;");
     v_layout->addWidget(location_description_entry);
 }
 
@@ -128,7 +131,8 @@ void PostPage::addDescriptionSection()
 
     description_entry = new QTextEdit();
     description_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
-                                     "border-radius: 8px; height: 79px;color:#000000;");
+                                     "border-radius: 8px; height: 79px;color:#000000;"
+									 "padding: 10px;");
     v_layout->addWidget(description_entry);
 }
 
@@ -200,12 +204,18 @@ void PostPage::submitPost()
 		QMessageBox::warning(this, "Fields incomplete", "Please add description");
 	else if (e_date < s_date)
 		QMessageBox::warning(this, "Wrong Date", "End date can't be less than starting date");
+	else if (e_date == s_date)
+	{
+		QMessageBox::warning(this, "Wrong Date", "Start and end dates can not be same");
+	}
 	else
 	{
 		createPreviewDialog();
 		if (preview_dialog->exec() == QDialog::Accepted) {
 			if (postToServer()) {
 				QMessageBox::information(this, "Success", "Your post has been successfully submitted!");
+				clear();
+
 			} else {
 				QMessageBox::warning(
 					this, "Error", "Failed to submit the post. Please try again later.");
