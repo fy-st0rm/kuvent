@@ -6,7 +6,7 @@
         QWidget *event_widget = new QWidget(this);
         QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
         event_widget->setStyleSheet(
-            "   background-color: #FF0000;"
+            "   background-color: #62B6CB;"
             "   border-radius: 20px;"
             "   min-width: 310px;"
             "   min-height: 400px;"

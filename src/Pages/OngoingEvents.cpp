@@ -42,15 +42,15 @@ void OngoingEventsPage::onAttach()
         {
             QString event_name = "KUGameJam";
             QString organizer = "KUCC";
-            QString flyer_path = "assets/images/edit_icon.png";
+            QString flyer_path = "assets/images/gameJam.png";
             PackEvent* event = new PackEvent(containerWidget, flyer_path, organizer, event_name);
             ongoingEventsLayout->addWidget(event, i, j,Qt::AlignCenter);
             
-            
-            // // Connect the details button of each event
-            // connect(event->getDetailsButton(), &QPushButton::clicked, this, [this, event]() {
-            //     // Handle the details button click here
-            // });
+            // Connect the details button of each event
+            connect(event->getDetailsButton(), &QPushButton::clicked, this, [this, event]() {
+                // Handle the details button click here
+                qDebug("btn pressed");
+            });
         }
     }
 
