@@ -4,9 +4,6 @@
 
 void OngoingEventsPage::onAttach() 
 {
-    row = 0;
-    column = 0;
-
     QScrollArea *scrollArea = new QScrollArea();
     scrollArea->setWidgetResizable(true);
     scrollArea->setStyleSheet(
@@ -21,7 +18,7 @@ void OngoingEventsPage::onAttach()
         "border-radius: 5px;"
         "background: #FFFFFF;"
         "}"
-        "QScrollBar::add-line:verical {"
+        "QScrollBar::add-line:vertical {"  // Fixed typo: 'verical' to 'vertical'
         "background: none;"
         "height: 0px;"
         "}"
@@ -38,21 +35,23 @@ void OngoingEventsPage::onAttach()
     QWidget *containerWidget = new QWidget();
 
     ongoingEventsLayout = new QGridLayout(containerWidget);
-
-    QString event_name = "KUGameJam";
-    QString organizer = "KUCC";
-    QString flyer_path = "assets/images/gameJam.png";
-	for (int i = 0 ; i < 3; i++)
-	{
-
-    PackEvent* event = new PackEvent(containerWidget, flyer_path, organizer, event_name);
-    ongoingEventsLayout->addWidget(event, row, column, Qt::AlignTop);
-
-    column++;
-    if (column >= 2)
-    {
-        column = 0;
-        row++;
+    for (int i = 0 ; i < 5; i++)
+    {  
+        for (int j = 0 ; j < 3; j++)
+        {
+            QString event_name = "KUGameJam";
+            QString organizer = "KUCC";
+            QString flyer_path = "assets/images/gameJam.png";
+            PackEvent* event = new PackEvent(containerWidget, flyer_path, organizer, event_name);
+            ongoingEventsLayout->addWidget(event, i, j, Qt::AlignTop);
+            
+            // Connect the details button of each event
+            connect(event->getDetailsButton(), &QPushButton::clicked, this, [this, event]() {
+                // Handle the details button click here
+                // For example, you might want to open a details page:
+                // openDetailsPage(event);
+            });
+        }
     }
 
     containerWidget->setLayout(ongoingEventsLayout);
@@ -61,12 +60,6 @@ void OngoingEventsPage::onAttach()
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(scrollArea); 
-
-    connect(event->getDetailsButton(), &QPushButton::clicked, this, [this]() {
-    });
     
     setLayout(mainLayout);
 }
-
-
-
