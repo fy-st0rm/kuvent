@@ -126,7 +126,7 @@ void OngoingEventsPage::onEntry() {
 		std::string flyer_id = flyers[0].asString();
 
 		PackEvent* event_widget = new PackEvent(containerWidget, app->client, flyer_id, organizer, event_name);
-		ongoingEventsLayout->addWidget(event_widget, row, col, Qt::AlignCenter);
+		ongoingEventsLayout->addWidget(event_widget, row, col, Qt::AlignLeft | Qt::AlignTop);
 		
 		// Connect the details button of each event
 		connect(event_widget->getDetailsButton(), &QPushButton::clicked, this, [this, event_widget]() {

@@ -1,4 +1,5 @@
 #include "UpcomingEvents.h"
+#include "utils.h"
 
 void UpcomingEventsPage::onAttach() {
 	QScrollArea *scrollArea = new QScrollArea();
@@ -122,7 +123,7 @@ void UpcomingEventsPage::onEntry() {
 		std::string flyer_id = flyers[0].asString();
 
 		PackEvent* event_widget = new PackEvent(containerWidget, app->client, flyer_id, organizer, event_name);
-		upcomingEventsLayout->addWidget(event_widget, row, col, Qt::AlignCenter);
+		upcomingEventsLayout->addWidget(event_widget, row, col, Qt::AlignTop | Qt::AlignLeft);
 		
 		// Connect the details button of each event
 		connect(event_widget->getDetailsButton(), &QPushButton::clicked, this, [this, event_widget]() {
