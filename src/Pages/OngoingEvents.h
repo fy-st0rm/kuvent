@@ -18,13 +18,12 @@
 class OngoingEventsPage : public Page {
 public:
 	void onAttach();
-	void onEntry() {}
+	void onEntry();
 
 private:
 	QGridLayout *ongoingEventsLayout;
-	PackEvent *event;
+	QWidget *containerWidget;
 	int row;
 	int column;
 	PageSwitcher *m_pg_switcher;
-
 };

@@ -275,8 +275,10 @@ bool PostPage::postToServer()
     std::string desc = description_entry->toPlainText().toStdString();
 
     // Preparing payload
+    AppData app_data = app->getAppData();
     Json::Value payload;
     payload["name"] = event_name;
+    payload["organizer"] = app_data.username;
     payload["start_date"] = start_date;
     payload["end_date"] = end_date;
     payload["venue"] = venue;
