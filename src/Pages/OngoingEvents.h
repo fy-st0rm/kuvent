@@ -10,7 +10,6 @@
 
 #include "Application/Application.h"
 #include "Application/Page.h"
-#include "Application/Page.h"
 #include "Widgets/PageSwitcher.h"
 #include "Pages/DetailsPage.h"
 #include "Pages/DashBoard.h"
@@ -23,7 +22,5 @@ public:
 private:
 	QGridLayout *ongoingEventsLayout;
 	QWidget *containerWidget;
-	int row;
-	int column;
 	PageSwitcher *m_pg_switcher;
 };

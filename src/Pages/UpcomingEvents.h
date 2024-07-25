@@ -1,17 +1,27 @@
 #pragma once
 
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
+#include "Widgets/PackEvent.h"
+#include <QtCore/QDebug>
 
 #include "Application/Page.h"
+#include "Application/Application.h"
+#include "Application/Page.h"
+#include "Widgets/PageSwitcher.h"
+#include "Pages/DetailsPage.h"
+#include "Pages/DashBoard.h"
 
 class UpcomingEventsPage: public Page {
 public:
 	void onAttach();
-	void onEntry() {}
+	void onEntry();
 
 private:
-	QVBoxLayout *upcomingEventsLayout;
-	QLabel* upcomingEventsLabel;
+	QGridLayout *upcomingEventsLayout;
+	QWidget *containerWidget;
+	PageSwitcher *m_pg_switcher;
 };
