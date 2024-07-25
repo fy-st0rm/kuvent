@@ -22,6 +22,7 @@ namespace model {
 		.format = {
 			{ "ID",         "TEXT", .primary_key = true },
 			{ "NAME",       "TEXT" },
+			{ "ORGANIZER",  "TEXT" },
 			{ "START_DATE", "DATETIME" },
 			{ "END_DATE",   "DATETIME" },
 			{ "VENUE",      "TEXT" },

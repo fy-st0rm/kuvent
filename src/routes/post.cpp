@@ -13,6 +13,7 @@ void post_event(const Request& req, Response& res) {
 
 	std::string id = uuid::generate_uuid_v4();
 	std::string event_name = value["name"].asString();
+	std::string organizer = value["organizer"].asString();
 	std::string start_date = value["start_date"].asString();
 	std::string end_date = value["end_date"].asString();
 	std::string venue = value["venue"].asString();
@@ -29,6 +30,7 @@ void post_event(const Request& req, Response& res) {
 		<< "VALUES ("
 		<< "\"" << id << "\","
 		<< "\"" << event_name << "\","
+		<< "\"" << organizer << "\","
 		<< "\"" << start_date << "\","
 		<< "\"" << end_date << "\","
 		<< "\"" << venue << "\","
