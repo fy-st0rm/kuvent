@@ -65,4 +65,75 @@ void post_event(const Request& req, Response& res) {
 	res.set_content("{ \"event_id\": " + id + " }", "application/json");
 }
 
+void get_event(const Request& req, Response& res) {
+	Database db(DB_PATH);
+
+	// Getting all the event
+	std::stringstream sq;
+	sq << "SELECT * FROM EVENTS;";
+
+	QueryResult r = db.query(sq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	// Collecting event data
+	Json::Value response;
+	for (auto row : r.result) {
+		Json::Value event;
+		for (auto [key, value] : row) {
+			event[key] = value;
+		}
+		response[row["ID"]] = event;
+	}
+
+	Json::StyledWriter writer;
+	std::string response_str = writer.write(response);
+
+	res.status = StatusCode::OK_200;
+	res.set_content(response_str, "application/json");
+}
+
+void get_flyer(const Request& req, Response& res) {
+	std::string id = req.path_params.at("event_id");
+
+	Database db(DB_PATH);
+
+	// Searching for flyer from that event
+	std::stringstream sq;
+	sq
+		<< "SELECT * FROM FLYERS "
+		<< "WHERE EVENT = \"" << id << "\";";
+
+	QueryResult r = db.query(sq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	// When the flyer doesnt exists
+	if (r.result.size() == 0) {
+		res.status = StatusCode::BadRequest_400;
+		res.set_content("Cannot find flyers for event with id: " + id, "text/plain");
+		return;
+	}
+
+	// Collecting data
+	Json::Value response;
+	Json::Value flyers;
+	for (auto row : r.result) {
+		flyers.append(row["ID"]);
+	}
+	response["flyers"] = flyers;
+
+	Json::StyledWriter writer;
+	std::string response_str = writer.write(response);
+
+	res.status = StatusCode::OK_200;
+	res.set_content(response_str, "application/json");
+}
+
 }

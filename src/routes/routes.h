@@ -16,4 +16,6 @@ namespace route {
 
 	// Post
 	void post_event(const Request& req, Response& res);
+	void get_event(const Request& req, Response& res);
+	void get_flyer(const Request& req, Response& res);
 }
