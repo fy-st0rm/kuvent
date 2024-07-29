@@ -35,7 +35,7 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout15 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout15);
 
-	QLabel *profilePic = new QLabel(this);
+	LabelWithButton *profilePic = new LabelWithButton(this);
 	QPixmap profile("assets/images/KUventpp.png");
 	profilePic->setPixmap(profile);
 	profilePic->setFixedSize(100,100);

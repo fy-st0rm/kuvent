@@ -25,6 +25,7 @@
 #include "Widgets/FacultyEntry.h"
 #include "Widgets/LineEditWithCalendar.h"
 #include "Pages/DetailsPage.h"
+#include "Widgets/LabelWithButton.h"
 
 
 class DashBoard : public Page {

@@ -3,6 +3,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QMessageBox>
 
 #include "httplib.h"
 

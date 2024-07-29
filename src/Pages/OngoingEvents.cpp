@@ -135,7 +135,7 @@ void OngoingEventsPage::onEntry() {
 
 		// TODO: Find a better alternative
 		col++;
-		if (col == 3) {
+		if (col == 4) {
 			row++;
 			col = 0;
 		}

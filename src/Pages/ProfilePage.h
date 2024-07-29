@@ -10,6 +10,7 @@
 #include "Widgets/ContactNoEntry.h"
 #include <QtWidgets/QMessageBox>
 #include "Widgets/FacultyEntry.h"
+#include "Widgets/LabelWithButton.h"
 
 #include "Application/Page.h"
 #include "Application/Application.h"

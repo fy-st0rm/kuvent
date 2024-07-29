@@ -22,6 +22,7 @@
 #include "Widgets/FacultyEntry.cpp"
 #include "Widgets/LineEditWithCalendar.cpp"
 #include "Widgets/PackEvent.cpp"
+#include "Widgets/LabelWithButton.cpp"
 
 class App : public Application {
 public:

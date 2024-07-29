@@ -58,6 +58,12 @@ void DashBoardNavBar::createButton(QPushButton *&button,const QString &iconPath)
 	button->setIconSize(QSize(40, 30));
 	button->setFixedSize(50, 50);
 	button->setStyleSheet(
+		"QToolTip {"
+		"background-color: white;"
+		"}"
+		"QToolTip:hover {"
+		"background-color: white;"
+		"}"
 		"QPushButton {"
 		"border-radius: 25px;"
 		"border: 2px;"
@@ -121,23 +127,55 @@ QPushButton *DashBoardNavBar::getPostButton()
 void DashBoardNavBar::resetButtonStyles()
 {
 	profile_button->setStyleSheet(
+		"QToolTip {"
+		"background-color: white;"
+		"}"
+		"QToolTip:hover {"
+		"background-color: white;"
+		"}"
+		"QPushButton {"
 		"border-radius: 25px;"
 		"border: 2px;"
 		"background-color:" + Theme::dashboardBg + ";"
+		"}"
 	);
 	ongoing_button->setStyleSheet(
+		"QToolTip {"
+		"background-color: white;"
+		"}"
+		"QToolTip:hover {"
+		"background-color: white;"
+		"}"
+		"QPushButton {"
 		"border-radius: 25px;"
 		"border: 2px;"
 		"background-color:" + Theme::dashboardBg + ";"
+		"}"
 	);
 	upcoming_button->setStyleSheet(
+		"QToolTip {"
+		"background-color: white;"
+		"}"
+		"QToolTipk:hover {"
+		"background-color: white;"
+		"}"
+		"QPushButton {"
 		"border-radius: 25px;"
 		"border: 2px;"
 		"background-color:" + Theme::dashboardBg + ";"
+		"}"
 	);
 	post_button->setStyleSheet(
+		"QToolTip {"
+		"background-color: white;"
+		"}"
+		"QToolTip:hover {"
+		"background-color: white;"
+		"}"
+		"QPushButton {"
 		"border-radius: 25px;"
 		"border: 2px;"
 		"background-color:" + Theme::dashboardBg + ";"
+		"}"
 	);
 }
