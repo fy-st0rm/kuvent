@@ -34,6 +34,7 @@ struct AppData {
 	std::string number;
 	AccountType account_type;
 	std::string batch;
+	std::string pfp;
 };
 
 class Application {

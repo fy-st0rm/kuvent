@@ -25,6 +25,8 @@ private:
 	void changeProfileData(const std::string& attrib, const std::string& value);
 
 private:
+	AppData app_data;
+
 	QVBoxLayout *v_profileLayout;
 	QBoxLayout *h_profileLayout;
 

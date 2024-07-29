@@ -219,7 +219,8 @@ void LoginPage::onLoginButtonPress() {
 		.email = res_data["email"].asString(),
 		.number = res_data["number"].asString(),
 		.account_type = (AccountType) res_data["account_type"].asInt(),
-		.batch = res_data["batch"].asString()
+		.batch = res_data["batch"].asString(),
+		.pfp = res_data["pfp"].asString()
 	};
 	app->setAppData(app_data);
 

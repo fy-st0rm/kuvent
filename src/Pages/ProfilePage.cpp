@@ -4,6 +4,9 @@
 void ProfilePage::onAttach() {
 	v_profileLayout = new QVBoxLayout(this);
 	setLayout(v_profileLayout);
+
+	// App Data
+	app_data = app->getAppData();
 	
 	//My Account label
 	QHBoxLayout *hLayout1 = new QHBoxLayout;
@@ -35,8 +38,40 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout15 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout15);
 
-	LabelWithButton *profilePic = new LabelWithButton(this);
-	QPixmap profile("assets/images/KUventpp.png");
+	LabelWithButton *profilePic = new LabelWithButton(app, this);
+
+	QPixmap profile;
+
+	// When there is no pfp
+	if (app_data.pfp == "NULL") {
+		profile.load("assets/images/KUventpp.png");
+	} else {
+		// If pfp exists, fetching from the server
+		httplib::Result res = app->client->Get("/download/" + app_data.pfp);
+
+		// Checking the result
+		if (!res) {
+			QMessageBox::critical(
+				this,
+				"Connection Error",
+				"Cannot connect to the server. Please check your connection and try again later."
+			);
+		}
+
+		if (res->status != httplib::StatusCode::OK_200) {
+			QMessageBox::warning(
+				this,
+				"Pfp Fetch Error",
+				QString::fromStdString(res->body)
+			);
+		}
+
+		profile.loadFromData(
+			reinterpret_cast<const uchar*>(res->body.data()),
+			res->body.size()
+		);
+	}
+
 	profilePic->setPixmap(profile);
 	profilePic->setFixedSize(100,100);
 	profilePic->setScaledContents(true);

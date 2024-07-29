@@ -7,22 +7,24 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtGui/QEnterEvent>
 #include <QtWidgets/QFileDialog>
-#include <QtGui/QPixMap>
+#include <QtGui/QPixmap>
 #include <QtWidgets/QMessageBox>
 
+#include "Application/Application.h"
+
 class LabelWithButton: public QLabel {
-    public:
-    LabelWithButton(QWidget *parent = nullptr);
-    ~LabelWithButton();
+public:
+	LabelWithButton(Application* app, QWidget *parent = nullptr);
+	~LabelWithButton();
 
-    private slots:
-    void onUploadClick();
+	private slots:
+	void onUploadClick();
 
-    protected:
-    void enterEvent(QEnterEvent *event);
-    void leaveEvent(QEvent *event);
+	protected:
+	void enterEvent(QEnterEvent *event);
+	void leaveEvent(QEvent *event);
 
-    private:
-    QPushButton *button;
-
+private:
+	QPushButton *button;
+	Application* m_app;
 };
