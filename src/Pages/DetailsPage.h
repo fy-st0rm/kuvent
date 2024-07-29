@@ -26,4 +26,8 @@ class DetailsPage: public Page{
     QVBoxLayout *main_layout;
     QLabel *organizerLabel;
     QLabel *eventFlyer;
+    QToolButton *closeButton;
+
+    private slots:
+    void onCloseClick();
 };

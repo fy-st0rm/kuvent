@@ -14,9 +14,16 @@ void DetailsPage::onAttach()
         "font-size: 14pt;"
         "font-weight: bold;"
     );
-    hLayout1->addWidget(eventName);
-    hLayout1->setAlignment(Qt::AlignLeft);
 
+    closeButton = new QToolButton();
+    closeButton->setIcon(QIcon("assets/images/close.png"));
+    closeButton->setIconSize(QSize(20,20));
+    closeButton->setContentsMargins(0,0,0,0);
+    hLayout1->addWidget(eventName, 0, Qt::AlignLeft);
+    hLayout1->addWidget(closeButton, 0, Qt::AlignRight);
+
+    connect(closeButton, &QToolButton::clicked, this, &DetailsPage::onCloseClick);
+    
     QHBoxLayout *hLayout2 = new QHBoxLayout;
 	main_layout->addLayout(hLayout2);
 	main_layout->setAlignment(Qt::AlignTop);
@@ -100,4 +107,9 @@ void DetailsPage::onAttach()
     hLayout10->addWidget(eventFlyer);
     hLayout10->setAlignment(Qt::AlignLeft);
 
+}
+
+void DetailsPage::onCloseClick()
+{
+    pg_switcher->switchPage("OngoingEvents");
 }
