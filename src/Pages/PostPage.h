@@ -58,4 +58,6 @@ private:
 	QString location ;
 	QString description ;
 
+	void applyShadow(QWidget *widget);
+
 };

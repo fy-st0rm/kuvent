@@ -58,6 +58,7 @@ void PostPage::addEventNameSection()
                                     "border-radius: 8px; height: 22px;color:#000000;"
 									"padding: 10px;");
     v_layout->addWidget(event_name_entry);
+    applyShadow(event_name_entry);
 }
 
 void PostPage::addDateSection()
@@ -76,6 +77,8 @@ void PostPage::addDateSection()
 
     end_date_entry = new LineEditWithCalendar();
     date_layout->addWidget(end_date_entry);
+    applyShadow(start_date_entry);
+    applyShadow(end_date_entry);
 
     v_layout->addLayout(date_layout);
 }
@@ -94,12 +97,14 @@ void PostPage::addLocationSection()
                                   "8px; height: 22px;color:#000000;"
 								  "padding: 10px;");
     v_layout->addWidget(location_entry);
+    applyShadow(location_entry);
 
     location_description_entry = new QLineEdit();
     location_description_entry->setPlaceholderText("Location description");
     location_description_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
                                               "border-radius: 8px; height: 22px;color:#000000;"
 											  "padding: 10px;");
+    applyShadow(location_description_entry);
     v_layout->addWidget(location_description_entry);
 }
 
@@ -134,6 +139,7 @@ void PostPage::addDescriptionSection()
                                      "border-radius: 8px; height: 79px;color:#000000;"
 									 "padding: 10px;");
     v_layout->addWidget(description_entry);
+    applyShadow(description_entry);
 }
 
 void PostPage::addButtonSection()
@@ -151,6 +157,8 @@ void PostPage::addButtonSection()
     button_layout->addWidget(post_button);
 
     v_layout->addLayout(button_layout);
+    applyShadow(post_button);
+    applyShadow(clear_button);
 
     connect(clear_button, &QPushButton::clicked, this, &PostPage::clear);
     connect(post_button, &QPushButton::clicked, this, &PostPage::submitPost);
@@ -344,4 +352,20 @@ std::optional<Json::Value> PostPage::uploadFlyers()
 
     Json::Value ids = response["ids"];
     return ids;
+}
+
+void PostPage::applyShadow(QWidget *widget) {
+	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
+	shadow->setBlurRadius(4);
+	shadow->setColor(QColor(Theme::dropshadow));
+	
+	// shadow->setOffset(QPointF(1, 1));
+	if (qobject_cast<QLineEdit*>(widget)) 
+		shadow->setOffset(QPointF(2,2)); 
+	else if (qobject_cast<QPushButton*>(widget)) 
+		shadow->setOffset(QPointF(1, 1));
+    else if (qobject_cast<QTextEdit*>(widget)) 
+		shadow->setOffset(QPointF(1, 1)); 
+	
+	widget->setGraphicsEffect(shadow);
 }
