@@ -19,20 +19,27 @@ void PostPage::onAttach()
     v_layout = new QVBoxLayout(this);
     setLayout(v_layout);
 
+    // Create an Event Text Label
     QLabel* create_an_event_label = new QLabel("Create an Event", this);
     create_an_event_label->setStyleSheet(
-        "font-family: 'Lalezar'; font-size: 24px; color: #FFFFFF;");
+        "font-family: 'Lalezar';"
+        "font-size: 24px;"
+        "color: #FFFFFF;"
+        "font-weight: 600;"
+        );
     v_layout->addWidget(create_an_event_label, 0, Qt::AlignCenter);
 
+    //Add details of event text Label
     QLabel* add_details_label = new QLabel("Add details about your event", this);
     add_details_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 13px; font-weight: 600; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 13px; font-weight: 500; color: #FFFFFF;");
     v_layout->addWidget(add_details_label, 0, Qt::AlignCenter);
 
+    //Horizontal line
     QFrame* horizontal_line = new QFrame();
     horizontal_line->setFrameShape(QFrame::HLine);
-    horizontal_line->setFrameShadow(QFrame::Sunken);
-    horizontal_line->setStyleSheet("background-color: #1E1E1E;");
+    horizontal_line->setLineWidth(1);
+    horizontal_line->setStyleSheet("color: #000000;");
     v_layout->addWidget(horizontal_line);
 
     addEventNameSection();
