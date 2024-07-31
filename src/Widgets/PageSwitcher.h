@@ -17,26 +17,31 @@ public:
 		return m_stacked_widget;
 	}
 
-	template<typename T>
-	void addPage(const std::string& name) {
+	template<typename T, typename... Args>
+	void addPage(const std::string& name, Args&&... args) {
 
 		// Setting up the page
-		Page* pg = new T();
+		Page* pg = new T(std::forward<Args>(args)...);
 		pg->setApp(m_app);
 		pg->setPageSwitcher(this);
 		pg->onAttach();
 
 		// Pushing the page to stacked widget and storing seperatly
 		m_pages.push_back(pg);
-		m_curr_idx = m_stacked_widget->addWidget(
+		int idx = m_stacked_widget->addWidget(
 			m_pages.back()->getBaseWidget()
 		);
 		m_page_idxs.insert({
-			name, m_curr_idx
+			name, idx 
 		});
+
+		m_stacked_widget->setCurrentIndex(m_curr_idx);
 	}
 
 	void switchPage(const std::string& name);
+
+	// TODO: Implement this
+	// void deletePage(const std::string& name);
 
 private:
 	Application* m_app;

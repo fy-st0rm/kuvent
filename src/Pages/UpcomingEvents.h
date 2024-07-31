@@ -19,6 +19,10 @@ class UpcomingEventsPage: public Page {
 public:
 	void onAttach();
 	void onEntry();
+	void onExit();
+
+private:
+	void generateDetailsPages(const Json::Value& events);
 
 private:
 	QGridLayout *upcomingEventsLayout;

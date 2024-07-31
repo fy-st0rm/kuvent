@@ -92,6 +92,9 @@ void OngoingEventsPage::onEntry() {
 	int row = 0;
 	int col = 0;
 
+	// Generating details page
+	generateDetailsPages(ongoing_events);
+
 	for (auto event: ongoing_events) {
 		// Getting the flyers of the event
 		httplib::Result res = app->client->Get("/get_flyer/" + event["ID"].asString());
@@ -127,10 +130,14 @@ void OngoingEventsPage::onEntry() {
 
 		PackEvent* event_widget = new PackEvent(containerWidget, app->client, flyer_id, organizer, event_name);
 		ongoingEventsLayout->addWidget(event_widget, row, col, Qt::AlignLeft | Qt::AlignTop);
+
 		
 		// Connect the details button of each event
-		connect(event_widget->getDetailsButton(), &QPushButton::clicked, this, [this, event_widget]() {
-				// Handle the details button click here
+		connect(
+			event_widget->getDetailsButton(),
+			&QPushButton::clicked, this,
+			[this, event, event_widget]() {
+				pg_switcher->switchPage(event["ID"].asString());
 		});
 
 		// TODO: Find a better alternative
@@ -141,3 +148,23 @@ void OngoingEventsPage::onEntry() {
 		}
 	}
 }
+
+void OngoingEventsPage::onExit() {
+	QLayoutItem* item;
+	while ( ( item = ongoingEventsLayout->layout()->takeAt( 0 ) ) != NULL )
+	{
+		delete item->widget();
+		delete item;
+	}
+}
+
+void OngoingEventsPage::generateDetailsPages(const Json::Value& events) {
+	for (auto event : events) {
+		pg_switcher->addPage<DetailsPage>(
+			event["ID"].asString(),
+			event,
+			"OngoingPage"
+		);
+	}
+}
+

@@ -82,7 +82,6 @@ void DashBoard::createPages() {
 	m_pg_switcher->addPage<UpcomingEventsPage>("UpcomingPage");
 	m_pg_switcher->addPage<PostPage>("PostPage");
 	m_pg_switcher->switchPage("ProfilePage");
-	// m_pg_switcher->switchPage("PostPage");
 
 }
 

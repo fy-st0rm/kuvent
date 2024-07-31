@@ -89,6 +89,9 @@ void UpcomingEventsPage::onEntry() {
 	int row = 0;
 	int col = 0;
 
+	// Generating details page
+	generateDetailsPages(upcoming_events);
+
 	for (auto event: upcoming_events) {
 		// Getting the flyers of the event
 		httplib::Result res = app->client->Get("/get_flyer/" + event["ID"].asString());
@@ -126,8 +129,11 @@ void UpcomingEventsPage::onEntry() {
 		upcomingEventsLayout->addWidget(event_widget, row, col, Qt::AlignTop | Qt::AlignLeft);
 		
 		// Connect the details button of each event
-		connect(event_widget->getDetailsButton(), &QPushButton::clicked, this, [this, event_widget]() {
-				// Handle the details button click here
+		connect(
+			event_widget->getDetailsButton(),
+			&QPushButton::clicked, this,
+			[this, event, event_widget]() {
+				pg_switcher->switchPage(event["ID"].asString());
 		});
 
 		// TODO: Find a better alternative
@@ -139,3 +145,21 @@ void UpcomingEventsPage::onEntry() {
 	}
 }
 
+void UpcomingEventsPage::onExit() {
+	QLayoutItem* item;
+	while ( ( item = upcomingEventsLayout->layout()->takeAt( 0 ) ) != NULL )
+	{
+		delete item->widget();
+		delete item;
+	}
+}
+
+void UpcomingEventsPage::generateDetailsPages(const Json::Value& events) {
+	for (auto event : events) {
+		pg_switcher->addPage<DetailsPage>(
+			event["ID"].asString(),
+			event,
+			"UpcomingPage"
+		);
+	}
+}
