@@ -33,80 +33,73 @@ void ProfilePage::onAttach() {
 	hLayout0->addWidget(line0); //Adding line to layout
 	hLayout0->setAlignment(Qt::AlignBottom);
 
-	v_profileLayout->addSpacing(30);	
+	v_profileLayout->addSpacing(10);	
 
-	//Profile Picture
-	QHBoxLayout *hLayout15 = new QHBoxLayout;
-	v_profileLayout->addLayout(hLayout15);
+	// Profile Picture
+    QHBoxLayout *hLayout15 = new QHBoxLayout;
+    v_profileLayout->addLayout(hLayout15);
 
-	LabelWithButton *profilePic = new LabelWithButton(app, this);
+    LabelWithButton *profilePic = new LabelWithButton(app, this);
 
-	QPixmap profile;
+    QPixmap profile;
 
-	// When there is no pfp
-	if (app_data.pfp == "NULL") {
-		profile.load("assets/images/KUventpp.png");
-	} else {
-		// If pfp exists, fetching from the server
-		httplib::Result res = app->client->Get("/download/" + app_data.pfp);
+    // When there is no pfp
+    if (app_data.pfp == "NULL") {
+        profile.load("assets/images/KUventpp.png");
+    } else {
+        // If pfp exists, fetching from the server
+        httplib::Result res = app->client->Get("/download/" + app_data.pfp);
 
-		// Checking the result
-		if (!res) {
-			QMessageBox::critical(
-				this,
-				"Connection Error",
-				"Cannot connect to the server. Please check your connection and try again later."
-			);
-		}
+        // Checking the result
+        if (!res) {
+            QMessageBox::critical(
+                this,
+                "Connection Error",
+                "Cannot connect to the server. Please check your connection and try again later."
+            );
+        }
 
-		if (res->status != httplib::StatusCode::OK_200) {
-			QMessageBox::warning(
-				this,
-				"Pfp Fetch Error",
-				QString::fromStdString(res->body)
-			);
-		}
+        if (res->status != httplib::StatusCode::OK_200) {
+            QMessageBox::warning(
+                this,
+                "Pfp Fetch Error",
+                QString::fromStdString(res->body)
+            );
+        }
 
-		profile.loadFromData(
-			reinterpret_cast<const uchar*>(res->body.data()),
-			res->body.size()
-		);
-	}
+        profile.loadFromData(
+            reinterpret_cast<const uchar*>(res->body.data()),
+            res->body.size()
+        );
+    }
 
-	profilePic->setPixmap(profile);
-	profilePic->setFixedSize(100,100);
-	profilePic->setScaledContents(true);
+    profilePic->setPixmap(profile);
+    profilePic->setFixedSize(100, 100);
+    profilePic->setScaledContents(true);
 
-	QVBoxLayout *vlayout = new QVBoxLayout();
-	hLayout15->addLayout(vlayout);
+    // Add profilePic to the left side with some spacing
+    hLayout15->addSpacing(40); // Add more space to the left of the profile picture
+    hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
 
-	QHBoxLayout *hLayout16 = new QHBoxLayout();
-	vlayout->addLayout(hLayout16);
-	
-	QLabel *usernameLabel = new QLabel("USERNAME");
-	usernameLabel->setStyleSheet(
-			"font-size: 13pt;"
-			"font-weight: bold;"
-	);
+    // Create a vertical layout for the right side
+    QVBoxLayout *vlayout = new QVBoxLayout();
+    hLayout15->addLayout(vlayout);
 
-	QHBoxLayout *hLayout17 = new QHBoxLayout();
-	vlayout->addLayout(hLayout17);
-	hLayout17->addSpacing(5);
+    QLabel *usernameLabel = new QLabel("USERNAME");
+    usernameLabel->setStyleSheet(
+        "font-size: 13pt;"
+        "font-weight: bold;"
+    );
 
-	usernameEntryLabel = new QLabel("");
-	usernameEntryLabel->setStyleSheet(
-			"font-size: 11pt;"
-			"font-weight: bold;"
-	);
+    usernameEntryLabel = new QLabel("");
+    usernameEntryLabel->setStyleSheet(
+        "font-size: 11pt;"
+        "font-weight: bold;"
+    );
 
-
-	hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
-	vlayout->addSpacing(20);
-	hLayout16->addWidget(usernameLabel, 0, Qt::AlignTop | Qt::AlignLeft);
-	vlayout->addSpacing(10);
-	hLayout17->addWidget(usernameEntryLabel, 0, Qt::AlignTop | Qt::AlignLeft);
-
-	v_profileLayout->addSpacing(10);
+    // Add username label and entry label to the vertical layout and align to left
+    vlayout->addWidget(usernameLabel, 0, Qt::AlignLeft);
+    vlayout->addWidget(usernameEntryLabel, 0, Qt::AlignLeft);
 
 	QHBoxLayout *hLayout18 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout18);
