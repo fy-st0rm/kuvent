@@ -1,5 +1,6 @@
 #include "DashBoard.h"
 #include "PostPage.h"
+#include "theme.h"
 
 PostPage::PostPage()
     : Page()
@@ -15,9 +16,10 @@ PostPage::~PostPage()
 }
 void PostPage::onAttach()
 {
-    setStyleSheet("background-color: #B5B5B5;");
+    getBaseWidget()->setStyleSheet("background-color:" + Theme::dashBg); 
     v_layout = new QVBoxLayout(this);
     setLayout(v_layout);
+
 
     // Create an Event Text Label
     QLabel* create_an_event_label = new QLabel("Create an Event", this);
@@ -59,12 +61,18 @@ void PostPage::addEventNameSection()
         "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(event_name_label);
 
+    //Event name text box label
+    QHBoxLayout *centerLayout = new QHBoxLayout();
     event_name_entry = new QLineEdit();
     event_name_entry->setPlaceholderText("Event Name*");
-    event_name_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
-                                    "border-radius: 8px; height: 22px;color:#000000;"
+    event_name_entry->setFixedWidth(300);
+    event_name_entry->setStyleSheet("background: #FFFFFF; "
+                                    "border-radius: 8px; height: 16px;color:#000000; width: 300px;"
 									"padding: 10px;");
     v_layout->addWidget(event_name_entry);
+    centerLayout->addStretch(); // Adds a stretchable space before the text box
+    centerLayout->addWidget(event_name_entry);
+    centerLayout->addStretch(); // Adds a stretchable space after the text box
     applyShadow(event_name_entry);
 }
 
@@ -79,11 +87,19 @@ void PostPage::addDateSection()
     QHBoxLayout* date_layout = new QHBoxLayout();
     start_date_entry = new LineEditWithCalendar();
     date_layout->addWidget(start_date_entry);
+    start_date_entry->setStyleSheet("background: #FFFFFF; "
+                                    "border-radius: 8px; color:#000000;"
+									"padding: 10px;");
 
     date_layout->addSpacing(20);
 
     end_date_entry = new LineEditWithCalendar();
     date_layout->addWidget(end_date_entry);
+    end_date_entry->setStyleSheet("background: #FFFFFF; "
+                                    "border-radius: 8px; color:#000000;"
+									"padding: 10px;");
+
+
     applyShadow(start_date_entry);
     applyShadow(end_date_entry);
 
@@ -98,18 +114,20 @@ void PostPage::addLocationSection()
         "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(location_label);
 
+    //Location text box label
     location_entry = new QLineEdit();
     location_entry->setPlaceholderText("Venue*");
-    location_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; border-radius: "
-                                  "8px; height: 22px;color:#000000;"
+    location_entry->setStyleSheet("background: #FFFFFF; border-radius: "
+                                  "8px; height: 16px;color:#000000;"
 								  "padding: 10px;");
     v_layout->addWidget(location_entry);
     applyShadow(location_entry);
 
+    //Location description text box label
     location_description_entry = new QLineEdit();
     location_description_entry->setPlaceholderText("Location description");
-    location_description_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
-                                              "border-radius: 8px; height: 22px;color:#000000;"
+    location_description_entry->setStyleSheet("background: #FFFFFF;"
+                                              "border-radius: 8px; height: 16px;color:#000000;"
 											  "padding: 10px;");
     applyShadow(location_description_entry);
     v_layout->addWidget(location_description_entry);
@@ -141,8 +159,9 @@ void PostPage::addDescriptionSection()
         "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
     v_layout->addWidget(description_label);
 
+    //Description text box label
     description_entry = new QTextEdit();
-    description_entry->setStyleSheet("background: #FFFFFF; border: 1px solid #453C3C; "
+    description_entry->setStyleSheet("background: #FFFFFF; "
                                      "border-radius: 8px; height: 79px;color:#000000;"
 									 "padding: 10px;");
     v_layout->addWidget(description_entry);
@@ -361,6 +380,7 @@ std::optional<Json::Value> PostPage::uploadFlyers()
     return ids;
 }
 
+//Drop Shadow Effect
 void PostPage::applyShadow(QWidget *widget) {
 	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
 	shadow->setBlurRadius(4);
