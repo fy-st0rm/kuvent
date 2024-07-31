@@ -24,6 +24,9 @@ void DetailsPage::onEntry() {
 	closeButton->setIcon(QIcon("assets/images/close.png"));
 	closeButton->setIconSize(QSize(20,20));
 	closeButton->setContentsMargins(0,0,0,0);
+	closeButton->setStyleSheet(
+		"border: none;"
+	);
 	hLayout1->addWidget(eventName, 0, Qt::AlignLeft);
 	hLayout1->addWidget(closeButton, 0, Qt::AlignRight);
 
@@ -36,6 +39,7 @@ void DetailsPage::onEntry() {
 	organizerLabel = new QLabel(
 		QString::fromStdString(m_event_data["ORGANIZER"].asString())
 	);
+	hLayout2->addSpacing(30);
 	hLayout2->addWidget(organizerLabel);
 	hLayout2->setAlignment(Qt::AlignLeft);
 
@@ -45,6 +49,7 @@ void DetailsPage::onEntry() {
 	date->setStyleSheet(
 			"font-weight: bold;"
 	);
+	hLayout3->addSpacing(30);
 	hLayout3->addWidget(date);
 
 	QHBoxLayout *hLayout4 = new QHBoxLayout;
@@ -59,7 +64,8 @@ void DetailsPage::onEntry() {
 	QString startingDate = startDate->text();
 	QString endingDate = endDate->text();
 
-	QLabel *eventPeriod = new QLabel(startingDate + "-" + endingDate);
+	QLabel *eventPeriod = new QLabel(startingDate + " to " + endingDate);
+	hLayout4->addSpacing(30);
 	hLayout4->addWidget(eventPeriod);
 
 	QHBoxLayout *hLayout5 = new QHBoxLayout;
@@ -69,6 +75,7 @@ void DetailsPage::onEntry() {
 	venue->setStyleSheet(
 			"font-weight: bold;"
 	);
+	hLayout5->addSpacing(30);
 	hLayout5->addWidget(venue);
 	hLayout5->setAlignment(Qt::AlignLeft);
 
@@ -78,6 +85,7 @@ void DetailsPage::onEntry() {
 	venueLocation = new QLabel(
 		QString::fromStdString(m_event_data["VENUE"].asString())
 	);
+	hLayout6->addSpacing(30);
 	hLayout6->addWidget(venueLocation);
 	hLayout6->setAlignment(Qt::AlignLeft);
 
@@ -90,6 +98,7 @@ void DetailsPage::onEntry() {
 	venueDescription->setStyleSheet(
 			"color: #3E7689;"
 	);
+	hLayout7->addSpacing(30);
 	hLayout7->addWidget(venueDescription);
 	hLayout7->setAlignment(Qt::AlignLeft);
 
@@ -100,6 +109,7 @@ void DetailsPage::onEntry() {
 	about->setStyleSheet(
 			"font-weight: bold;"
 	);
+	hLayout8->addSpacing(30);
 	hLayout8->addWidget(about);
 	hLayout8->setAlignment(Qt::AlignLeft);
 
@@ -109,6 +119,7 @@ void DetailsPage::onEntry() {
 	eventDescription = new QLabel(
 		QString::fromStdString(m_event_data["DESC"].asString())
 	);
+	hLayout9->addSpacing(30);
 	hLayout9->addWidget(eventDescription);
 	hLayout9->setAlignment(Qt::AlignLeft);
 
@@ -147,6 +158,7 @@ void DetailsPage::onEntry() {
 	eventFlyer->setFixedSize(400,400);
 	eventFlyer->setScaledContents(true);
 
+	hLayout10->addSpacing(30);
 	hLayout10->addWidget(eventFlyer);
 	hLayout10->setAlignment(Qt::AlignLeft);
 }
@@ -187,4 +199,13 @@ std::string DetailsPage::getFlyerId() {
 
 	// NOTE: Returning only one flyer id as we support only one flyer
 	return flyers[0].asString();
+}
+
+void DetailsPage::onExit() {
+	QLayoutItem* item;
+	while ( ( item = main_layout->layout()->takeAt( 0 ) ) != NULL )
+	{
+		delete item->widget();
+		delete item;
+	}
 }

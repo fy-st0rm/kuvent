@@ -18,6 +18,7 @@ public:
 	{}
 	void onAttach();
 	void onEntry();
+	void onExit();
 
 private:
 	std::string getFlyerId();
