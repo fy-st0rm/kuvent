@@ -1,5 +1,6 @@
 
 #include "ProfilePage.h"
+#include "theme.h"
 
 void ProfilePage::onAttach() {
 	v_profileLayout = new QVBoxLayout(this);
