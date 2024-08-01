@@ -9,6 +9,7 @@ namespace route {
 	void signup(const Request& req, Response& res);
 	void login(const Request& req, Response& res);
 	void update_profile(const Request& req, Response& res);
+	void get_profile(const Request& req, Response& res);
 
 	// File transfer
 	void upload(const Request& req, Response& res, const ContentReader &content_reader);
