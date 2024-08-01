@@ -38,4 +38,12 @@ namespace model {
 			{ "EVENT", "TEXT" }
 		}
 	};
+
+	static Table Participants = {
+		.name = "PARTICIPANTS",
+		.format = {
+			{ "EVENT_ID", "TEXT" },
+			{ "USER_ID",  "TEXT" }
+		}
+	};
 }

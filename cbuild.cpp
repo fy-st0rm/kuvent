@@ -60,6 +60,7 @@ void build(char** argv) {
 			"src/routes/registration.cpp",
 			"src/routes/file_transfer.cpp",
 			"src/routes/post.cpp",
+			"src/routes/participation.cpp",
 			"src/main.cpp"
 		})
 		.libs({

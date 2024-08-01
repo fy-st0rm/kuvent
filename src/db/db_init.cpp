@@ -23,5 +23,11 @@ int main() {
 		return 1;
 	}
 
+	r = db.create_table(model::Participants);
+	if (r.status != SQLITE_OK) {
+		std::cerr << r.error << std::endl;
+		return 1;
+	}
+
 	return 0;
 }
