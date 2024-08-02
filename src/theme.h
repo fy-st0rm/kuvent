@@ -14,7 +14,7 @@ namespace Theme {
     static const QString red= "#FF0000";
     static const QString green= "#00FF00";
     static const QString blue= "#0000FF";
-    static const QString dashboardPanel = "#2F0F0F";
+    static const QString dashboardPanel = "#111111";
 
     static const QString dashBg= "#F1EEDC";
     static const QString dashText= "#000000";

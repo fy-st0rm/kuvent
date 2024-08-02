@@ -55,7 +55,7 @@ DashBoardNavBar::DashBoardNavBar(QWidget *parent)
 void DashBoardNavBar::createButton(QPushButton *&button,const QString &iconPath) {
 	button = new QPushButton;
 	button->setIcon(QIcon(iconPath));
-	button->setIconSize(QSize(40, 30));
+	button->setIconSize(QSize(35, 25));
 	button->setFixedSize(50, 50);
 	button->setStyleSheet(
 		"QToolTip {"

@@ -29,7 +29,7 @@ void PostPage::onAttach()
         "font-family: 'Lalezar';"
         "font-size: 24px;"
         "color:" + Theme::dashText +";"
-        "font-weight: 600;"
+        "font-weight: bold;"
         );
     hLayout1->addWidget(create_an_event_label, 0, Qt::AlignCenter);
 
