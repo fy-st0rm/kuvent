@@ -55,12 +55,6 @@ void build(char** argv) {
 			"src/"
 		})
 		.src({
-			"vendor/json/jsoncpp.cpp",
-			"src/db/db.cpp",
-			"src/routes/registration.cpp",
-			"src/routes/file_transfer.cpp",
-			"src/routes/post.cpp",
-			"src/routes/participation.cpp",
 			"src/main.cpp"
 		})
 		.libs({
@@ -76,7 +70,7 @@ void build(char** argv) {
 			"vendor/sqlite3/sqlite3.o"
 		})
 		.clean();
-	cbuild.run();
+	//cbuild.run();
 }
 
 void init_db(char** argv) {

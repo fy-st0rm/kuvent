@@ -4,6 +4,14 @@ using namespace httplib;
 #include "db/db.h"
 #include "routes/routes.h"
 
+#include "jsoncpp.cpp"
+#include "db/db.cpp"
+#include "routes/file_transfer.cpp"
+#include "routes/participation.cpp"
+#include "routes/post.cpp"
+#include "routes/registration.cpp"
+
+
 int main(void) {
 	Server svr;
 
