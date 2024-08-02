@@ -2,47 +2,33 @@
 #include "utils.h"
 
 void UpcomingEventsPage::onAttach() {
-	QScrollArea *scrollArea = new QScrollArea();
-	scrollArea->setWidgetResizable(true);
-	scrollArea->setStyleSheet(
-		"QScrollArea {"
-		"border: none;"
-		"}"
-		"QScrollBar:vertical {"
-		"border: none;"
-		"margin: 0px 0px 0px 0px;"
-		"}"
-		"QScrollBar::handle:vertical {"
-		"border-radius: 5px;"
-		"background: #FFFFFF;"
-		"}"
-		"QScrollBar::add-line:vertical {"
-		"background: none;"
-		"height: 0px;"
-		"}"
-		"QScrollBar::sub-line:vertical {"
-		"background: none;"
-		"height: 0px;"
-		"}"
-		"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
-		"background: none;"
-		"}"
-	);
-	scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-	scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    QScrollArea *scrollArea = new QScrollArea();
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setStyleSheet(
+        "QScrollArea { border: none; }"
+        "QScrollBar:vertical { border: none; margin: 0px 0px 0px 0px; }"
+        "QScrollBar::handle:vertical { border-radius: 5px; background: #FFFFFF; }"
+        "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { background: none; height: 0px; }"
+        "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }"
+    );
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	containerWidget = new QWidget();
+    containerWidget = new QWidget();
+    containerWidget->installEventFilter(this);
 
-	upcomingEventsLayout = new QGridLayout(containerWidget);
-	upcomingEventsLayout->setSpacing(40);
-	
-	scrollArea->setWidget(containerWidget);
+    upcomingEventsLayout = new QGridLayout(containerWidget);
+    upcomingEventsLayout->setSpacing(10);
+    upcomingEventsLayout->setContentsMargins(10, 10, 10, 10);
+    
+    scrollArea->setWidget(containerWidget);
 
-	QVBoxLayout *mainLayout = new QVBoxLayout(this);
-	mainLayout->addWidget(scrollArea); 
-	
-	setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(scrollArea);
+    
+    setLayout(mainLayout);
 }
+
 void UpcomingEventsPage::onEntry() {
     try {
         Json::Value events = fetchEvents();
@@ -84,7 +70,6 @@ Json::Value UpcomingEventsPage::filterUpcomingEvents(const Json::Value& events) 
 }
 
 void UpcomingEventsPage::displayUpcomingEvents(const Json::Value& upcomingEvents) {
-    int row = 0, col = 0;
     for (const auto& event : upcomingEvents) {
         Json::Value flyers = fetchFlyers(event["ID"].asString());
         
@@ -93,13 +78,20 @@ void UpcomingEventsPage::displayUpcomingEvents(const Json::Value& upcomingEvents
         std::string flyerId = flyers["flyers"][0].asString();
         
         PackEvent* eventWidget = new PackEvent(containerWidget, app->client, flyerId, organizer, eventName);
-        upcomingEventsLayout->addWidget(eventWidget, row, col, Qt::AlignTop | Qt::AlignLeft);
+        eventWidget->setFixedSize(310, 400);
+        eventWidgets.append(eventWidget);
         
         connectDetailsButton(eventWidget, event);
-        
-        col = (col + 1) % 3;
-        if (col == 0) row++;
     }
+    adjustLayout();
+}
+
+bool UpcomingEventsPage::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == containerWidget && event->type() == QEvent::Resize) {
+        adjustLayout();
+        return true;
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 Json::Value UpcomingEventsPage::fetchFlyers(const std::string& eventId) {
@@ -123,21 +115,29 @@ void UpcomingEventsPage::connectDetailsButton(PackEvent* eventWidget, const Json
             });
 }
 
+void UpcomingEventsPage::adjustLayout() {
+    int availableWidth = containerWidget->width() - upcomingEventsLayout->contentsMargins().left() - upcomingEventsLayout->contentsMargins().right();
+    int itemWidth = 310 + upcomingEventsLayout->spacing();
+    int itemsPerRow = qMax(1, availableWidth / itemWidth);
+
+    for (int i = 0; i < eventWidgets.size(); ++i) {
+        int row = i / itemsPerRow;
+        int col = i % itemsPerRow;
+        upcomingEventsLayout->addWidget(eventWidgets[i], row, col);
+    }
+}
+
 void UpcomingEventsPage::onExit() {
-	QLayoutItem* item;
-	while ( ( item = upcomingEventsLayout->layout()->takeAt( 0 ) ) != NULL )
-	{
-		delete item->widget();
-		delete item;
-	}
+    qDeleteAll(eventWidgets);
+    eventWidgets.clear();
 }
 
 void UpcomingEventsPage::generateDetailsPages(const Json::Value& events) {
-	for (auto event : events) {
-		pg_switcher->addPage<DetailsPage>(
-			event["ID"].asString(),
-			event,
-			"UpcomingPage"
-		);
-	}
+    for (auto event : events) {
+        pg_switcher->addPage<DetailsPage>(
+            event["ID"].asString(),
+            event,
+            "UpcomingPage"
+        );
+    }
 }
