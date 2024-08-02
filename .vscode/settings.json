@@ -146,6 +146,14 @@
     "qregexp": "cpp",
     "qcalendarwidget": "cpp",
     "qwidget": "cpp",
-    "qpixmap": "cpp"
+    "qpixmap": "cpp",
+    "charconv": "cpp",
+    "complex": "cpp",
+    "forward_list": "cpp",
+    "format": "cpp",
+    "stdfloat": "cpp",
+    "text_encoding": "cpp",
+    "typeindex": "cpp",
+    "valarray": "cpp"
   }
 }
