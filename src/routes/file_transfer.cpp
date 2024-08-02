@@ -39,9 +39,8 @@ void upload(const Request& req, Response& res, const ContentReader &content_read
 	std::vector<std::string> ids;
 	for (MultipartFormData& file : files) {
 		std::string name = file.filename;
-		std::string ext = name.substr(name.find_last_of(".") + 1);
 		std::string id = uuid::generate_uuid_v4();
-		std::ofstream f(FLYER_DIR + id + "." + ext, std::ostream::binary);
+		std::ofstream f(FLYER_DIR + id, std::ostream::binary);
 		f << file.content;
 		f.close();
 
@@ -92,13 +91,12 @@ void download(const Request& req, Response& res) {
 
 	// Reading the file from disk and sending it to client
 	std::string path = flyers[i];
-	std::string ext = path.substr(path.find_last_of(".") + 1);
 	std::ifstream file(path, std::ifstream::binary);
 	std::stringstream buff;
 	buff << file.rdbuf();
 
 	res.status = StatusCode::OK_200;
-	res.set_content(buff.str(), "image/" + ext);
+	res.set_content(buff.str(), "image");
 }
 
 }
