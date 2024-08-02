@@ -128,8 +128,12 @@ void UpcomingEventsPage::adjustLayout() {
 }
 
 void UpcomingEventsPage::onExit() {
-    qDeleteAll(eventWidgets);
-    eventWidgets.clear();
+	QLayoutItem* item;
+	while ( ( item = upcomingEventsLayout->layout()->takeAt( 0 ) ) != NULL )
+	{
+		delete item->widget();
+		delete item;
+	}
 }
 
 void UpcomingEventsPage::generateDetailsPages(const Json::Value& events) {

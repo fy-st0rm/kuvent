@@ -5,26 +5,35 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
-#include "Widgets/PackEvent.h"
 #include <QtCore/QDebug>
 
-#include "Application/Application.h"
+#include "Widgets/PackEvent.h"
 #include "Application/Page.h"
+#include "Application/Application.h"
 #include "Widgets/PageSwitcher.h"
 #include "Pages/DetailsPage.h"
 #include "Pages/DashBoard.h"
 
 class OngoingEventsPage : public Page {
 public:
-	void onAttach();
-	void onEntry();
-	void onExit();
+    void onAttach();
+    void onEntry();
+    void onExit();
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
-	void generateDetailsPages(const Json::Value& events);
+    void generateDetailsPages(const Json::Value& events);
+    Json::Value fetchEvents();
+    Json::Value filterOngoingEvents(const Json::Value& events);
+    void displayOngoingEvents(const Json::Value& ongoingEvents);
+    Json::Value fetchFlyers(const std::string& eventId);
+    void connectDetailsButton(PackEvent* eventWidget, const Json::Value& event);
+    void adjustLayout();
 
 private:
-	QGridLayout *ongoingEventsLayout;
-	QWidget *containerWidget;
-	PageSwitcher *m_pg_switcher;
+    QGridLayout *ongoingEventsLayout;
+    QWidget *containerWidget;
+    PageSwitcher *pg_switcher;
+    QList<PackEvent*> eventWidgets;
 };
