@@ -23,11 +23,12 @@ void PostPage::onAttach()
 
     // Create an Event Text Label
     QHBoxLayout *hLayout1 = new QHBoxLayout();
-    v_layout->addLayout(hLayout1);    QLabel* create_an_event_label = new QLabel("Create an Event", this);
+    v_layout->addLayout(hLayout1);    
+    QLabel* create_an_event_label = new QLabel("Create an Event", this);
     create_an_event_label->setStyleSheet(
         "font-family: 'Lalezar';"
         "font-size: 24px;"
-        "color: #FFFFFF;"
+        "color:" + Theme::dashText +";"
         "font-weight: 600;"
         );
     hLayout1->addWidget(create_an_event_label, 0, Qt::AlignCenter);
@@ -37,7 +38,7 @@ void PostPage::onAttach()
     v_layout->addLayout(hLayout2);
     QLabel* add_details_label = new QLabel("Add details about your event", this);
     add_details_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 13px; font-weight: 500; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 13px; font-weight: 500; color: #7C7C7C;");
     hLayout2->addWidget(add_details_label, 0, Qt::AlignCenter);
 
     //Horizontal line
@@ -63,7 +64,8 @@ void PostPage::addEventNameSection()
     QLabel* event_name_label = new QLabel("What's the name of your event?", this);
     event_name_label->setAlignment(Qt::AlignCenter);
     event_name_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 15px; font-weight: 600;"
+        "color:" + Theme::dashText +";");
     layout->addWidget(event_name_label);
 
     //Event name text box label
@@ -77,6 +79,7 @@ void PostPage::addEventNameSection()
 									"padding: 10px;");
     centerLayout->addWidget(event_name_entry, 0, Qt::AlignCenter);
     applyShadow(event_name_entry);
+    v_layout->addSpacing(15);
 }
 
 void PostPage::addDateSection()
@@ -86,12 +89,15 @@ void PostPage::addDateSection()
     QLabel* event_date_label = new QLabel("When does the event start and end?", this);
     event_date_label->setAlignment(Qt::AlignCenter);
     event_date_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 16px; font-weight: 600;"
+        "color:" + Theme::dashText +";");
     hLayout3->addWidget(event_date_label);
 
+    //Start-End date text box label
     QHBoxLayout* date_layout = new QHBoxLayout();
     v_layout->addLayout(date_layout);
     start_date_entry = new LineEditWithCalendar();
+    start_date_entry->setFixedWidth(300);
     date_layout->addWidget(start_date_entry);
     start_date_entry->setStyleSheet("background: #FFFFFF; "
                                     "border-radius: 8px; color:#000000;"
@@ -101,6 +107,7 @@ void PostPage::addDateSection()
 
     end_date_entry = new LineEditWithCalendar();
     date_layout->addWidget(end_date_entry);
+    end_date_entry->setFixedWidth(300);
     end_date_entry->setStyleSheet("background: #FFFFFF; "
                                     "border-radius: 8px; color:#000000;"
 									"padding: 10px;");
@@ -108,6 +115,7 @@ void PostPage::addDateSection()
 
     applyShadow(start_date_entry);
     applyShadow(end_date_entry);
+    v_layout->addSpacing(15);
 
 }
 
@@ -118,64 +126,74 @@ void PostPage::addLocationSection()
     QLabel* location_label = new QLabel("Where is it located?", this);
     location_label->setAlignment(Qt::AlignCenter);
     location_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 15px; font-weight: 600; "
+        "color:" + Theme::dashText +";");
     hLayout4->addWidget(location_label);
 
     //Location text box label
     QHBoxLayout *hLayout5 = new QHBoxLayout();
     v_layout->addLayout(hLayout5);
     location_entry = new QLineEdit();
+    location_entry->setFixedWidth(350);
     location_entry->setPlaceholderText("Venue*");
     location_entry->setStyleSheet("background: #FFFFFF; border-radius: "
                                   "8px; height: 16px;color:#000000;"
 								  "padding: 10px;");
-    hLayout5->addWidget(location_entry);
+    hLayout5->addWidget(location_entry,0,Qt::AlignCenter);
     applyShadow(location_entry);
 
     //Location description text box label
     QHBoxLayout *hLayout6 = new QHBoxLayout();
     v_layout->addLayout(hLayout6);
     location_description_entry = new QLineEdit();
+    location_description_entry->setFixedWidth(700);
     location_description_entry->setPlaceholderText("Location description");
     location_description_entry->setStyleSheet("background: #FFFFFF;"
                                               "border-radius: 8px; height: 16px;color:#000000;"
 											  "padding: 10px;");
     applyShadow(location_description_entry);
     hLayout6->addWidget(location_description_entry);
+    v_layout->addSpacing(15);
 }
 
 void PostPage::addFlyerSection()
 {
     QHBoxLayout* flyer_layout = new QHBoxLayout();
-
-    flyer_label = new QLabel("event flyer*", this);
+    flyer_label = new QLabel("Upload the Event Flyer", this);
     flyer_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 14px; font-weight: 600; "
+        "color:" + Theme::dashText +";");
     flyer_layout->addWidget(flyer_label, 0, Qt::AlignRight);
+
+    flyer_layout->addSpacing(10);
 
     QPushButton* flyer_button = new QPushButton("Upload", this);
     flyer_button->setStyleSheet(
-        "background: #65558F; color: #FFFFFF; border-radius: 15px; height: 33px; width: 95px;");
+        "background: #65558F; color: #FFFFFF; border-radius: 8px; height: 33px; width: 95px; font-weight: bold;");
     flyer_layout->addWidget(flyer_button, 0, Qt::AlignLeft);
 
     v_layout->addLayout(flyer_layout);
     connect(flyer_button, &QPushButton::clicked, this, &PostPage::addImage);
+    v_layout->addSpacing(20);
 }
+
 
 void PostPage::addDescriptionSection()
 {
     QHBoxLayout *hLayout7 = new QHBoxLayout();
     v_layout->addLayout(hLayout7);
-    QLabel* description_label = new QLabel("Description of the event*", this);
+    QLabel* description_label = new QLabel("Add description of the event", this);
     description_label->setAlignment(Qt::AlignCenter);
     description_label->setStyleSheet(
-        "font-family: 'Inter'; font-size: 16px; font-weight: 600; color: #FFFFFF;");
+        "font-family: 'Inter'; font-size: 15px; font-weight: 600; "
+        "color:" + Theme::dashText +";");
     hLayout7->addWidget(description_label);
 
     //Description text box label
     QHBoxLayout *hLayout8 = new QHBoxLayout();
     v_layout->addLayout(hLayout8);
     description_entry = new QTextEdit();
+    description_entry->setPlaceholderText("Description of the event");
     description_entry->setStyleSheet("background: #FFFFFF; "
                                      "border-radius: 8px; height: 79px;color:#000000;"
 									 "padding: 10px;");
@@ -187,19 +205,25 @@ void PostPage::addButtonSection()
 {
     QHBoxLayout* button_layout = new QHBoxLayout();
 
+    //Clear and Post buttons
     QPushButton* clear_button = new QPushButton("Clear", this);
+    clear_button->setFixedWidth(89);
     clear_button->setStyleSheet("background: #FFFFFF; color: #1E1E1E; border: 1px solid #FF8585; "
-                                "border-radius: 8px; height: 32px; width: 89px;");
+                                "border-radius: 8px; height: 32px; width: 89px;"
+                                "font-weight: bold;");
     button_layout->addWidget(clear_button);
+    button_layout->addSpacing(20);
+    button_layout->setAlignment(Qt::AlignCenter);
 
     QPushButton* post_button = new QPushButton("Post", this);
+    post_button->setFixedWidth(89);
     post_button->setStyleSheet(
-        "background: #65558F; color: #F5F5F5; border-radius: 8px; height: 32px; width: 89px;");
+        "background: #65558F; color: #F5F5F5; border-radius: 8px; height: 32px; width: 89px;"
+        "font-weight: bold;");
     button_layout->addWidget(post_button);
 
+
     v_layout->addLayout(button_layout);
-    applyShadow(post_button);
-    applyShadow(clear_button);
 
     connect(clear_button, &QPushButton::clicked, this, &PostPage::clear);
     connect(post_button, &QPushButton::clicked, this, &PostPage::submitPost);
