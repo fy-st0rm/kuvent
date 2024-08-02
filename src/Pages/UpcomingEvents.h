@@ -24,6 +24,12 @@ public:
 private:
 	void generateDetailsPages(const Json::Value& events);
 
+	Json::Value fetchEvents();
+	Json::Value filterUpcomingEvents(const Json::Value& events);
+	void displayUpcomingEvents(const Json::Value& upcomingEvents);
+	Json::Value fetchFlyers(const std::string& eventId);
+	void connectDetailsButton(PackEvent* eventWidget, const Json::Value& event);
+
 private:
 	QGridLayout *upcomingEventsLayout;
 	QWidget *containerWidget;
