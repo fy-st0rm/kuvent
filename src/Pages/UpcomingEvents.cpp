@@ -110,7 +110,7 @@ Json::Value UpcomingEventsPage::fetchFlyers(const std::string& eventId) {
 
 void UpcomingEventsPage::connectDetailsButton(PackEvent* eventWidget, const Json::Value& event) {
     connect(eventWidget->getDetailsButton(), &QPushButton::clicked, this,
-            [this, event]() {
+            [this, event,eventWidget]() {
                 pg_switcher->switchPage(event["ID"].asString());
             });
 }
@@ -128,12 +128,8 @@ void UpcomingEventsPage::adjustLayout() {
 }
 
 void UpcomingEventsPage::onExit() {
-	QLayoutItem* item;
-	while ( ( item = upcomingEventsLayout->layout()->takeAt( 0 ) ) != NULL )
-	{
-		delete item->widget();
-		delete item;
-	}
+    qDeleteAll(eventWidgets);
+    eventWidgets.clear();
 }
 
 void UpcomingEventsPage::generateDetailsPages(const Json::Value& events) {
