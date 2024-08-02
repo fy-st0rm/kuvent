@@ -1,3 +1,5 @@
+#include <filesystem>
+
 #include "routes.h"
 #include "uuid.h"
 #include "defines.h"
@@ -65,6 +67,80 @@ void post_event(const Request& req, Response& res) {
 
 	res.status = StatusCode::OK_200;
 	res.set_content("{ \"event_id\": " + id + " }", "application/json");
+}
+
+void delete_event(const Request& req, Response& res) {
+	Json::Value payload;
+	Json::Reader reader;
+	reader.parse(req.body, payload);
+
+	std::string event_id = payload["event_id"].asString();
+
+	Database db(DB_PATH);
+
+	std::stringstream sq;
+	sq
+		<< "SELECT * FROM EVENTS "
+		<< "WHERE ID = \"" << event_id << "\";";
+
+	QueryResult r = db.query(sq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	if (r.result.size() == 0) {
+		res.status = StatusCode::BadRequest_400;
+		res.set_content("Cannot find event with id: " + event_id, "text/plain");
+		return;
+	}
+
+	// Deleting flyers from the disk
+	std::stringstream sfq;
+	sfq
+		<< "SELECT * FROM FLYERS "
+		<< "WHERE EVENT = \"" << event_id << "\";";
+
+	r = db.query(sfq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	for (auto row : r.result) {
+		std::filesystem::remove(FLYER_DIR + row["ID"]);
+	}
+
+	// Deleting flyers from database
+	std::stringstream dfq;
+	dfq
+		<< "DELETE FROM FLYERS "
+		<< "WHERE EVENT = \"" << event_id << "\";";
+
+	r = db.query(dfq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	// Deleting event from database
+	std::stringstream deq;
+	deq
+		<< "DELETE FROM EVENTS "
+		<< "WHERE ID = \"" << event_id << "\";";
+
+	r = db.query(deq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	res.status = StatusCode::OK_200;
+	res.set_content("Sucessfully deleted event", "text/plain");
 }
 
 void get_event(const Request& req, Response& res) {

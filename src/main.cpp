@@ -19,11 +19,15 @@ int main(void) {
 	svr.Post("/login", route::login);
 	svr.Post("/update_profile", route::update_profile);
 	svr.Get("/get_profile/:user_id", route::get_profile);
+
 	svr.Post("/upload", route::upload);
 	svr.Get("/download/:id", route::download);
+
 	svr.Post("/post_event", route::post_event);
+	svr.Post("/delete_event", route::delete_event);
 	svr.Get("/get_event", route::get_event);
 	svr.Get("/get_flyer/:event_id", route::get_flyer);
+
 	svr.Post("/join_event", route::join_event);
 	svr.Post("/leave_event", route::leave_event);
 
