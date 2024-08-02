@@ -145,6 +145,14 @@ void update_profile(const Request& req, Response& res) {
 		res.set_content("Wrong user id provided.", "text/plain");
 		return;
 	}
+	
+	// Deleting the older pfp if it is updated
+	if (attrib == "PFP") {
+		SearchRow row = r.result.front();
+		if (row["PFP"] != "NULL") {
+			std::filesystem::remove(FLYER_DIR + row["PFP"]);
+		}
+	}
 
 	// Updating the attribute
 	std::stringstream uq;
