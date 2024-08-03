@@ -34,6 +34,6 @@ private:
 private:
     QGridLayout *ongoingEventsLayout;
     QWidget *containerWidget;
-    PageSwitcher *pg_switcher;
+    PageSwitcher *m_pg_switcher;
     QList<PackEvent*> eventWidgets;
 };

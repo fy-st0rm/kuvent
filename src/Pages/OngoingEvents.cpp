@@ -99,7 +99,7 @@ bool OngoingEventsPage::eventFilter(QObject *obj, QEvent *event) {
 
 Json::Value OngoingEventsPage::fetchFlyers(const std::string& eventId) {
     httplib::Result res = app->client->Get("/get_flyer/" + eventId);
-    if (!res || res->status != 200) {
+    if (!res || res->status != httplib::StatusCode::OK_200) {
         throw std::runtime_error(res ? res->body : "Cannot connect to the server");
     }
     
@@ -113,7 +113,7 @@ Json::Value OngoingEventsPage::fetchFlyers(const std::string& eventId) {
 
 void OngoingEventsPage::connectDetailsButton(PackEvent* eventWidget, const Json::Value& event) {
     connect(eventWidget->getDetailsButton(), &QPushButton::clicked, this,
-            [this, event]() {
+            [this, event, eventWidget]() {
                 pg_switcher->switchPage(event["ID"].asString());
             });
 }
@@ -121,7 +121,7 @@ void OngoingEventsPage::connectDetailsButton(PackEvent* eventWidget, const Json:
 void OngoingEventsPage::adjustLayout() {
     int availableWidth = containerWidget->width() - ongoingEventsLayout->contentsMargins().left() - ongoingEventsLayout->contentsMargins().right();
     int itemWidth = 310 + ongoingEventsLayout->spacing();
-    int itemsPerRow = std::max(1, availableWidth / itemWidth);
+    int itemsPerRow = qMax(1, availableWidth / itemWidth);
 
     for (int i = 0; i < eventWidgets.size(); ++i) {
         int row = i / itemsPerRow;
@@ -131,23 +131,16 @@ void OngoingEventsPage::adjustLayout() {
 }
 
 void OngoingEventsPage::onExit() {
-	QLayoutItem* item;
-	while ( ( item = ongoingEventsLayout->layout()->takeAt( 0 ) ) != NULL )
-	{
-		delete item->widget();
-		delete item;
-	}
+	qDeleteAll(eventWidgets);
+    eventWidgets.clear();
 }
 
 void OngoingEventsPage::generateDetailsPages(const Json::Value& events) {
 	for (auto event : events) {
-		qDebug("haax");
-		// pg_switcher->addPage<DetailsPage>(
-		// 	event["ID"].asString(),
-		// 	event,
-		// 	"OngoingPage"
-		// );
-		qDebug("haaax");
-
+		pg_switcher->addPage<DetailsPage>(
+			event["ID"].asString(),
+			event,
+			"OngoingPage"
+		);
 	}
 }
