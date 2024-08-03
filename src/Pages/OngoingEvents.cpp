@@ -132,14 +132,18 @@ void OngoingEventsPage::onExit() {
 }
 
 void OngoingEventsPage::generateDetailsPages(const Json::Value& events) {
+    if(!pg_switcher){
+        qDebug () << "pg_switcher not initialized";
+        return;
+    }
 	for (auto event : events) {
 
 		//the problem is here i think 
-		// pg_switcher->addPage<DetailsPage>(
-		// 	event["ID"].asString(),
-		// 	event,
-		// 	"OngoingPage"
-		// );
+		pg_switcher->addPage<DetailsPage>(
+			event["ID"].asString(),
+			event,
+			"OngoingPage"
+		);
 
 	}
 }
