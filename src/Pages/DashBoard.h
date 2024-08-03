@@ -27,6 +27,7 @@
 #include "Pages/DetailsPage.h"
 #include "Widgets/LabelWithButton.h"
 #include "Pages/MyEventsPage.h"
+#include "Widgets/UserDetailsWidget.h"
 
 
 class DashBoard : public Page {

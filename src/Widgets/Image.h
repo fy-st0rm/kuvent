@@ -6,6 +6,7 @@
 #include <QtGui/QPixmap>
 #include <QtCore/QFuture>
 #include <QtConcurrent/QtConcurrent>
+#include <QtWidgets/QMessageBox>
 
 #include "httplib.h"
 

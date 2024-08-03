@@ -161,6 +161,10 @@ void DetailsPage::onEntry() {
 	hLayout10->addSpacing(30);
 	hLayout10->addWidget(eventFlyer);
 	hLayout10->setAlignment(Qt::AlignLeft);
+
+	QHBoxLayout *layout = new QHBoxLayout();
+	main_layout->addLayout(layout);
+
 }
 
 void DetailsPage::onCloseClick()

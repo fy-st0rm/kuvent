@@ -12,6 +12,7 @@
 #include "Widgets/dashBoardNavBar.h"
 #include "Pages/PostPage.h"
 #include "Pages/DetailsPage.h"
+#include "Widgets/UserDetailsWidget.h"
 
 class MyEventsPage : public Page {
 public:

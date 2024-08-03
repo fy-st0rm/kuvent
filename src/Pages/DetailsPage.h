@@ -10,6 +10,7 @@
 #include "Pages/DashBoard.h"
 #include "Widgets/dashBoardNavBar.h"
 #include "Pages/PostPage.h"
+#include "Widgets/UserDetailsWidget.h"
 
 class DetailsPage: public Page{
 public:

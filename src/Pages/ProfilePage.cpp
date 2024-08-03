@@ -80,6 +80,7 @@ void ProfilePage::onAttach() {
     // Add profilePic to the left side with some spacing
     hLayout15->addSpacing(40); // Add more space to the left of the profile picture
     hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
+	hLayout15->addSpacing(40);
 
     // Create a vertical layout for the right side
     QVBoxLayout *vlayout = new QVBoxLayout();
@@ -100,6 +101,8 @@ void ProfilePage::onAttach() {
     // Add username label and entry label to the vertical layout and align to left
     vlayout->addWidget(usernameLabel, 0, Qt::AlignLeft);
     vlayout->addWidget(usernameEntryLabel, 0, Qt::AlignLeft);
+	vlayout->setAlignment(Qt::AlignLeft);
+	hLayout15->setAlignment(Qt::AlignLeft);
 
 	QHBoxLayout *hLayout18 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout18);
