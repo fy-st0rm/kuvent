@@ -5,6 +5,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QMessageBox>
 
+#include "Widgets/Image.h"
 #include "httplib.h"
 
 

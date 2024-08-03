@@ -24,6 +24,7 @@
 #include "Widgets/LineEditWithCalendar.cpp"
 #include "Widgets/PackEvent.cpp"
 #include "Widgets/LabelWithButton.cpp"
+#include "Widgets/Image.cpp"
 
 class App : public Application {
 public:
