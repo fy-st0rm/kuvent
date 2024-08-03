@@ -13,11 +13,14 @@ DashBoardNavBar::DashBoardNavBar(QWidget *parent)
 	createButton(ongoing_button, "assets/images/ongoing.png");
 	createButton(upcoming_button, "assets/images/upcoming.png");
 	createButton(post_button, "assets/images/plus.png");
+	createButton(myEvents_button, "assets/images/myEvents.png");
+
 
 	profile_button->setToolTip("Profile");
 	ongoing_button->setToolTip("Ongoing Events");
 	upcoming_button->setToolTip("Upcoming Events");
 	post_button->setToolTip("Post");
+	myEvents_button->setToolTip("My Events");
 
 	connect(profile_button, &QPushButton::clicked, [=] () {
 		resetButtonStyles();
@@ -46,6 +49,14 @@ DashBoardNavBar::DashBoardNavBar(QWidget *parent)
 	connect(post_button, &QPushButton::clicked, [=] () {
 		resetButtonStyles();
 		post_button->setStyleSheet(
+			"background-color:" + Theme::dashboardhoverBg + ";"
+			"border-radius: 15px;" 
+		);
+	});
+
+	connect(myEvents_button, &QPushButton::clicked, [=] () {
+		resetButtonStyles();
+		myEvents_button->setStyleSheet(
 			"background-color:" + Theme::dashboardhoverBg + ";"
 			"border-radius: 15px;" 
 		);
@@ -89,6 +100,8 @@ void DashBoardNavBar::onEntry(AccountType account_type) {
 	if (account_type == ORGANIZER) {
 		this->insertWidget(this->count() - 1, post_button, 0, Qt::AlignHCenter | Qt::AlignTop);
 		post_button->show();
+		this->insertWidget(this->count() - 1, myEvents_button, 0, Qt::AlignHCenter | Qt::AlignTop);
+		myEvents_button->show();
 	}
 }
 
@@ -101,7 +114,10 @@ void DashBoardNavBar::onExit(AccountType account_type) {
 		std::cout << "REMOVING\n";
 		this->removeWidget(post_button);
 		post_button->hide();
+		this->removeWidget(myEvents_button);
+		myEvents_button->hide();
 	}
+
 }
 
 QPushButton *DashBoardNavBar::getProfileButton()
@@ -122,6 +138,11 @@ QPushButton *DashBoardNavBar::getUpcomingButton()
 QPushButton *DashBoardNavBar::getPostButton()
 {
 	return post_button;
+}
+
+QPushButton *DashBoardNavBar::getMyEventsButton()
+{
+	return myEvents_button;
 }
 
 void DashBoardNavBar::resetButtonStyles()
@@ -166,6 +187,19 @@ void DashBoardNavBar::resetButtonStyles()
 		"}"
 	);
 	post_button->setStyleSheet(
+		"QToolTip {"
+		"background-color: white;"
+		"}"
+		"QToolTip:hover {"
+		"background-color: white;"
+		"}"
+		"QPushButton {"
+		"border-radius: 25px;"
+		"border: 2px;"
+		"background-color:" + Theme::dashboardBg + ";"
+		"}"
+	);
+	myEvents_button->setStyleSheet(
 		"QToolTip {"
 		"background-color: white;"
 		"}"

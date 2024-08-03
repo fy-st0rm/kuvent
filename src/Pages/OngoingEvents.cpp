@@ -102,7 +102,7 @@ bool OngoingEventsPage::eventFilter(QObject *obj, QEvent *event) {
 
 Json::Value OngoingEventsPage::fetchFlyers(const std::string& eventId) {
     httplib::Result res = app->client->Get("/get_flyer/" + eventId);
-    if (!res || res->status != 200) {
+    if (!res || res->status != httplib::StatusCode::OK_200) {
         throw std::runtime_error(res ? res->body : "Cannot connect to the server");
     }
     
@@ -117,7 +117,7 @@ Json::Value OngoingEventsPage::fetchFlyers(const std::string& eventId) {
 void OngoingEventsPage::adjustLayout() {
     int availableWidth = containerWidget->width() - ongoingEventsLayout->contentsMargins().left() - ongoingEventsLayout->contentsMargins().right();
     int itemWidth = 310 + ongoingEventsLayout->spacing();
-    int itemsPerRow = std::max(1, availableWidth / itemWidth);
+    int itemsPerRow = qMax(1, availableWidth / itemWidth);
 
     for (int i = 0; i < eventWidgets.size(); ++i) {
         int row = i / itemsPerRow;
@@ -127,7 +127,7 @@ void OngoingEventsPage::adjustLayout() {
 }
 
 void OngoingEventsPage::onExit() {
-    qDeleteAll(eventWidgets);
+	qDeleteAll(eventWidgets);
     eventWidgets.clear();
 }
 
@@ -137,13 +137,10 @@ void OngoingEventsPage::generateDetailsPages(const Json::Value& events) {
         return;
     }
 	for (auto event : events) {
-
-		//the problem is here i think 
 		pg_switcher->addPage<DetailsPage>(
 			event["ID"].asString(),
 			event,
 			"OngoingPage"
 		);
-
 	}
 }
