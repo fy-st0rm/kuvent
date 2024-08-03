@@ -13,6 +13,7 @@
 #include "Pages/OngoingEvents.cpp"
 #include "Pages/UpcomingEvents.cpp"
 #include "Pages/DetailsPage.cpp"
+#include "Pages/MyEventsPage.cpp"
 
 #include "Widgets/PageSwitcher.cpp"
 #include "Widgets/PasswordLineEdit.cpp"
@@ -32,7 +33,7 @@ public:
 		addPage<LoginPage>("LoginPage");
 		addPage<SignupPage>("SignupPage");
 		addPage<DashBoard>("DashBoard");
-		switchPage("SignupPage");
+		switchPage("LoginPage");
 	}
 };
 

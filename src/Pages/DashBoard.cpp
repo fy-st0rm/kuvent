@@ -63,12 +63,23 @@ void DashBoard::onEntry() {
 			switchPage("UpcomingPage");
 	});
 	if(isOrganizer)
+	{
 		connect(
 			nav_bar->getPostButton(),
 			&QPushButton::clicked, this,
 			[this]() {
 				switchPage("PostPage");
-		});
+			}
+		);
+
+		connect(
+			nav_bar->getMyEventsButton(),
+			QPushButton::clicked, this,
+			[this]() {
+				switchPage("MyEventsPage");
+			}
+		);
+	}
 }
 
 void DashBoard::onExit() {
@@ -81,6 +92,7 @@ void DashBoard::createPages() {
 	m_pg_switcher->addPage<OngoingEventsPage>("OngoingPage");
 	m_pg_switcher->addPage<UpcomingEventsPage>("UpcomingPage");
 	m_pg_switcher->addPage<PostPage>("PostPage");
+	m_pg_switcher->addPage<MyEventsPage>("MyEventsPage");
 	m_pg_switcher->switchPage("ProfilePage");
 
 }

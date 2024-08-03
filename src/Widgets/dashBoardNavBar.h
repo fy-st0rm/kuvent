@@ -18,6 +18,7 @@ public:
 	QPushButton *getOngoingButton();
 	QPushButton *getUpcomingButton();
 	QPushButton *getPostButton();
+	QPushButton *getMyEventsButton();
 
 private slots:
 	void resetButtonStyles();
@@ -28,6 +29,7 @@ private:
 	QPushButton *ongoing_button;
 	QPushButton *upcoming_button;
 	QPushButton *post_button;
+	QPushButton *myEvents_button;
 };
 
 #endif // DASHBOARDNAVBAR_H
