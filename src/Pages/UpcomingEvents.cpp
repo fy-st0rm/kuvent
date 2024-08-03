@@ -81,7 +81,12 @@ void UpcomingEventsPage::displayUpcomingEvents(const Json::Value& upcomingEvents
         eventWidget->setFixedSize(310, 400);
         eventWidgets.append(eventWidget);
         
-        connectDetailsButton(eventWidget, event);
+        connect(
+			eventWidget->getDetailsButton(),
+			&QPushButton::clicked, this,
+			[this, event, eventWidget]() {
+				pg_switcher->switchPage(event["ID"].asString());
+		});
     }
     adjustLayout();
 }
@@ -106,13 +111,6 @@ Json::Value UpcomingEventsPage::fetchFlyers(const std::string& eventId) {
         throw std::runtime_error("Failed to parse flyer data");
     }
     return response;
-}
-
-void UpcomingEventsPage::connectDetailsButton(PackEvent* eventWidget, const Json::Value& event) {
-    connect(eventWidget->getDetailsButton(), &QPushButton::clicked, this,
-            [this, event,eventWidget]() {
-                pg_switcher->switchPage(event["ID"].asString());
-            });
 }
 
 void UpcomingEventsPage::adjustLayout() {

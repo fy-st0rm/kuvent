@@ -1,6 +1,4 @@
 #include "OngoingEvents.h"
-#include "Widgets/PackEvent.h"
-#include "Pages/DetailsPage.h"
 #include "utils.h"
 
 void OngoingEventsPage::onAttach() {
@@ -84,7 +82,12 @@ void OngoingEventsPage::displayOngoingEvents(const Json::Value& ongoingEvents) {
         eventWidget->setFixedSize(310, 400);
         eventWidgets.append(eventWidget);
         
-        connectDetailsButton(eventWidget, event);
+		connect(
+			eventWidget->getDetailsButton(),
+			&QPushButton::clicked, this,
+			[this, event, eventWidget]() {
+				pg_switcher->switchPage(event["ID"].asString());
+		});
     }
     adjustLayout();
 }
@@ -111,13 +114,6 @@ Json::Value OngoingEventsPage::fetchFlyers(const std::string& eventId) {
     return response;
 }
 
-void OngoingEventsPage::connectDetailsButton(PackEvent* eventWidget, const Json::Value& event) {
-    connect(eventWidget->getDetailsButton(), &QPushButton::clicked, this,
-            [this, event, eventWidget]() {
-                pg_switcher->switchPage(event["ID"].asString());
-            });
-}
-
 void OngoingEventsPage::adjustLayout() {
     int availableWidth = containerWidget->width() - ongoingEventsLayout->contentsMargins().left() - ongoingEventsLayout->contentsMargins().right();
     int itemWidth = 310 + ongoingEventsLayout->spacing();
@@ -136,6 +132,10 @@ void OngoingEventsPage::onExit() {
 }
 
 void OngoingEventsPage::generateDetailsPages(const Json::Value& events) {
+    if(!pg_switcher){
+        qDebug () << "pg_switcher not initialized";
+        return;
+    }
 	for (auto event : events) {
 		pg_switcher->addPage<DetailsPage>(
 			event["ID"].asString(),

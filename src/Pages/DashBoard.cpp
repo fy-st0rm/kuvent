@@ -74,7 +74,7 @@ void DashBoard::onEntry() {
 
 		connect(
 			nav_bar->getMyEventsButton(),
-			QPushButton::clicked, this,
+			&QPushButton::clicked, this,
 			[this]() {
 				switchPage("MyEventsPage");
 			}

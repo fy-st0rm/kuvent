@@ -10,11 +10,10 @@
 #include "Widgets/PackEvent.h"
 #include "Application/Page.h"
 #include "Application/Application.h"
-#include "Application/Page.h"
 #include "Widgets/PageSwitcher.h"
 #include "Pages/DetailsPage.h"
 #include "Pages/DashBoard.h"
-
+    
 class UpcomingEventsPage: public Page {
 public:
     void onAttach();
@@ -29,7 +28,6 @@ private:
     Json::Value filterUpcomingEvents(const Json::Value& events);
     void displayUpcomingEvents(const Json::Value& upcomingEvents);
     Json::Value fetchFlyers(const std::string& eventId);
-    void connectDetailsButton(PackEvent* eventWidget, const Json::Value& event);
     void adjustLayout();
 
 private:

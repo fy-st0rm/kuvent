@@ -28,7 +28,6 @@ private:
     Json::Value filterOngoingEvents(const Json::Value& events);
     void displayOngoingEvents(const Json::Value& ongoingEvents);
     Json::Value fetchFlyers(const std::string& eventId);
-    void connectDetailsButton(PackEvent* eventWidget, const Json::Value& event);
     void adjustLayout();
 
 private:
