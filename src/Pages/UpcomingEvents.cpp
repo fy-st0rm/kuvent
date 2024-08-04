@@ -25,7 +25,6 @@ void UpcomingEventsPage::onAttach() {
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(scrollArea);
-    
     setLayout(mainLayout);
 }
 
@@ -122,6 +121,8 @@ void UpcomingEventsPage::adjustLayout() {
         int row = i / itemsPerRow;
         int col = i % itemsPerRow;
         upcomingEventsLayout->addWidget(eventWidgets[i], row, col);
+        upcomingEventsLayout->setAlignment(Qt::AlignTop);
+        upcomingEventsLayout->setSpacing(20);
     }
 }
 

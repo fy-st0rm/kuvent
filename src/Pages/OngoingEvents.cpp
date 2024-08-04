@@ -123,6 +123,8 @@ void OngoingEventsPage::adjustLayout() {
         int row = i / itemsPerRow;
         int col = i % itemsPerRow;
         ongoingEventsLayout->addWidget(eventWidgets[i], row, col);
+        ongoingEventsLayout->setAlignment(Qt::AlignTop);
+        ongoingEventsLayout->setSpacing(20);
     }
 }
 

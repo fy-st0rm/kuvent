@@ -13,6 +13,10 @@ UserDetailsWidget::UserDetailsWidget(QWidget *parent)
 
     QLabel *participantName = new QLabel("Bijan", this);
     hLayout->addWidget(participantName);
+    participantName->setStyleSheet(
+        "color: black;"
+        "font-size: 14pt;"
+    );
 
     QPushButton *dropdownButton = new QPushButton();
     QIcon dropdownIcon("C:/tests/dropdown.png");
