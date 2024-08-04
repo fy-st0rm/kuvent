@@ -162,8 +162,13 @@ void DetailsPage::onEntry() {
 	hLayout10->addWidget(eventFlyer);
 	hLayout10->setAlignment(Qt::AlignLeft);
 
-	QHBoxLayout *layout = new QHBoxLayout();
-	main_layout->addLayout(layout);
+	QPushButton *registerButton = new QPushButton("Register", this);
+	hLayout10->addWidget(registerButton, 0, Qt::AlignBottom | Qt::AlignRight);
+	registerButton->setStyleSheet(
+		"background-color: purple;"
+	);
+
+	connect(registerButton, &QPushButton::clicked, this, &DetailsPage::onRegisterClick);
 
 }
 
@@ -212,4 +217,9 @@ void DetailsPage::onExit() {
 		delete item->widget();
 		delete item;
 	}
+}
+
+void DetailsPage::onRegisterClick()
+{
+
 }

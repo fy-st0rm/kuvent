@@ -41,4 +41,5 @@ private:
 
 	private slots:
 	void onCloseClick();
+	void onRegisterClick();
 };
