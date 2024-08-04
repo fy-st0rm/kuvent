@@ -26,6 +26,6 @@ private:
 	QLabel* m_label;
 	QFutureWatcher<QPixmap> m_watcher;
 
-	QString m_placeholder = "assets/images/upcoming.png";
+	QString m_placeholder = "assets/images/placeholder.png";
 };
 
