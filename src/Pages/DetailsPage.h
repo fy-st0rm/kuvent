@@ -35,6 +35,7 @@ private:
 	QLabel *organizerLabel;
 	QLabel *eventFlyer;
 	QToolButton *closeButton;
+	QPushButton *registerButton;
 
 	Json::Value m_event_data;
 	std::string m_exit_page;

@@ -18,6 +18,7 @@ class PackEvent: public QWidget {
 		QString organizer,
 		QString event_name
 	);
+
 	QPushButton* getDetailsButton();
 
 	private:

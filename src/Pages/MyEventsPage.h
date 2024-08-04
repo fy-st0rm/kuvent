@@ -16,11 +16,24 @@
 
 class MyEventsPage : public Page {
 public:
-    void onAttach();
-    
+	void onAttach();
+	void onEntry();
+	void onExit();
+
+protected:
+	bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
-    QGridLayout *myEventsLayout;
-    QWidget *containerWidget;
+	void generateDetailsPages(const Json::Value& events);
+	Json::Value fetchEvents();
+	Json::Value filterMyEvents(const Json::Value& events);
+	void displayMyEvents(const Json::Value& myEvents);
+	Json::Value fetchFlyers(const std::string& eventId);
+	void adjustLayout();
 
+private:
+	QGridLayout *ongoingEventsLayout;
+	QWidget *containerWidget;
+	PageSwitcher *m_pg_switcher;
+	QList<PackEvent*> eventWidgets;
 };

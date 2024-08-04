@@ -352,6 +352,7 @@ bool PostPage::postToServer()
     Json::Value payload;
     payload["name"] = event_name;
     payload["organizer"] = app_data.username;
+		payload["organizer_id"] = app_data.id;
     payload["start_date"] = start_date;
     payload["end_date"] = end_date;
     payload["venue"] = venue;
