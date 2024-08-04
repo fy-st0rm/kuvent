@@ -23,6 +23,7 @@ namespace model {
 			{ "ID",         "TEXT", .primary_key = true },
 			{ "NAME",       "TEXT" },
 			{ "ORGANIZER",  "TEXT" },
+			{ "ORGANIZER_ID", "TEXT" },
 			{ "START_DATE", "DATETIME" },
 			{ "END_DATE",   "DATETIME" },
 			{ "VENUE",      "TEXT" },
