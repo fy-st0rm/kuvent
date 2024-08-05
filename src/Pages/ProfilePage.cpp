@@ -18,6 +18,7 @@ void ProfilePage::onAttach() {
 	profileLabel->setStyleSheet(
 			"font-size: 18pt;"
 			"font-weight: bold;"
+			"color: #000000;"
 	);
 	hLayout1->addWidget(profileLabel);
 	hLayout1->setAlignment(Qt::AlignLeft);
@@ -25,10 +26,12 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout0 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout0);
 
+	//Horizontal line
 	QFrame *line0 = new QFrame;
     line0->setFrameShape(QFrame::HLine); 
     line0->setFixedHeight(2);
 	line0->setFixedWidth(this->width()/1.5);
+	line0->setStyleSheet("color: #000000;");
 
 	hLayout0->addWidget(line0); //Adding line to layout
 	hLayout0->setAlignment(Qt::AlignBottom);
@@ -90,12 +93,14 @@ void ProfilePage::onAttach() {
     usernameLabel->setStyleSheet(
         "font-size: 13pt;"
         "font-weight: bold;"
+		"color: #000000;"
     );
 
     usernameEntryLabel = new QLabel("");
     usernameEntryLabel->setStyleSheet(
         "font-size: 11pt;"
         "font-weight: bold;"
+		"color: #7C7C7C;"
     );
 
     // Add username label and entry label to the vertical layout and align to left
@@ -107,10 +112,12 @@ void ProfilePage::onAttach() {
 	QHBoxLayout *hLayout18 = new QHBoxLayout();
 	v_profileLayout->addLayout(hLayout18);
 
+	//Horizontal line
 	QFrame *line = new QFrame;
     line->setFrameShape(QFrame::HLine); 
     line->setFixedHeight(2);
 	line->setFixedWidth(this->width()/1.5);
+	line->setStyleSheet("color: #000000;");
 
 	hLayout18->addWidget(line); //Adding line to layout
 	hLayout18->setAlignment(Qt::AlignBottom);
@@ -125,6 +132,7 @@ void ProfilePage::onAttach() {
 	emailLabel->setStyleSheet(
 			"font-size: 13pt;"
 			"font-weight: bold;"
+			"color: #000000;"
 	);
 	hLayout2->addWidget(emailLabel);
 	hLayout2->setAlignment(Qt::AlignLeft);
@@ -137,6 +145,7 @@ void ProfilePage::onAttach() {
 	emailEntryLabel->setStyleSheet(
 			"font-size: 11pt;"
 			"font-weight: bold;"
+			"color: #7C7C7C"
 	);
 	emailEntryLabel->setFixedSize(270,30);
 	hLayout3->addWidget(emailEntryLabel);
@@ -146,10 +155,12 @@ void ProfilePage::onAttach() {
 	QBoxLayout *hLayout4 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout4);
 
+	//Horizontal line
 	QFrame *line1 = new QFrame;
     line1->setFrameShape(QFrame::HLine); 
     line1->setFixedHeight(2);
 	line1->setFixedWidth(this->width()/1.5);
+	line1->setStyleSheet("color: #000000;");
 
 	hLayout4->addWidget(line1); //Adding line to layout
 	hLayout4->setAlignment(Qt::AlignLeft);
@@ -164,6 +175,7 @@ void ProfilePage::onAttach() {
 	contactNoLabel->setStyleSheet(
 			"font-size: 13pt;"
 			"font-weight: bold;"
+			"color: #000000;"
 	);
 	hLayout5->addWidget(contactNoLabel);
 	hLayout5->setAlignment(Qt::AlignLeft);
@@ -176,16 +188,23 @@ void ProfilePage::onAttach() {
 		changeProfileData("NUMBER", number);
 	});
 	contactNoEntryLabel->setText("");
+	contactNoEntryLabel->setStyleSheet(
+			"font-size: 11pt;"
+			"font-weight: bold;"
+			"color: #7C7C7C"
+	);
 	hLayout6->addWidget(contactNoEntryLabel);
 	
 	//line2
 	QBoxLayout *hLayout7 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout7);
 
+	//Horizontal line
 	QFrame *line2 = new QFrame;
     line2->setFrameShape(QFrame::HLine); 
     line2->setFixedHeight(2);
 	line2->setFixedWidth(this->width()/1.5);
+	line2->setStyleSheet("color: #000000;");
 
 	hLayout7->addWidget(line2); //Adding line to layout
 	hLayout7->setAlignment(Qt::AlignLeft);
@@ -200,6 +219,7 @@ void ProfilePage::onAttach() {
 	programBatchLabel->setStyleSheet(
 			"font-size: 13pt;"
 			"font-weight: bold;"
+			"color: #000000;"
 	);
 	hLayout8->addWidget(programBatchLabel);
 	hLayout8->setAlignment(Qt::AlignLeft);
@@ -212,27 +232,33 @@ void ProfilePage::onAttach() {
 		std::string batch = facultyEntryLabel->text().toStdString();
 		changeProfileData("BATCH", batch);
 	});
+	facultyEntryLabel->setStyleSheet(
+			"font-size: 11pt;"
+			"font-weight: bold;"
+			"color: #7C7C7C"
+	);
 	hLayout9->addWidget(facultyEntryLabel);
 
 	QBoxLayout *hLayout13 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout13);
 
+	//Horizontal line
 	QFrame *line4 = new QFrame;
     line4->setFrameShape(QFrame::HLine); 
     line4->setFixedHeight(2);
 	line4->setFixedWidth(this->width()/1.5);
+	line4->setStyleSheet("color: #000000;");
 
 	hLayout13->addWidget(line4); //Adding line to layout
 	hLayout13->setAlignment(Qt::AlignLeft);
 
-	v_profileLayout->addSpacing(25);
+	v_profileLayout->addSpacing(35);
 
 	//logout button
 	QPushButton *logout_button = new QPushButton("Logout");
-	logout_button->setStyleSheet(
-			"color: red;"
-			"background-color: white;"
-	);
+	logout_button->setStyleSheet("background: #FFFFFF; color: #1E1E1E; border: 1px solid #FF8585; "
+                                "border-radius: 8px; height: 32px; width: 89px;"
+                                "font-weight: bold;");
 	logout_button->setMinimumSize(50,30);
 	connect(
 		logout_button,
