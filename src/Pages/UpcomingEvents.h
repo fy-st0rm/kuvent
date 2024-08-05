@@ -33,6 +33,7 @@ private:
 private:
 		QLabel* placeholder = nullptr;
 		QVBoxLayout *mainLayout;
+		QHBoxLayout *placeholder_layout = nullptr;
     QGridLayout *upcomingEventsLayout;
     QWidget *containerWidget;
     PageSwitcher *m_pg_switcher;

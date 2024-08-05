@@ -34,6 +34,7 @@ private:
 		QLabel* placeholder = nullptr;
 		QScrollArea *scrollArea;
 		QVBoxLayout *mainLayout;
+		QHBoxLayout *placeholder_layout;
     QGridLayout *ongoingEventsLayout;
     QWidget *containerWidget;
     PageSwitcher *m_pg_switcher;

@@ -38,6 +38,8 @@ void UpcomingEventsPage::onEntry() {
 			displayUpcomingEvents(upcomingEvents);
 		}
 		else {
+			// Adding a placeholder image when no events are there
+			placeholder_layout = new QHBoxLayout;
 			QPixmap pixmap("assets/images/no_upcoming.png");
 			placeholder = new QLabel();
 			placeholder->setPixmap(pixmap);
@@ -51,7 +53,14 @@ void UpcomingEventsPage::onEntry() {
 				"  background-color: transparent;"
 				"}"
 			);
-			mainLayout->addWidget(placeholder);
+			placeholder->setAlignment(Qt::AlignCenter);
+
+			placeholder_layout->addStretch();
+			placeholder_layout->addWidget(placeholder);
+			placeholder_layout->addStretch();
+
+			mainLayout->addLayout(placeholder_layout, Qt::AlignCenter);
+			mainLayout->addStretch();
 		}
 	} catch (const std::exception& e) {
 		QMessageBox::critical(this, "Error", QString::fromStdString(e.what()));
@@ -152,6 +161,10 @@ void UpcomingEventsPage::onExit() {
 	if (placeholder != nullptr) {
 		delete placeholder;
 		placeholder = nullptr;
+	}
+	if (placeholder_layout != nullptr) {
+		delete placeholder_layout;
+		placeholder_layout = nullptr;
 	}
 }
 
