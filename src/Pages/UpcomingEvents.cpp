@@ -60,7 +60,6 @@ void UpcomingEventsPage::onEntry() {
 			placeholder_layout->addStretch();
 
 			mainLayout->addLayout(placeholder_layout, Qt::AlignCenter);
-			mainLayout->addStretch();
 		}
 	} catch (const std::exception& e) {
 		QMessageBox::critical(this, "Error", QString::fromStdString(e.what()));
@@ -172,6 +171,7 @@ void UpcomingEventsPage::generateDetailsPages(const Json::Value& events) {
 		for (auto event : events) {
 				pg_switcher->addPage<DetailsPage>(
 						event["ID"].asString(),
+						app,
 						event,
 						"UpcomingPage"
 				);

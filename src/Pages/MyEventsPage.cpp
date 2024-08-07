@@ -132,15 +132,15 @@ void MyEventsPage::onExit() {
 }
 
 void MyEventsPage::generateDetailsPages(const Json::Value& events) {
-		if(!pg_switcher){
-				qDebug () << "pg_switcher not initialized";
-				return;
-		}
-	for (auto event : events) {
-		pg_switcher->addPage<DetailsPage>(
-			event["ID"].asString(),
-			event,
-			"MyEventsPage"
-		);
-	}
+	//	if(!pg_switcher){
+	//			qDebug () << "pg_switcher not initialized";
+	//			return;
+	//	}
+	//for (auto event : events) {
+	//	pg_switcher->addPage<DetailsPage>(
+	//		event["ID"].asString(),
+	//		event,
+	//		"MyEventsPage"
+	//	);
+	//}
 }
