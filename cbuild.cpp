@@ -70,7 +70,7 @@ void build(char** argv) {
 			"vendor/sqlite3/sqlite3.o"
 		})
 		.clean();
-	//cbuild.run();
+	cbuild.run();
 }
 
 void init_db(char** argv) {
