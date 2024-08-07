@@ -201,9 +201,9 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line2 = new QFrame;
-    line2->setFrameShape(QFrame::HLine); 
+    line2->setFrameShape(QFrame::HLine);
     line2->setFixedHeight(2);
-	line2->setFixedWidth(this->width()/1.5);
+	line2->setFixedWidth(this->width()/1.5); 
 	line2->setStyleSheet("color: #000000;");
 
 	hLayout7->addWidget(line2); //Adding line to layout

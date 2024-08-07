@@ -13,13 +13,15 @@ FacultyEntry::FacultyEntry(std::function<void(void)> callback, QWidget *parent)
     lineEdit = new QLineEdit(this);
     lineEdit->setVisible(false);
     lineEdit->setFixedSize(270,30);
+    lineEdit->setStyleSheet("border-radius: 5px;"
+                            "background-color: #F0F0F0;");
 
     editButton = new QPushButton("Edit");
-    editButton->setStyleSheet("color: red; background-color: white;");
+    editButton->setStyleSheet("color: white; background-color: #7469B6; border-radius: 5px;");
     editButton->setFixedSize(80, 30);
 
     applyButton = new QPushButton("Apply");
-    applyButton->setStyleSheet("color: green; background-color: white;");
+    applyButton->setStyleSheet("color: white; background-color: #7469B6; border-radius: 5px;");
     applyButton->setFixedSize(80, 30);
     applyButton->setVisible(false);
 
