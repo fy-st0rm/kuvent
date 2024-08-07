@@ -38,6 +38,7 @@ int main(void) {
 
 	svr.Post("/join_event", route::join_event);
 	svr.Post("/leave_event", route::leave_event);
+	svr.Post("/is_registered", route::is_registered);
 
 	std::cout << "Server listening on: http://localhost:8080" << std::endl;
 	svr.listen("127.0.0.1", 8080);

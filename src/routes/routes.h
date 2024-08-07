@@ -24,5 +24,6 @@ namespace route {
 	// Participation
 	void join_event(const Request& req, Response& res);
 	void leave_event(const Request& req, Response& res);
+	void is_registered(const Request& req, Response& res);
 
 }
