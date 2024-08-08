@@ -16,8 +16,9 @@ void DetailsPage::onEntry() {
 		+ QString::fromStdString(m_event_data["NAME"].asString())
 	);
 	eventName->setStyleSheet(
-		"font-size: 14pt;"
+		"font-size: 18pt;"
 		"font-weight: bold;"
+		"color: #000000;"
 	);
 
 	closeButton = new QToolButton();
@@ -39,15 +40,25 @@ void DetailsPage::onEntry() {
 	organizerLabel = new QLabel(
 		QString::fromStdString(m_event_data["ORGANIZER"].asString())
 	);
+	organizerLabel->setStyleSheet(
+		"font-weight: bold;"
+		"font-size: 14pt;"
+		"color: #7C7C7C"
+	);
 	hLayout2->addSpacing(30);
 	hLayout2->addWidget(organizerLabel);
 	hLayout2->setAlignment(Qt::AlignLeft);
+
+	main_layout->addSpacing(20);
 
 	QHBoxLayout *hLayout3 = new QHBoxLayout;
 	main_layout->addLayout(hLayout3);
 	QLabel *date = new QLabel("Date");
 	date->setStyleSheet(
 			"font-weight: bold;"
+			"font-size: 14pt;"
+			"font-weight: bold;"
+			"color: #000000;"
 	);
 	hLayout3->addSpacing(30);
 	hLayout3->addWidget(date);
@@ -57,6 +68,7 @@ void DetailsPage::onEntry() {
 	startDate = new QLabel(
 		QString::fromStdString(m_event_data["START_DATE"].asString())
 	);
+
 	endDate = new QLabel(
 		QString::fromStdString(m_event_data["END_DATE"].asString())
 	);
@@ -65,6 +77,11 @@ void DetailsPage::onEntry() {
 	QString endingDate = endDate->text();
 
 	QLabel *eventPeriod = new QLabel(startingDate + " to " + endingDate);
+	eventPeriod->setStyleSheet(
+			"color: #7C7C7C;"
+			"font-size: 12pt;"
+			"font-weight: 600;"
+	);
 	hLayout4->addSpacing(30);
 	hLayout4->addWidget(eventPeriod);
 
@@ -74,6 +91,8 @@ void DetailsPage::onEntry() {
 	QLabel *venue = new QLabel("Venue");
 	venue->setStyleSheet(
 			"font-weight: bold;"
+			"font-size: 14pt;"
+			"color: #000000;"
 	);
 	hLayout5->addSpacing(30);
 	hLayout5->addWidget(venue);
@@ -84,6 +103,11 @@ void DetailsPage::onEntry() {
 
 	venueLocation = new QLabel(
 		QString::fromStdString(m_event_data["VENUE"].asString())
+	);
+	venueLocation->setStyleSheet(
+			"color: #7C7C7C;"
+			"font-size: 12pt;"
+			"font-weight: 600;"
 	);
 	hLayout6->addSpacing(30);
 	hLayout6->addWidget(venueLocation);
@@ -96,7 +120,8 @@ void DetailsPage::onEntry() {
 		QString::fromStdString(m_event_data["VENUE_DESC"].asString())
 	);
 	venueDescription->setStyleSheet(
-			"color: #3E7689;"
+			"color: #7C7C7C;"
+			"font-size: 12pt;"
 	);
 	hLayout7->addSpacing(30);
 	hLayout7->addWidget(venueDescription);
@@ -108,6 +133,8 @@ void DetailsPage::onEntry() {
 	QLabel *about = new QLabel("About the event");
 	about->setStyleSheet(
 			"font-weight: bold;"
+			"font-size: 14pt;"
+			"color: #000000;"
 	);
 	hLayout8->addSpacing(30);
 	hLayout8->addWidget(about);
@@ -119,9 +146,15 @@ void DetailsPage::onEntry() {
 	eventDescription = new QLabel(
 		QString::fromStdString(m_event_data["DESC"].asString())
 	);
+	eventDescription->setStyleSheet(
+			"color: #7C7C7C;"
+			"font-size: 12pt;"
+	);
 	hLayout9->addSpacing(30);
 	hLayout9->addWidget(eventDescription);
 	hLayout9->setAlignment(Qt::AlignLeft);
+
+	main_layout->addSpacing(15);
 
 	QHBoxLayout *hLayout10 = new QHBoxLayout;
 	main_layout->addLayout(hLayout10);
@@ -162,22 +195,32 @@ void DetailsPage::onEntry() {
 	hLayout10->addWidget(eventFlyer);
 	hLayout10->setAlignment(Qt::AlignLeft);
 
+	hLayout10->addSpacing(700);
+
 	if (m_exit_page == "OngoingPage")
 		return;
 
 	if (!isUserRegistered()) {
 		// Register button
 		registerButton = new QPushButton("Register", this);
+		registerButton->setFixedSize(80,37.5);
 		registerButton->setStyleSheet(
-			"background-color: purple;"
+			"background-color: #7469B6;"
+			"border-radius: 5px;"
+			"color: white;"
+			"font-weight: bold;"
 		);
 		connect(registerButton, &QPushButton::clicked, this, &DetailsPage::onRegisterClick);
 		hLayout10->addWidget(registerButton, 0, Qt::AlignBottom | Qt::AlignRight);
 	} else {
 		// Leave button
 		leaveButton = new QPushButton("Leave", this);
+		leaveButton->setFixedSize(80,37.5);
 		leaveButton->setStyleSheet(
-			"background-color: purple;"
+			"background-color: #7469B6;"
+			"border-radius: 5px;"
+			"color: white;"
+			"font-weight: bold;"
 		);
 		connect(leaveButton, &QPushButton::clicked, this, &DetailsPage::onLeaveClick);
 		hLayout10->addWidget(leaveButton, 0, Qt::AlignBottom | Qt::AlignRight);

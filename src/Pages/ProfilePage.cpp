@@ -122,7 +122,7 @@ void ProfilePage::onAttach() {
 	hLayout18->addWidget(line); //Adding line to layout
 	hLayout18->setAlignment(Qt::AlignBottom);
 
-	v_profileLayout->addSpacing(10);
+	v_profileLayout->addSpacing(40);
 
 	//Email label
 	QBoxLayout *hLayout2 = new QHBoxLayout;
