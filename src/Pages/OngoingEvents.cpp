@@ -60,7 +60,6 @@ void OngoingEventsPage::onEntry() {
 			placeholder_layout->addStretch();
 
 			mainLayout->addLayout(placeholder_layout, Qt::AlignCenter);
-			mainLayout->addStretch();
 		}
 	} 
 	catch (const std::exception& e) {
@@ -171,13 +170,14 @@ void OngoingEventsPage::onExit() {
 }
 
 void OngoingEventsPage::generateDetailsPages(const Json::Value& events) {
-		if(!pg_switcher){
-				qDebug () << "pg_switcher not initialized";
-				return;
-		}
+	if(!pg_switcher) {
+		qDebug () << "pg_switcher not initialized";
+		return;
+	}
 	for (auto event : events) {
 		pg_switcher->addPage<DetailsPage>(
 			event["ID"].asString(),
+			app,
 			event,
 			"OngoingPage"
 		);

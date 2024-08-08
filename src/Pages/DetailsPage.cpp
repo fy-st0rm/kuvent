@@ -162,14 +162,26 @@ void DetailsPage::onEntry() {
 	hLayout10->addWidget(eventFlyer);
 	hLayout10->setAlignment(Qt::AlignLeft);
 
-	registerButton = new QPushButton("Register", this);
-	hLayout10->addWidget(registerButton, 0, Qt::AlignBottom | Qt::AlignRight);
-	registerButton->setStyleSheet(
-		"background-color: purple;"
-	);
+	if (m_exit_page == "OngoingPage")
+		return;
 
-	connect(registerButton, &QPushButton::clicked, this, &DetailsPage::onRegisterClick);
-
+	if (!isUserRegistered()) {
+		// Register button
+		registerButton = new QPushButton("Register", this);
+		registerButton->setStyleSheet(
+			"background-color: purple;"
+		);
+		connect(registerButton, &QPushButton::clicked, this, &DetailsPage::onRegisterClick);
+		hLayout10->addWidget(registerButton, 0, Qt::AlignBottom | Qt::AlignRight);
+	} else {
+		// Leave button
+		leaveButton = new QPushButton("Leave", this);
+		leaveButton->setStyleSheet(
+			"background-color: purple;"
+		);
+		connect(leaveButton, &QPushButton::clicked, this, &DetailsPage::onLeaveClick);
+		hLayout10->addWidget(leaveButton, 0, Qt::AlignBottom | Qt::AlignRight);
+	}
 }
 
 void DetailsPage::onCloseClick()
@@ -218,16 +230,121 @@ void DetailsPage::onExit() {
 		delete item;
 	}
 
-	if (closeButton) {
+	if (closeButton != nullptr) {
 		delete closeButton;
+		closeButton = nullptr;
 	}
 	
-	if (registerButton) {
+	if (registerButton != nullptr) {
 		delete registerButton;
+		registerButton = nullptr;
+	}
+
+	if (leaveButton != nullptr) {
+		delete leaveButton;
+		leaveButton = nullptr;
 	}
 }
 
-void DetailsPage::onRegisterClick()
-{
+void DetailsPage::onRegisterClick() {
+	AppData app_data = m_app->getAppData();
 
+	Json::Value payload;
+	Json::StyledWriter writer;
+	payload["user_id"] = app_data.id;
+	payload["event_id"] = m_event_data["ID"];
+
+	httplib::Result res = m_app->client->Post(
+		"/join_event",
+		writer.write(payload),
+		"application/json"
+	);
+
+	// Checking the response
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Leave event error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	onExit();
+	onEntry();
+}
+
+void DetailsPage::onLeaveClick() {
+	AppData app_data = m_app->getAppData();
+
+	Json::Value payload;
+	Json::StyledWriter writer;
+	payload["user_id"] = app_data.id;
+	payload["event_id"] = m_event_data["ID"];
+
+	httplib::Result res = m_app->client->Post(
+		"/leave_event",
+		writer.write(payload),
+		"application/json"
+	);
+
+	// Checking the response
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Leave event error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	onExit();
+	onEntry();
+}
+
+bool DetailsPage::isUserRegistered() {
+	AppData app_data = m_app->getAppData();
+
+	Json::Value payload;
+	Json::StyledWriter writer;
+	payload["user_id"] = app_data.id;
+	payload["event_id"] = m_event_data["ID"];
+
+	httplib::Result res = m_app->client->Post(
+		"/is_registered",
+		writer.write(payload),
+		"application/json"
+	);
+
+	// Checking the response
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return false;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Register status fetch error",
+			QString::fromStdString(res->body)
+		);
+		return false;
+	}
+
+	// Reading the response
+	Json::Value res_data;
+	Json::Reader reader;
+	reader.parse(res->body, res_data);
+
+	return res_data["registered"].asBool();
 }
