@@ -5,13 +5,19 @@
 #include <QtWidgets/QHBoxLayout>
 
 class MyEventsDetails : public QWidget {
-    
-    public:
-    MyEventsDetails (QWidget *parent = nullptr);
-    
-    private:
-    QLabel *usernameDetail;
-    QLabel *batchDetail;
-    QLabel *contactDetail;
-    QLabel *emailDetail;
+	
+public:
+	MyEventsDetails (
+		QString username,
+		QString batch,
+		QString email,
+		QString contact,
+		QWidget *parent = nullptr
+	);
+	
+private:
+	QLabel *usernameDetail;
+	QLabel *batchDetail;
+	QLabel *contactDetail;
+	QLabel *emailDetail;
 };

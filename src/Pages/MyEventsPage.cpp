@@ -94,7 +94,9 @@ void MyEventsPage::displayMyEvents(const Json::Value& myEvents) {
 					eventWidget->getDetailsButton(),
 					&QPushButton::clicked, this,
 					[this, event, eventWidget]() {
-						pg_switcher->switchPage("test");
+						pg_switcher->switchPage(
+							"PARTICPANT-" + event["ID"].asString()
+						);
 				});
 				connect(
 					eventWidget->getDeleteButton(),
@@ -154,7 +156,10 @@ void MyEventsPage::generateDetailsPages(const Json::Value& events) {
 				return;
 		}
 	for (auto event : events) {
-		pg_switcher->addPage<ParticipantList>("test");
+		pg_switcher->addPage<ParticipantList>(
+			"PARTICPANT-" + event["ID"].asString(),
+			event
+		);
 	}
 }
 
