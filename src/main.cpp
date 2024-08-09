@@ -35,6 +35,7 @@ int main(void) {
 	svr.Post("/delete_event", route::delete_event);
 	svr.Get("/get_event", route::get_event);
 	svr.Get("/get_flyer/:event_id", route::get_flyer);
+	svr.Get("/get_participants/:event_id", route::get_participants);
 
 	svr.Post("/join_event", route::join_event);
 	svr.Post("/leave_event", route::leave_event);

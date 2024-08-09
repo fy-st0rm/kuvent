@@ -20,6 +20,7 @@ namespace route {
 	void delete_event(const Request& req, Response& res);
 	void get_event(const Request& req, Response& res);
 	void get_flyer(const Request& req, Response& res);
+	void get_participants(const Request& req, Response& res);
 
 	// Participation
 	void join_event(const Request& req, Response& res);

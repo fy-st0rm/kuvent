@@ -216,4 +216,56 @@ void get_flyer(const Request& req, Response& res) {
 	res.set_content(response_str, "application/json");
 }
 
+void get_participants(const Request& req, Response& res) {
+	std::string event_id = req.path_params.at("event_id");
+
+	Database db(DB_PATH);
+
+	std::stringstream sq;
+	sq
+		<< "SELECT * FROM EVENTS "
+		<< "WHERE ID = \"" << event_id << "\";";
+
+	QueryResult r = db.query(sq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	// When the event doesnt exists
+	if (r.result.size() == 0) {
+		res.status = StatusCode::BadRequest_400;
+		res.set_content("Cannot find event with id: " + event_id, "text/plain");
+		return;
+	}
+
+	std::stringstream psq;
+	psq
+		<< "SELECT * FROM PARTICIPANTS "
+		<< "WHERE EVENT_ID = \"" << event_id << "\";";
+
+	r = db.query(psq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
+	// Collecting data
+	Json::Value response;
+	Json::StyledWriter writer;
+
+	response["participants"] = Json::arrayValue;
+
+	for (auto row : r.result) {
+		response["participants"].append(row["USER_ID"]);
+	}
+
+	std::string response_str = writer.write(response);
+
+	res.status = StatusCode::OK_200;
+	res.set_content(response_str, "application/json");
+}
+
 }
