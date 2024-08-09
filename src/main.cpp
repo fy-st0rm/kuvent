@@ -26,6 +26,7 @@
 #include "Widgets/LabelWithButton.cpp"
 #include "Widgets/Image.cpp"
 #include "Widgets/UserDetailsWidget.cpp"
+#include "Widgets/MyEventsDetails.cpp"
 
 class App : public Application {
 public:
