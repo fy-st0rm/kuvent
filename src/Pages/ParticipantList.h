@@ -11,8 +11,8 @@
 class ParticipantList : public Page{
     public:
     void onAttach();
-    void onEntry();
-    void onExit();
+    void onEntry() {}
+    void onExit() {}
 
     private: 
     QScrollArea *scrollArea;

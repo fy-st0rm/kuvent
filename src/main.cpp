@@ -14,6 +14,7 @@
 #include "Pages/UpcomingEvents.cpp"
 #include "Pages/DetailsPage.cpp"
 #include "Pages/MyEventsPage.cpp"
+#include "Pages/ParticipantList.cpp"
 
 #include "Widgets/PageSwitcher.cpp"
 #include "Widgets/PasswordLineEdit.cpp"

@@ -104,7 +104,14 @@ void OngoingEventsPage::displayOngoingEvents(const Json::Value& ongoingEvents) {
 				QString organizer = QString::fromStdString(event["ORGANIZER"].asString());
 				std::string flyerId = flyers["flyers"][0].asString();
 				
-				PackEvent* eventWidget = new PackEvent(containerWidget, app->client, flyerId, organizer, eventName);
+				PackEvent* eventWidget = new PackEvent(
+					containerWidget,
+					app->client,
+					flyerId,
+					organizer,
+					eventName,
+					false
+				);
 				eventWidget->setFixedSize(310, 400);
 				eventWidgets.append(eventWidget);
 				

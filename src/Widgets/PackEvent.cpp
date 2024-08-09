@@ -5,7 +5,8 @@ PackEvent::PackEvent(
 	httplib::Client* client,
 	const std::string& flyer_id,
 	QString organizer,
-	QString event_name
+	QString event_name,
+	bool is_organizer
 ) : QWidget(parent) {
 
 	QWidget *event_widget = new QWidget(this);
@@ -43,6 +44,8 @@ PackEvent::PackEvent(
 		event_layout->addWidget(flyer, 0, Qt::AlignCenter);
 	}
 
+	QHBoxLayout *button_layout = new QHBoxLayout();
+
 	see_details_btn = new QPushButton("See Details", this);
 	see_details_btn->setStyleSheet(
 		"QPushButton {"
@@ -58,9 +61,27 @@ PackEvent::PackEvent(
 		"  background-color: #A3B8BF;"
 		"}"
 	);
-
-	QHBoxLayout *button_layout = new QHBoxLayout();
 	button_layout->addWidget(see_details_btn, 0, Qt::AlignCenter);
+
+	if (is_organizer) {
+		delete_btn = new QPushButton("Delete", this);
+		delete_btn->setStyleSheet(
+			"QPushButton {"
+			"  background-color: #B3C8CF;"
+			"  color: #000000;"
+			"  border: none;"
+			"  border-radius: 8px;"
+			"  font-size: 12px;"
+			"  width: 100px;"
+			"  height: 25px;"
+			"}"
+			"QPushButton:hover {"
+			"  background-color: #A3B8BF;"
+			"}"
+		);
+		button_layout->addWidget(delete_btn, 0, Qt::AlignCenter);
+	}
+
 	event_layout->addLayout(button_layout);
 	event_layout->addStretch();
 	setLayout(event_layout);
@@ -68,6 +89,10 @@ PackEvent::PackEvent(
 
 QPushButton *PackEvent::getDetailsButton() {
 	return see_details_btn;
+}
+
+QPushButton *PackEvent::getDeleteButton() {
+	return delete_btn;
 }
 
 

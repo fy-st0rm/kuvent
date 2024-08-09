@@ -12,6 +12,7 @@
 #include "Widgets/dashBoardNavBar.h"
 #include "Pages/PostPage.h"
 #include "Pages/DetailsPage.h"
+#include "Pages/ParticipantList.h"
 #include "Widgets/UserDetailsWidget.h"
 
 class MyEventsPage : public Page {
@@ -30,6 +31,7 @@ private:
 	void displayMyEvents(const Json::Value& myEvents);
 	Json::Value fetchFlyers(const std::string& eventId);
 	void adjustLayout();
+	void deleteEvent(const std::string& event_id);
 
 private:
 	QGridLayout *ongoingEventsLayout;

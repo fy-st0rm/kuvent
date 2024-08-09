@@ -16,11 +16,14 @@ class PackEvent: public QWidget {
 		httplib::Client* client,
 		const std::string& flyer_id,
 		QString organizer,
-		QString event_name
+		QString event_name,
+		bool is_organizer
 	);
 
 	QPushButton* getDetailsButton();
+	QPushButton* getDeleteButton();
 
 	private:
+	QPushButton *delete_btn;
 	QPushButton *see_details_btn;
 };

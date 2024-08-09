@@ -69,23 +69,40 @@ Json::Value MyEventsPage::filterMyEvents(const Json::Value& events) {
 }
 
 void MyEventsPage::displayMyEvents(const Json::Value& myEvents) {
+		AppData app_data = app->getAppData();
 		for (const auto& event : myEvents) {
 				Json::Value flyers = fetchFlyers(event["ID"].asString());
 				
 				QString eventName = QString::fromStdString(event["NAME"].asString());
 				QString organizer = QString::fromStdString(event["ORGANIZER"].asString());
+				QString organizer_id = QString::fromStdString(event["ORGANIZER_ID"].asString());
+				bool is_organizer = organizer_id.toStdString() == app_data.id;
 				std::string flyerId = flyers["flyers"][0].asString();
 				
-				PackEvent* eventWidget = new PackEvent(containerWidget, app->client, flyerId, organizer, eventName);
+				PackEvent* eventWidget = new PackEvent(
+					containerWidget,
+					app->client,
+					flyerId,
+					organizer,
+					eventName,
+					is_organizer
+				);
 				eventWidget->setFixedSize(310, 400);
 				eventWidgets.append(eventWidget);
 				
-		connect(
-			eventWidget->getDetailsButton(),
-			&QPushButton::clicked, this,
-			[this, event, eventWidget]() {
-				pg_switcher->switchPage("ParticipantList");
-		});
+				connect(
+					eventWidget->getDetailsButton(),
+					&QPushButton::clicked, this,
+					[this, event, eventWidget]() {
+						pg_switcher->switchPage("test");
+				});
+				connect(
+					eventWidget->getDeleteButton(),
+					&QPushButton::clicked, this,
+					[this, event]() {
+						deleteEvent(event["ID"].asString());
+					}
+				);
 		}
 		adjustLayout();
 }
@@ -132,15 +149,48 @@ void MyEventsPage::onExit() {
 }
 
 void MyEventsPage::generateDetailsPages(const Json::Value& events) {
-	//	if(!pg_switcher){
-	//			qDebug () << "pg_switcher not initialized";
-	//			return;
-	//	}
-	//for (auto event : events) {
-	//	pg_switcher->addPage<DetailsPage>(
-	//		event["ID"].asString(),
-	//		event,
-	//		"MyEventsPage"
-	//	);
-	//}
+		if(!pg_switcher){
+				qDebug () << "pg_switcher not initialized";
+				return;
+		}
+	for (auto event : events) {
+		pg_switcher->addPage<ParticipantList>("test");
+	}
+}
+
+void MyEventsPage::deleteEvent(const std::string& event_id) {
+	Json::Value payload;
+	Json::StyledWriter writer;
+	payload["event_id"] = event_id;
+
+	httplib::Result res = app->client->Post(
+		"/delete_event",
+		writer.write(payload),
+		"application/json"
+	);
+
+	// Checking the result
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Delete Event Error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	QMessageBox::information(
+		this,
+		"Sucess",
+		QString::fromStdString(res->body)
+	);
+
+	// Refreshing the page
+	onExit();
+	onEntry();
 }

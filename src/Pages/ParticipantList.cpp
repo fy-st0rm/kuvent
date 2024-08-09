@@ -65,5 +65,6 @@ void ParticipantList::onAttach()
     setCentralWidget(scrollArea);
 
     containerLayout->addStretch();
+		setLayout(containerLayout);
 
 }
