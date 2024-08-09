@@ -1,6 +1,9 @@
 #pragma once 
 
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 
 #include "Widgets/PageSwitcher.h"
 #include "Pages/MyEventsPage.h"
@@ -11,6 +14,9 @@ class ParticipantList : public Page{
     void onEntry();
     void onExit();
 
-    private:
+    private: 
+    QScrollArea *scrollArea;
+    QWidget *containerWidget;
+    QVBoxLayout *mainLayout;
 
 };

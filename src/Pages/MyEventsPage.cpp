@@ -84,7 +84,7 @@ void MyEventsPage::displayMyEvents(const Json::Value& myEvents) {
 			eventWidget->getDetailsButton(),
 			&QPushButton::clicked, this,
 			[this, event, eventWidget]() {
-				pg_switcher->switchPage(event["ID"].asString());
+				pg_switcher->switchPage("ParticipantList");
 		});
 		}
 		adjustLayout();
