@@ -14,6 +14,8 @@
 #include "Pages/DetailsPage.h"
 #include "Pages/ParticipantList.h"
 #include "Widgets/UserDetailsWidget.h"
+#include "Pages/ParticipantList.h"
+#include "Widgets/MyEventsDetails.h"
 
 class MyEventsPage : public Page {
 public:
