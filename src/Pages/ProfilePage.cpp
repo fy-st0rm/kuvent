@@ -1,4 +1,3 @@
-
 #include "ProfilePage.h"
 #include "theme.h"
 
@@ -28,8 +27,8 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line0 = new QFrame;
-    line0->setFrameShape(QFrame::HLine); 
-    line0->setFixedHeight(2);
+		line0->setFrameShape(QFrame::HLine); 
+		line0->setFixedHeight(2);
 	line0->setFixedWidth(this->width()/1.5);
 	line0->setStyleSheet("color: #000000;");
 
@@ -39,73 +38,37 @@ void ProfilePage::onAttach() {
 	v_profileLayout->addSpacing(10);	
 
 	// Profile Picture
-    QHBoxLayout *hLayout15 = new QHBoxLayout;
-    v_profileLayout->addLayout(hLayout15);
+	QHBoxLayout *hLayout15 = new QHBoxLayout;
+	v_profileLayout->addLayout(hLayout15);
 
-    LabelWithButton *profilePic = new LabelWithButton(app, this);
+	profilePic = new LabelWithButton(app, this);
 
-    QPixmap profile;
+	// Add profilePic to the left side with some spacing
+	hLayout15->addSpacing(40); // Add more space to the left of the profile picture
+	hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
+	ayout15->addSpacing(40);
 
-    // When there is no pfp
-    if (app_data.pfp == "NULL") {
-        profile.load("assets/images/KUventpp.png");
-    } else {
-        // If pfp exists, fetching from the server
-        httplib::Result res = app->client->Get("/download/" + app_data.pfp);
+	// Create a vertical layout for the right side
+	QVBoxLayout *vlayout = new QVBoxLayout();
+	hLayout15->addLayout(vlayout);
 
-        // Checking the result
-        if (!res) {
-            QMessageBox::critical(
-                this,
-                "Connection Error",
-                "Cannot connect to the server. Please check your connection and try again later."
-            );
-        }
+	QLabel *usernameLabel = new QLabel("USERNAME");
+	usernameLabel->setStyleSheet(
+			"font-size: 13pt;"
+			"font-weight: bold;"
+	"color: #000000;"
+	);
 
-        if (res->status != httplib::StatusCode::OK_200) {
-            QMessageBox::warning(
-                this,
-                "Pfp Fetch Error",
-                QString::fromStdString(res->body)
-            );
-        }
+	usernameEntryLabel = new QLabel("");
+	usernameEntryLabel->setStyleSheet(
+			"font-size: 11pt;"
+			"font-weight: bold;"
+	"color: #7C7C7C;"
+	);
 
-        profile.loadFromData(
-            reinterpret_cast<const uchar*>(res->body.data()),
-            res->body.size()
-        );
-    }
-
-    profilePic->setPixmap(profile);
-    profilePic->setFixedSize(100, 100);
-    profilePic->setScaledContents(true);
-
-    // Add profilePic to the left side with some spacing
-    hLayout15->addSpacing(40); // Add more space to the left of the profile picture
-    hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
-	hLayout15->addSpacing(40);
-
-    // Create a vertical layout for the right side
-    QVBoxLayout *vlayout = new QVBoxLayout();
-    hLayout15->addLayout(vlayout);
-
-    QLabel *usernameLabel = new QLabel("USERNAME");
-    usernameLabel->setStyleSheet(
-        "font-size: 13pt;"
-        "font-weight: bold;"
-		"color: #000000;"
-    );
-
-    usernameEntryLabel = new QLabel("");
-    usernameEntryLabel->setStyleSheet(
-        "font-size: 11pt;"
-        "font-weight: bold;"
-		"color: #7C7C7C;"
-    );
-
-    // Add username label and entry label to the vertical layout and align to left
-    vlayout->addWidget(usernameLabel, 0, Qt::AlignLeft);
-    vlayout->addWidget(usernameEntryLabel, 0, Qt::AlignLeft);
+		// Add username label and entry label to the vertical layout and align to left
+		vlayout->addWidget(usernameLabel, 0, Qt::AlignLeft);
+		vlayout->addWidget(usernameEntryLabel, 0, Qt::AlignLeft);
 	vlayout->setAlignment(Qt::AlignLeft);
 	hLayout15->setAlignment(Qt::AlignLeft);
 
@@ -114,8 +77,8 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line = new QFrame;
-    line->setFrameShape(QFrame::HLine); 
-    line->setFixedHeight(2);
+		line->setFrameShape(QFrame::HLine); 
+		line->setFixedHeight(2);
 	line->setFixedWidth(this->width()/1.5);
 	line->setStyleSheet("color: #000000;");
 
@@ -157,8 +120,8 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line1 = new QFrame;
-    line1->setFrameShape(QFrame::HLine); 
-    line1->setFixedHeight(2);
+		line1->setFrameShape(QFrame::HLine); 
+		line1->setFixedHeight(2);
 	line1->setFixedWidth(this->width()/1.5);
 	line1->setStyleSheet("color: #000000;");
 
@@ -201,8 +164,8 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line2 = new QFrame;
-    line2->setFrameShape(QFrame::HLine);
-    line2->setFixedHeight(2);
+		line2->setFrameShape(QFrame::HLine);
+		line2->setFixedHeight(2);
 	line2->setFixedWidth(this->width()/1.5); 
 	line2->setStyleSheet("color: #000000;");
 
@@ -244,8 +207,8 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line4 = new QFrame;
-    line4->setFrameShape(QFrame::HLine); 
-    line4->setFixedHeight(2);
+		line4->setFrameShape(QFrame::HLine); 
+		line4->setFixedHeight(2);
 	line4->setFixedWidth(this->width()/1.5);
 	line4->setStyleSheet("color: #000000;");
 
@@ -257,8 +220,8 @@ void ProfilePage::onAttach() {
 	//logout button
 	QPushButton *logout_button = new QPushButton("Logout");
 	logout_button->setStyleSheet("background: #FFFFFF; color: #1E1E1E; border: 1px solid #FF8585; "
-                                "border-radius: 8px; height: 32px; width: 89px;"
-                                "font-weight: bold;");
+																"border-radius: 8px; height: 32px; width: 89px;"
+																"font-weight: bold;");
 	logout_button->setMinimumSize(50,30);
 	connect(
 		logout_button,
@@ -302,6 +265,43 @@ void ProfilePage::onEntry() {
 			QString::fromStdString(app_data.batch)
 		);
 	}
+
+	QPixmap profile;
+
+	// When there is no pfp
+	if (app_data.pfp == "NULL") {
+		profile.load("assets/images/KUventpp.png");
+	} else {
+		// If pfp exists, fetching from the server
+		httplib::Result res = app->client->Get("/download/" + app_data.pfp);
+
+		// Checking the result
+		if (!res) {
+				QMessageBox::critical(
+						this,
+						"Connection Error",
+						"Cannot connect to the server. Please check your connection and try again later."
+				);
+		}
+
+		if (res->status != httplib::StatusCode::OK_200) {
+				QMessageBox::warning(
+						this,
+						"Pfp Fetch Error",
+						QString::fromStdString(res->body)
+				);
+		}
+
+		profile.loadFromData(
+				reinterpret_cast<const uchar*>(res->body.data()),
+				res->body.size()
+		);
+	}
+
+	QPixmap circular_pixmap = createCircularPixmap(profile);
+	profilePic->setPixmap(circular_pixmap);
+	profilePic->setFixedSize(100, 100);
+	profilePic->setScaledContents(true);
 }
 
 void ProfilePage::changeProfileData(

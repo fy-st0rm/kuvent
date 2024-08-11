@@ -11,6 +11,7 @@
 #include <QtWidgets/QMessageBox>
 
 #include "Application/Application.h"
+#include "utils.h"
 
 class LabelWithButton: public QLabel {
 public:

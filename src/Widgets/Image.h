@@ -27,5 +27,6 @@ private:
 	QFutureWatcher<QPixmap> m_watcher;
 
 	QString m_placeholder = "assets/images/placeholder.png";
+	QPixmap* placeholder = nullptr;
 };
 
