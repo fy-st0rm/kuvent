@@ -13,19 +13,19 @@ MyEventsDetails::MyEventsDetails (
     mainLayout->addSpacing(55);
 
     usernameDetail = new QLabel(username, this);
-    mainLayout->addWidget(usernameDetail);
+    mainLayout->addWidget(usernameDetail, Qt::AlignTop);
     usernameDetail->setMinimumSize(50, 30);
 
     batchDetail = new QLabel(batch, this);
-    mainLayout->addWidget(batchDetail);
+    mainLayout->addWidget(batchDetail, Qt::AlignTop);
     batchDetail->setMinimumSize(50, 30);
 
     emailDetail = new QLabel(email, this);
-    mainLayout->addWidget(emailDetail);
+    mainLayout->addWidget(emailDetail, Qt::AlignTop);
     emailDetail->setMinimumSize(50, 30);
 
     contactDetail = new QLabel(contact, this);
-    mainLayout->addWidget(contactDetail);
+    mainLayout->addWidget(contactDetail, Qt::AlignTop);
     contactDetail->setMinimumSize(50, 30);
     
     setLayout(mainLayout);

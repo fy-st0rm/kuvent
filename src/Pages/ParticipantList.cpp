@@ -90,12 +90,23 @@ void ParticipantList::onAttach()
 
 void ParticipantList::onEntry() {
 	displayParticipants();
+	containerLayout->addStretch();
 }
 
 void ParticipantList::onExit() {
 	while (!m_details.empty()) {
 		delete m_details.back();
 		m_details.pop_back();
+	}
+
+	// Remove the last item (stretch)
+	QLayoutItem* item = containerLayout->takeAt(containerLayout->count() - 1);
+	
+	if (QWidget* widget = item->widget()) {
+		delete widget;
+	} else {
+		// If it's a stretch or spacer
+		delete item;
 	}
 }
 
@@ -158,7 +169,7 @@ void ParticipantList::displayParticipants() {
 			QString::fromStdString(user_data["number"].asString())
 		);
 		m_details.push_back(user_details);
-		containerLayout->addWidget(user_details, Qt::AlignTop);
+		containerLayout->addWidget(user_details);
 	}
 }
 
