@@ -23,6 +23,7 @@ public:
 
 private:
 	void displayParticipants();
+	void onCloseClick();
 
 private: 
 	Json::Value m_event;
@@ -32,4 +33,6 @@ private:
 	QWidget *containerWidget;
 	QVBoxLayout *mainLayout;
 	QVBoxLayout *containerLayout;
+
+	QToolButton *closeButton = nullptr;
 };

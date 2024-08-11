@@ -32,6 +32,21 @@ void ParticipantList::onAttach()
 			);
 	hLayout1->addWidget(eventName);
 
+	// Close button
+	closeButton = new QToolButton();
+	closeButton->setIcon(QIcon("assets/images/close.png"));
+	closeButton->setIconSize(QSize(20,20));
+	closeButton->setContentsMargins(0,0,0,0);
+	closeButton->setStyleSheet(
+		"border: none;"
+	);
+	connect(
+		closeButton,
+		&QToolButton::clicked, this,
+		&ParticipantList::onCloseClick
+	);
+	hLayout1->addWidget(closeButton, 0, Qt::AlignRight);
+
 	QHBoxLayout *hLayout2 = new QHBoxLayout();
 	containerLayout->addLayout(hLayout2);
 
@@ -145,4 +160,8 @@ void ParticipantList::displayParticipants() {
 		m_details.push_back(user_details);
 		containerLayout->addWidget(user_details, Qt::AlignTop);
 	}
+}
+
+void ParticipantList::onCloseClick() {
+	pg_switcher->switchPage("MyEventsPage");
 }

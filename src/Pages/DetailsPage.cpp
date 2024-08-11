@@ -197,7 +197,13 @@ void DetailsPage::onEntry() {
 
 	hLayout10->addSpacing(700);
 
+	// Disabling registration button in ongoing page
 	if (m_exit_page == "OngoingPage")
+		return;
+
+	// Disabling registration button for organizers
+	AppData app_data = app->getAppData();
+	if (app_data.account_type == ORGANIZER)
 		return;
 
 	if (!isUserRegistered()) {
