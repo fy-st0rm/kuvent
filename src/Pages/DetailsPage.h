@@ -30,6 +30,8 @@ private:
 	bool isUserRegistered();
 
 private:
+	QHBoxLayout *registrationLayout;
+
 	QLabel *eventName;
 	QLabel *venueLocation;
 	QLabel *eventDescription;
@@ -47,6 +49,15 @@ private:
 	Application* m_app;
 	Json::Value m_event_data;
 	std::string m_exit_page;
+
+private:
+    void setupEventHeader();
+    void setupOrganizerInfo();
+    void setupDateInfo();
+    void setupVenueInfo();
+    void setupEventDescription();
+    void setupFlyer();
+    void setupRegistrationButton();
 
 	private slots:
 	void onCloseClick();
