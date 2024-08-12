@@ -20,6 +20,8 @@ public:
 
 private:
 	void onImageLoaded();
+	void updateImage(const QPixmap& pixmap);
+	void resizeEvent(QResizeEvent* event);
 
 private:
 	QHBoxLayout *layout;
