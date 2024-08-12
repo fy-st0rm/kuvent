@@ -17,8 +17,8 @@ void DetailsPage::onEntry() {
 }
 
 void DetailsPage::setupEventHeader() {
-    QHBoxLayout *hLayout1 = new QHBoxLayout;
-    main_layout->addLayout(hLayout1);
+    QHBoxLayout *event_header_layout = new QHBoxLayout;
+    main_layout->addLayout(event_header_layout);
     main_layout->setAlignment(Qt::AlignTop);
 
     eventName = new QLabel(
@@ -37,15 +37,15 @@ void DetailsPage::setupEventHeader() {
     closeButton->setStyleSheet(
         "border: none;"
     );
-    hLayout1->addWidget(eventName, 0, Qt::AlignLeft);
-    hLayout1->addWidget(closeButton, 1, Qt::AlignRight);
+    event_header_layout->addWidget(eventName, 0, Qt::AlignLeft);
+    event_header_layout->addWidget(closeButton, 1, Qt::AlignRight);
 
     connect(closeButton, &QToolButton::clicked, this, &DetailsPage::onCloseClick);
 }
 
 void DetailsPage::setupOrganizerInfo() {
-    QHBoxLayout *hLayout2 = new QHBoxLayout;
-    main_layout->addLayout(hLayout2);
+    QHBoxLayout *organizer_info_layout = new QHBoxLayout;
+    main_layout->addLayout(organizer_info_layout);
     main_layout->setAlignment(Qt::AlignTop);
 
     organizerLabel = new QLabel(
@@ -56,27 +56,27 @@ void DetailsPage::setupOrganizerInfo() {
         "font-size: 14pt;"
         "color: #7C7C7C"
     );
-    hLayout2->addSpacing(30);
-    hLayout2->addWidget(organizerLabel);
-    hLayout2->setAlignment(Qt::AlignLeft);
+    organizer_info_layout->addSpacing(30);
+    organizer_info_layout->addWidget(organizerLabel);
+    organizer_info_layout->setAlignment(Qt::AlignLeft);
 
     main_layout->addSpacing(20);
 }
 
 void DetailsPage::setupDateInfo() {
-    QHBoxLayout *hLayout3 = new QHBoxLayout;
-    main_layout->addLayout(hLayout3);
+    QHBoxLayout *date_layout = new QHBoxLayout;
+    main_layout->addLayout(date_layout);
     QLabel *date = new QLabel("Date");
     date->setStyleSheet(
         "font-weight: bold;"
         "font-size: 14pt;"
         "color: #000000;"
     );
-    hLayout3->addSpacing(30);
-    hLayout3->addWidget(date);
+    date_layout->addSpacing(30);
+    date_layout->addWidget(date);
 
-    QHBoxLayout *hLayout4 = new QHBoxLayout;
-    main_layout->addLayout(hLayout4);
+    QHBoxLayout *start_end_date_layout = new QHBoxLayout;
+    main_layout->addLayout(start_end_date_layout);
     startDate = new QLabel(
         QString::fromStdString(m_event_data["START_DATE"].asString())
     );
@@ -94,13 +94,13 @@ void DetailsPage::setupDateInfo() {
         "font-size: 12pt;"
         "font-weight: 600;"
     );
-    hLayout4->addSpacing(30);
-    hLayout4->addWidget(eventPeriod);
+    start_end_date_layout->addSpacing(30);
+    start_end_date_layout->addWidget(eventPeriod);
 }
 
 void DetailsPage::setupVenueInfo() {
-    QHBoxLayout *hLayout5 = new QHBoxLayout;
-    main_layout->addLayout(hLayout5);
+    QHBoxLayout *venue_layout = new QHBoxLayout;
+    main_layout->addLayout(venue_layout);
 
     QLabel *venue = new QLabel("Venue");
     venue->setStyleSheet(
@@ -108,12 +108,12 @@ void DetailsPage::setupVenueInfo() {
         "font-size: 14pt;"
         "color: #000000;"
     );
-    hLayout5->addSpacing(30);
-    hLayout5->addWidget(venue);
-    hLayout5->setAlignment(Qt::AlignLeft);
+    venue_layout->addSpacing(30);
+    venue_layout->addWidget(venue);
+    venue_layout->setAlignment(Qt::AlignLeft);
 
-    QHBoxLayout *hLayout6 = new QHBoxLayout;
-    main_layout->addLayout(hLayout6);
+    QHBoxLayout *venue_location_layout = new QHBoxLayout;
+    main_layout->addLayout(venue_location_layout);
 
     venueLocation = new QLabel(
         QString::fromStdString(m_event_data["VENUE"].asString())
@@ -123,12 +123,12 @@ void DetailsPage::setupVenueInfo() {
         "font-size: 12pt;"
         "font-weight: 600;"
     );
-    hLayout6->addSpacing(30);
-    hLayout6->addWidget(venueLocation);
-    hLayout6->setAlignment(Qt::AlignLeft);
+    venue_location_layout->addSpacing(30);
+    venue_location_layout->addWidget(venueLocation);
+    venue_location_layout->setAlignment(Qt::AlignLeft);
 
-    QHBoxLayout *hLayout7 = new QHBoxLayout;
-    main_layout->addLayout(hLayout7);
+    QHBoxLayout *venue_desc_layout = new QHBoxLayout;
+    main_layout->addLayout(venue_desc_layout);
 
     venueDescription = new QLabel(
         QString::fromStdString(m_event_data["VENUE_DESC"].asString())
@@ -137,9 +137,9 @@ void DetailsPage::setupVenueInfo() {
         "color: #7C7C7C;"
         "font-size: 12pt;"
     );
-    hLayout7->addSpacing(30);
-    hLayout7->addWidget(venueDescription);
-    hLayout7->setAlignment(Qt::AlignLeft);
+    venue_desc_layout->addSpacing(30);
+    venue_desc_layout->addWidget(venueDescription);
+    venue_desc_layout->setAlignment(Qt::AlignLeft);
 }
 
 void DetailsPage::setupEventDescription() {
@@ -156,8 +156,8 @@ void DetailsPage::setupEventDescription() {
     hLayout8->addWidget(about);
     hLayout8->setAlignment(Qt::AlignLeft);
 
-    QHBoxLayout *hLayout9 = new QHBoxLayout;
-    main_layout->addLayout(hLayout9);
+    QHBoxLayout *desc_layout = new QHBoxLayout;
+    main_layout->addLayout(desc_layout);
 
     eventDescription = new QLabel(
         QString::fromStdString(m_event_data["DESC"].asString())
@@ -166,16 +166,16 @@ void DetailsPage::setupEventDescription() {
         "color: #7C7C7C;"
         "font-size: 12pt;"
     );
-    hLayout9->addSpacing(30);
-    hLayout9->addWidget(eventDescription);
-    hLayout9->setAlignment(Qt::AlignLeft);
+    desc_layout->addSpacing(30);
+    desc_layout->addWidget(eventDescription);
+    desc_layout->setAlignment(Qt::AlignLeft);
 
     main_layout->addSpacing(15);
 }
 
 void DetailsPage::setupFlyer() {
-    QHBoxLayout *hLayout10 = new QHBoxLayout;
-    main_layout->addLayout(hLayout10);
+    QHBoxLayout *flyer_layout = new QHBoxLayout;
+    main_layout->addLayout(flyer_layout);
 
     std::string flyer_id = getFlyerId();
     httplib::Result res = app->client->Get("/download/" + flyer_id);
@@ -209,9 +209,9 @@ void DetailsPage::setupFlyer() {
     eventFlyer->setPixmap(flyerPixmap.scaled(400, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     eventFlyer->setFixedSize(400, 400); // Ensures the label size is fixed
 
-    hLayout10->addSpacing(30);
-    hLayout10->addWidget(eventFlyer);
-    hLayout10->setAlignment(Qt::AlignLeft);
+    flyer_layout->addSpacing(30);
+    flyer_layout->addWidget(eventFlyer);
+    flyer_layout->setAlignment(Qt::AlignLeft);
 
     // Create a layout for the registration button
     registrationLayout = new QHBoxLayout;

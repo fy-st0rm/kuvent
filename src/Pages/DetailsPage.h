@@ -59,7 +59,7 @@ private:
     void setupFlyer();
     void setupRegistrationButton();
 
-	private slots:
+private slots:
 	void onCloseClick();
 	void onRegisterClick();
 	void onLeaveClick();
