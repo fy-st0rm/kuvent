@@ -16,13 +16,20 @@ public:
 	ParticipantList(const Json::Value& event)
 		: m_event(event)
 	{}
-
+	
 	void onAttach();
 	void onEntry();
 	void onExit();
-
 private:
+    void setupUI();
+	void setupHeader();
+    void setupLabels();
+	void addLabelToLayout(QHBoxLayout *layout, const QString &text);
+	void clearParticipantDetails();
+	void displayParticipant(const std::string &user_id);
 	void displayParticipants();
+	bool handleResponseErrors(const httplib::Result &res, const QString &errorTitle);
+
 	void onCloseClick();
 
 private: 

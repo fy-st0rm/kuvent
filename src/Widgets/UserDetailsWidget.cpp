@@ -13,16 +13,17 @@ UserDetailsWidget::UserDetailsWidget(QWidget *parent)
     QHBoxLayout *hLayout = new QHBoxLayout();
     containerLayout->addLayout(hLayout);
 
-    QLabel *participantName = new QLabel("Bijan", this);\
-    //                                   ^^^^^^^
+    QLabel *participantName = new QLabel("Bijan", this);
+    //                                   ^^^^^^^  ??
     hLayout->addWidget(participantName);
     participantName->setStyleSheet(
-        "color: black;"
+        "color: #000000;"
         "font-size: 14pt;"
     );
 
     QPushButton *dropdownButton = new QPushButton();
     QIcon dropdownIcon("C:/tests/dropdown.png");
+    //                 ^&^^^^^^^^^^^^^^^^^^^^  ??
     if (dropdownIcon.isNull()) {
         qDebug() << "Error: Icon not loaded. Check the path.";
     } else {

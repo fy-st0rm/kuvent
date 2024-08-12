@@ -1,32 +1,35 @@
 #include "Widgets/MyEventsDetails.h"
 
-
-MyEventsDetails::MyEventsDetails (
-	QString username,
-	QString batch,
-	QString email,
-	QString contact,
-	QWidget *parent
+MyEventsDetails::MyEventsDetails(
+    QString username,
+    QString batch,
+    QString email,
+    QString contact,
+    QWidget *parent
 ) : QWidget(parent)
 {
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
     mainLayout->addSpacing(55);
 
-    usernameDetail = new QLabel(username, this);
+    usernameDetail = createLabel(username);
     mainLayout->addWidget(usernameDetail, Qt::AlignTop);
-    usernameDetail->setMinimumSize(50, 30);
 
-    batchDetail = new QLabel(batch, this);
+    batchDetail = createLabel(batch);
     mainLayout->addWidget(batchDetail, Qt::AlignTop);
-    batchDetail->setMinimumSize(50, 30);
 
-    emailDetail = new QLabel(email, this);
+    emailDetail = createLabel(email);
     mainLayout->addWidget(emailDetail, Qt::AlignTop);
-    emailDetail->setMinimumSize(50, 30);
 
-    contactDetail = new QLabel(contact, this);
+    contactDetail = createLabel(contact);
     mainLayout->addWidget(contactDetail, Qt::AlignTop);
-    contactDetail->setMinimumSize(50, 30);
-    
+
     setLayout(mainLayout);
+}
+
+QLabel* MyEventsDetails::createLabel(const QString &text)
+{
+    QLabel *label = new QLabel(text, this);
+    label->setMinimumSize(50, 30);
+    label->setStyleSheet("color: #000000;");
+    return label;
 }

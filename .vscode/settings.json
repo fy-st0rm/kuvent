@@ -156,6 +156,8 @@
     "typeindex": "cpp",
     "valarray": "cpp",
     "qfuture": "cpp",
-    "qtconcurrent": "cpp"
+    "qtconcurrent": "cpp",
+    "coroutine": "cpp",
+    "cfenv": "cpp"
   }
 }
