@@ -41,7 +41,7 @@ PackEvent::PackEvent(
 
 	if (!flyer_id.empty()) {
 		Image* flyer = new Image(client, flyer_id);
-		event_layout->addWidget(flyer, 0, Qt::AlignCenter);
+		event_layout->addWidget(flyer);
 	}
 
 	QHBoxLayout *button_layout = new QHBoxLayout();

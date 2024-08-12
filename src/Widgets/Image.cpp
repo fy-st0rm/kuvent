@@ -6,7 +6,7 @@ Image::Image(
 	QWidget* parent
 ) : QWidget(parent), m_label(new QLabel) {
 
-	layout = new QVBoxLayout(this);
+	layout = new QHBoxLayout(this);
 	layout->addWidget(m_label);
 	setLayout(layout);
 
@@ -68,11 +68,13 @@ Image::Image(
 
 void Image::onImageLoaded() {
 	QPixmap pixmap = m_watcher.result();
-	m_label->setFixedSize(300, 300);
-	m_label->setPixmap(pixmap.scaled(
-		300, 300,
+    
+    QPixmap scaledPixmap = pixmap.scaled(
+		300, 300, 
 		Qt::KeepAspectRatio, Qt::SmoothTransformation
-	));
+		); 
+    m_label->setPixmap(scaledPixmap);
+    m_label->setFixedSize(scaledPixmap.size());
 	m_label->setStyleSheet(
 		"QLabel {"
 		"  background-color: transparent;"
