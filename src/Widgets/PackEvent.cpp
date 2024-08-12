@@ -18,7 +18,7 @@ PackEvent::PackEvent(
 		"min-height: 400px;"
 	);
 
-	QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+event_name);
+	QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+" "+event_name);
 	event_name_label->setStyleSheet(
 		"QLabel {"
 		"  color: #000000;"
@@ -58,6 +58,7 @@ PackEvent::PackEvent(
 		"QPushButton {"
 		"  background-color: #B3C8CF;"
 		"  color: #000000;"
+		
 		"  border: none;"
 		"  border-radius: 8px;"
 		"  font-size: 12px;"

@@ -29,6 +29,7 @@ void ParticipantList::onAttach()
 	eventName->setStyleSheet(
 			"font-weight: bold;"
 			"font-size: 12pt;"
+			"color: #000000;"
 			);
 	hLayout1->addWidget(eventName);
 
@@ -56,6 +57,7 @@ void ParticipantList::onAttach()
 	);
 	organizerName->setStyleSheet(
 			"font-size: 10pt;"
+			"color: #000000;"
 			);
 	hLayout2->addWidget(organizerName);
 
@@ -66,19 +68,19 @@ void ParticipantList::onAttach()
 
 	hLayout3->addSpacing(40);
 	QLabel *usernameLabel = new QLabel("Username", this);
-	usernameLabel->setStyleSheet("font-weight: bold; font-size: 10pt;");
+	usernameLabel->setStyleSheet("font-weight: bold; font-size: 10pt;color: #000000;");
 	hLayout3->addWidget(usernameLabel);
 
 	QLabel *batchLabel = new QLabel("Program Batch", this);
-	batchLabel->setStyleSheet("font-weight: bold; font-size: 10pt;");
+	batchLabel->setStyleSheet("font-weight: bold; font-size: 10pt;color: #000000;");
 	hLayout3->addWidget(batchLabel);
 
 	QLabel *emailLabel = new QLabel("Email", this);
-	emailLabel->setStyleSheet("font-weight: bold; font-size: 10pt;");
+	emailLabel->setStyleSheet("font-weight: bold; font-size: 10pt;color: #000000;");
 	hLayout3->addWidget(emailLabel);
 
 	QLabel *contactLabel = new QLabel("Contact No.", this);
-	contactLabel->setStyleSheet("font-weight: bold; font-size: 10pt;");
+	contactLabel->setStyleSheet("font-weight: bold; font-size: 10pt;color: #000000;");
 	hLayout3->addWidget(contactLabel);
 
 	scrollArea->setWidget(containerWidget);

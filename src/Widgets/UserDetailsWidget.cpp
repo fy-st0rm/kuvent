@@ -1,5 +1,7 @@
 #include "Widgets/UserDetailsWidget.h"
 
+//WHAT BACKEND NOT CONNECTED??
+
 UserDetailsWidget::UserDetailsWidget(QWidget *parent)
     : QWidget(parent) 
 {
@@ -11,7 +13,8 @@ UserDetailsWidget::UserDetailsWidget(QWidget *parent)
     QHBoxLayout *hLayout = new QHBoxLayout();
     containerLayout->addLayout(hLayout);
 
-    QLabel *participantName = new QLabel("Bijan", this);
+    QLabel *participantName = new QLabel("Bijan", this);\
+    //                                   ^^^^^^^
     hLayout->addWidget(participantName);
     participantName->setStyleSheet(
         "color: black;"
