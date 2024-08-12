@@ -75,7 +75,6 @@ void Image::updateImage(const QPixmap& pixmap) {
     // Calculate the aspect ratio of the image
     double aspectRatio = static_cast<double>(pixmap.width()) / pixmap.height();
 
-    // Calculate the maximum size that fits within 310x300 while maintaining aspect ratio
     int maxWidth = 310;
     int maxHeight = 300;
     int width = maxWidth;
@@ -86,15 +85,11 @@ void Image::updateImage(const QPixmap& pixmap) {
         width = static_cast<int>(height * aspectRatio);
     }
 
-    // Resize the label to fit the calculated dimensions
     m_label->setFixedSize(width, height);
-
-    // Set the pixmap
     m_label->setPixmap(pixmap);
 }
 
 void Image::resizeEvent(QResizeEvent* event) {
     QWidget::resizeEvent(event);
-    // Recalculate image size when the widget is resized
     updateImage(m_label->pixmap(Qt::ReturnByValue));
 }
