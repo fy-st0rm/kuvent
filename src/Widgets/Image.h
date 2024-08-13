@@ -2,7 +2,7 @@
 
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtGui/QPixmap>
 #include <QtCore/QFuture>
 #include <QtConcurrent/QtConcurrent>
@@ -20,9 +20,11 @@ public:
 
 private:
 	void onImageLoaded();
+	void updateImage(const QPixmap& pixmap);
+	void resizeEvent(QResizeEvent* event);
 
 private:
-	QVBoxLayout *layout;
+	QHBoxLayout *layout;
 	QLabel* m_label;
 	QFutureWatcher<QPixmap> m_watcher;
 

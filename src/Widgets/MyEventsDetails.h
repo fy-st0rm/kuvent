@@ -14,6 +14,7 @@ public:
 		QString contact,
 		QWidget *parent = nullptr
 	);
+	QLabel* createLabel(const QString &text);
 	
 private:
 	QLabel *usernameDetail;

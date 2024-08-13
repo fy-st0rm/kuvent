@@ -18,7 +18,7 @@ PackEvent::PackEvent(
 		"min-height: 400px;"
 	);
 
-	QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+event_name);
+	QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+" "+event_name);
 	event_name_label->setStyleSheet(
 		"QLabel {"
 		"  color: #000000;"
@@ -40,8 +40,15 @@ PackEvent::PackEvent(
 	event_layout->addWidget(organizer_label);
 
 	if (!flyer_id.empty()) {
+		QWidget* image_container = new QWidget(event_widget);
+		QVBoxLayout* image_container_layout = new QVBoxLayout(image_container);
+		image_container ->setFixedSize(300,300);
+		image_container->setStyleSheet(
+			"background-color: #FFDFD6"
+		);
 		Image* flyer = new Image(client, flyer_id);
-		event_layout->addWidget(flyer, 0, Qt::AlignCenter);
+		image_container_layout->addWidget(flyer, 0, Qt::AlignCenter);
+		event_layout->addWidget(image_container, 0, Qt::AlignCenter);
 	}
 
 	QHBoxLayout *button_layout = new QHBoxLayout();
@@ -51,6 +58,7 @@ PackEvent::PackEvent(
 		"QPushButton {"
 		"  background-color: #B3C8CF;"
 		"  color: #000000;"
+		
 		"  border: none;"
 		"  border-radius: 8px;"
 		"  font-size: 12px;"

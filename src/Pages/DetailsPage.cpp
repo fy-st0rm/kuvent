@@ -7,231 +7,251 @@ void DetailsPage::onAttach()
 }
 
 void DetailsPage::onEntry() {
-	QHBoxLayout *hLayout1 = new QHBoxLayout;
-	main_layout->addLayout(hLayout1);
-	main_layout->setAlignment(Qt::AlignTop);
-
-	eventName = new QLabel(
-		QString::fromUtf8("🔴")
-		+ QString::fromStdString(m_event_data["NAME"].asString())
-	);
-	eventName->setStyleSheet(
-		"font-size: 18pt;"
-		"font-weight: bold;"
-		"color: #000000;"
-	);
-
-	closeButton = new QToolButton();
-	closeButton->setIcon(QIcon("assets/images/close.png"));
-	closeButton->setIconSize(QSize(20,20));
-	closeButton->setContentsMargins(0,0,0,0);
-	closeButton->setStyleSheet(
-		"border: none;"
-	);
-	hLayout1->addWidget(eventName, 0, Qt::AlignLeft);
-	hLayout1->addWidget(closeButton, 0, Qt::AlignRight);
-
-	connect(closeButton, &QToolButton::clicked, this, &DetailsPage::onCloseClick);
-	
-	QHBoxLayout *hLayout2 = new QHBoxLayout;
-	main_layout->addLayout(hLayout2);
-	main_layout->setAlignment(Qt::AlignTop);
-
-	organizerLabel = new QLabel(
-		QString::fromStdString(m_event_data["ORGANIZER"].asString())
-	);
-	organizerLabel->setStyleSheet(
-		"font-weight: bold;"
-		"font-size: 14pt;"
-		"color: #7C7C7C"
-	);
-	hLayout2->addSpacing(30);
-	hLayout2->addWidget(organizerLabel);
-	hLayout2->setAlignment(Qt::AlignLeft);
-
-	main_layout->addSpacing(20);
-
-	QHBoxLayout *hLayout3 = new QHBoxLayout;
-	main_layout->addLayout(hLayout3);
-	QLabel *date = new QLabel("Date");
-	date->setStyleSheet(
-			"font-weight: bold;"
-			"font-size: 14pt;"
-			"font-weight: bold;"
-			"color: #000000;"
-	);
-	hLayout3->addSpacing(30);
-	hLayout3->addWidget(date);
-
-	QHBoxLayout *hLayout4 = new QHBoxLayout;
-	main_layout->addLayout(hLayout4);
-	startDate = new QLabel(
-		QString::fromStdString(m_event_data["START_DATE"].asString())
-	);
-
-	endDate = new QLabel(
-		QString::fromStdString(m_event_data["END_DATE"].asString())
-	);
-
-	QString startingDate = startDate->text();
-	QString endingDate = endDate->text();
-
-	QLabel *eventPeriod = new QLabel(startingDate + " to " + endingDate);
-	eventPeriod->setStyleSheet(
-			"color: #7C7C7C;"
-			"font-size: 12pt;"
-			"font-weight: 600;"
-	);
-	hLayout4->addSpacing(30);
-	hLayout4->addWidget(eventPeriod);
-
-	QHBoxLayout *hLayout5 = new QHBoxLayout;
-	main_layout->addLayout(hLayout5);
-
-	QLabel *venue = new QLabel("Venue");
-	venue->setStyleSheet(
-			"font-weight: bold;"
-			"font-size: 14pt;"
-			"color: #000000;"
-	);
-	hLayout5->addSpacing(30);
-	hLayout5->addWidget(venue);
-	hLayout5->setAlignment(Qt::AlignLeft);
-
-	QHBoxLayout *hLayout6 = new QHBoxLayout;
-	main_layout->addLayout(hLayout6);
-
-	venueLocation = new QLabel(
-		QString::fromStdString(m_event_data["VENUE"].asString())
-	);
-	venueLocation->setStyleSheet(
-			"color: #7C7C7C;"
-			"font-size: 12pt;"
-			"font-weight: 600;"
-	);
-	hLayout6->addSpacing(30);
-	hLayout6->addWidget(venueLocation);
-	hLayout6->setAlignment(Qt::AlignLeft);
-
-	QHBoxLayout *hLayout7 = new QHBoxLayout;
-	main_layout->addLayout(hLayout7);
-
-	venueDescription = new QLabel(
-		QString::fromStdString(m_event_data["VENUE_DESC"].asString())
-	);
-	venueDescription->setStyleSheet(
-			"color: #7C7C7C;"
-			"font-size: 12pt;"
-	);
-	hLayout7->addSpacing(30);
-	hLayout7->addWidget(venueDescription);
-	hLayout7->setAlignment(Qt::AlignLeft);
-
-	QHBoxLayout *hLayout8 = new QHBoxLayout;
-	main_layout->addLayout(hLayout8);
-
-	QLabel *about = new QLabel("About the event");
-	about->setStyleSheet(
-			"font-weight: bold;"
-			"font-size: 14pt;"
-			"color: #000000;"
-	);
-	hLayout8->addSpacing(30);
-	hLayout8->addWidget(about);
-	hLayout8->setAlignment(Qt::AlignLeft);
-
-	QHBoxLayout *hLayout9 = new QHBoxLayout;
-	main_layout->addLayout(hLayout9);
-
-	eventDescription = new QLabel(
-		QString::fromStdString(m_event_data["DESC"].asString())
-	);
-	eventDescription->setStyleSheet(
-			"color: #7C7C7C;"
-			"font-size: 12pt;"
-	);
-	hLayout9->addSpacing(30);
-	hLayout9->addWidget(eventDescription);
-	hLayout9->setAlignment(Qt::AlignLeft);
-
-	main_layout->addSpacing(15);
-
-	QHBoxLayout *hLayout10 = new QHBoxLayout;
-	main_layout->addLayout(hLayout10);
-
-	std::string flyer_id = getFlyerId();
-	httplib::Result res = app->client->Get("/download/" + flyer_id);
-
-	// Checking the result
-	if (!res) {
-		QMessageBox::critical(
-			this,
-			"Connection Error",
-			"Cannot connect to the server. Please check your connection and try again later."
-		);
-		return;
-	}
-
-	if (res->status != httplib::StatusCode::OK_200) {
-		QMessageBox::warning(
-			this,
-			"Flyer Fetch Error",
-			QString::fromStdString(res->body)
-		);
-		return;
-	}
-
-	eventFlyer = new QLabel();
-	QPixmap flyer;
-	flyer.loadFromData(
-		reinterpret_cast<const uchar*>(res->body.data()),
-		res->body.size()
-	);
-	eventFlyer->setPixmap(flyer);
-	eventFlyer->setFixedSize(400,400);
-	eventFlyer->setScaledContents(true);
-
-	hLayout10->addSpacing(30);
-	hLayout10->addWidget(eventFlyer);
-	hLayout10->setAlignment(Qt::AlignLeft);
-
-	hLayout10->addSpacing(700);
-
-	// Disabling registration button in ongoing page
-	if (m_exit_page == "OngoingPage")
-		return;
-
-	// Disabling registration button for organizers
-	AppData app_data = app->getAppData();
-	if (app_data.account_type == ORGANIZER)
-		return;
-
-	if (!isUserRegistered()) {
-		// Register button
-		registerButton = new QPushButton("Register", this);
-		registerButton->setFixedSize(80,37.5);
-		registerButton->setStyleSheet(
-			"background-color: #7469B6;"
-			"border-radius: 5px;"
-			"color: white;"
-			"font-weight: bold;"
-		);
-		connect(registerButton, &QPushButton::clicked, this, &DetailsPage::onRegisterClick);
-		hLayout10->addWidget(registerButton, 0, Qt::AlignBottom | Qt::AlignRight);
-	} else {
-		// Leave button
-		leaveButton = new QPushButton("Leave", this);
-		leaveButton->setFixedSize(80,37.5);
-		leaveButton->setStyleSheet(
-			"background-color: #7469B6;"
-			"border-radius: 5px;"
-			"color: white;"
-			"font-weight: bold;"
-		);
-		connect(leaveButton, &QPushButton::clicked, this, &DetailsPage::onLeaveClick);
-		hLayout10->addWidget(leaveButton, 0, Qt::AlignBottom | Qt::AlignRight);
-	}
+    setupEventHeader();
+    setupOrganizerInfo();
+    setupDateInfo();
+    setupVenueInfo();
+    setupEventDescription();
+    setupFlyer();
+    setupRegistrationButton();
 }
+
+void DetailsPage::setupEventHeader() {
+    QHBoxLayout *event_header_layout = new QHBoxLayout;
+    main_layout->addLayout(event_header_layout);
+    main_layout->setAlignment(Qt::AlignTop);
+
+    eventName = new QLabel(
+        QString::fromUtf8("🔴") + QString::fromStdString(m_event_data["NAME"].asString())
+    );
+    eventName->setStyleSheet(
+        "font-size: 18pt;"
+        "font-weight: bold;"
+        "color: #000000;"
+    );
+
+    closeButton = new QToolButton();
+    closeButton->setIcon(QIcon("assets/images/close.png"));
+    closeButton->setIconSize(QSize(20, 20));
+    closeButton->setContentsMargins(0, 0, 0, 0);
+    closeButton->setStyleSheet(
+        "border: none;"
+    );
+    event_header_layout->addWidget(eventName, 0, Qt::AlignLeft);
+    event_header_layout->addWidget(closeButton, 1, Qt::AlignRight);
+
+    connect(closeButton, &QToolButton::clicked, this, &DetailsPage::onCloseClick);
+}
+
+void DetailsPage::setupOrganizerInfo() {
+    QHBoxLayout *organizer_info_layout = new QHBoxLayout;
+    main_layout->addLayout(organizer_info_layout);
+    main_layout->setAlignment(Qt::AlignTop);
+
+    organizerLabel = new QLabel(
+        QString::fromStdString(m_event_data["ORGANIZER"].asString())
+    );
+    organizerLabel->setStyleSheet(
+        "font-weight: bold;"
+        "font-size: 14pt;"
+        "color: #7C7C7C"
+    );
+    organizer_info_layout->addSpacing(30);
+    organizer_info_layout->addWidget(organizerLabel);
+    organizer_info_layout->setAlignment(Qt::AlignLeft);
+
+    main_layout->addSpacing(20);
+}
+
+void DetailsPage::setupDateInfo() {
+    QHBoxLayout *date_layout = new QHBoxLayout;
+    main_layout->addLayout(date_layout);
+    QLabel *date = new QLabel("Date");
+    date->setStyleSheet(
+        "font-weight: bold;"
+        "font-size: 14pt;"
+        "color: #000000;"
+    );
+    date_layout->addSpacing(30);
+    date_layout->addWidget(date);
+
+    QHBoxLayout *start_end_date_layout = new QHBoxLayout;
+    main_layout->addLayout(start_end_date_layout);
+    startDate = new QLabel(
+        QString::fromStdString(m_event_data["START_DATE"].asString())
+    );
+
+    endDate = new QLabel(
+        QString::fromStdString(m_event_data["END_DATE"].asString())
+    );
+
+    QString startingDate = startDate->text();
+    QString endingDate = endDate->text();
+
+    QLabel *eventPeriod = new QLabel(startingDate + " to " + endingDate);
+    eventPeriod->setStyleSheet(
+        "color: #7C7C7C;"
+        "font-size: 12pt;"
+        "font-weight: 600;"
+    );
+    start_end_date_layout->addSpacing(30);
+    start_end_date_layout->addWidget(eventPeriod);
+}
+
+void DetailsPage::setupVenueInfo() {
+    QHBoxLayout *venue_layout = new QHBoxLayout;
+    main_layout->addLayout(venue_layout);
+
+    QLabel *venue = new QLabel("Venue");
+    venue->setStyleSheet(
+        "font-weight: bold;"
+        "font-size: 14pt;"
+        "color: #000000;"
+    );
+    venue_layout->addSpacing(30);
+    venue_layout->addWidget(venue);
+    venue_layout->setAlignment(Qt::AlignLeft);
+
+    QHBoxLayout *venue_location_layout = new QHBoxLayout;
+    main_layout->addLayout(venue_location_layout);
+
+    venueLocation = new QLabel(
+        QString::fromStdString(m_event_data["VENUE"].asString())
+    );
+    venueLocation->setStyleSheet(
+        "color: #7C7C7C;"
+        "font-size: 12pt;"
+        "font-weight: 600;"
+    );
+    venue_location_layout->addSpacing(30);
+    venue_location_layout->addWidget(venueLocation);
+    venue_location_layout->setAlignment(Qt::AlignLeft);
+
+    QHBoxLayout *venue_desc_layout = new QHBoxLayout;
+    main_layout->addLayout(venue_desc_layout);
+
+    venueDescription = new QLabel(
+        QString::fromStdString(m_event_data["VENUE_DESC"].asString())
+    );
+    venueDescription->setStyleSheet(
+        "color: #7C7C7C;"
+        "font-size: 12pt;"
+    );
+    venue_desc_layout->addSpacing(30);
+    venue_desc_layout->addWidget(venueDescription);
+    venue_desc_layout->setAlignment(Qt::AlignLeft);
+}
+
+void DetailsPage::setupEventDescription() {
+    QHBoxLayout *hLayout8 = new QHBoxLayout;
+    main_layout->addLayout(hLayout8);
+
+    QLabel *about = new QLabel("About the event");
+    about->setStyleSheet(
+        "font-weight: bold;"
+        "font-size: 14pt;"
+        "color: #000000;"
+    );
+    hLayout8->addSpacing(30);
+    hLayout8->addWidget(about);
+    hLayout8->setAlignment(Qt::AlignLeft);
+
+    QHBoxLayout *desc_layout = new QHBoxLayout;
+    main_layout->addLayout(desc_layout);
+
+    eventDescription = new QLabel(
+        QString::fromStdString(m_event_data["DESC"].asString())
+    );
+    eventDescription->setStyleSheet(
+        "color: #7C7C7C;"
+        "font-size: 12pt;"
+    );
+    desc_layout->addSpacing(30);
+    desc_layout->addWidget(eventDescription);
+    desc_layout->setAlignment(Qt::AlignLeft);
+
+    main_layout->addSpacing(15);
+}
+
+void DetailsPage::setupFlyer() {
+    QHBoxLayout *flyer_layout = new QHBoxLayout;
+    main_layout->addLayout(flyer_layout);
+
+    std::string flyer_id = getFlyerId();
+    httplib::Result res = app->client->Get("/download/" + flyer_id);
+
+    if (!res) {
+        QMessageBox::critical(
+            this,
+            "Connection Error",
+            "Cannot connect to the server. Please check your connection and try again later."
+        );
+        return;
+    }
+
+    if (res->status != httplib::StatusCode::OK_200) {
+        QMessageBox::warning(
+            this,
+            "Flyer Fetch Error",
+            QString::fromStdString(res->body)
+        );
+        return;
+    }
+
+    eventFlyer = new QLabel();
+    QPixmap flyerPixmap;
+    flyerPixmap.loadFromData(
+        reinterpret_cast<const uchar*>(res->body.data()),
+        res->body.size()
+    );
+
+    // Set the pixmap and scale it to maintain aspect ratio
+    eventFlyer->setPixmap(flyerPixmap.scaled(400, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    eventFlyer->setFixedSize(400, 400); // Ensures the label size is fixed
+
+    flyer_layout->addSpacing(30);
+    flyer_layout->addWidget(eventFlyer);
+    flyer_layout->setAlignment(Qt::AlignLeft);
+
+    // Create a layout for the registration button
+    registrationLayout = new QHBoxLayout;
+    main_layout->addLayout(registrationLayout);
+}
+
+void DetailsPage::setupRegistrationButton() {
+    if (m_exit_page == "OngoingPage")
+        return;
+
+    AppData app_data = m_app->getAppData();
+    if (app_data.account_type == ORGANIZER)
+        return;
+
+    QPushButton *button = nullptr;
+    if (!isUserRegistered()) {
+        // Register button
+        button = new QPushButton("Register", this);
+    } else {
+        // Leave button
+        button = new QPushButton("Leave", this);
+    }
+
+    if (button) {
+        button->setFixedSize(80, 37.5);
+        button->setStyleSheet(
+            "background-color: #7469B6;"
+            "border-radius: 5px;"
+            "color: white;"
+            "font-weight: bold;"
+        );
+        if (!isUserRegistered()) {
+            connect(button, &QPushButton::clicked, this, &DetailsPage::onRegisterClick);
+        } else {
+            connect(button, &QPushButton::clicked, this, &DetailsPage::onLeaveClick);
+        }
+        registrationLayout->addWidget(button, 0, Qt::AlignBottom | Qt::AlignRight);
+    }
+}
+
 
 void DetailsPage::onCloseClick()
 {
@@ -267,7 +287,8 @@ std::string DetailsPage::getFlyerId() {
 
 	Json::Value flyers = response["flyers"];
 
-	// NOTE: Returning only one flyer id as we support only one flyer
+	// NOTE: Returning only one flyer id as we support only one flyer 
+	// passive aggression?
 	return flyers[0].asString();
 }
 
@@ -389,6 +410,7 @@ bool DetailsPage::isUserRegistered() {
 		);
 		return false;
 	}
+	
 
 	// Reading the response
 	Json::Value res_data;

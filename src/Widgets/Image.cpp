@@ -6,22 +6,21 @@ Image::Image(
 	QWidget* parent
 ) : QWidget(parent), m_label(new QLabel) {
 
-	layout = new QVBoxLayout(this);
-	layout->addWidget(m_label);
-	setLayout(layout);
+    QHBoxLayout* hLayout = new QHBoxLayout(this);
+    hLayout->setContentsMargins(0, 0, 0, 0);
+    hLayout->setSpacing(0);
+    hLayout->addWidget(m_label, 0, Qt::AlignCenter);
+    setLayout(hLayout);
 
-	QPixmap placeholder = QPixmap(m_placeholder);
+    QPixmap placeholder = QPixmap(m_placeholder);
 
-	m_label->setFixedSize(300, 300);
-	m_label->setPixmap(placeholder.scaled(
-		300, 300,
-		Qt::KeepAspectRatio, Qt::SmoothTransformation
-	));
-	m_label->setStyleSheet(
-		"QLabel {"
-		"  background-color: transparent;"
-		"}"
-	);
+    // Set the label to scale its contents
+    m_label->setScaledContents(true);
+    m_label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+
+    // Initially set a placeholder image
+    updateImage(placeholder);
+
 
  // Asynchronously load the actual image
 	QFuture<QPixmap> future = QtConcurrent::run([this, client, flyer_id]() -> QPixmap{
@@ -68,14 +67,29 @@ Image::Image(
 
 void Image::onImageLoaded() {
 	QPixmap pixmap = m_watcher.result();
-	m_label->setFixedSize(300, 300);
-	m_label->setPixmap(pixmap.scaled(
-		300, 300,
-		Qt::KeepAspectRatio, Qt::SmoothTransformation
-	));
-	m_label->setStyleSheet(
-		"QLabel {"
-		"  background-color: transparent;"
-		"}"
-	);
+    updateImage(pixmap);
+}
+
+
+void Image::updateImage(const QPixmap& pixmap) {
+    // Calculate the aspect ratio of the image
+    double aspectRatio = static_cast<double>(pixmap.width()) / pixmap.height();
+	//static_cast converts to <type> value at compile time , more safe than explicit cast
+    int maxWidth = 310;
+    int maxHeight = 300;
+    int width = maxWidth;
+    int height = static_cast<int>(width / aspectRatio);
+
+    if (height > maxHeight) {
+        height = maxHeight;
+        width = static_cast<int>(height * aspectRatio);
+    }
+
+    m_label->setFixedSize(width, height);
+    m_label->setPixmap(pixmap);
+}
+
+void Image::resizeEvent(QResizeEvent* event) {
+    QWidget::resizeEvent(event);
+    updateImage(m_label->pixmap(Qt::ReturnByValue));
 }

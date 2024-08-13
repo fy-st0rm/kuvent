@@ -16,7 +16,6 @@
 #include "Application/Application.h"
 #include "json/json.h"
 #include "utils.h"
-
 class ProfilePage : public Page {
 public:
 	void onAttach();
