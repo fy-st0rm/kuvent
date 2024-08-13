@@ -46,7 +46,7 @@ void ProfilePage::onAttach() {
 	// Add profilePic to the left side with some spacing
 	hLayout15->addSpacing(40); // Add more space to the left of the profile picture
 	hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
-	ayout15->addSpacing(40);
+	hLayout15->addSpacing(40);
 
 	// Create a vertical layout for the right side
 	QVBoxLayout *vlayout = new QVBoxLayout();
