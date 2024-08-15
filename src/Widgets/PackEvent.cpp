@@ -1,4 +1,5 @@
 #include "PackEvent.h"
+#include "Pages/DetailsPage.h"
 
 PackEvent::PackEvent(
 	QWidget *parent,
@@ -9,6 +10,8 @@ PackEvent::PackEvent(
 	bool is_organizer
 ) : QWidget(parent) {
 
+	bool isEventJoined = true;
+
 	QWidget *event_widget = new QWidget(this);
 	QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
 	event_widget->setStyleSheet(
@@ -17,17 +20,34 @@ PackEvent::PackEvent(
 		"min-width: 310px;"
 		"min-height: 400px;"
 	);
+	QHBoxLayout *header_layout = new QHBoxLayout();
 
-	QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+" "+event_name);
-	event_name_label->setStyleSheet(
-		"QLabel {"
-		"  color: #000000;"
-		"  font-size: 18px;"
-		"  font-weight: bold;"
-		"  background-color: transparent;"
-		"}"
-	);
-	event_layout->addWidget(event_name_label);
+		QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+"  "+event_name);
+		event_name_label->setStyleSheet(
+			"QLabel {"
+			"  color: #000000;"
+			"  font-size: 18px;"
+			"  font-weight: bold;"
+			"  background-color: transparent;"
+			"}"
+		);
+		header_layout->addWidget(event_name_label,1,Qt::AlignLeft);
+
+		if(isEventJoined){
+			QLabel *event_joined = new QLabel(QString::fromUtf8("✓"));
+			event_joined->setStyleSheet(
+				"QLabel {"
+				"  color: #000000;"
+				"  font-size: 18px;"
+				"  font-weight: bold;"
+				"  background-color: transparent;"
+				"}"
+			);
+			event_joined->setToolTip("Joined Evemt");
+			header_layout->addWidget(event_joined,1,Qt::AlignRight);
+		}
+	event_layout->addLayout(header_layout);
+
 
 	QLabel *organizer_label = new QLabel(organizer);
 	organizer_label->setStyleSheet(
