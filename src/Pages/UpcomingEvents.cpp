@@ -105,10 +105,11 @@ void UpcomingEventsPage::displayUpcomingEvents(const Json::Value& upcomingEvents
 				
 				PackEvent* eventWidget = new PackEvent(
 					containerWidget,
-					app->client,
+					app,
 					flyerId,
 					organizer,
 					eventName,
+					event["ID"].asString(),
 					false
 				);
 				eventWidget->setFixedSize(310, 400);
