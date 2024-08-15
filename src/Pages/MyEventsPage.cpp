@@ -81,10 +81,11 @@ void MyEventsPage::displayMyEvents(const Json::Value& myEvents) {
 				
 				PackEvent* eventWidget = new PackEvent(
 					containerWidget,
-					app->client,
+					app,
 					flyerId,
 					organizer,
 					eventName,
+					event["ID"].asString(),
 					is_organizer
 				);
 				eventWidget->setFixedSize(310, 400);

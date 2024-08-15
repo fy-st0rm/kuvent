@@ -106,10 +106,11 @@ void OngoingEventsPage::displayOngoingEvents(const Json::Value& ongoingEvents) {
 				
 				PackEvent* eventWidget = new PackEvent(
 					containerWidget,
-					app->client,
+					app,
 					flyerId,
 					organizer,
 					eventName,
+					event["ID"].asString(),
 					false
 				);
 				eventWidget->setFixedSize(310, 400);

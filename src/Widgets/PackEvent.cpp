@@ -3,14 +3,13 @@
 
 PackEvent::PackEvent(
 	QWidget *parent,
-	httplib::Client* client,
+	Application* app,
 	const std::string& flyer_id,
 	QString organizer,
 	QString event_name,
+	const std::string& event_id,
 	bool is_organizer
-) : QWidget(parent) {
-
-	bool isEventJoined = true;
+) : QWidget(parent), m_app(app), m_event_id(event_id) {
 
 	QWidget *event_widget = new QWidget(this);
 	QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
@@ -33,7 +32,7 @@ PackEvent::PackEvent(
 		);
 		header_layout->addWidget(event_name_label,1,Qt::AlignLeft);
 
-		if(isEventJoined){
+		if(isUserRegistered() && !is_organizer) {
 			QLabel *event_joined = new QLabel(QString::fromUtf8("✓"));
 			event_joined->setStyleSheet(
 				"QLabel {"
@@ -66,7 +65,7 @@ PackEvent::PackEvent(
 		image_container->setStyleSheet(
 			"background-color: #FFDFD6"
 		);
-		Image* flyer = new Image(client, flyer_id);
+		Image* flyer = new Image(m_app->client, flyer_id);
 		image_container_layout->addWidget(flyer, 0, Qt::AlignCenter);
 		event_layout->addWidget(image_container, 0, Qt::AlignCenter);
 	}
@@ -123,4 +122,40 @@ QPushButton *PackEvent::getDeleteButton() {
 	return delete_btn;
 }
 
+bool PackEvent::isUserRegistered() {
+	AppData app_data = m_app->getAppData();
+
+	Json::Value payload;
+	Json::StyledWriter writer;
+	payload["user_id"] = app_data.id;
+	payload["event_id"] = m_event_id;
+
+	httplib::Result res = m_app->client->Post(
+		"/is_registered",
+		writer.write(payload),
+		"application/json"
+	);
+
+	// Checking the response
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return false;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Register status fetch error",
+			QString::fromStdString(res->body)
+		);
+		return false;
+	}
+
+	// Reading the response
+	Json::Value res_data;
+	Json::Reader reader;
+	reader.parse(res->body, res_data);
+
+	return res_data["registered"].asBool();
+}
 
