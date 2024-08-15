@@ -2,6 +2,10 @@
 
 void ParticipantList::onAttach()
 {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
     setupUI();
     setCentralWidget(scrollArea);
     setLayout(containerLayout);

@@ -2,6 +2,11 @@
 #include "utils.h"
 
 void OngoingEventsPage::onAttach() {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
+
 	scrollArea = new QScrollArea();
 	scrollArea->setWidgetResizable(true);
 	scrollArea->setStyleSheet(

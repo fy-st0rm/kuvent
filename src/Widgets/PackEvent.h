@@ -7,6 +7,8 @@
 
 #include "Widgets/Image.h"
 #include "httplib.h"
+#include "theme.h"
+#include "utils.h"
 
 
 class PackEvent: public QWidget {

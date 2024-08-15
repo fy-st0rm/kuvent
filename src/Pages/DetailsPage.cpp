@@ -2,6 +2,10 @@
 
 void DetailsPage::onAttach()
 {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
 	main_layout = new QVBoxLayout();
 	setLayout(main_layout);
 }

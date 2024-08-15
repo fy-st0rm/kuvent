@@ -19,6 +19,7 @@
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
 #include "Widgets/emailValidation.h"
+#include "utils.h"
 
 class LoginPage : public Page {
 public:
@@ -45,6 +46,4 @@ private:
 	QLineEdit *password_entry;
 	QLabel *m_Kuvent_logo;
 	QLabel *createaccount_button;
-
-	void applyShadow(QWidget *widget);
 };

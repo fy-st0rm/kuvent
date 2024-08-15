@@ -9,6 +9,11 @@
 #include <QtGui/QPainterPath>
 #include <QtGui/QPixmap>
 
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QComboBox>
+
 static std::time_t dateStringToTimestamp(const std::string& dateStr) {
 	std::tm tm = {};
 	std::istringstream ss(dateStr);
@@ -42,5 +47,24 @@ static QPixmap createCircularPixmap(const QPixmap& pixmap) {
 	painter.drawPixmap(0, 0, pixmap);  // Draw the original pixmap within the circle
 
 	return squarePixmap;
+}
+
+static void applyShadow(QWidget *widget) {
+	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
+	shadow->setBlurRadius(5);
+	shadow->setColor(QColor(Theme::dropshadow));
+	
+	if (qobject_cast<QLineEdit*>(widget)) 
+		shadow->setOffset(QPointF(2, 2)); 
+	else if (qobject_cast<QPushButton*>(widget)) 
+		shadow->setOffset(QPointF(1, 1)); 
+	else if (qobject_cast<QComboBox*>(widget)) 
+		shadow->setOffset(QPointF(1, 1));  
+	else if (qobject_cast<QTextEdit*>(widget)) 
+		shadow->setOffset(QPointF(1, 1)); 
+	else
+		shadow->setOffset(QPointF(4, 4)); 
+	
+	widget->setGraphicsEffect(shadow);
 }
 

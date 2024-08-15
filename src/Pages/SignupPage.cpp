@@ -235,23 +235,6 @@ void SignupPage::onAttach() {
 
 }
 
-void SignupPage::applyShadow(QWidget *widget)
-{
-		//drop shadow styles
-		QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
-	shadow->setBlurRadius(5);
-	shadow->setColor(QColor(Theme::dropshadow));
-	// shadow->setOffset(QPointF(1, 1));
-	if (qobject_cast<QLineEdit*>(widget)) 
-		shadow->setOffset(QPointF(2, 2)); 
-	else if (qobject_cast<QPushButton*>(widget)) 
-		shadow->setOffset(QPointF(1, 1));
-		else if (qobject_cast<QComboBox*>(widget)) 
-		shadow->setOffset(QPointF(1, 1));  
-	
-	widget->setGraphicsEffect(shadow);
-}
-
 void SignupPage::onSignupPress() {
 	QString name = username_entry->text();
 	QString email = email_entry->text();

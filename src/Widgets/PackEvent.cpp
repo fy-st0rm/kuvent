@@ -12,13 +12,14 @@ PackEvent::PackEvent(
 ) : QWidget(parent), m_app(app), m_event_id(event_id) {
 
 	QWidget *event_widget = new QWidget(this);
-	QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
 	event_widget->setStyleSheet(
-		"background-color: #62B6CB;"
+		"background-color: " + Theme::packEventBg + ";"
 		"border-radius: 20px;"
-		"min-width: 310px;"
-		"min-height: 400px;"
 	);
+
+	applyShadow(event_widget);
+
+	QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
 	QHBoxLayout *header_layout = new QHBoxLayout();
 
 		QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+"  "+event_name);
@@ -61,9 +62,9 @@ PackEvent::PackEvent(
 	if (!flyer_id.empty()) {
 		QWidget* image_container = new QWidget(event_widget);
 		QVBoxLayout* image_container_layout = new QVBoxLayout(image_container);
-		image_container ->setFixedSize(300,300);
+		image_container ->setFixedSize(250,250);
 		image_container->setStyleSheet(
-			"background-color: #FFDFD6"
+			"background-color: #00D9D9D9"
 		);
 		Image* flyer = new Image(m_app->client, flyer_id);
 		image_container_layout->addWidget(flyer, 0, Qt::AlignCenter);
@@ -71,47 +72,56 @@ PackEvent::PackEvent(
 	}
 
 	QHBoxLayout *button_layout = new QHBoxLayout();
+	button_layout->addStretch();
+	button_layout->setSpacing(10);
 
-	see_details_btn = new QPushButton("See Details", this);
+	see_details_btn = new QPushButton(this);
+	applyShadow(see_details_btn);
+	see_details_btn->setIcon(QIcon("assets/images/details.png"));
+	see_details_btn->setIconSize(QSize(30, 30));
+	see_details_btn->setToolTip("See Details");
 	see_details_btn->setStyleSheet(
 		"QPushButton {"
-		"  background-color: #B3C8CF;"
+		"  background-color: " + Theme::packEventButtonBg + ";"
 		"  color: #000000;"
-		
-		"  border: none;"
+		"  border: 2px solid " + Theme::dashboardPanel + ";"
 		"  border-radius: 8px;"
 		"  font-size: 12px;"
-		"  width: 100px;"
-		"  height: 25px;"
+		"  width: 40;"
+		"  height: 40;"
 		"}"
 		"QPushButton:hover {"
-		"  background-color: #A3B8BF;"
+		"  background-color: " + Theme::packEventButtonHover + ";"
 		"}"
 	);
-	button_layout->addWidget(see_details_btn, 0, Qt::AlignCenter);
+	button_layout->addWidget(see_details_btn, 0, Qt::AlignRight);
 
 	if (is_organizer) {
-		delete_btn = new QPushButton("Delete", this);
+		delete_btn = new QPushButton(this);
+		applyShadow(delete_btn);
+		delete_btn->setIcon(QIcon("assets/images/trash.png"));
+		delete_btn->setIconSize(QSize(30, 30));
+		delete_btn->setToolTip("Delete Event");
 		delete_btn->setStyleSheet(
 			"QPushButton {"
-			"  background-color: #B3C8CF;"
+			"  background-color: " + Theme::packEventButtonBg + ";"
 			"  color: #000000;"
-			"  border: none;"
+			"  border: 2px solid " + Theme::dashboardPanel + ";"
 			"  border-radius: 8px;"
 			"  font-size: 12px;"
-			"  width: 100px;"
-			"  height: 25px;"
+			"  width: 40;"
+			"  height: 40;"
 			"}"
 			"QPushButton:hover {"
-			"  background-color: #A3B8BF;"
+			"  background-color: " + Theme::packEventButtonHover + ";"
 			"}"
 		);
-		button_layout->addWidget(delete_btn, 0, Qt::AlignCenter);
+		button_layout->addWidget(delete_btn, 0, Qt::AlignRight);
 	}
 
-	event_layout->addLayout(button_layout);
+	event_layout->addLayout(button_layout, Qt::AlignBottom);
 	event_layout->addStretch();
-	setLayout(event_layout);
+	event_widget->setLayout(event_layout);
 }
 
 QPushButton *PackEvent::getDetailsButton() {

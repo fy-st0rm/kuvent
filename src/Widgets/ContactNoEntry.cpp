@@ -1,4 +1,5 @@
 #include "ContactNoEntry.h"
+#include "utils.h"
 
 ContactNoEntry::ContactNoEntry(std::function<void(void)> callback, QWidget *parent) 
 : QWidget(parent), isEditing(false) , apply_callback(callback)
@@ -17,11 +18,31 @@ ContactNoEntry::ContactNoEntry(std::function<void(void)> callback, QWidget *pare
                             "background-color: #F0F0F0;");
 
     editButton = new QPushButton("Edit");
-    editButton->setStyleSheet("color: white; background-color: #7469B6; border-radius: 5px;");
+		applyShadow(editButton);
+		editButton->setStyleSheet(
+			"QPushButton {"
+				"color: white;"
+				"background-color: " + Theme::buttonBg + ";"
+				"border-radius: 5px;"
+			"}"
+			"QPushButton:hover {"
+				"background-color: " + Theme::buttonHover + ";"
+			"}"
+		);
     editButton->setFixedSize(80, 30);
 
     applyButton = new QPushButton("Apply");
-    applyButton->setStyleSheet("color: white; background-color: #7469B6; border-radius: 5px;");
+		applyShadow(applyButton);
+		applyButton->setStyleSheet(
+			"QPushButton {"
+				"color: white;"
+				"background-color: " + Theme::buttonBg + ";"
+				"border-radius: 5px;"
+			"}"
+			"QPushButton:hover {"
+				"background-color: " + Theme::buttonHover + ";"
+			"}"
+		);
     applyButton->setFixedSize(80, 30);
     applyButton->setVisible(false);
 

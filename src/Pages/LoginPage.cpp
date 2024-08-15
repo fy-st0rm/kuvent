@@ -145,21 +145,6 @@ void LoginPage::onAttach() {
 	m_hLayout5->setAlignment(Qt::AlignHCenter);
 }
 
-	//Drop shadow effect
-	void LoginPage::applyShadow(QWidget *widget) {
-	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect();
-	shadow->setBlurRadius(4);
-	shadow->setColor(QColor(Theme::dropshadow));
-	
-	// shadow->setOffset(QPointF(1, 1));
-	if (qobject_cast<QLineEdit*>(widget)) 
-		shadow->setOffset(QPointF(2, 2)); 
-	else if (qobject_cast<QPushButton*>(widget)) 
-		shadow->setOffset(QPointF(1, 1)); 
-	
-	widget->setGraphicsEffect(shadow);
-}
-
 void LoginPage::onLoginButtonPress() {
 	QString email = email_entry->text();
 	QString password = password_entry->text();

@@ -75,8 +75,8 @@ void Image::updateImage(const QPixmap& pixmap) {
     // Calculate the aspect ratio of the image
     double aspectRatio = static_cast<double>(pixmap.width()) / pixmap.height();
 	//static_cast converts to <type> value at compile time , more safe than explicit cast
-    int maxWidth = 310;
-    int maxHeight = 300;
+    int maxWidth = 220;
+    int maxHeight = 220;
     int width = maxWidth;
     int height = static_cast<int>(width / aspectRatio);
 

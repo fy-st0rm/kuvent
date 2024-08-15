@@ -2,7 +2,13 @@
 #include "theme.h"
 
 void ProfilePage::onAttach() {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
+
 	v_profileLayout = new QVBoxLayout(this);
+	v_profileLayout->setContentsMargins(15, 15, 15, 15);
 	setLayout(v_profileLayout);
 
 	// App Data
@@ -30,7 +36,7 @@ void ProfilePage::onAttach() {
 		line0->setFrameShape(QFrame::HLine); 
 		line0->setFixedHeight(2);
 	line0->setFixedWidth(this->width()/1.5);
-	line0->setStyleSheet("color: #000000;");
+	line0->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout0->addWidget(line0); //Adding line to layout
 	hLayout0->setAlignment(Qt::AlignBottom);
@@ -80,7 +86,7 @@ void ProfilePage::onAttach() {
 		line->setFrameShape(QFrame::HLine); 
 		line->setFixedHeight(2);
 	line->setFixedWidth(this->width()/1.5);
-	line->setStyleSheet("color: #000000;");
+	line->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout18->addWidget(line); //Adding line to layout
 	hLayout18->setAlignment(Qt::AlignBottom);
@@ -123,7 +129,7 @@ void ProfilePage::onAttach() {
 		line1->setFrameShape(QFrame::HLine); 
 		line1->setFixedHeight(2);
 	line1->setFixedWidth(this->width()/1.5);
-	line1->setStyleSheet("color: #000000;");
+	line1->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout4->addWidget(line1); //Adding line to layout
 	hLayout4->setAlignment(Qt::AlignLeft);
@@ -167,7 +173,7 @@ void ProfilePage::onAttach() {
 		line2->setFrameShape(QFrame::HLine);
 		line2->setFixedHeight(2);
 	line2->setFixedWidth(this->width()/1.5); 
-	line2->setStyleSheet("color: #000000;");
+	line2->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout7->addWidget(line2); //Adding line to layout
 	hLayout7->setAlignment(Qt::AlignLeft);
@@ -210,7 +216,7 @@ void ProfilePage::onAttach() {
 		line4->setFrameShape(QFrame::HLine); 
 		line4->setFixedHeight(2);
 	line4->setFixedWidth(this->width()/1.5);
-	line4->setStyleSheet("color: #000000;");
+	line4->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout13->addWidget(line4); //Adding line to layout
 	hLayout13->setAlignment(Qt::AlignLeft);

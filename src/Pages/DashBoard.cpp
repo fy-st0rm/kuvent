@@ -1,21 +1,16 @@
 #include "DashBoard.h"
 #include "theme.h"
 
-//[ ] TODO :get this stuff dynamically from backend
-bool isOrganizer = true;
-QString user_name = "KUCC";
-
 void DashBoard::onAttach() {
 	m_pg_switcher = new PageSwitcher(app);
 
 	// Changing the stylesheet of the base widget of page
-	getBaseWidget()->setStyleSheet("background-color:" + Theme::dashboardbuttonBg);
-	getBaseWidget()->setStyleSheet("background-color:" + Theme::dashBg); 
+	getBaseWidget()->setStyleSheet("background-color:" + Theme::dashboardPanel);
 	
 	// H_dash_layout is the main layout of the page
 	H_dash_layout = new QHBoxLayout(this);
 	H_dash_layout->setSpacing(0);
-	H_dash_layout->setContentsMargins(0, 0, 0, 0);
+	H_dash_layout->setContentsMargins(5, 5, 5, 5);
 
 	// Set the layout of the page to the main layout
 	setLayout(H_dash_layout);
@@ -62,24 +57,20 @@ void DashBoard::onEntry() {
 		[this]() {
 			switchPage("UpcomingPage");
 	});
-	if(isOrganizer)
-	{
-		connect(
-			nav_bar->getPostButton(),
-			&QPushButton::clicked, this,
-			[this]() {
-				switchPage("PostPage");
-			}
-		);
-
-		connect(
-			nav_bar->getMyEventsButton(),
-			&QPushButton::clicked, this,
-			[this]() {
-				switchPage("MyEventsPage");
-			}
-		);
-	}
+	connect(
+		nav_bar->getPostButton(),
+		&QPushButton::clicked, this,
+		[this]() {
+			switchPage("PostPage");
+		}
+	);
+	connect(
+		nav_bar->getMyEventsButton(),
+		&QPushButton::clicked, this,
+		[this]() {
+			switchPage("MyEventsPage");
+		}
+	);
 }
 
 void DashBoard::onExit() {
