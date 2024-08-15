@@ -21,7 +21,9 @@ PackEvent::PackEvent(
 	);
 	QHBoxLayout *header_layout = new QHBoxLayout();
 
-		QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+"  "+event_name);
+		QLabel *event_name_label = new QLabel;
+		event_name_label->setText(QString("<span style='color: red;'>🔴</span>  %1").arg(event_name));
+
 		event_name_label->setStyleSheet(
 			"QLabel {"
 			"  color: #000000;"
@@ -30,20 +32,20 @@ PackEvent::PackEvent(
 			"  background-color: transparent;"
 			"}"
 		);
-		header_layout->addWidget(event_name_label,1,Qt::AlignLeft);
+		header_layout->addWidget(event_name_label, 0, Qt::AlignLeft);
 
 		if(isUserRegistered() && !is_organizer) {
 			QLabel *event_joined = new QLabel(QString::fromUtf8("✓"));
 			event_joined->setStyleSheet(
 				"QLabel {"
-				"  color: #000000;"
+				"  color: #00FF00;"
 				"  font-size: 18px;"
 				"  font-weight: bold;"
 				"  background-color: transparent;"
 				"}"
 			);
-			event_joined->setToolTip("Joined Evemt");
-			header_layout->addWidget(event_joined,1,Qt::AlignRight);
+			event_joined->setToolTip("Joined Event"); 
+			header_layout->addWidget(event_joined, 0, Qt::AlignRight);
 		}
 	event_layout->addLayout(header_layout);
 
