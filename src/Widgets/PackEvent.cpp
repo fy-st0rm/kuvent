@@ -22,7 +22,8 @@ PackEvent::PackEvent(
 	QVBoxLayout *event_layout = new QVBoxLayout(event_widget);
 	QHBoxLayout *header_layout = new QHBoxLayout();
 
-		QLabel *event_name_label = new QLabel(QString::fromUtf8("🔴")+"  "+event_name);
+		QLabel *event_name_label = new QLabel;
+		event_name_label->setText(QString("<span style='color: red;'>🔴</span>  %1").arg(event_name));
 		event_name_label->setStyleSheet(
 			"QLabel {"
 			"  color: #000000;"

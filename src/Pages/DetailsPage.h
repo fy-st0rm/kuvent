@@ -30,6 +30,9 @@ private:
 	bool isUserRegistered();
 
 private:
+    QScrollArea *scrollArea;
+	QWidget *containerWidget;
+
 	QHBoxLayout *registrationLayout;
 
 	QLabel *eventName;

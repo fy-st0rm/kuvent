@@ -6,8 +6,28 @@ void DetailsPage::onAttach()
 		"background-color:" + Theme::dashBg + ";"
 		"border-radius: 15px;"
 	);
-	main_layout = new QVBoxLayout();
-	setLayout(main_layout);
+    scrollArea = new QScrollArea();
+	scrollArea->setWidgetResizable(true);
+	scrollArea->setStyleSheet(
+		"QScrollArea { border: none; }"
+		"QScrollBar:vertical { border: none; margin: 0px 0px 0px 0px; }"
+		"QScrollBar::handle:vertical { border-radius: 5px; background: #FFFFFF; }"
+		"QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { background: none; height: 0px; }"
+		"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background: none; }"
+	);
+	scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+	scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    containerWidget = new QWidget();
+    containerWidget->installEventFilter(this);
+
+    main_layout = new QVBoxLayout(containerWidget);
+    scrollArea->setWidget(containerWidget);
+    
+    QVBoxLayout* baseLayout = new QVBoxLayout(this);
+    baseLayout->addWidget(scrollArea);
+    setLayout(baseLayout);
+
 }
 
 void DetailsPage::onEntry() {
@@ -26,7 +46,8 @@ void DetailsPage::setupEventHeader() {
     main_layout->setAlignment(Qt::AlignTop);
 
     eventName = new QLabel(
-        QString::fromUtf8("🔴") + QString::fromStdString(m_event_data["NAME"].asString())
+        // QString::fromUtf8("🔴") + QString::fromStdString(m_event_data["NAME"].asString())
+        QString("<span style='color: red;'>🔴</span>  %1").arg(QString::fromStdString(m_event_data["NAME"].asString()))
     );
     eventName->setStyleSheet(
         "font-size: 18pt;"
