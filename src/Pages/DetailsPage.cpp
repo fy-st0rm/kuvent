@@ -243,8 +243,8 @@ void DetailsPage::setupFlyer() {
 		);
 
 		// Set the pixmap and scale it to maintain aspect ratio
-		eventFlyer->setPixmap(flyerPixmap.scaled(400, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-		eventFlyer->setFixedSize(400, 400); // Ensures the label size is fixed
+		eventFlyer->setPixmap(flyerPixmap.scaled(800, 600, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+		eventFlyer->setFixedSize(800, 600); // Ensures the label size is fixed
 
 		flyer_layout->addSpacing(30);
 		flyer_layout->addWidget(eventFlyer);

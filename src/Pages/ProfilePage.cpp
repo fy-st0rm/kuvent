@@ -79,21 +79,19 @@ void ProfilePage::onAttach() {
 	hLayout15->setAlignment(Qt::AlignLeft);
 
 	QHBoxLayout *hLayout18 = new QHBoxLayout();
-	v_profileLayout->addLayout(hLayout18);
+	v_profileLayout->addLayout(hLayout18);	
 
-	//Horizontal line
 	QFrame *line = new QFrame;
 		line->setFrameShape(QFrame::HLine); 
 		line->setFixedHeight(2);
 	line->setFixedWidth(this->width()/1.5);
 	line->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
-	hLayout18->addWidget(line); //Adding line to layout
+	hLayout18->addWidget(line);
 	hLayout18->setAlignment(Qt::AlignBottom);
 
 	v_profileLayout->addSpacing(40);
 
-	//Email label
 	QBoxLayout *hLayout2 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout2);
 	

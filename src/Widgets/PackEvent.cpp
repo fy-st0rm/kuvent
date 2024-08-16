@@ -96,6 +96,14 @@ PackEvent::PackEvent(
 		"QPushButton:hover {"
 		"  background-color: " + Theme::packEventButtonHover + ";"
 		"}"
+		"QToolTip {"
+		"background-color: white;"
+		"color: black;"
+		"}"
+		"QToolTip:hover {"
+		"background-color: white;"
+		"color: black;"
+		"}"
 	);
 	button_layout->addWidget(see_details_btn, 0, Qt::AlignRight);
 
@@ -117,6 +125,14 @@ PackEvent::PackEvent(
 			"}"
 			"QPushButton:hover {"
 			"  background-color: " + Theme::packEventButtonHover + ";"
+			"}"
+			"QToolTip {"
+			"background-color: white;"
+			"color: black;"
+			"}"
+			"QToolTip:hover {"
+			"background-color: white;"
+			"color: black;"
 			"}"
 		);
 		button_layout->addWidget(delete_btn, 0, Qt::AlignRight);
