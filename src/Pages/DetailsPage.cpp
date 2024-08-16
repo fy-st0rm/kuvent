@@ -25,9 +25,12 @@ void DetailsPage::setupEventHeader() {
     main_layout->addLayout(event_header_layout);
     main_layout->setAlignment(Qt::AlignTop);
 
-    eventName = new QLabel(
-        QString::fromUtf8("🔴") + QString::fromStdString(m_event_data["NAME"].asString())
-    );
+    eventName = new QLabel();
+		eventName->setText(QString(
+			"<span style='color: " + Theme::red + ";'>🔴</span>  %1"
+		).arg(
+			QString::fromStdString(m_event_data["NAME"].asString())
+		);
     eventName->setStyleSheet(
         "font-size: 18pt;"
         "font-weight: bold;"

@@ -30,7 +30,11 @@ private:
 	bool isUserRegistered();
 
 private:
+	QVBoxLayout *main_layout;
+	QVBoxLayout *final_layout;
 	QHBoxLayout *registrationLayout;
+	QScrollArea *scrollArea;
+	QWidget* containerWidget;
 
 	QLabel *eventName;
 	QLabel *venueLocation;
@@ -38,7 +42,6 @@ private:
 	QLabel *startDate;
 	QLabel *endDate;
 	QLabel *venueDescription;
-	QVBoxLayout *main_layout;
 	QLabel *organizerLabel;
 	QLabel *eventFlyer;
 
