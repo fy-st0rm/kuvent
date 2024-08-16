@@ -25,7 +25,6 @@ void EmailLineEdit::validateEmail(const QString &text)
         setStyleSheet(
             "color: #000000;"
             "background-color: #FAF6E7;"
-            "border: 0px solid red;"
             "border-radius: 5px;"
             "padding: 5px;"
         
@@ -36,6 +35,11 @@ void EmailLineEdit::validateEmail(const QString &text)
 bool EmailLineEdit::isEmailValid(const QString &email)
 { 
     QString requiredSuffix = "@gmail.com";
+
+    if (email.isEmpty())
+    {
+        return true;
+    }
 
     if(!email.endsWith(requiredSuffix, Qt::CaseSensitive)) 
     {

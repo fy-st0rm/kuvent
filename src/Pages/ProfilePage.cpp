@@ -357,5 +357,16 @@ void ProfilePage::changeProfileData(
 		);
 		return;
 	}
+
+	if (attrib == "NUMBER") {
+		AppData app_data = app->getAppData();
+		app_data.number = value;
+		app->setAppData(app_data);
+	}
+	else if (attrib == "BATCH") {
+		AppData app_data = app->getAppData();
+		app_data.batch = value;
+		app->setAppData(app_data);
+	}
 }
 

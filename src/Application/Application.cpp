@@ -30,7 +30,7 @@ int Application::run(const std::string& title, int argc, char** argv) {
 	init_qt();
 
 	// Establishing client
-	client = new httplib::Client("172.18.100.198", 8080);
+	client = new httplib::Client("127.0.0.1", 8080);
 
 	// Running the startup function of app
 	onAttach();
