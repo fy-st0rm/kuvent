@@ -63,7 +63,7 @@ static void applyShadow(QWidget *widget) {
 	else if (qobject_cast<QTextEdit*>(widget)) 
 		shadow->setOffset(QPointF(1, 1)); 
 	else
-		shadow->setOffset(QPointF(4, 4)); 
+		shadow->setOffset(QPointF(3, 3)); 
 	
 	widget->setGraphicsEffect(shadow);
 }

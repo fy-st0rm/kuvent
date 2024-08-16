@@ -248,7 +248,7 @@ void DetailsPage::setupFlyer() {
 
 		flyer_layout->addSpacing(30);
 		flyer_layout->addWidget(eventFlyer);
-		flyer_layout->setAlignment(Qt::AlignLeft);
+		flyer_layout->setAlignment(Qt::AlignCenter);
 
 		// Create a layout for the registration button
 		registrationLayout = new QHBoxLayout;
