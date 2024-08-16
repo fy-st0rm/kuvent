@@ -173,36 +173,43 @@ void DetailsPage::setupVenueInfo() {
 }
 
 void DetailsPage::setupEventDescription() {
-		QHBoxLayout *hLayout8 = new QHBoxLayout;
-		main_layout->addLayout(hLayout8);
+    QVBoxLayout *vLayout = new QVBoxLayout;
+    main_layout->addLayout(vLayout);
 
-		QLabel *about = new QLabel("About the event");
-		about->setStyleSheet(
-				"font-weight: bold;"
-				"font-size: 14pt;"
-				"color: #000000;"
-		);
-		hLayout8->addSpacing(30);
-		hLayout8->addWidget(about);
-		hLayout8->setAlignment(Qt::AlignLeft);
+    QHBoxLayout *hLayout8 = new QHBoxLayout;
+    vLayout->addLayout(hLayout8);
 
-		QHBoxLayout *desc_layout = new QHBoxLayout;
-		main_layout->addLayout(desc_layout);
+    QLabel *about = new QLabel("About the event");
+    about->setStyleSheet(
+        "font-weight: bold;"
+        "font-size: 14pt;"
+        "color: #000000;"
+    );
+    hLayout8->addSpacing(30);
+    hLayout8->addWidget(about);
+    hLayout8->addStretch(1);
 
-		eventDescription = new QLabel(
-				QString::fromStdString(m_event_data["DESC"].asString())
-		);
-		eventDescription->setStyleSheet(
-				"color: #7C7C7C;"
-				"font-size: 12pt;"
-		);
-		desc_layout->addSpacing(30);
-		desc_layout->addWidget(eventDescription);
-		desc_layout->setAlignment(Qt::AlignLeft);
+    QHBoxLayout *desc_layout = new QHBoxLayout;
+    vLayout->addLayout(desc_layout);
 
-		main_layout->addSpacing(15);
+    eventDescription = new QLabel(
+        QString::fromStdString(m_event_data["DESC"].asString())
+    );
+    eventDescription->setStyleSheet(
+        "color: #7C7C7C;"
+        "font-size: 12pt;"
+    );
+    eventDescription->setWordWrap(true);
+    eventDescription->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+    desc_layout->addSpacing(30);
+    desc_layout->addWidget(eventDescription);
+    desc_layout->addSpacing(30);  // Right spacing
+
+    vLayout->addSpacing(15);  // Bottom spacing
+
+    eventDescription->setMinimumWidth(200);
 }
-
 void DetailsPage::setupFlyer() {
 		QHBoxLayout *flyer_layout = new QHBoxLayout;
 		main_layout->addLayout(flyer_layout);
