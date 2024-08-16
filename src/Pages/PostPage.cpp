@@ -229,12 +229,12 @@ void PostPage::addButtonSection()
 			"QPushButton {"
 				"background: #FFFFFF;"
 				"color: #1E1E1E;"
-				"border: 1px solid #FF8585;"
+				"border: 2px solid " + Theme::red + ";"
 				"border-radius: 8px; height: 32px; width: 89px;"
 				"font-weight: bold;"
 			"}"
 			"QPushButton:hover {"
-			"  background-color: " + Theme::buttonHover + ";"
+			"  background-color: " + Theme::packEventButtonHover + ";"
 			"}"
 		);
 		button_layout->addWidget(clear_button);

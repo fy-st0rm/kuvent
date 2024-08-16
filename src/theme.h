@@ -21,7 +21,7 @@ namespace Theme {
 
     static const QString packEventBg = "#D1D1D1";
     static const QString packEventButtonBg = "#F1EEDC";
-    static const QString packEventButtonHover = "#E7E2C5";
+    static const QString packEventButtonHover = "#D7CFB7";
 
 
     static const QString dashBg= "#F1EEDC";

@@ -225,9 +225,19 @@ void ProfilePage::onAttach() {
 
 	//logout button
 	QPushButton *logout_button = new QPushButton("Logout");
-	logout_button->setStyleSheet("background: #FFFFFF; color: #1E1E1E; border: 1px solid #FF8585; "
-																"border-radius: 8px; height: 32px; width: 89px;"
-																"font-weight: bold;");
+	applyShadow(logout_button);
+	logout_button->setStyleSheet(
+		"QPushButton {"
+			"background: #FFFFFF;"
+			"color: #1E1E1E;"
+			"border: 2px solid " + Theme::red + ";"
+			"border-radius: 8px; height: 32px; width: 89px;"
+			"font-weight: bold;"
+		"}"
+		"QPushButton:hover {"
+		"  background-color: " + Theme::packEventButtonHover + ";"
+		"}"
+	);
 	logout_button->setMinimumSize(50,30);
 	connect(
 		logout_button,

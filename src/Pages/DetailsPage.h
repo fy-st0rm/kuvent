@@ -31,10 +31,9 @@ private:
 
 private:
 	QVBoxLayout *main_layout;
-	QVBoxLayout *final_layout;
+	QWidget *containerWidget;
 	QHBoxLayout *registrationLayout;
 	QScrollArea *scrollArea;
-	QWidget* containerWidget;
 
 	QLabel *eventName;
 	QLabel *venueLocation;
@@ -46,8 +45,7 @@ private:
 	QLabel *eventFlyer;
 
 	QToolButton *closeButton = nullptr;
-	QPushButton *registerButton = nullptr;
-	QPushButton *leaveButton = nullptr;
+	QPushButton *button = nullptr;
 
 	Application* m_app;
 	Json::Value m_event_data;

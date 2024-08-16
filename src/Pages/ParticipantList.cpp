@@ -40,7 +40,12 @@ void ParticipantList::setupHeader()
     QHBoxLayout *hLayout1 = new QHBoxLayout();
     containerLayout->addLayout(hLayout1);
 
-    QLabel *eventName = new QLabel(QString::fromStdString(m_event["NAME"].asString()), this);
+    QLabel *eventName = new QLabel(this);
+		eventName->setText(QString(
+			"<span style='color: " + Theme::red + ";'>🔴</span>  %1"
+		).arg(
+			QString::fromStdString(m_event["NAME"].asString())
+		));
     eventName->setStyleSheet("font-weight: bold; font-size: 12pt; color: #000000;");
     hLayout1->addWidget(eventName);
 
