@@ -100,17 +100,24 @@ void PostPage::addDateSection()
 		//Start-End date text box label
 		QHBoxLayout* date_layout = new QHBoxLayout();
 		v_layout->addLayout(date_layout);
+		QHBoxLayout* start_dateLayout = new QHBoxLayout();
+		date_layout->addLayout(start_dateLayout);
+		date_layout->setAlignment(Qt::AlignHCenter);
+		start_dateLayout->setAlignment(Qt::AlignRight);		
 		start_date_entry = new LineEditWithCalendar();
 		start_date_entry->setFixedWidth(300);
-		date_layout->addWidget(start_date_entry);
+		start_dateLayout->addWidget(start_date_entry);
 		start_date_entry->setStyleSheet("background: #FFFFFF; "
 																		"border-radius: 8px; color:#000000;"
 									"padding: 10px;");
 
 		date_layout->addSpacing(20);
 
+		QHBoxLayout* end_dateLayout = new QHBoxLayout();
+		date_layout->addLayout(end_dateLayout);
+		end_dateLayout->setAlignment(Qt::AlignLeft);
 		end_date_entry = new LineEditWithCalendar();
-		date_layout->addWidget(end_date_entry);
+		end_dateLayout->addWidget(end_date_entry);
 		end_date_entry->setFixedWidth(300);
 		end_date_entry->setStyleSheet("background: #FFFFFF; "
 																		"border-radius: 8px; color:#000000;"

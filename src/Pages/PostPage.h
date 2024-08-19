@@ -12,6 +12,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QFrame>
 #include <QtGui/QScreen>
+#include <QtWidgets/QHBoxLayout>
 
 #include <optional>
 #include "Application/Page.h"
