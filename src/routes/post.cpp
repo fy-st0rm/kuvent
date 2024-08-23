@@ -141,6 +141,19 @@ void delete_event(const Request& req, Response& res) {
 		return;
 	}
 
+	// Deleting event from participants
+	std::stringstream dpq;
+	dpq
+		<< "DELETE FROM PARTICIPANTS "
+		<< "WHERE EVENT_ID = \"" << event_id << "\";";
+
+	r = db.query(dpq.str());
+	if (r.status != SQLITE_OK) {
+		res.status = StatusCode::InternalServerError_500;
+		res.set_content(db.err_msg(), "text/plain");
+		return;
+	}
+
 	res.status = StatusCode::OK_200;
 	res.set_content("Sucessfully deleted event", "text/plain");
 }
