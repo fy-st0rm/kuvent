@@ -28,27 +28,54 @@ void MyEventsPage::onAttach() {
 		
 		scrollArea->setWidget(containerWidget);
 
-		QVBoxLayout *mainLayout = new QVBoxLayout(this);
+		mainLayout = new QVBoxLayout(this);
 		mainLayout->addWidget(scrollArea);
 		
 		setLayout(mainLayout);
 }
 
 void MyEventsPage::onEntry() {
-		try {
-				Json::Value events = fetchEvents();
-				Json::Value myEvents = filterMyEvents(events);
-				generateDetailsPages(myEvents);
-				displayMyEvents(myEvents);
-		} 
-	catch (const std::exception& e) {
-				QMessageBox::critical(this, "Error", QString::fromStdString(e.what()));
+	try {
+		Json::Value events = fetchEvents();
+		Json::Value myEvents = filterMyEvents(events);
+
+		if(myEvents.size() > 0) {
+			generateDetailsPages(myEvents);
+			displayMyEvents(myEvents);
 		}
+		else {
+			// Adding a placeholder image when no events are there
+			placeholder_layout = new QHBoxLayout;
+			placeholder_layout->setAlignment(Qt::AlignCenter);
+			QPixmap pixmap("assets/images/no_events_created.png");
+			placeholder = new QLabel();
+			placeholder->setPixmap(pixmap);
+			placeholder->setFixedSize(800, 600);
+			placeholder->setPixmap(pixmap.scaled(
+				800, 600,
+				Qt::KeepAspectRatio, Qt::SmoothTransformation
+			));
+			placeholder->setStyleSheet(
+				"QLabel {"
+				"  background-color: transparent;"
+				"}"
+			);
+			placeholder->setAlignment(Qt::AlignCenter);
+
+			placeholder_layout->addStretch();
+			placeholder_layout->addWidget(placeholder);
+			placeholder_layout->addStretch();
+
+			mainLayout->addLayout(placeholder_layout, Qt::AlignCenter);
+		}
+	} catch (const std::exception& e) {
+		QMessageBox::critical(this, "Error", QString::fromStdString(e.what()));
+	}
 }
 
 Json::Value MyEventsPage::fetchEvents() {
 		httplib::Result res = app->client->Get("/get_event");
-		if (!res || res->status != 200) {
+		if (!res || res->status != httplib::StatusCode::OK_200) {
 				throw std::runtime_error(res ? res->body : "Cannot connect to the server");
 		}
 		
@@ -154,6 +181,15 @@ void MyEventsPage::adjustLayout() {
 void MyEventsPage::onExit() {
 	qDeleteAll(eventWidgets);
 		eventWidgets.clear();
+
+	if (placeholder != nullptr) {
+		delete placeholder;
+		placeholder = nullptr;
+	}
+	if (placeholder_layout != nullptr) {
+		delete placeholder_layout;
+		placeholder_layout = nullptr;
+	}
 }
 
 void MyEventsPage::generateDetailsPages(const Json::Value& events) {
@@ -197,7 +233,7 @@ void MyEventsPage::deleteEvent(const std::string& event_id) {
 
 	QMessageBox::information(
 		this,
-		"Sucess",
+		"Success",
 		QString::fromStdString(res->body)
 	);
 

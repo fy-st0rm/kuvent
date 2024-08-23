@@ -40,4 +40,7 @@ private:
 	QWidget *containerWidget;
 	PageSwitcher *m_pg_switcher;
 	QList<PackEvent*> eventWidgets;
+	QLabel* placeholder = nullptr;
+	QHBoxLayout* placeholder_layout;
+	QVBoxLayout* mainLayout;
 };

@@ -45,6 +45,7 @@ void OngoingEventsPage::onEntry() {
 		else {
 			// Adding a placeholder image when no events are there
 			placeholder_layout = new QHBoxLayout;
+			placeholder_layout->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 			QPixmap pixmap("assets/images/no_ongoing.png");
 			placeholder = new QLabel();
 			placeholder->setPixmap(pixmap);
