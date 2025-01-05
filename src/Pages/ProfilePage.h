@@ -15,7 +15,7 @@
 #include "Application/Page.h"
 #include "Application/Application.h"
 #include "json/json.h"
-
+#include "utils.h"
 class ProfilePage : public Page {
 public:
 	void onAttach();
@@ -36,5 +36,6 @@ private:
 	ContactNoEntry *contactNoEntryLabel;
 	FacultyEntry *facultyEntryLabel;
 	QLabel *usernameEntryLabel;
+	LabelWithButton *profilePic = nullptr;
 };
 

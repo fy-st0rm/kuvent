@@ -14,6 +14,7 @@
 #include "Pages/UpcomingEvents.cpp"
 #include "Pages/DetailsPage.cpp"
 #include "Pages/MyEventsPage.cpp"
+#include "Pages/ParticipantList.cpp"
 
 #include "Widgets/PageSwitcher.cpp"
 #include "Widgets/PasswordLineEdit.cpp"
@@ -26,6 +27,7 @@
 #include "Widgets/LabelWithButton.cpp"
 #include "Widgets/Image.cpp"
 #include "Widgets/UserDetailsWidget.cpp"
+#include "Widgets/MyEventsDetails.cpp"
 
 class App : public Application {
 public:
@@ -36,6 +38,7 @@ public:
 		addPage<SignupPage>("SignupPage");
 		addPage<DashBoard>("DashBoard");
 		switchPage("LoginPage");
+		// switchPage("DashBoard");
 	}
 };
 

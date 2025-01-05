@@ -17,6 +17,7 @@
 #include "Application/Page.h"
 #include "Widgets/PasswordLineEdit.h"
 #include "Widgets/emailValidation.h"
+#include "utils.h"
 
 class SignupPage : public Page {
 public:
@@ -48,6 +49,4 @@ private:
 	QComboBox *select_account_type;
 	QLabel *account_type;
 	QPushButton *signup_Button;
-
-	void applyShadow(QWidget *widget);
 };

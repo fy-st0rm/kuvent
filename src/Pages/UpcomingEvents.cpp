@@ -2,6 +2,11 @@
 #include "utils.h"
 
 void UpcomingEventsPage::onAttach() {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
+
 		QScrollArea *scrollArea = new QScrollArea();
 		scrollArea->setWidgetResizable(true);
 		scrollArea->setStyleSheet(
@@ -40,6 +45,7 @@ void UpcomingEventsPage::onEntry() {
 		else {
 			// Adding a placeholder image when no events are there
 			placeholder_layout = new QHBoxLayout;
+			placeholder_layout->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 			QPixmap pixmap("assets/images/no_upcoming.png");
 			placeholder = new QLabel();
 			placeholder->setPixmap(pixmap);
@@ -103,7 +109,15 @@ void UpcomingEventsPage::displayUpcomingEvents(const Json::Value& upcomingEvents
 				QString organizer = QString::fromStdString(event["ORGANIZER"].asString());
 				std::string flyerId = flyers["flyers"][0].asString();
 				
-				PackEvent* eventWidget = new PackEvent(containerWidget, app->client, flyerId, organizer, eventName);
+				PackEvent* eventWidget = new PackEvent(
+					containerWidget,
+					app,
+					flyerId,
+					organizer,
+					eventName,
+					event["ID"].asString(),
+					false
+				);
 				eventWidget->setFixedSize(310, 400);
 				eventWidgets.append(eventWidget);
 				

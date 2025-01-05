@@ -12,12 +12,16 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QFrame>
 #include <QtGui/QScreen>
+#include <QtWidgets/QHBoxLayout>
 
 #include <optional>
 #include "Application/Page.h"
 #include "Widgets/LineEditWithCalendar.h"
 #include "Widgets/dashBoardNavBar.h"
 #include "theme.h"
+#include "utils.h"
+
+
 class PostPage : public Page {
 public:
 	PostPage();
@@ -57,7 +61,4 @@ private:
 	QString event_name ;
 	QString location ;
 	QString description ;
-
-	void applyShadow(QWidget *widget);
-
 };

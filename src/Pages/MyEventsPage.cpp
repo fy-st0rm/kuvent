@@ -2,6 +2,11 @@
 #include "Widgets/UserDetailsWidget.h"
 
 void MyEventsPage::onAttach() {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
+
 		QScrollArea *scrollArea = new QScrollArea();
 		scrollArea->setWidgetResizable(true);
 		scrollArea->setStyleSheet(
@@ -23,27 +28,54 @@ void MyEventsPage::onAttach() {
 		
 		scrollArea->setWidget(containerWidget);
 
-		QVBoxLayout *mainLayout = new QVBoxLayout(this);
+		mainLayout = new QVBoxLayout(this);
 		mainLayout->addWidget(scrollArea);
 		
 		setLayout(mainLayout);
 }
 
 void MyEventsPage::onEntry() {
-		try {
-				Json::Value events = fetchEvents();
-				Json::Value myEvents = filterMyEvents(events);
-				generateDetailsPages(myEvents);
-				displayMyEvents(myEvents);
-		} 
-	catch (const std::exception& e) {
-				QMessageBox::critical(this, "Error", QString::fromStdString(e.what()));
+	try {
+		Json::Value events = fetchEvents();
+		Json::Value myEvents = filterMyEvents(events);
+
+		if(myEvents.size() > 0) {
+			generateDetailsPages(myEvents);
+			displayMyEvents(myEvents);
 		}
+		else {
+			// Adding a placeholder image when no events are there
+			placeholder_layout = new QHBoxLayout;
+			placeholder_layout->setAlignment(Qt::AlignCenter);
+			QPixmap pixmap("assets/images/no_events_created.png");
+			placeholder = new QLabel();
+			placeholder->setPixmap(pixmap);
+			placeholder->setFixedSize(800, 600);
+			placeholder->setPixmap(pixmap.scaled(
+				800, 600,
+				Qt::KeepAspectRatio, Qt::SmoothTransformation
+			));
+			placeholder->setStyleSheet(
+				"QLabel {"
+				"  background-color: transparent;"
+				"}"
+			);
+			placeholder->setAlignment(Qt::AlignCenter);
+
+			placeholder_layout->addStretch();
+			placeholder_layout->addWidget(placeholder);
+			placeholder_layout->addStretch();
+
+			mainLayout->addLayout(placeholder_layout, Qt::AlignCenter);
+		}
+	} catch (const std::exception& e) {
+		QMessageBox::critical(this, "Error", QString::fromStdString(e.what()));
+	}
 }
 
 Json::Value MyEventsPage::fetchEvents() {
 		httplib::Result res = app->client->Get("/get_event");
-		if (!res || res->status != 200) {
+		if (!res || res->status != httplib::StatusCode::OK_200) {
 				throw std::runtime_error(res ? res->body : "Cannot connect to the server");
 		}
 		
@@ -69,23 +101,43 @@ Json::Value MyEventsPage::filterMyEvents(const Json::Value& events) {
 }
 
 void MyEventsPage::displayMyEvents(const Json::Value& myEvents) {
+		AppData app_data = app->getAppData();
 		for (const auto& event : myEvents) {
 				Json::Value flyers = fetchFlyers(event["ID"].asString());
 				
 				QString eventName = QString::fromStdString(event["NAME"].asString());
 				QString organizer = QString::fromStdString(event["ORGANIZER"].asString());
+				QString organizer_id = QString::fromStdString(event["ORGANIZER_ID"].asString());
+				bool is_organizer = organizer_id.toStdString() == app_data.id;
 				std::string flyerId = flyers["flyers"][0].asString();
 				
-				PackEvent* eventWidget = new PackEvent(containerWidget, app->client, flyerId, organizer, eventName);
+				PackEvent* eventWidget = new PackEvent(
+					containerWidget,
+					app,
+					flyerId,
+					organizer,
+					eventName,
+					event["ID"].asString(),
+					is_organizer
+				);
 				eventWidget->setFixedSize(310, 400);
 				eventWidgets.append(eventWidget);
 				
-		connect(
-			eventWidget->getDetailsButton(),
-			&QPushButton::clicked, this,
-			[this, event, eventWidget]() {
-				pg_switcher->switchPage(event["ID"].asString());
-		});
+				connect(
+					eventWidget->getDetailsButton(),
+					&QPushButton::clicked, this,
+					[this, event, eventWidget]() {
+						pg_switcher->switchPage(
+							"PARTICPANT-" + event["ID"].asString()
+						);
+				});
+				connect(
+					eventWidget->getDeleteButton(),
+					&QPushButton::clicked, this,
+					[this, event]() {
+						deleteEvent(event["ID"].asString());
+					}
+				);
 		}
 		adjustLayout();
 }
@@ -129,18 +181,63 @@ void MyEventsPage::adjustLayout() {
 void MyEventsPage::onExit() {
 	qDeleteAll(eventWidgets);
 		eventWidgets.clear();
+
+	if (placeholder != nullptr) {
+		delete placeholder;
+		placeholder = nullptr;
+	}
+	if (placeholder_layout != nullptr) {
+		delete placeholder_layout;
+		placeholder_layout = nullptr;
+	}
 }
 
 void MyEventsPage::generateDetailsPages(const Json::Value& events) {
-	//	if(!pg_switcher){
-	//			qDebug () << "pg_switcher not initialized";
-	//			return;
-	//	}
-	//for (auto event : events) {
-	//	pg_switcher->addPage<DetailsPage>(
-	//		event["ID"].asString(),
-	//		event,
-	//		"MyEventsPage"
-	//	);
-	//}
+		if(!pg_switcher){
+				qDebug () << "pg_switcher not initialized";
+				return;
+		}
+	for (auto event : events) {
+		pg_switcher->addPage<ParticipantList>(
+			"PARTICPANT-" + event["ID"].asString(),
+			event
+		);
+	}
+}
+
+void MyEventsPage::deleteEvent(const std::string& event_id) {
+	Json::Value payload;
+	Json::StyledWriter writer;
+	payload["event_id"] = event_id;
+
+	httplib::Result res = app->client->Post(
+		"/delete_event",
+		writer.write(payload),
+		"application/json"
+	);
+
+	// Checking the result
+	if (!res) {
+		QMessageBox::critical(this, "Connection Error", "Cannot connect to the server. Please check your connection and try again later.");
+		return;
+	}
+
+	if (res->status != httplib::StatusCode::OK_200) {
+		QMessageBox::warning(
+			this,
+			"Delete Event Error",
+			QString::fromStdString(res->body)
+		);
+		return;
+	}
+
+	QMessageBox::information(
+		this,
+		"Success",
+		QString::fromStdString(res->body)
+	);
+
+	// Refreshing the page
+	onExit();
+	onEntry();
 }

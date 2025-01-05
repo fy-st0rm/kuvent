@@ -11,6 +11,8 @@
 #include <QtWidgets/QMessageBox>
 #include <QtCore/QRegularExpression>
 
+#include "theme.h"
+
 class ContactNoEntry : public QWidget 
 {
     public:

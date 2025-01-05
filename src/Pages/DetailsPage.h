@@ -30,25 +30,37 @@ private:
 	bool isUserRegistered();
 
 private:
+	QVBoxLayout *main_layout;
+	QWidget *containerWidget;
+	QHBoxLayout *registrationLayout;
+	QScrollArea *scrollArea;
+
 	QLabel *eventName;
 	QLabel *venueLocation;
 	QLabel *eventDescription;
 	QLabel *startDate;
 	QLabel *endDate;
 	QLabel *venueDescription;
-	QVBoxLayout *main_layout;
 	QLabel *organizerLabel;
 	QLabel *eventFlyer;
 
 	QToolButton *closeButton = nullptr;
-	QPushButton *registerButton = nullptr;
-	QPushButton *leaveButton = nullptr;
+	QPushButton *button = nullptr;
 
 	Application* m_app;
 	Json::Value m_event_data;
 	std::string m_exit_page;
 
-	private slots:
+private:
+    void setupEventHeader();
+    void setupOrganizerInfo();
+    void setupDateInfo();
+    void setupVenueInfo();
+    void setupEventDescription();
+    void setupFlyer();
+    void setupRegistrationButton();
+
+private slots:
 	void onCloseClick();
 	void onRegisterClick();
 	void onLeaveClick();

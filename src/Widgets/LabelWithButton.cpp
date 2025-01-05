@@ -47,7 +47,12 @@ void LabelWithButton::onUploadClick()
 	if (!filePath.isEmpty()) {
 		QPixmap pixmap(filePath);
 		if(!pixmap.isNull()) {
-			this->setPixmap(pixmap.scaled(this->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+			QPixmap circular_pixmap = createCircularPixmap(pixmap);
+
+			this->setPixmap(
+				circular_pixmap.scaled(
+					this->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation
+			));
 
 			// Setting the pfp in the server
 

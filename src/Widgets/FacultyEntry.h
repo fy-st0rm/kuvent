@@ -9,6 +9,8 @@
 #include <QtGui/QMouseEvent>
 #include <functional>
 
+#include "theme.h"
+
 class FacultyEntry : public QWidget 
 {
     public:

@@ -1,9 +1,14 @@
-
 #include "ProfilePage.h"
 #include "theme.h"
 
 void ProfilePage::onAttach() {
+	getBaseWidget()->setStyleSheet(
+		"background-color:" + Theme::dashBg + ";"
+		"border-radius: 15px;"
+	);
+
 	v_profileLayout = new QVBoxLayout(this);
+	v_profileLayout->setContentsMargins(15, 15, 15, 15);
 	setLayout(v_profileLayout);
 
 	// App Data
@@ -28,10 +33,10 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line0 = new QFrame;
-    line0->setFrameShape(QFrame::HLine); 
-    line0->setFixedHeight(2);
+		line0->setFrameShape(QFrame::HLine); 
+		line0->setFixedHeight(2);
 	line0->setFixedWidth(this->width()/1.5);
-	line0->setStyleSheet("color: #000000;");
+	line0->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout0->addWidget(line0); //Adding line to layout
 	hLayout0->setAlignment(Qt::AlignBottom);
@@ -39,92 +44,54 @@ void ProfilePage::onAttach() {
 	v_profileLayout->addSpacing(10);	
 
 	// Profile Picture
-    QHBoxLayout *hLayout15 = new QHBoxLayout;
-    v_profileLayout->addLayout(hLayout15);
+	QHBoxLayout *hLayout15 = new QHBoxLayout;
+	v_profileLayout->addLayout(hLayout15);
 
-    LabelWithButton *profilePic = new LabelWithButton(app, this);
+	profilePic = new LabelWithButton(app, this);
 
-    QPixmap profile;
-
-    // When there is no pfp
-    if (app_data.pfp == "NULL") {
-        profile.load("assets/images/KUventpp.png");
-    } else {
-        // If pfp exists, fetching from the server
-        httplib::Result res = app->client->Get("/download/" + app_data.pfp);
-
-        // Checking the result
-        if (!res) {
-            QMessageBox::critical(
-                this,
-                "Connection Error",
-                "Cannot connect to the server. Please check your connection and try again later."
-            );
-        }
-
-        if (res->status != httplib::StatusCode::OK_200) {
-            QMessageBox::warning(
-                this,
-                "Pfp Fetch Error",
-                QString::fromStdString(res->body)
-            );
-        }
-
-        profile.loadFromData(
-            reinterpret_cast<const uchar*>(res->body.data()),
-            res->body.size()
-        );
-    }
-
-    profilePic->setPixmap(profile);
-    profilePic->setFixedSize(100, 100);
-    profilePic->setScaledContents(true);
-
-    // Add profilePic to the left side with some spacing
-    hLayout15->addSpacing(40); // Add more space to the left of the profile picture
-    hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
+	// Add profilePic to the left side with some spacing
+	hLayout15->addSpacing(40); // Add more space to the left of the profile picture
+	hLayout15->addWidget(profilePic, 0, Qt::AlignLeft);
 	hLayout15->addSpacing(40);
 
-    // Create a vertical layout for the right side
-    QVBoxLayout *vlayout = new QVBoxLayout();
-    hLayout15->addLayout(vlayout);
+	// Create a vertical layout for the right side
+	QVBoxLayout *vlayout = new QVBoxLayout();
+	hLayout15->addLayout(vlayout);
 
-    QLabel *usernameLabel = new QLabel("USERNAME");
-    usernameLabel->setStyleSheet(
-        "font-size: 13pt;"
-        "font-weight: bold;"
-		"color: #000000;"
-    );
+	QLabel *usernameLabel = new QLabel("USERNAME");
+	usernameLabel->setStyleSheet(
+			"font-size: 13pt;"
+			"font-weight: bold;"
+	"color: #000000;"
+	);
 
-    usernameEntryLabel = new QLabel("");
-    usernameEntryLabel->setStyleSheet(
-        "font-size: 11pt;"
-        "font-weight: bold;"
-		"color: #7C7C7C;"
-    );
+	usernameEntryLabel = new QLabel("");
+	usernameEntryLabel->setStyleSheet(
+			"font-size: 11pt;"
+			"font-weight: bold;"
+	"color: #7C7C7C;"
+	);
 
-    // Add username label and entry label to the vertical layout and align to left
-    vlayout->addWidget(usernameLabel, 0, Qt::AlignLeft);
-    vlayout->addWidget(usernameEntryLabel, 0, Qt::AlignLeft);
+		// Add username label and entry label to the vertical layout and align to left
+		vlayout->addWidget(usernameLabel, 0, Qt::AlignLeft);
+		vlayout->addWidget(usernameEntryLabel, 0, Qt::AlignLeft);
 	vlayout->setAlignment(Qt::AlignLeft);
 	hLayout15->setAlignment(Qt::AlignLeft);
 
 	QHBoxLayout *hLayout18 = new QHBoxLayout();
-	v_profileLayout->addLayout(hLayout18);
+	v_profileLayout->addLayout(hLayout18);	
 
-	//Horizontal line
 	QFrame *line = new QFrame;
-    line->setFrameShape(QFrame::HLine); 
-    line->setFixedHeight(2);
+		line->setFrameShape(QFrame::HLine); 
+		line->setFixedHeight(2);
 	line->setFixedWidth(this->width()/1.5);
-	line->setStyleSheet("color: #000000;");
+	line->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
-	hLayout18->addWidget(line); //Adding line to layout
+	hLayout18->addWidget(line);
 	hLayout18->setAlignment(Qt::AlignBottom);
 
 	v_profileLayout->addSpacing(40);
 
-	//Email label
 	QBoxLayout *hLayout2 = new QHBoxLayout;
 	v_profileLayout->addLayout(hLayout2);
 	
@@ -157,10 +124,10 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line1 = new QFrame;
-    line1->setFrameShape(QFrame::HLine); 
-    line1->setFixedHeight(2);
+		line1->setFrameShape(QFrame::HLine); 
+		line1->setFixedHeight(2);
 	line1->setFixedWidth(this->width()/1.5);
-	line1->setStyleSheet("color: #000000;");
+	line1->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout4->addWidget(line1); //Adding line to layout
 	hLayout4->setAlignment(Qt::AlignLeft);
@@ -201,10 +168,10 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line2 = new QFrame;
-    line2->setFrameShape(QFrame::HLine);
-    line2->setFixedHeight(2);
+		line2->setFrameShape(QFrame::HLine);
+		line2->setFixedHeight(2);
 	line2->setFixedWidth(this->width()/1.5); 
-	line2->setStyleSheet("color: #000000;");
+	line2->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout7->addWidget(line2); //Adding line to layout
 	hLayout7->setAlignment(Qt::AlignLeft);
@@ -244,10 +211,10 @@ void ProfilePage::onAttach() {
 
 	//Horizontal line
 	QFrame *line4 = new QFrame;
-    line4->setFrameShape(QFrame::HLine); 
-    line4->setFixedHeight(2);
+		line4->setFrameShape(QFrame::HLine); 
+		line4->setFixedHeight(2);
 	line4->setFixedWidth(this->width()/1.5);
-	line4->setStyleSheet("color: #000000;");
+	line4->setStyleSheet("background-color: " + Theme::dashboardPanel + ";");
 
 	hLayout13->addWidget(line4); //Adding line to layout
 	hLayout13->setAlignment(Qt::AlignLeft);
@@ -256,9 +223,19 @@ void ProfilePage::onAttach() {
 
 	//logout button
 	QPushButton *logout_button = new QPushButton("Logout");
-	logout_button->setStyleSheet("background: #FFFFFF; color: #1E1E1E; border: 1px solid #FF8585; "
-                                "border-radius: 8px; height: 32px; width: 89px;"
-                                "font-weight: bold;");
+	applyShadow(logout_button);
+	logout_button->setStyleSheet(
+		"QPushButton {"
+			"background: #FFFFFF;"
+			"color: #1E1E1E;"
+			"border: 2px solid " + Theme::red + ";"
+			"border-radius: 8px; height: 32px; width: 89px;"
+			"font-weight: bold;"
+		"}"
+		"QPushButton:hover {"
+		"  background-color: " + Theme::packEventButtonHover + ";"
+		"}"
+	);
 	logout_button->setMinimumSize(50,30);
 	connect(
 		logout_button,
@@ -302,6 +279,43 @@ void ProfilePage::onEntry() {
 			QString::fromStdString(app_data.batch)
 		);
 	}
+
+	QPixmap profile;
+
+	// When there is no pfp
+	if (app_data.pfp == "NULL") {
+		profile.load("assets/images/KUventpp.png");
+	} else {
+		// If pfp exists, fetching from the server
+		httplib::Result res = app->client->Get("/download/" + app_data.pfp);
+
+		// Checking the result
+		if (!res) {
+				QMessageBox::critical(
+						this,
+						"Connection Error",
+						"Cannot connect to the server. Please check your connection and try again later."
+				);
+		}
+
+		if (res->status != httplib::StatusCode::OK_200) {
+				QMessageBox::warning(
+						this,
+						"Pfp Fetch Error",
+						QString::fromStdString(res->body)
+				);
+		}
+
+		profile.loadFromData(
+				reinterpret_cast<const uchar*>(res->body.data()),
+				res->body.size()
+		);
+	}
+
+	QPixmap circular_pixmap = createCircularPixmap(profile);
+	profilePic->setPixmap(circular_pixmap);
+	profilePic->setFixedSize(100, 100);
+	profilePic->setScaledContents(true);
 }
 
 void ProfilePage::changeProfileData(
@@ -342,6 +356,17 @@ void ProfilePage::changeProfileData(
 			QString::fromStdString(res->body)
 		);
 		return;
+	}
+
+	if (attrib == "NUMBER") {
+		AppData app_data = app->getAppData();
+		app_data.number = value;
+		app->setAppData(app_data);
+	}
+	else if (attrib == "BATCH") {
+		AppData app_data = app->getAppData();
+		app_data.batch = value;
+		app->setAppData(app_data);
 	}
 }
 

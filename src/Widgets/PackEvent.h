@@ -7,20 +7,31 @@
 
 #include "Widgets/Image.h"
 #include "httplib.h"
+#include "theme.h"
+#include "utils.h"
 
 
 class PackEvent: public QWidget {
-	public :
+public :
 	explicit PackEvent(
 		QWidget *parent,
-		httplib::Client* client,
+		Application* app,
 		const std::string& flyer_id,
 		QString organizer,
-		QString event_name
+		QString event_name,
+		const std::string& event_id,
+		bool is_organizer
 	);
 
 	QPushButton* getDetailsButton();
+	QPushButton* getDeleteButton();
 
-	private:
+private:
+	bool isUserRegistered();
+
+private:
+	Application* m_app;
+	std::string m_event_id;
+	QPushButton *delete_btn;
 	QPushButton *see_details_btn;
 };
